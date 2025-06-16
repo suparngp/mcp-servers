@@ -1,0 +1,57 @@
+{
+  "name": "supertokens",
+  "displayName": "SuperTokens Documentation",
+  "baseUrl": "https://supertokens.com",
+  "crawl": {
+    "strategy": {
+      "type": "bfs",
+      "maxDepth": 1,
+      "maxPages": 1,
+      "includeExternal": false
+    },
+    "includePatterns": ["^/docs/references/cdi/"],
+    "excludePatterns": [],
+    "contentTypes": ["text/html"],
+    "stream": false,
+    "delay": 1.0,
+    "timeout": 30,
+    "jsEnabled": true,
+    "waitForSelector": "main",
+    "respectRobots": true,
+    "headers": {
+      "User-Agent": "MCP-Docs-Server/1.0"
+    }
+  },
+  "extraction": {
+    "selector": "main",
+    "excludeSelectors": [
+      "nav",
+      "header",
+      "footer",
+      ".navbar",
+      ".sidebar",
+      ".navigation",
+      ".breadcrumb",
+      ".edit-page-link",
+      ".docs-prevnext"
+    ]
+  },
+  "cleaners": [
+    "removeEmptyLines",
+    "normalizeWhitespace",
+    "extractCodeBlocks",
+    "removeExcessiveNewlines",
+    "removeDuplicateHeaders",
+    "extractMetadata"
+  ],
+  "chunking": {
+    "strategy": "semantic",
+    "maxSize": 1000,
+    "overlap": 200,
+    "minSize": 100
+  },
+  "embedding": {
+    "model": "text-embedding-3-small",
+    "dimensions": 1536
+  }
+}

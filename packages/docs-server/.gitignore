@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+scripts/venv/
+.venv/
+venv/
+
+# Data directories
+sites/*/raw/
+sites/*/cleaned/
+sites/*/state.json
+data/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

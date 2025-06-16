@@ -1,0 +1,59 @@
+{
+  "name": "react",
+  "displayName": "React Documentation",
+  "baseUrl": "https://react.dev",
+  "crawl": {
+    "strategy": {
+      "type": "best-first",
+      "maxDepth": 3,
+      "maxPages": 500,
+      "includeExternal": false,
+      "scorer": {
+        "type": "keyword",
+        "keywords": ["api", "reference", "hook", "component"],
+        "weight": 0.8
+      }
+    },
+    "includePatterns": ["^/reference/", "^/learn/"],
+    "excludePatterns": ["/blog", "/community", "/changelog"],
+    "contentTypes": ["text/html"],
+    "stream": true,
+    "delay": 1.0,
+    "timeout": 30,
+    "jsEnabled": true,
+    "waitForSelector": "main",
+    "respectRobots": true,
+    "headers": {
+      "User-Agent": "MCP-Docs-Server/1.0"
+    }
+  },
+  "extraction": {
+    "selector": "main",
+    "excludeSelectors": [
+      "nav",
+      "header",
+      "footer",
+      ".sidebar",
+      ".navigation",
+      ".version-selector",
+      ".edit-page-link"
+    ]
+  },
+  "cleaners": [
+    "removeEmptyLines",
+    "normalizeWhitespace",
+    "extractCodeBlocks",
+    "removeExcessiveNewlines",
+    "react.cleanVersionBadges"
+  ],
+  "chunking": {
+    "strategy": "semantic",
+    "maxSize": 1000,
+    "overlap": 200,
+    "minSize": 100
+  },
+  "embedding": {
+    "model": "text-embedding-3-small",
+    "dimensions": 1536
+  }
+}

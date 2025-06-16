@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "7777:8000"
+    volumes:
+      # Mount the local data directory to persist ChromaDB data
+      - ./data/chroma:/chroma/chroma
+    environment:
+      # Allow CORS from any origin for development
+      - CHROMA_SERVER_CORS_ALLOW_ORIGINS=["*"]
+      # Persist data on disk
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+      # Anonymous telemetry opt-out
+      - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
