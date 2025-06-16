@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "docs-server": {
+      "command": "mcp-docs-server",
+      "env": {
+        "OPENAI_API_KEY": "sk-..."
+      }
+    }
+  }
+}
