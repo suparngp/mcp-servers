@@ -86,17 +86,17 @@ export const extractMetadata = (
   // Extract title - try multiple patterns
   // Pattern 1: Standard markdown h1 (# Title)
   let titleMatch = content.match(/^#\s+(.+)$/m)
-  
+
   // Pattern 2: If no h1, try h2 (## Title)
   if (!titleMatch) {
     titleMatch = content.match(/^##\s+(.+)$/m)
   }
-  
+
   // Pattern 3: Look for any heading at the start
   if (!titleMatch) {
     titleMatch = content.match(/^#{1,6}\s+(.+)$/m)
   }
-  
+
   if (titleMatch) {
     metadata.title = titleMatch[1].trim()
   }

@@ -1,14 +1,15 @@
 # MCP Documentation Server
 
-A Model Context Protocol (MCP) server that crawls, indexes, and serves documentation from public websites to coding agents through semantic search.
+A Model Context Protocol (MCP) server that provides indexed documentation search capabilities for coding agents. This server enables Claude and other MCP clients to search through pre-indexed API documentation, SDK references, technical guides, and other documentation using natural language queries.
 
 ## Overview
 
-This server solves the problem of coding agents not knowing available APIs when projects have many endpoints. It pre-scrapes documentation, embeds it using OpenAI embeddings, stores vectors in ChromaDB, and serves the content via MCP for semantic search.
+This server solves the problem of coding agents not having access to up-to-date API documentation and technical references. It crawls documentation websites, creates semantic embeddings, and provides fast, accurate search results through MCP tools. Perfect for helping agents understand APIs, find code examples, and access technical documentation.
 
 ## Features
 
 - 🕷️ **Web Crawling**: Uses Python's crawl4ai to extract clean markdown from documentation sites
+- 🚀 **Dual Crawling Modes**: Browser-based (for JS-heavy sites) or HTTP-only (for static sites)
 - 🔍 **Semantic Search**: Vector embeddings with OpenAI's text-embedding-3-small model
 - 💾 **Vector Storage**: ChromaDB for efficient similarity search
 - 🔌 **MCP Integration**: Fully compatible with Claude Code and other MCP clients
@@ -93,20 +94,48 @@ Create a configuration file in `sites/[project-name]/config.json`:
 }
 ```
 
+#### Crawler Mode Configuration
+
+To automatically use the HTTP crawler (without browser) for a project, add `preferSimple` to the crawl config:
+
+```json
+{
+  "crawl": {
+    "preferSimple": true,  // Use HTTP crawler by default
+    // ... other config
+  }
+}
+```
+
+This is useful for documentation sites that don't require JavaScript rendering.
+
 ### 2. Run the Pipeline
 
 ```bash
 # Build the TypeScript code
 pnpm build
 
-# Run the full pipeline (crawl, clean, embed)
-pnpm pipeline run myproject
+# Run the full pipeline (concurrent by default)
+pnpm pipeline:run myproject
+
+# Use HTTP crawler (no browser) for faster crawling
+pnpm pipeline:run myproject --http
+
+# Run in sequential mode (legacy)
+pnpm pipeline:run myproject --sequential
 
 # Or run individual steps:
-pnpm pipeline crawl myproject
-pnpm pipeline clean myproject
-pnpm pipeline embed myproject
+pnpm pipeline:crawl myproject
+pnpm pipeline:clean myproject
+pnpm pipeline:embed myproject
 ```
+
+The concurrent pipeline offers significant performance improvements by:
+- Processing pages as soon as they're discovered (no waiting for all URLs)
+- Fetching and embedding in parallel
+- Using lightweight HTTP requests instead of browser automation when possible
+
+For projects like SuperTokens that don't require JavaScript rendering, the `--http` flag uses lightweight HTTP requests instead of a full browser, reducing resource usage and improving speed.
 
 ### 3. Test with Web Interface
 
@@ -148,46 +177,125 @@ The web interface allows you to:
 
 3. **Use in conversations:**
    ```
-   "Search the SuperTokens docs for how to get users with a specific role"
-   "Find React documentation about useEffect cleanup"
-   "Show me the API reference for user authentication"
+   "Search the API docs for authentication endpoints"
+   "Find the user roles management documentation"
+   "Show me how to implement OAuth2 with SuperTokens"
+   "What are the available WebAuthn API endpoints?"
    ```
 
 ## MCP Tools
 
-The server provides three MCP tools:
+The server provides three powerful tools for accessing indexed documentation:
 
 ### `search_docs`
-Search documentation using semantic search.
-- **query** (required): Search query
-- **project** (optional): Limit to specific project
-- **limit** (optional): Max results (default: 5)
+Search through indexed documentation using natural language queries. Perfect for finding API endpoints, understanding authentication flows, locating code examples, or discovering implementation details.
+- **query** (required): Natural language search query (e.g., "authentication API", "how to implement OAuth", "error handling")
+- **project** (optional): Limit search to a specific project
+- **limit** (optional): Maximum number of results to return (default: 5)
+
+Example queries:
+- "How do I authenticate users with email and password?"
+- "WebAuthn API endpoints"
+- "OAuth2 client configuration"
+- "Rate limiting implementation"
 
 ### `get_docs`
-Retrieve a specific document by path.
-- **project** (required): Project name
-- **path** (required): Document path
+Retrieve complete documentation content by URL path. Use this when you need the full API reference, guide, or documentation page.
+- **project** (required): Project name (use list_projects to see available)
+- **path** (required): URL path of the documentation (e.g., /api/auth, /guides/quickstart)
 
 ### `list_projects`
-List all indexed documentation projects.
+List all available documentation projects with their indexing status. Shows which API documentation, SDK references, and technical guides are currently indexed and searchable.
 
 ## Architecture
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌─────────────┐
-│   Crawler   │────▶│   Cleaner    │────▶│  Embedder   │
-│ (Python)    │     │ (TypeScript) │     │ (TypeScript)│
-└─────────────┘     └──────────────┘     └─────────────┘
-       │                    │                     │
-       ▼                    ▼                     ▼
-  Raw Markdown      Clean Markdown         Vector Store
-   + Metadata        + Metadata            (ChromaDB)
-                                                 │
-                                                 ▼
-                                          ┌─────────────┐
-                                          │ MCP Server  │
-                                          │(TypeScript) │
-                                          └─────────────┘
+┌─────────────────────────────┐
+│      crawl.py (Python)      │
+│  ┌─────────┐ ┌───────────┐ │     ┌──────────────┐     ┌─────────────┐
+│  │ Browser │ │   HTTP    │ │────▶│   Cleaner    │────▶│  Embedder   │
+│  │  Mode   │ │   Mode    │ │     │ (TypeScript) │     │ (TypeScript)│
+│  └─────────┘ └───────────┘ │     └──────────────┘     └─────────────┘
+│    Playwright    aiohttp    │            │                     │
+│         ↓           ↓       │            ▼                     ▼
+│       crawler4ai parsing    │      Clean Markdown         Vector Store
+└─────────────────────────────┘       + Metadata            (ChromaDB)
+              │                                                  │
+              ▼                                                  ▼
+         Raw Markdown                                    ┌─────────────┐
+          + Metadata                                     │ MCP Server  │
+                                                        │(TypeScript) │
+                                                        └─────────────┘
+```
+
+The crawler (crawl.py) supports two modes:
+- **Browser Mode**: Uses Playwright for JavaScript-heavy sites
+- **HTTP Mode** (--no-browser): Uses aiohttp for static sites, then processes with crawler4ai's raw:// scheme
+
+Both modes use crawler4ai's markdown generation for consistent output.
+
+## Advanced Usage
+
+### Using the Unified Pipeline CLI
+
+After installing globally with `npm link`, you can use the `docs-pipeline` command:
+
+```bash
+# Show all available commands
+docs-pipeline --help
+
+# Run pipeline (concurrent by default)
+docs-pipeline run myproject
+
+# Run with HTTP crawler (no browser)
+docs-pipeline run supertokens --http
+
+# Run with custom concurrency
+docs-pipeline run myproject --concurrency 10
+
+# Force re-process all pages
+docs-pipeline run myproject --force
+
+# Run sequential pipeline (legacy mode)
+docs-pipeline run myproject --sequential
+
+# Run specific pipeline stages
+docs-pipeline crawl myproject
+docs-pipeline clean myproject
+docs-pipeline embed myproject
+```
+
+### Pipeline Modes Comparison
+
+| Feature | Sequential | Concurrent | Concurrent + HTTP |
+|---------|------------|------------|-------------------|
+| Speed | Slowest | Fast | Fastest |
+| Memory Usage | Low | Medium | Low |
+| Browser Required | Yes | Yes | No |
+| JavaScript Support | Yes | Yes | No |
+| Best For | Complex sites | Most sites | Static docs |
+
+### Programmatic Usage
+
+You can also use the pipeline programmatically in your own scripts:
+
+```typescript
+import { runConcurrentPipeline } from '@mcp-servers/docs-server'
+
+// Use browser-based crawler (default)
+await runConcurrentPipeline('myproject', {
+  apiKey: process.env.OPENAI_API_KEY,
+  maxConcurrency: 10,
+  force: false
+})
+
+// Use HTTP crawler (no browser)
+await runConcurrentPipeline('supertokens', {
+  apiKey: process.env.OPENAI_API_KEY,
+  useSimpleCrawler: true,  // Uses HTTP crawler
+  maxConcurrency: 10,
+  force: false
+})
 ```
 
 ## Development

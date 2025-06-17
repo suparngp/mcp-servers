@@ -3,6 +3,7 @@ import { config } from 'dotenv'
 import type { CleanedDocument, SiteConfig } from '../types/index.js'
 import { runCleaners } from './cleaners/index.js'
 import { crawlProject } from './crawler.js'
+import { discoverUrls } from './discoverer.js'
 import { embedProject } from './embedder.js'
 import {
   cleanupOldFiles,
@@ -14,6 +15,7 @@ import {
   saveRawPage,
   saveSiteState,
 } from './storage.js'
+import { generateContentHash } from './utils.js'
 
 // Load environment variables
 config()
@@ -24,9 +26,11 @@ export async function runPipeline(
     apiKey: string
     force?: boolean
     urls?: string[]
+    skipDiscover?: boolean
     skipCrawl?: boolean
     skipClean?: boolean
     skipEmbed?: boolean
+    useBrowser?: boolean
   },
 ) {
   console.log(`Running pipeline for project: ${projectName}`)
@@ -42,40 +46,102 @@ export async function runPipeline(
   const config: SiteConfig = await loadSiteConfig(projectName)
   const state = await loadSiteState(projectName)
 
-  // Step 1: Crawl
+  // Step 1: Discover URLs
+  if (!options.skipDiscover && !options.urls) {
+    console.log('\n🔍 Starting URL discovery phase...')
+
+    const baseUrl = config.baseUrl
+    const discoveredUrls = await discoverUrls(projectName, baseUrl, {
+      maxDepth: config.crawl.strategy.maxDepth,
+      includePatterns: config.crawl.includePatterns,
+      excludePatterns: config.crawl.excludePatterns,
+    })
+
+    // Update state with discovered URLs
+    for (const discovered of discoveredUrls) {
+      if (!state.urls[discovered.url]) {
+        state.urls[discovered.url] = {
+          url: discovered.url,
+          status: 'pending',
+        }
+      }
+    }
+
+    state.lastDiscovery = new Date().toISOString()
+    state.baseUrl = baseUrl
+    state.stats.totalDiscovered = Object.keys(state.urls).length
+    await saveSiteState(projectName, state)
+
+    console.log(`Discovered ${discoveredUrls.length} URLs`)
+  }
+
+  // Step 2: Crawl
   if (!options.skipCrawl) {
     console.log('\n📥 Starting crawl phase...')
 
     // Determine URLs to crawl
-    let urlsToCrawl = options.urls || [config.baseUrl]
+    let urlsToCrawl: string[] = []
 
-    // If not forcing, filter out already crawled URLs
-    if (!options.force) {
-      const recentCrawlThreshold = Date.now() - 24 * 60 * 60 * 1000 // 24 hours
-      urlsToCrawl = urlsToCrawl.filter((url) => {
-        const lastCrawled = state.crawledUrls[url]
-        if (!lastCrawled) return true
-        return new Date(lastCrawled).getTime() < recentCrawlThreshold
-      })
+    if (options.urls) {
+      // Use provided URLs
+      urlsToCrawl = options.urls
+    } else {
+      // Get pending URLs from state
+      urlsToCrawl = Object.values(state.urls)
+        .filter((urlState) => {
+          if (options.force) return true
+          // Only process pending URLs - don't retry any failures
+          return urlState.status === 'pending'
+        })
+        .map((urlState) => urlState.url)
+        .slice(0, config.crawl.strategy.maxPages) // Respect max pages limit
     }
 
     if (urlsToCrawl.length === 0) {
-      console.log('No URLs need crawling (all recently crawled)')
+      console.log('No URLs need crawling')
     } else {
+      // Determine crawler mode: explicit option > config preference > default (browser)
+      const useBrowser = options.useBrowser ?? !config.crawl.preferSimple ?? true
+
       const pages = await crawlProject(projectName, {
         urls: urlsToCrawl,
         outputFormat: 'markdown',
+        useBrowser,
       })
 
-      // Save raw pages
+      // Save raw pages and update state
       for (const page of pages) {
         await saveRawPage(projectName, page)
-        state.crawledUrls[page.url] = new Date().toISOString()
+
+        // Update URL state - preserve existing fields
+        state.urls[page.url] = {
+          ...state.urls[page.url],
+          url: page.url,
+          status: 'completed',
+          crawledAt: new Date().toISOString(),
+        }
+
         stats.crawled++
       }
 
+      // Mark failed URLs
+      const crawledUrls = new Set(pages.map((p) => p.url))
+      for (const url of urlsToCrawl) {
+        if (!crawledUrls.has(url) && state.urls[url]) {
+          state.urls[url].status = 'failed'
+          state.urls[url].error = 'Failed to crawl'
+          state.urls[url].retries = (state.urls[url].retries || 0) + 1
+        }
+      }
+
       state.lastCrawl = new Date().toISOString()
-      state.stats.totalPages = Object.keys(state.crawledUrls).length
+      state.stats.totalCrawled = Object.values(state.urls).filter(
+        (u) => u.status === 'completed',
+      ).length
+      state.stats.totalFailed = Object.values(state.urls).filter(
+        (u) => u.status === 'failed',
+      ).length
+      state.stats.totalPages = state.stats.totalCrawled
       await saveSiteState(projectName, state)
 
       console.log(`Crawled ${stats.crawled} pages`)
@@ -106,7 +172,11 @@ export async function runPipeline(
           path: pathname,
           content: cleanedContent,
           metadata: {
-            title: cleanerMetadata.title || (metadata as any).metadata?.title || (metadata as any).title || '',
+            title:
+              cleanerMetadata.title ||
+              (metadata as any).metadata?.title ||
+              (metadata as any).title ||
+              '',
             crawledAt: (metadata as any).crawledAt || '',
             cleanedAt: new Date().toISOString(),
             url,
@@ -115,12 +185,21 @@ export async function runPipeline(
         }
 
         await saveCleanedDocument(projectName, cleanedDoc)
+
+        // Update content hash in state
+        const contentHash = generateContentHash(cleanedContent)
+        if (state.urls[url]) {
+          state.urls[url].contentHash = contentHash
+        }
+
         stats.cleaned++
       } catch (error) {
         console.error(`Failed to clean ${filePath}:`, error)
       }
     }
 
+    // Save state with updated content hashes
+    await saveSiteState(projectName, state)
     console.log(`Cleaned ${stats.cleaned} documents`)
   }
 
@@ -128,15 +207,19 @@ export async function runPipeline(
   if (!options.skipEmbed) {
     console.log('\n🔤 Starting embedding phase...')
 
-    const embedResult = await embedProject(projectName, options.apiKey)
+    const embedResult = await embedProject(projectName, options.apiKey, { force: options.force })
     stats.embedded = embedResult.embedded
     stats.chunks = embedResult.chunks
   }
 
   // Cleanup old files if doing full pipeline
   if (!options.skipCrawl && !options.skipClean) {
-    const keepUrls = new Set(Object.keys(state.crawledUrls))
-    const removed = await cleanupOldFiles(projectName, keepUrls)
+    const keepUrls = new Set(
+      Object.entries(state.urls)
+        .filter(([_, urlState]) => urlState.status === 'completed')
+        .map(([url]) => url),
+    )
+    const removed = await cleanupOldFiles(projectName, keepUrls, state)
     if (removed > 0) {
       console.log(`\n🗑️  Cleaned up ${removed} old files`)
     }
@@ -184,6 +267,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     .command('embed <project>')
     .description('Generate embeddings for a project')
     .option('--api-key <key>', 'OpenAI API key')
+    .option('-f, --force', 'Force re-embed all documents')
     .action(async (project, options) => {
       const apiKey = options.apiKey || process.env.OPENAI_API_KEY
       if (!apiKey) {
@@ -195,6 +279,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         apiKey,
         skipCrawl: true,
         skipClean: true,
+        force: options.force,
       })
     })
 

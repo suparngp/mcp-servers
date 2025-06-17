@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { existsSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { Server } from '@modelcontextprotocol/sdk/server/index.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js'
@@ -8,6 +11,22 @@ import { getDocsDefinition, getDocsHandler } from './tools/getDocs.js'
 import { listProjectsDefinition, listProjectsHandler } from './tools/listProjects.js'
 import { searchDocsDefinition, searchDocsHandler } from './tools/searchDocs.js'
 
+// Get the directory of the current module
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+// Find the package root (where sites directory should be)
+let packageRoot = __dirname
+// If we're in dist/, go up one level
+if (__dirname.endsWith('dist')) {
+  packageRoot = dirname(__dirname)
+}
+
+// Change to package root directory if sites exists there
+const sitesPath = join(packageRoot, 'sites')
+if (existsSync(sitesPath)) {
+  process.chdir(packageRoot)
+}
+
 // Load environment variables
 config()
 
@@ -15,6 +34,8 @@ const server = new Server(
   {
     name: 'docs-server',
     version: '0.0.1',
+    description:
+      'MCP server for searching and retrieving indexed documentation including API references, guides, and technical documentation',
   },
   {
     capabilities: {

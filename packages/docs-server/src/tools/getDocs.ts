@@ -2,17 +2,19 @@ import { getDocsDatabase } from '../db/chroma.js'
 
 export const getDocsDefinition = {
   name: 'get_docs',
-  description: 'Get documentation content by URL path',
+  description:
+    'Retrieve full documentation content by URL path. Use this to get complete API documentation, guides, or reference material when you know the specific path.',
   inputSchema: {
     type: 'object',
     properties: {
       project: {
         type: 'string',
-        description: 'Project name',
+        description: 'Project name (use list_projects to see available projects)',
       },
       path: {
         type: 'string',
-        description: 'URL path of the documentation (e.g., /reference/react/useState)',
+        description:
+          'URL path of the documentation (e.g., /references/cdi/introduction, /api/authentication, /guides/quickstart)',
       },
     },
     required: ['project', 'path'],

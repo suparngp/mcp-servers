@@ -38,12 +38,34 @@ export class DocsDatabase {
     }
   }
 
-  async addDocuments(projectName: string, chunks: DocumentChunk[]) {
+  async addDocuments(
+    projectName: string,
+    chunks: DocumentChunk[],
+    options?: { replace?: boolean },
+  ) {
     const collection = await this.getOrCreateCollection(projectName)
+
+    // If replace option is set, delete existing chunks for this document first
+    if (options?.replace && chunks.length > 0) {
+      const docPath = chunks[0].metadata.path
+      try {
+        await collection.delete({
+          where: { path: docPath },
+        })
+      } catch (error) {
+        // Ignore if no documents to delete
+      }
+    }
 
     // Prepare data for ChromaDB
     const ids = chunks.map((chunk) => chunk.id)
-    const documents = chunks.map((chunk) => chunk.content)
+    const documents = chunks.map((chunk) => {
+      // Validate content
+      if (!chunk.content || typeof chunk.content !== 'string') {
+        throw new Error(`Invalid chunk content for chunk ${chunk.id}: ${typeof chunk.content}`)
+      }
+      return chunk.content
+    })
     const metadatas = chunks.map((chunk) => ({
       ...chunk.metadata,
       // Ensure all values are strings for ChromaDB
@@ -51,18 +73,17 @@ export class DocsDatabase {
       totalChunks: String(chunk.metadata.totalChunks),
     }))
 
-    // Add in batches to avoid overwhelming the API
-    const batchSize = 100
-    for (let i = 0; i < chunks.length; i += batchSize) {
-      const batchIds = ids.slice(i, i + batchSize)
-      const batchDocs = documents.slice(i, i + batchSize)
-      const batchMeta = metadatas.slice(i, i + batchSize)
-
+    // Add all chunks at once since we're replacing the entire document
+    try {
       await collection.add({
-        ids: batchIds,
-        documents: batchDocs,
-        metadatas: batchMeta,
+        ids,
+        documents,
+        metadatas,
       })
+    } catch (error) {
+      console.error('Failed to add documents to ChromaDB:', error)
+      console.error('First chunk content preview:', documents[0]?.substring(0, 100))
+      throw error
     }
 
     return chunks.length
@@ -161,7 +182,7 @@ export class DocsDatabase {
 
   async listProjects() {
     const collectionsWithMetadata = await this.client.listCollectionsAndMetadata()
-    
+
     return collectionsWithMetadata
       .filter((col) => col.name.startsWith('docs_'))
       .map((col) => ({

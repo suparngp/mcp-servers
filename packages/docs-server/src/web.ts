@@ -1,5 +1,5 @@
-import Fastify from 'fastify'
 import { config } from 'dotenv'
+import Fastify from 'fastify'
 import { getDocsDatabase } from './db/chroma.js'
 
 // Load environment variables
@@ -18,7 +18,6 @@ const htmlTemplate = () => `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docs</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -795,7 +794,12 @@ const htmlTemplate = () => `
                         <h3 class="result-title" x-text="getTitle(result)"></h3>
                         <span class="result-relevance" x-text="result.relevance + '%'"></span>
                     </div>
-                    <div class="result-url" x-text="result.metadata.url || result.metadata.path"></div>
+                    <div class="result-url">
+                        <span x-text="result.metadata.url || result.metadata.path"></span>
+                        <span x-show="result.metadata.section" style="color: hsl(var(--muted-foreground)); margin-left: 1rem;">
+                            • <span x-text="result.metadata.section"></span>
+                        </span>
+                    </div>
                     <div class="result-content markdown-preview" x-html="renderMarkdownPreview(result.content)"></div>
                 </div>
             </template>
@@ -826,6 +830,15 @@ const htmlTemplate = () => `
                         <i :class="showPlainText ? 'ri-markdown-line' : 'ri-text'"></i>
                         <span x-text="showPlainText ? 'Show Markdown' : 'Show Plain Text'"></span>
                     </button>
+                    <button class="toggle-markdown" @click="showMetadata = !showMetadata">
+                        <i :class="showMetadata ? 'ri-eye-off-line' : 'ri-information-line'"></i>
+                        <span x-text="showMetadata ? 'Hide Metadata' : 'Show Metadata'"></span>
+                    </button>
+                    <button class="toggle-markdown" @click="toggleFullDoc()">
+                        <i :class="showFullDoc ? 'ri-file-reduce-line' : 'ri-file-text-line'"></i>
+                        <span x-show="loadingFullDoc" class="loading" style="width: 0.875rem; height: 0.875rem;"></span>
+                        <span x-show="!loadingFullDoc" x-text="showFullDoc ? 'Show Chunk Only' : 'Show Full Document'"></span>
+                    </button>
                     <button class="modal-close" @click="selectedDoc = null">
                         <i class="ri-close-line"></i>
                     </button>
@@ -834,9 +847,55 @@ const htmlTemplate = () => `
             <div class="modal-body">
                 <div style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem;">
                     <span x-text="selectedDoc?.metadata?.url || selectedDoc?.metadata?.path"></span>
+                    <span x-show="showFullDoc" style="margin-left: 1rem; color: hsl(var(--muted-foreground));">
+                        • Full Document
+                    </span>
+                    <span x-show="!showFullDoc && selectedDoc?.metadata?.chunkIndex !== undefined && selectedDoc?.metadata?.totalChunks" style="margin-left: 1rem; color: hsl(var(--muted-foreground));">
+                        • Chunk <span x-text="Number(selectedDoc?.metadata?.chunkIndex) + 1"></span> of <span x-text="selectedDoc?.metadata?.totalChunks"></span>
+                    </span>
                 </div>
-                <div x-show="!showPlainText" class="markdown-content" x-html="selectedDoc && marked.parse(selectedDoc.content)"></div>
-                <pre x-show="showPlainText" class="plain-content" x-text="selectedDoc?.content"></pre>
+                <div x-show="!showPlainText && !showFullDoc" class="markdown-content" x-html="selectedDoc && marked.parse(selectedDoc.content)"></div>
+                <pre x-show="showPlainText && !showFullDoc" class="plain-content" x-text="selectedDoc?.content"></pre>
+                <div x-show="!showPlainText && showFullDoc" class="markdown-content" x-html="fullDocContent && marked.parse(fullDocContent)"></div>
+                <pre x-show="showPlainText && showFullDoc" class="plain-content" x-text="fullDocContent"></pre>
+                
+                <!-- Chunk Metadata Section -->
+                <div x-show="showMetadata" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid hsl(var(--border));">
+                    <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: hsl(var(--muted-foreground));">Chunk Metadata</h3>
+                    <div style="background: hsl(var(--secondary)); border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1rem; font-size: 0.875rem;">
+                        <div style="display: grid; gap: 0.75rem;">
+                            <div>
+                                <strong>URL:</strong> <span x-text="selectedDoc?.metadata?.url || 'N/A'"></span>
+                            </div>
+                            <div>
+                                <strong>Path:</strong> <span x-text="selectedDoc?.metadata?.path || 'N/A'"></span>
+                            </div>
+                            <div x-show="selectedDoc?.metadata?.section">
+                                <strong>Section:</strong> <span x-text="selectedDoc?.metadata?.section"></span>
+                            </div>
+                            <div x-show="selectedDoc?.metadata?.chunkIndex !== undefined">
+                                <strong>Chunk Index:</strong> <span x-text="selectedDoc?.metadata?.chunkIndex"></span>
+                            </div>
+                            <div x-show="selectedDoc?.metadata?.totalChunks">
+                                <strong>Total Chunks:</strong> <span x-text="selectedDoc?.metadata?.totalChunks"></span>
+                            </div>
+                            <div x-show="selectedDoc?.distance !== undefined">
+                                <strong>Distance:</strong> <span x-text="selectedDoc?.distance?.toFixed(4)"></span>
+                            </div>
+                            <div x-show="selectedDoc?.distance !== undefined">
+                                <strong>Relevance:</strong> <span x-text="Math.round((1 - (selectedDoc?.distance || 0)) * 100) + '%'"></span>
+                            </div>
+                            <div x-show="selectedDoc?.id">
+                                <strong>Chunk ID:</strong> <span x-text="selectedDoc?.id" style="font-family: monospace;"></span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid hsl(var(--border));">
+                            <strong>All Metadata:</strong>
+                            <pre style="margin-top: 0.5rem; background: hsl(var(--background)); padding: 0.75rem; border-radius: calc(var(--radius) - 0.25rem); overflow-x: auto;" x-text="JSON.stringify(selectedDoc?.metadata, null, 2)"></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -852,6 +911,10 @@ const htmlTemplate = () => `
                 searched: false,
                 showRaw: false,
                 showPlainText: false,
+                showMetadata: false,
+                showFullDoc: false,
+                fullDocContent: null,
+                loadingFullDoc: false,
                 lastResponse: null,
                 selectedDoc: null,
                 
@@ -886,7 +949,7 @@ const htmlTemplate = () => `
                             ...(this.selectedProject && { project: this.selectedProject })
                         });
                         
-                        const response = await fetch(\`/api/search?\${params}\`);
+                        const response = await fetch('/api/search?' + params);
                         const data = await response.json();
                         
                         this.results = data.results.map(r => ({
@@ -922,15 +985,76 @@ const htmlTemplate = () => `
                 showDocument(doc) {
                     this.selectedDoc = doc;
                     this.showPlainText = false;
+                    this.showMetadata = false;
+                    this.showFullDoc = false;
+                    this.fullDocContent = null;
+                },
+                
+                async toggleFullDoc() {
+                    if (this.showFullDoc) {
+                        this.showFullDoc = false;
+                        return;
+                    }
+                    
+                    if (!this.selectedDoc?.metadata?.path) {
+                        console.error('No path available for document');
+                        return;
+                    }
+                    
+                    // Extract project name from search or use selected project
+                    const projectName = this.selectedProject || this.getProjectFromDoc(this.selectedDoc);
+                    if (!projectName) {
+                        console.error('Could not determine project name');
+                        return;
+                    }
+                    
+                    this.loadingFullDoc = true;
+                    
+                    try {
+                        const path = this.selectedDoc.metadata.path.startsWith('/') 
+                            ? this.selectedDoc.metadata.path.substring(1) 
+                            : this.selectedDoc.metadata.path;
+                        const response = await fetch('/api/doc/' + projectName + '/' + path);
+                        const data = await response.json();
+                        
+                        if (data.content) {
+                            this.fullDocContent = data.content;
+                            this.showFullDoc = true;
+                        } else {
+                            console.error('No content in response');
+                        }
+                    } catch (error) {
+                        console.error('Failed to load full document:', error);
+                    } finally {
+                        this.loadingFullDoc = false;
+                    }
+                },
+                
+                getProjectFromDoc(doc) {
+                    // Try to extract project name from the path
+                    // Assuming path format is like "docs/..." and project is stored somewhere
+                    // For now, return the first project if only one exists
+                    if (this.projects.length === 1) {
+                        return this.projects[0].name;
+                    }
+                    return null;
                 },
                 
                 getTitle(item) {
                     if (!item) return 'Untitled';
                     // Check multiple possible locations for title
-                    return item.metadata?.title || 
+                    const title = item.metadata?.title || 
                            item.metadata?.metadata?.title || 
                            item.title || 
                            'Untitled';
+                    
+                    // Add chunk info if available
+                    const chunkIndex = item.metadata?.chunkIndex;
+                    const totalChunks = item.metadata?.totalChunks;
+                    if (chunkIndex !== undefined && totalChunks !== undefined) {
+                        return title + ' (Chunk ' + (Number(chunkIndex) + 1) + '/' + totalChunks + ')';
+                    }
+                    return title;
                 },
                 
                 renderMarkdownPreview(content) {
@@ -946,60 +1070,86 @@ const htmlTemplate = () => `
             }
         }
     </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
 `
 
 // API Endpoints
 fastify.get('/', async (_request, reply) => {
-    reply.type('text/html').send(htmlTemplate())
+  reply.type('text/html').send(htmlTemplate())
 })
 
 // API: Get projects
 fastify.get('/api/projects', async (_request, reply) => {
-    const projects = await db.listProjects()
-    reply.send({ projects })
+  const projects = await db.listProjects()
+  reply.send({ projects })
 })
 
 // API: Search
 fastify.get('/api/search', async (request, reply) => {
-    const { q, project } = request.query as { q: string; project?: string }
-    
-    if (!q) {
-        return reply.status(400).send({ error: 'Query parameter required' })
-    }
+  const { q, project } = request.query as { q: string; project?: string }
 
+  if (!q) {
+    return reply.status(400).send({ error: 'Query parameter required' })
+  }
+
+  try {
+    // Use the database directly but return consistent format
     const results = await db.searchDocs(q, {
-        projectName: project || undefined,
-        limit: 10
+      projectName: project || undefined,
+      limit: 10,
     })
 
     reply.send({ results })
+  } catch (error) {
+    console.error('Search error:', error)
+    reply.status(500).send({ error: 'Search failed', results: [] })
+  }
 })
 
 // API: Get document
 fastify.get('/api/doc/:project/*', async (request, reply) => {
-    const { project } = request.params as { project: string }
-    const path = (request.params as any)['*']
-    
-    const doc = await db.getDocByPath(project, `/${path}`)
-    
-    if (!doc) {
-        return reply.status(404).send({ error: 'Document not found' })
-    }
+  const { project } = request.params as { project: string }
+  let path = (request.params as any)['*']
+  
+  // Remove leading slash if present (paths in DB don't have leading slash)
+  if (path.startsWith('/')) {
+    path = path.substring(1)
+  }
+  
+  // Try with the path as-is first
+  let doc = await db.getDocByPath(project, path)
+  
+  // If not found and doesn't end with .md, try adding it
+  if (!doc && !path.endsWith('.md')) {
+    doc = await db.getDocByPath(project, path + '.md')
+  }
+  
+  // If still not found and ends with .md, try without it
+  if (!doc && path.endsWith('.md')) {
+    doc = await db.getDocByPath(project, path.replace(/\.md$/, ''))
+  }
 
-    reply.send(doc)
+  if (!doc) {
+    console.error(`Document not found - project: ${project}, path variations tried:`)
+    console.error(`  - ${path}`)
+    console.error(`  - ${path.endsWith('.md') ? path.replace(/\.md$/, '') : path + '.md'}`)
+    return reply.status(404).send({ error: 'Document not found', project, path })
+  }
+
+  reply.send(doc)
 })
 
 // Start server
 const start = async () => {
-    try {
-        await fastify.listen({ port: 3000, host: '0.0.0.0' })
-        console.log('Web interface running at http://localhost:3000')
-    } catch (err) {
-        fastify.log.error(err)
-        process.exit(1)
-    }
+  try {
+    await fastify.listen({ port: 3000, host: '0.0.0.0' })
+    console.log('Web interface running at http://localhost:3000')
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
 }
 
 start()

@@ -31,6 +31,6 @@
     }
   },
   "files": {
-    "ignore": ["node_modules", "dist", ".turbo", "*.tsbuildinfo"]
+    "ignore": ["node_modules", "dist", ".turbo", "*.tsbuildinfo", "**/venv/**", "**/scripts/venv/**"]
   }
 }

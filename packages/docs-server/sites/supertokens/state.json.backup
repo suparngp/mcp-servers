@@ -1,0 +1,2432 @@
+{
+  "lastCrawl": "2025-06-17T04:31:33.988Z",
+  "lastDiscovery": "2025-06-17T04:30:50.827Z",
+  "baseUrl": "https://supertokens.com/docs",
+  "urls": {
+    "https://supertokens.com/docs": {
+      "url": "https://supertokens.com/docs",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "eed4ced305946fc426599f7ede4ef4887f9546d2278664229301b5af5afdbc0c"
+    },
+    "https://supertokens.com/docs/references": {
+      "url": "https://supertokens.com/docs/references",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "c25be18f19eef483ae56001c7f191d008a84ae1e8b8ea068c7f566e43ab20ace"
+    },
+    "https://supertokens.com/docs/quickstart/introduction": {
+      "url": "https://supertokens.com/docs/quickstart/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "93cf16f283f699e07b755d9cda2552c6015741c772f5fa850e768f7408c175c4"
+    },
+    "https://supertokens.com/docs/quickstart/example-apps/generate-example-app": {
+      "url": "https://supertokens.com/docs/quickstart/example-apps/generate-example-app",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "58e69953f77090cea3cdbb633e69e13e4fcd08658db33db1fce8a12212abbad7"
+    },
+    "https://supertokens.com/docs/authentication/overview": {
+      "url": "https://supertokens.com/docs/authentication/overview",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "16e55d8ec50e086237b8da39bec9b0ab56f4a4829be53af7ead97dad4c056967"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/introduction": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "886ec54987b5cf00a319d177c8d3ef0d2eb3998d8f0d1389eeb7c6751c165662"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/introduction": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "9e134f3406941cd7944bcb337c4bdad4a45e12a73012baa1956a87b44a3b23c7"
+    },
+    "https://supertokens.com/docs/additional-verification/attack-protection-suite/introduction": {
+      "url": "https://supertokens.com/docs/additional-verification/attack-protection-suite/introduction",
+      "status": "failed",
+      "error": "ChromaUniqueError: The resource already exists",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/deployment/self-host-supertokens": {
+      "url": "https://supertokens.com/docs/deployment/self-host-supertokens",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "ab9b39e21ed50298a6df4d211240c5c39576e4aad781ec87cc29aac0aed334d3"
+    },
+    "https://supertokens.com/docs/migration/overview": {
+      "url": "https://supertokens.com/docs/migration/overview",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.214Z",
+      "embeddedAt": "2025-06-17T04:31:01.214Z",
+      "contentHash": "dff7c49c3103838e8961aab43cd1fc51ed83236b1567ead7a06182ef1430a47f"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/reference": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/reference",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "3129279ed6678402dfb34734e5620b34e5bbbc8d392298d7a9f88232569b7e77"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/reference": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/reference",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "68feb3af1647fb9ea2eea30d6f4a0136d1ab2425d9705570c17bf15907aca89c"
+    },
+    "https://supertokens.com/docs/references/fdi/introduction": {
+      "url": "https://supertokens.com/docs/references/fdi/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "efc9fb3c5da1b4aa0d7180376ab124e0bdde10cf17f9c1fe9089bda5b99c878b"
+    },
+    "https://supertokens.com/docs/references/cdi/introduction": {
+      "url": "https://supertokens.com/docs/references/cdi/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "23880bfe75f4548c094f7fec8fe4afeddf85187253866839432e2d07af7169bc"
+    },
+    "https://supertokens.com/docs/references/how-supertokens-works": {
+      "url": "https://supertokens.com/docs/references/how-supertokens-works",
+      "status": "failed",
+      "error": "ChromaUniqueError: The resource already exists",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/references/updating-supertokens": {
+      "url": "https://supertokens.com/docs/references/updating-supertokens",
+      "status": "failed",
+      "error": "ChromaUniqueError: The resource already exists",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/references/compatibility-table": {
+      "url": "https://supertokens.com/docs/references/compatibility-table",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "1d6061d3157f5c9831597eaf082a03440949a84fc8a1f227d851b34a8664a0b9"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/hooks": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/hooks",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "3028039b327183c4bf0c3ec669d1205a453b5dd649bcb4493c2c9287dcc99975"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/function-overrides": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/function-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "b43ecf6d4c83c36ad185cda1d142ad9e62b76b6d967f20714f501a4b584ec15c"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/function-overrides": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/function-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "d7f6c213c36de709ac61d930374e18a3635697b0a38bb7dd4efc104496659170"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/api-overrides": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/api-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "d0ea29840fe2747eb0b3792fc918d87a5ca3a06bf844b1162a2641c5c92f9e4e"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/override-react-components": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/override-react-components",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "aa5652682874d73bbfee5e401e7e200d1b126d3ef6322b700366615db932b656"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/changing-colours": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/changing-colours",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "4988a3a9cc6c47fb97bf20bd2fc1c7f9792bc10ea5d4e57c12888b311f896440"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/user-context": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/user-context",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "2f5ba8f52905f30be2aa1d91320d64e514ab94ca30051b2a6726844fd9121b28"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/user-object": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/user-object",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "2995428579aa137d79ec8a71dde92e81a7a6e89317ad0a607c463d57844bbaea"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/backend-sdk-core-interceptor": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/backend-sdk-core-interceptor",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "026e463138ccbabe60f223170406f2c26bbeb2c34b24a97546f7bbff840df082"
+    },
+    "https://supertokens.com/docs/references/backend-sdks/other-frameworks": {
+      "url": "https://supertokens.com/docs/references/backend-sdks/other-frameworks",
+      "status": "failed",
+      "error": "ChromaUniqueError: The resource already exists",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/auth-react": {
+      "url": "https://supertokens.com/docs/auth-react",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "4b60a7f03c75bb4fa3a088571d1ca74a637200369fc2a9b57e167da6d2bd387c"
+    },
+    "https://supertokens.com/docs/nodejs": {
+      "url": "https://supertokens.com/docs/nodejs",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "58f5bb57e9576faef8a3086976e7763cbd77b0f44113cb38fa8b9e65449fef53"
+    },
+    "https://supertokens.com/docs/golang": {
+      "url": "https://supertokens.com/docs/golang",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "2a0280975a88a62b60651f1fa40bcdc537f9ef2088d27334e9f17f73a31311bd"
+    },
+    "https://supertokens.com/docs/python": {
+      "url": "https://supertokens.com/docs/python",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "86e578276f772a1d1a13cd93840914e920295fdb5490cb80e3060890ca2eaebb"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/ui-showcase": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/ui-showcase",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "4a0af46612691def1a52005f77078a8e08a7d4d0ac4182461b581d2c3fc75cf1"
+    },
+    "https://supertokens.com/docs/authentication/email-password/introduction": {
+      "url": "https://supertokens.com/docs/authentication/email-password/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "92b640b2a11739f45ffcd80a03ae871d6281d6dd1a4a8e84aa340b52732845bb"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/introduction": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "69d294beb42cc4be028cdbcbdaa6306f775b7d951b87d5cd8f0c0f2022fc1de8"
+    },
+    "https://supertokens.com/docs/authentication/social/introduction": {
+      "url": "https://supertokens.com/docs/authentication/social/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "ff8029f7b99ca646c05047d00f164a626adf05d34d4b78d837d5746a15209868"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/important-concepts": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/important-concepts",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "88c39c4e03f9a39f6f0d30c31f5989a13970d853693536c2f6069fbf559cafab"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/initial-setup": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/initial-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "e8fdf85dbdfd4b9ebc7a3fea82e32463b7479d18e8be8c639015dea147ae62f3"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/common-domain-login": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/common-domain-login",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "6f9eef7155fb2cbb36001c03135e0601a04500fd447a2fb2f3c50bb4f3ac9e46"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/subdomain-login": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/subdomain-login",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "64b4d231e27d90341d0a1965797a43e7cb73a373a61a6ce6d24d6de8f54ef170"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/manage-tenants": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/manage-tenants",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "4120374dd20a20bd2c12c1d09823a47388fdb659cce6ca3914a6eecbea27b605"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/manage-apps": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/manage-apps",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "9412930d7d3b1073812d35d704fe799a1b9a142f7cadb35ffd5a5c4b57598918"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/saml/what-is-saml": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/saml/what-is-saml",
+      "status": "failed",
+      "error": "ChromaUniqueError: The resource already exists",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/authentication/unified-login/introduction": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "030a0bdcbde4fab95fcb27577da42f70e884a6b262f7697240950a53d572ee6b"
+    },
+    "https://supertokens.com/docs/authentication/m2m/introduction": {
+      "url": "https://supertokens.com/docs/authentication/m2m/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "b3f56b9640ab2576759c37a74a28a9119a1db38d687d9e807a7d5841407cd080"
+    },
+    "https://supertokens.com/docs/authentication/passkeys/introduction": {
+      "url": "https://supertokens.com/docs/authentication/passkeys/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "40c874533dfa31ee8ca85eeb4d3046fa095bab7615e6194f763d343bfd8d135f"
+    },
+    "https://supertokens.com/docs/authentication/social/custom-invite-flow": {
+      "url": "https://supertokens.com/docs/authentication/social/custom-invite-flow",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "6caec5e955e5fccbfdbe8fcf88df1f8a06b0a2f4eaedca1e662d3e7e283421c9"
+    },
+    "https://supertokens.com/docs/deployment/rate-limits": {
+      "url": "https://supertokens.com/docs/deployment/rate-limits",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "44c40de06fc91cd6daed6dcf3848d585a2df2f17dc7f5c07550bba8ce94599ff"
+    },
+    "https://supertokens.com/docs/deployment/scalability": {
+      "url": "https://supertokens.com/docs/deployment/scalability",
+      "status": "failed",
+      "error": "ChromaUniqueError: The resource already exists",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/legacy/core/v10/self-host-supertokens": {
+      "url": "https://supertokens.com/docs/legacy/core/v10/self-host-supertokens",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "488bb73b473cc211b2ba7d554faa7ca14820e3be51fb316de4a41fc5f1d7315f"
+    },
+    "https://supertokens.com/docs/platform-configuration/supertokens-core/api-keys": {
+      "url": "https://supertokens.com/docs/platform-configuration/supertokens-core/api-keys",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:01.215Z",
+      "embeddedAt": "2025-06-17T04:31:01.215Z",
+      "contentHash": "155519ec2bcbeadb801d7c230fbd0ed3ceb52d004539983af38934f5cdbb1060"
+    },
+    "https://supertokens.com/docs/platform-configuration/sms-delivery": {
+      "url": "https://supertokens.com/docs/platform-configuration/sms-delivery",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.473Z",
+      "embeddedAt": "2025-06-17T04:31:11.473Z",
+      "contentHash": "036c2b02fc41e8d588c719563ba792fb8d47d703371621cf2a7078491fbdd94b"
+    },
+    "https://supertokens.com/docs/quickstart/frontend-setup": {
+      "url": "https://supertokens.com/docs/quickstart/frontend-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "0271985852fca47e088b5ecf95f15571983d141ae5ea332d857e25f0313567e9"
+    },
+    "https://supertokens.com/docs/quickstart/backend-setup": {
+      "url": "https://supertokens.com/docs/quickstart/backend-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "f4e39bc4c9cf39db187e153d59452f62d1f2a9bc2dad2cadcbe2c0393027ca93"
+    },
+    "https://supertokens.com/docs/quickstart/next-steps": {
+      "url": "https://supertokens.com/docs/quickstart/next-steps",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "b6f5b30890911ddff3966691894098210e07817361f842971da6ef63fa00cb9d"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/overview": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/overview",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "a9e8932b77dc68d2dbe11e5b67ba487a013c645db778d327220728274e8f8fb0"
+    },
+    "https://supertokens.com/docs/post-authentication/dashboard/introduction": {
+      "url": "https://supertokens.com/docs/post-authentication/dashboard/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "6b050b2fb04551f83612f1ca981cf5fe0d2736ce0c05088eb6d4bc57dae5020e"
+    },
+    "https://supertokens.com/docs/additional-verification/user-roles/introduction": {
+      "url": "https://supertokens.com/docs/additional-verification/user-roles/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "d6f9b1e0848feda4a8f5ecd6cf09d8970af1a5f6280995b976e2bf5bbe4e5234"
+    },
+    "https://supertokens.com/docs/additional-verification/session-verification/protect-api-routes": {
+      "url": "https://supertokens.com/docs/additional-verification/session-verification/protect-api-routes",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "4d52d0b5ac131f927fdbb74a63c92507076a95b1f82f0b235c44dfbaa95196ea"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/introduction": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "8be8fa6c5a946af0b5bbadea59564543f846daef28f54ef3304713158b3fdc55"
+    },
+    "https://supertokens.com/docs/additional-verification/attack-protection-suite/initial-setup": {
+      "url": "https://supertokens.com/docs/additional-verification/attack-protection-suite/initial-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "6733225ed1b0c35e13dede4aec29b6d814976b5e6ee66019db102243053c6855"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/hooks-and-overrides": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/hooks-and-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "95f5d28b74c27c7b665e5f2d93005860d987abda6e5aa780d2f322a225094b43"
+    },
+    "https://supertokens.com/docs/migration/account-migration": {
+      "url": "https://supertokens.com/docs/migration/account-migration",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "aab98fbbed6a9043ff441587dc31b3365d2168b1ee0766daf302f0f4539a03dd"
+    },
+    "https://supertokens.com/docs/migration/session-migration": {
+      "url": "https://supertokens.com/docs/migration/session-migration",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "160f22b043b711ff81e2f0c63871b205a95d646cce0b07c3c2b87014d9bbb94d"
+    },
+    "https://supertokens.com/docs/migration/legacy/about": {
+      "url": "https://supertokens.com/docs/migration/legacy/about",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "058622add6a559cbe8384e6e36bc58fc7e9010cb33404b21256505eb87e7c487"
+    },
+    "https://supertokens.com/docs/references/fdi/email-verification/get-user-email-verify": {
+      "url": "https://supertokens.com/docs/references/fdi/email-verification/get-user-email-verify",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "21f6e1a27918d5ad4fd5462c74c6139e57af2181c71a7d2640f3bba6fe454570"
+    },
+    "https://supertokens.com/docs/references/fdi/email-password/get-emailpassword-email-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/email-password/get-emailpassword-email-exists",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "0cc1aff91495225b2349df2590a6762bdf87907cb946e7171015370431b21cdd"
+    },
+    "https://supertokens.com/docs/references/fdi/mfa/get-totp-device-list": {
+      "url": "https://supertokens.com/docs/references/fdi/mfa/get-totp-device-list",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "4515f453e7d66b6aeb3be6a2e7176e427fade1b169e9e6679405972539ddd02c"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/get-oauth-auth": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/get-oauth-auth",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "2fede56340cd9dad31123d3d4e310c569b5cb305d15f9004a0026df82df9b8ce"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/get-passwordless-email-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/get-passwordless-email-exists",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "86cafa0e3e7de68b593470b1b4913564dd298f7faab280d947d4a2f12f2722dd"
+    },
+    "https://supertokens.com/docs/references/fdi/session/post-session-refresh": {
+      "url": "https://supertokens.com/docs/references/fdi/session/post-session-refresh",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "e6dec956928b03237771ade6bd94aaf9ee85b83c916b253a404acfdf8e4409e6"
+    },
+    "https://supertokens.com/docs/references/fdi/thirdparty/get-authorisationurl": {
+      "url": "https://supertokens.com/docs/references/fdi/thirdparty/get-authorisationurl",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "3b4adf860b7406ca7afd01bbfd40b54b4c51cfb7299836761a69c884df3418ba"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/get-webauthn-email-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/get-webauthn-email-exists",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "00295110a0d9c60e3f3ef0517690d70095089ad55c5723cc48e0ddc2b0617b22"
+    },
+    "https://supertokens.com/docs/references/fdi/get-loginmethods": {
+      "url": "https://supertokens.com/docs/references/fdi/get-loginmethods",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "008e421d993852e8b9d13caca50731a9be69f8ef97254d0b0d83392a965688b9"
+    },
+    "https://supertokens.com/docs/references/fdi/get-jwt-jwks-json": {
+      "url": "https://supertokens.com/docs/references/fdi/get-jwt-jwks-json",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "269f9b32eac158f4f0c35840cf7920e3046a13c0e9d4427caf9c06fef70240fc"
+    },
+    "https://supertokens.com/docs/references/fdi/get-well-known-openid-configuration": {
+      "url": "https://supertokens.com/docs/references/fdi/get-well-known-openid-configuration",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "bf45554ce12127f77d3d6fc49e9b834750de9b5aba82bbca469ba51fa4ff11c5"
+    },
+    "https://supertokens.com/docs/references/fdi/get-example": {
+      "url": "https://supertokens.com/docs/references/fdi/get-example",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "bc7d8d261c09c642650b8dd36c6a948437632e1525a8224617ece96dae530e33"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/switch-between-cookies-and-header-authentication": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/switch-between-cookies-and-header-authentication",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "151a45d621cc63a4a339af7ea09353cea4ec18edc74a6379f9c3b79bba5796bf"
+    },
+    "https://supertokens.com/docs/references/cdi/account-linking/get-accountlinking-user-link-check": {
+      "url": "https://supertokens.com/docs/references/cdi/account-linking/get-accountlinking-user-link-check",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "0ca611ede0fd96ac832c8c6ae6902716eb8ecacef39e990fb73e57a047e7b228"
+    },
+    "https://supertokens.com/docs/references/cdi/import/get-bulk-import-users": {
+      "url": "https://supertokens.com/docs/references/cdi/import/get-bulk-import-users",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "48421648c8bddbc0e9babd665c9844bd3c18e525fdbf5d270ad4a0e69690bad4"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-root": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-root",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "250671498305ac58e05eefc93614e35c0ad8630d6978f9687f6572859e3d5efa"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/get-dashboard-tenant-core-config": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/get-dashboard-tenant-core-config",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "9b5174949acd9bfcacce96eecc6df824276764216837180e160750fde56bf393"
+    },
+    "https://supertokens.com/docs/references/cdi/email-verification/get-user-email-verify": {
+      "url": "https://supertokens.com/docs/references/cdi/email-verification/get-user-email-verify",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "f2e3b0bd5b1da3b7d08e7434cff0483041ed4a4ff4ce1ddcbeee0e383a5548aa"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/get-user": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/get-user",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "22a157b8b2799a4ade06524972da5486798dbe93bdfb6ae43f2d40898768b4a7"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/get-totp-device-list": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/get-totp-device-list",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "51ae16d83f64af7f788237e8ede8c0ec01bae7b9039e47d89fc7c58938340c68"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "ec3db713b7fb498e91d8985dcd8ba70dceb2bb5def96d5b4cf6a2a2211b67388"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-well-known-jwks": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-well-known-jwks",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "bdf32aecf1dd52132d61d14052e5769fe0280be6f6f73a592fa95ac54a7f0ff8"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/get-signinup-codes": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/get-signinup-codes",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "2489e456c885b7b7fec4f2c46cd00808ba7733484e0a66521130c52606d63a95"
+    },
+    "https://supertokens.com/docs/references/cdi/session/get-jwt-data": {
+      "url": "https://supertokens.com/docs/references/cdi/session/get-jwt-data",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "69d5a4d460ac9383d03fe59fda870ad9be49d55512e0fe3dc1de995efa88e383"
+    },
+    "https://supertokens.com/docs/references/cdi/thirdparty/get-user": {
+      "url": "https://supertokens.com/docs/references/cdi/thirdparty/get-user",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "85346a6281936881bb7c60b09e7ba9869022840033b9372955d8ee3b9625e1a5"
+    },
+    "https://supertokens.com/docs/references/cdi/user-metadata/get-user-metadata": {
+      "url": "https://supertokens.com/docs/references/cdi/user-metadata/get-user-metadata",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "4bb8c1a348c7810874fab6d25de95005339451fc3ae6d0cb5966c7d7cd410fc4"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/get-role-users": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/get-role-users",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "e4064175ef3a5580b5651f791514dfeb3cdd904fc29cb6605aa5f16ef8d99879"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/get-webauthn-options": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/get-webauthn-options",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "ce022eb2055559072e03ed35ad09139e6eb4441564bf504ea76782168ddb2702"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/introduction": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/introduction",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "ae2cfa3ed503130b49c98255b0a33d9e8fa47083de25dc564866a5832d12c062"
+    },
+    "https://supertokens.com/docs/references/testing-and-debugging/common-issues": {
+      "url": "https://supertokens.com/docs/references/testing-and-debugging/common-issues",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "7269849babe6b94434431fd869d58cf001bca1b45b69c8ff0b1f2f17fa16f8a3"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/changing-style": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/changing-style",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "6acd89d876033b7ed35fd1817b35c6c4f3e8eceb7657bc4fa607132e4d6f6d68"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/translations": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/translations",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "cd10b8bae8ef367763818aa4079b50b95b0ed298ba577c7a35e5d0fb815d2e51"
+    },
+    "https://supertokens.com/docs/web-js": {
+      "url": "https://supertokens.com/docs/web-js",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "6afeadf4b7461b00beddd82c948bb638caa19704a2420f3bf4e28c2777648236"
+    },
+    "https://supertokens.com/docs/react-native": {
+      "url": "https://supertokens.com/docs/react-native",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "eec570de44ea3cabefff1a8c7c5103f4a52b01aeaed2ad959188ed740b5f2f5f"
+    },
+    "https://supertokens.com/docs/ios": {
+      "url": "https://supertokens.com/docs/ios",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "fb6cbb28725d047d0852e092a58a7ef272bcff1c75d689c8d8416560a95251d7"
+    },
+    "https://supertokens.com/docs/android": {
+      "url": "https://supertokens.com/docs/android",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:11.474Z",
+      "embeddedAt": "2025-06-17T04:31:11.474Z",
+      "contentHash": "effd901731632dbcc91a7630295969d194a8fa75c2ec6406472b2f18f1ac4c52"
+    },
+    "https://supertokens.com/docs/flutter": {
+      "url": "https://supertokens.com/docs/flutter",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "2ab0ec5de720a8e695f20d5daa70138cf269decfa7d68875f73d7d4ade358584"
+    },
+    "https://supertokens.com/docs/auth-react/modules/recipe_thirdpartyemailpassword.html": {
+      "url": "https://supertokens.com/docs/auth-react/modules/recipe_thirdpartyemailpassword.html",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "94a12af798df73d0d4f0fa291014bf560a0d68899bec03c96ad01339e6e80ffb"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/embed-sign-in-up-form": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/embed-sign-in-up-form",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "3acb23fe0a6a64e807354822540c0198d3c3e28ba486f8a4e4393943ae8a798a"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/shadow-dom": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/shadow-dom",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "d61cb177a979f1393ecb388f9fe0c9ae5c875a308ef8bbe059b2fc47d857e5a1"
+    },
+    "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/toc-privacypolicy": {
+      "url": "https://supertokens.com/docs/references/frontend-sdks/prebuilt-ui/toc-privacypolicy",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "9ca0c7a072748068fc25cc6b2082092eef9e896cbbf5063c87a2fd630ff4138b"
+    },
+    "https://supertokens.com/docs/nodejs/modules/recipe_thirdparty.html": {
+      "url": "https://supertokens.com/docs/nodejs/modules/recipe_thirdparty.html",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "bcfe8562a3aad4ae381e69b5cc9519f863bdfffd2e64d585a57a8d8edfbb9450"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/important-concepts": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/important-concepts",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "cd09ed84d41d1569dcb77419b8cc89f902c8e33e9a9c9b574fbae21efd10ab08"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/initial-setup": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/initial-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "3486c79ac46c4ae32ed498fc34eacf90b540f4e44ab29206796554e2f794b7ab"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/totp/totp-for-all-users": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/totp/totp-for-all-users",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "1e971c9f11398e1fc08b078f9182f1cbc578e5e7ce089a4bf666d57533e460d7"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/email-sms-otp/otp-for-all-users": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/email-sms-otp/otp-for-all-users",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "57f968bfc41a3337daa578bd4ea477bc151d36c626c37e8ab5b7c7958acaa042"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/step-up-auth": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/step-up-auth",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "7abcf1ce2b3c9c3b9fe4b9def72fb07445be9370b1c93c6917cb8fa451508acc"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/backup-codes": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/backup-codes",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "f13f1a2c7dfc5878cd0b66407a17ff63c3bbe8b878fb129d51ff1b5d0fae1dce"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/protect-routes": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/protect-routes",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "c73a8bf5115cb0434cce85af1c2aa4dcc05cc4c4018d4b90f6aff5bd6ad91281"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/hooks-and-overrides": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/hooks-and-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "77435c9677bcdf05456a1b2538949d8e4d1f5a161fb8b3961561e298e80dcf79"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/migration/legacy-to-new": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/migration/legacy-to-new",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "b0207e2170102794a7cc769abb85ecacd6c780af33c6a751a97f043503aa3874"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/legacy-vs-new": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/legacy-vs-new",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "198c0de6b7a13a6ee804cd92aecdea09ca84a932babdaa0dca10b180cdbde1b1"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/totp/totp-for-opt-in-users": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/totp/totp-for-opt-in-users",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "fe8c25c712bb8e073dae0f1b66163d4c9ec0071d2145da0405ed80abd8355ac6"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/email-sms-otp/otp-for-opt-in-users": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/email-sms-otp/otp-for-opt-in-users",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "52db79e5f9926c88bb4d27b1d96ba1f9e2e339b70b659d6a36b7265aa587030a"
+    },
+    "https://supertokens.com/docs/additional-verification/session-verification/claim-validation": {
+      "url": "https://supertokens.com/docs/additional-verification/session-verification/claim-validation",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "b10cd75f6c60d58a1c1b6351324a83f4ae4d67b2d71cef6a121f7db829ebcf2c"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/multiple-api-endpoints": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/multiple-api-endpoints",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "1207b564db1dca9ae098450f76dcb279118a76a1ce22883630669848eae1aba7"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/initial-setup": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/initial-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "eb6b9b37b599a53d91c1f12273743ad86f1da9686d28eb8cd8a67dfa5084a456"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/customize-the-magic-link": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/customize-the-magic-link",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "58b0e57a38bebe483ac14074d37655a8d65994128a614ee4f2f69b87f2654db1"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/customize-the-otp": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/customize-the-otp",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "48dff6dd13a36acba29a7c4624f342d1c9223b7a5807e8906e3f8cebf00b8d33"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/hooks-and-overrides": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/hooks-and-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "52bd244dd3d79eed589508aba596c3c271ee3eb8d0f65bf2bea752a759c30200"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/configure-email-and-sms-behavior": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/configure-email-and-sms-behavior",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "adf5d4e0c618ffbf108d5968b6a2ce64f4958e62a4f31b8dca1770b8de2b0e7b"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/invite-link-flow": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/invite-link-flow",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "f587d3a76723b76d0a7165f228439e7f74a538d3976f04e17a6a00cc3af19813"
+    },
+    "https://supertokens.com/docs/authentication/passwordless/allow-list-flow": {
+      "url": "https://supertokens.com/docs/authentication/passwordless/allow-list-flow",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "b8cbd75610e73f9b30eaacc096d3bd1bb484c29db58e24983d322bbd97b5444c"
+    },
+    "https://supertokens.com/docs/platform-configuration/email-delivery": {
+      "url": "https://supertokens.com/docs/platform-configuration/email-delivery",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "092f31f18c4d29c13bbfe2618e44f556128b3e042758201f11d10938c5a312f2"
+    },
+    "https://supertokens.com/docs/thirdpartyemailpassword/appinfo": {
+      "url": "https://supertokens.com/docs/thirdpartyemailpassword/appinfo",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "649c181ddf9792fde757cf02c0c9b8f3c630a855313389739b74ee66525a6594"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/share-session-across-sub-domains": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/share-session-across-sub-domains",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "7b68b0d2a9efcd4083ec66782dd87ff30e9d6c3132c846ddaaed4cd21710f254"
+    },
+    "https://supertokens.com/docs/additional-verification/session-verification/protect-frontend-routes": {
+      "url": "https://supertokens.com/docs/additional-verification/session-verification/protect-frontend-routes",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "75d993bcbc9df245ca346c2d16521989ef706d4f532d16f0c1fd90af043023f8"
+    },
+    "https://supertokens.com/docs/authentication/email-password/customize-the-sign-in-form": {
+      "url": "https://supertokens.com/docs/authentication/email-password/customize-the-sign-in-form",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "e4faa453e4f8041bc679258490c21e3f21add7cab083aa5417a2455d6dd66646"
+    },
+    "https://supertokens.com/docs/authentication/email-password/customize-the-sign-up-form": {
+      "url": "https://supertokens.com/docs/authentication/email-password/customize-the-sign-up-form",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "f5bca88472606fd291ce73ed615b3cece5c596d3abafe32def2304fc277003eb"
+    },
+    "https://supertokens.com/docs/authentication/email-password/hooks-and-overrides": {
+      "url": "https://supertokens.com/docs/authentication/email-password/hooks-and-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "13afe78daa67bbec50f7f4a0879f41d2ec5e19c2dca60ba781a61cd3ffe7984a"
+    },
+    "https://supertokens.com/docs/authentication/email-password/password-hashing": {
+      "url": "https://supertokens.com/docs/authentication/email-password/password-hashing",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "34a26fc486697ea289abc7adb91f26adc7ab4bcfae5bcae1f5aa0705f66a15fb"
+    },
+    "https://supertokens.com/docs/authentication/email-password/implement-username-login": {
+      "url": "https://supertokens.com/docs/authentication/email-password/implement-username-login",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.060Z",
+      "embeddedAt": "2025-06-17T04:31:22.060Z",
+      "contentHash": "b27539f9b1dbc028d6877c1d600e4e2ba8d2274ee01098fe8c0292fca11c00df"
+    },
+    "https://supertokens.com/docs/authentication/email-password/password-reset": {
+      "url": "https://supertokens.com/docs/authentication/email-password/password-reset",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "6f2f768940f67239dcd4a3f3990ee08e5ca35924ce9fabe777ed4e0f1e897772"
+    },
+    "https://supertokens.com/docs/authentication/email-password/disable-signup": {
+      "url": "https://supertokens.com/docs/authentication/email-password/disable-signup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "4a26589bf99c61a56069477098114726019584f393e4604b7d729f3f377bbd98"
+    },
+    "https://supertokens.com/docs/authentication/email-password/password-managers": {
+      "url": "https://supertokens.com/docs/authentication/email-password/password-managers",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "9d99370c3bc4d1d4d0ff80acc75681804c116e83499f74362ef92cea83017826"
+    },
+    "https://supertokens.com/docs/authentication/social/initial-setup": {
+      "url": "https://supertokens.com/docs/authentication/social/initial-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "bce042b03e2f6b68c09201da19418508a324eee8ccd803d97a6ab9ad2d616d27"
+    },
+    "https://supertokens.com/docs/authentication/social/built-in-providers-config": {
+      "url": "https://supertokens.com/docs/authentication/social/built-in-providers-config",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "2e881e9afcd7656c375a1e8c356837cf31f0076dda1fb5986329103875893ef2"
+    },
+    "https://supertokens.com/docs/authentication/social/custom-providers": {
+      "url": "https://supertokens.com/docs/authentication/social/custom-providers",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "0030784ce572139d9f47c3690ce632534c7a17eaacb48b47c37fa6ea8b2b067d"
+    },
+    "https://supertokens.com/docs/authentication/social/hooks-and-overrides": {
+      "url": "https://supertokens.com/docs/authentication/social/hooks-and-overrides",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "86c6910aac51164f3b34793c7b02e38fa22cb468fa69cd9e7745c2ba79e3c880"
+    },
+    "https://supertokens.com/docs/authentication/social/add-multiple-clients-for-the-same-provider": {
+      "url": "https://supertokens.com/docs/authentication/social/add-multiple-clients-for-the-same-provider",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "13e343fafccb3321fbf876494527e20fdf6b9a9d531682d5d258847e2e7d0e90"
+    },
+    "https://supertokens.com/docs/cdi": {
+      "url": "https://supertokens.com/docs/cdi",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "83ee9d0b646133ab9752890c2e5ec78a178ddbee2beee1945c751e2d96fa77d0"
+    },
+    "https://supertokens.com/docs/authentication/enterprise/saml/boxy-hq-guide": {
+      "url": "https://supertokens.com/docs/authentication/enterprise/saml/boxy-hq-guide",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:22.061Z",
+      "embeddedAt": "2025-06-17T04:31:22.061Z",
+      "contentHash": "d22cce1b0802756e1292e32498d883c4fbc383af4a26d8681dac5554deb8804b"
+    },
+    "https://supertokens.com/docs/index.html": {
+      "url": "https://supertokens.com/docs/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/dateProvider.html": {
+      "url": "https://supertokens.com/docs/modules/dateProvider.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/index.html": {
+      "url": "https://supertokens.com/docs/modules/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_authRecipe.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_authRecipe.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_emailpassword.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_emailpassword.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_emailverification.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_emailverification.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_multifactorauth.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_multifactorauth.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_multitenancy.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_multitenancy.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_oauth2provider.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_oauth2provider.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_passwordless.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_passwordless.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_recipeModule.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_recipeModule.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_session.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_session.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_thirdparty.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_thirdparty.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_totp.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_totp.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/recipe_userroles.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_userroles.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules.html": {
+      "url": "https://supertokens.com/docs/modules.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/authentication/m2m/client-credentials": {
+      "url": "https://supertokens.com/docs/authentication/m2m/client-credentials",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.987Z",
+      "embeddedAt": "2025-06-17T04:31:33.987Z",
+      "contentHash": "efc6813d8843c786a39e08ce8818aebe9f15aa2854fa5a825f51c23de140764f"
+    },
+    "https://supertokens.com/docs/authentication/m2m/legacy-flow": {
+      "url": "https://supertokens.com/docs/authentication/m2m/legacy-flow",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.987Z",
+      "embeddedAt": "2025-06-17T04:31:33.987Z",
+      "contentHash": "9c372c82542fd6ea16d3f197a24c0f4b29298130db10cce179036a4d34ddd873"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/oauth2-basics": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/oauth2-basics",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.987Z",
+      "embeddedAt": "2025-06-17T04:31:33.987Z",
+      "contentHash": "f9cb647207b1ada6e0dc0cf4366dc096a0f08de0209d50f8872d23a9384184f2"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/add-custom-claims-in-tokens": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/add-custom-claims-in-tokens",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.987Z",
+      "embeddedAt": "2025-06-17T04:31:33.987Z",
+      "contentHash": "d8d811fde602b96e875398e405c8b2e4ee95d9dd82c53ec4c60b9b90851f2dfd"
+    },
+    "https://supertokens.com/docs/async_to_sync_wrapper.html": {
+      "url": "https://supertokens.com/docs/async_to_sync_wrapper.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/asyncio/index.html": {
+      "url": "https://supertokens.com/docs/asyncio/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/auth_utils.html": {
+      "url": "https://supertokens.com/docs/auth_utils.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/constants.html": {
+      "url": "https://supertokens.com/docs/constants.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/env/index.html": {
+      "url": "https://supertokens.com/docs/env/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/exceptions.html": {
+      "url": "https://supertokens.com/docs/exceptions.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/framework/index.html": {
+      "url": "https://supertokens.com/docs/framework/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/ingredients/index.html": {
+      "url": "https://supertokens.com/docs/ingredients/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/interfaces.html": {
+      "url": "https://supertokens.com/docs/interfaces.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/logger.html": {
+      "url": "https://supertokens.com/docs/logger.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/normalised_url_domain.html": {
+      "url": "https://supertokens.com/docs/normalised_url_domain.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/normalised_url_path.html": {
+      "url": "https://supertokens.com/docs/normalised_url_path.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/post_init_callbacks.html": {
+      "url": "https://supertokens.com/docs/post_init_callbacks.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/process_state.html": {
+      "url": "https://supertokens.com/docs/process_state.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/querier.html": {
+      "url": "https://supertokens.com/docs/querier.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/recipe/index.html": {
+      "url": "https://supertokens.com/docs/recipe/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/recipe_module.html": {
+      "url": "https://supertokens.com/docs/recipe_module.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/supertokens.html": {
+      "url": "https://supertokens.com/docs/supertokens.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/syncio/index.html": {
+      "url": "https://supertokens.com/docs/syncio/index.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/types.html": {
+      "url": "https://supertokens.com/docs/types.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/utils.html": {
+      "url": "https://supertokens.com/docs/utils.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/framework/request.html": {
+      "url": "https://supertokens.com/docs/framework/request.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/authentication/passkeys/important-concepts": {
+      "url": "https://supertokens.com/docs/authentication/passkeys/important-concepts",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "666a75e91a6b5b4093ffe6d95d5186a05f286a5c11804bc69d4ff6358eb1bdba"
+    },
+    "https://supertokens.com/docs/authentication/passkeys/initial-setup": {
+      "url": "https://supertokens.com/docs/authentication/passkeys/initial-setup",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "9c5d6a6905dfb3f85dda5c481772c137e6181a901ee7dc40e49803514d9b07f1"
+    },
+    "https://supertokens.com/docs/authentication/passkeys/customization": {
+      "url": "https://supertokens.com/docs/authentication/passkeys/customization",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "d4014f9cab058293106a734b9a51f46002204ce2a88ca99b885d5fb75dbfb464"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/quickstart-guides/multiple-frontends-with-a-single-backend": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/quickstart-guides/multiple-frontends-with-a-single-backend",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "3ed8c4246a688fd4f761f83ff9db18142699a8e326bda0f5db95322c8260b326"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/work-with-scopes": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/work-with-scopes",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "abc161b743c7ee78189766c034fc84e4a83e9b877ab7742b8581819779a79413"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/verify-tokens": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/verify-tokens",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "6691d613da52c7407b6fd5eb43971d460fe7b36ad46968a5f299eefdd1156774"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/quickstart-guides/multiple-frontends-with-separate-backends": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/quickstart-guides/multiple-frontends-with-separate-backends",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "6f505f56b4ba8e6fda164d3822058d737a81ba8b708d5b311552de62338e323d"
+    },
+    "https://supertokens.com/docs/authentication/unified-login/quickstart-guides/reuse-website-login": {
+      "url": "https://supertokens.com/docs/authentication/unified-login/quickstart-guides/reuse-website-login",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "e2b6b32c4ca39ac89c08f599fdcacf8ef165d498c7e76742b2ba57b0e396c55f"
+    },
+    "https://supertokens.com/docs/post-authentication/user-management/user-metadata": {
+      "url": "https://supertokens.com/docs/post-authentication/user-management/user-metadata",
+      "status": "completed",
+      "crawledAt": "2025-06-17T04:31:33.988Z",
+      "embeddedAt": "2025-06-17T04:31:33.988Z",
+      "contentHash": "4a9a01af76c97668a176ed26c1fe5ad988afa5f68998b37e893b769aaa8890a5"
+    },
+    "https://supertokens.com/docs/modules/framework.html": {
+      "url": "https://supertokens.com/docs/modules/framework.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/framework_awsLambda.html": {
+      "url": "https://supertokens.com/docs/modules/framework_awsLambda.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/framework_custom.html": {
+      "url": "https://supertokens.com/docs/modules/framework_custom.html",
+      "status": "failed",
+      "error": "Failed to crawl URL - possibly 404 or network error",
+      "retries": 1
+    },
+    "https://supertokens.com/docs/modules/framework_express.html": {
+      "url": "https://supertokens.com/docs/modules/framework_express.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/framework_fastify.html": {
+      "url": "https://supertokens.com/docs/modules/framework_fastify.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/framework_hapi.html": {
+      "url": "https://supertokens.com/docs/modules/framework_hapi.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/framework_koa.html": {
+      "url": "https://supertokens.com/docs/modules/framework_koa.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/framework_loopback.html": {
+      "url": "https://supertokens.com/docs/modules/framework_loopback.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/ingredients_emaildelivery.html": {
+      "url": "https://supertokens.com/docs/modules/ingredients_emaildelivery.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/ingredients_smsdelivery.html": {
+      "url": "https://supertokens.com/docs/modules/ingredients_smsdelivery.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/recipe_accountlinking.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_accountlinking.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/recipe_dashboard.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_dashboard.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/recipe_jwt.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_jwt.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/recipe_openid.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_openid.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/recipe_usermetadata.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_usermetadata.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/recipe_webauthn.html": {
+      "url": "https://supertokens.com/docs/modules/recipe_webauthn.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/aws-lambda/quickstart-guide": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/aws-lambda/quickstart-guide",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/graphql": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/graphql",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/hasura": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/hasura",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/nestjs": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/nestjs",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/netlify": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/netlify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/nextjs/app-directory/about": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/nextjs/app-directory/about",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/supabase": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/supabase",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/vercel": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/vercel",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/quickstart/integrations/nextjs/pages-directory/about": {
+      "url": "https://supertokens.com/docs/quickstart/integrations/nextjs/pages-directory/about",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/initial-setup": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/initial-setup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/post-login-redirect": {
+      "url": "https://supertokens.com/docs/post-authentication/post-login-redirect",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/platform-configuration/supertokens-core/ip-allow-deny": {
+      "url": "https://supertokens.com/docs/platform-configuration/supertokens-core/ip-allow-deny",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/platform-configuration/supertokens-core/add-ssl-via-nginx": {
+      "url": "https://supertokens.com/docs/platform-configuration/supertokens-core/add-ssl-via-nginx",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/platform-configuration/supertokens-core/base-path": {
+      "url": "https://supertokens.com/docs/platform-configuration/supertokens-core/base-path",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/platform-configuration/supertokens-core/cli": {
+      "url": "https://supertokens.com/docs/platform-configuration/supertokens-core/cli",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/migration/legacy/mfa-migration": {
+      "url": "https://supertokens.com/docs/migration/legacy/mfa-migration",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/user-management/introduction": {
+      "url": "https://supertokens.com/docs/post-authentication/user-management/introduction",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/account-linking/introduction": {
+      "url": "https://supertokens.com/docs/post-authentication/account-linking/introduction",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/dashboard/initial-setup": {
+      "url": "https://supertokens.com/docs/post-authentication/dashboard/initial-setup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/dashboard/user-management": {
+      "url": "https://supertokens.com/docs/post-authentication/dashboard/user-management",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/dashboard/tenant-management": {
+      "url": "https://supertokens.com/docs/post-authentication/dashboard/tenant-management",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/account-linking/add-passwords-to-an-existing-account": {
+      "url": "https://supertokens.com/docs/post-authentication/account-linking/add-passwords-to-an-existing-account",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/session-verification/ssr": {
+      "url": "https://supertokens.com/docs/additional-verification/session-verification/ssr",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/session-verification/with-websocket": {
+      "url": "https://supertokens.com/docs/additional-verification/session-verification/with-websocket",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/security": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/security",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/access-session-data": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/access-session-data",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/protecting-routes": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/protecting-routes",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/manual-actions": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/manual-actions",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/embed-in-page": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/embed-in-page",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/email-verification/changing-style": {
+      "url": "https://supertokens.com/docs/additional-verification/email-verification/changing-style",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/prebuilt-ui/protecting-routes": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/prebuilt-ui/protecting-routes",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/user-roles/initial-setup": {
+      "url": "https://supertokens.com/docs/additional-verification/user-roles/initial-setup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/user-roles/role-management-actions": {
+      "url": "https://supertokens.com/docs/additional-verification/user-roles/role-management-actions",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/user-roles/protecting-routes": {
+      "url": "https://supertokens.com/docs/additional-verification/user-roles/protecting-routes",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/migration/legacy/account-creation/user-creation": {
+      "url": "https://supertokens.com/docs/migration/legacy/account-creation/user-creation",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/migration/legacy/data-migration": {
+      "url": "https://supertokens.com/docs/migration/legacy/data-migration",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/migration/legacy/session-migration": {
+      "url": "https://supertokens.com/docs/migration/legacy/session-migration",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/migration/legacy/account-creation/user-id-mapping": {
+      "url": "https://supertokens.com/docs/migration/legacy/account-creation/user-id-mapping",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/migration/legacy/account-creation/email-verification": {
+      "url": "https://supertokens.com/docs/migration/legacy/account-creation/email-verification",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-verification/post-user-email-verify": {
+      "url": "https://supertokens.com/docs/references/fdi/email-verification/post-user-email-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-verification/post-user-email-verify-token": {
+      "url": "https://supertokens.com/docs/references/fdi/email-verification/post-user-email-verify-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-password/get-signup-email-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/email-password/get-signup-email-exists",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-password/post-signin": {
+      "url": "https://supertokens.com/docs/references/fdi/email-password/post-signin",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-password/post-signup": {
+      "url": "https://supertokens.com/docs/references/fdi/email-password/post-signup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-password/post-user-password-reset": {
+      "url": "https://supertokens.com/docs/references/fdi/email-password/post-user-password-reset",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/email-password/post-user-password-reset-token": {
+      "url": "https://supertokens.com/docs/references/fdi/email-password/post-user-password-reset-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/get-oauth-end_session": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/get-oauth-end_session",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/get-oauth-login": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/get-oauth-login",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/get-oauth-logininfo": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/get-oauth-logininfo",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/get-oauth-userinfo": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/get-oauth-userinfo",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/post-oauth-end_session": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/post-oauth-end_session",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/post-oauth-introspect": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/post-oauth-introspect",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/post-oauth-logout": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/post-oauth-logout",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/post-oauth-revoke": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/post-oauth-revoke",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/oauth/post-oauth-token": {
+      "url": "https://supertokens.com/docs/references/fdi/oauth/post-oauth-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/session/post-signout": {
+      "url": "https://supertokens.com/docs/references/fdi/session/post-signout",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/get-passwordless-phoneNumber-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/get-passwordless-phoneNumber-exists",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/get-signup-email-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/get-signup-email-exists",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/get-signup-phoneNumber-exists": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/get-signup-phoneNumber-exists",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/post-signinup-code": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/post-signinup-code",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/post-signinup-code-consume": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/post-signinup-code-consume",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/passwordless/post-signinup-code-resend": {
+      "url": "https://supertokens.com/docs/references/fdi/passwordless/post-signinup-code-resend",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/thirdparty/post-signinup": {
+      "url": "https://supertokens.com/docs/references/fdi/thirdparty/post-signinup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/thirdparty/post-callback-apple": {
+      "url": "https://supertokens.com/docs/references/fdi/thirdparty/post-callback-apple",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-credential": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-credential",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-recover-account": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-recover-account",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-recover-account-token": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-recover-account-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-register-options": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-register-options",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-signin": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-signin",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-signin-options": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-signin-options",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-signup": {
+      "url": "https://supertokens.com/docs/references/fdi/webauthn/post-webauthn-signup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/session-invalidation": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/session-invalidation",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/anonymous-session": {
+      "url": "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/anonymous-session",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/account-linking/get-accountlinking-user-primary-check": {
+      "url": "https://supertokens.com/docs/references/cdi/account-linking/get-accountlinking-user-primary-check",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/account-linking/post-accountlinking-user-link": {
+      "url": "https://supertokens.com/docs/references/cdi/account-linking/post-accountlinking-user-link",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/account-linking/post-accountlinking-user-primary": {
+      "url": "https://supertokens.com/docs/references/cdi/account-linking/post-accountlinking-user-primary",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/account-linking/post-accountlinking-user-unlink": {
+      "url": "https://supertokens.com/docs/references/cdi/account-linking/post-accountlinking-user-unlink",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-hello": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-hello",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-users": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-users",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-users-by-accountinfo": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-users-by-accountinfo",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-users-count": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-users-count",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-apiversion": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-apiversion",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-ee-featureflag": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-ee-featureflag",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-ee-license": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-ee-license",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-userid-map": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-userid-map",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-requests-stats": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-requests-stats",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-telemetry": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-telemetry",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-user-id": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-user-id",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-user-search-tags": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-user-search-tags",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-users-count-active": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-users-count-active",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/get-config": {
+      "url": "https://supertokens.com/docs/references/cdi/core/get-config",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/post-hello": {
+      "url": "https://supertokens.com/docs/references/cdi/core/post-hello",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/post-userid-map": {
+      "url": "https://supertokens.com/docs/references/cdi/core/post-userid-map",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/post-userid-map-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/core/post-userid-map-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/post-user-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/core/post-user-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/put-hello": {
+      "url": "https://supertokens.com/docs/references/cdi/core/put-hello",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/put-ee-license": {
+      "url": "https://supertokens.com/docs/references/cdi/core/put-ee-license",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/put-userid-external-user-id-info": {
+      "url": "https://supertokens.com/docs/references/cdi/core/put-userid-external-user-id-info",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/delete-hello": {
+      "url": "https://supertokens.com/docs/references/cdi/core/delete-hello",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/core/delete-ee-license": {
+      "url": "https://supertokens.com/docs/references/cdi/core/delete-ee-license",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/get-dashboard-user-sessions": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/get-dashboard-user-sessions",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/get-dashboard-users": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/get-dashboard-users",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/post-dashboard-session-verify": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/post-dashboard-session-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/post-dashboard-signin": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/post-dashboard-signin",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/post-dashboard-user": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/post-dashboard-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/put-dashboard-user": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/put-dashboard-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/delete-dashboard-session": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/delete-dashboard-session",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/dashboard/delete-dashboard-user": {
+      "url": "https://supertokens.com/docs/references/cdi/dashboard/delete-dashboard-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify": {
+      "url": "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify-token": {
+      "url": "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify-token-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify-token-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/email-verification/post-user-email-verify-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/import/post-bulk-import-import": {
+      "url": "https://supertokens.com/docs/references/cdi/import/post-bulk-import-import",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/import/post-bulk-import-users": {
+      "url": "https://supertokens.com/docs/references/cdi/import/post-bulk-import-users",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/import/delete-bulk-import-users": {
+      "url": "https://supertokens.com/docs/references/cdi/import/delete-bulk-import-users",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/import/get-bulk-import-users-count": {
+      "url": "https://supertokens.com/docs/references/cdi/import/get-bulk-import-users-count",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/post-signin": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/post-signin",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/post-signup": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/post-signup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/post-user-password-reset": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/post-user-password-reset",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/post-user-password-reset-token": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/post-user-password-reset-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/post-user-password-reset-token-consume": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/post-user-password-reset-token-consume",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/post-user-passwordhash-import": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/post-user-passwordhash-import",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/email-password/put-user": {
+      "url": "https://supertokens.com/docs/references/cdi/email-password/put-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/post-totp-device-verify": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/post-totp-device-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/post-totp-verify": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/post-totp-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/post-totp-device": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/post-totp-device",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/post-totp-device-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/post-totp-device-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/post-totp-device-import": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/post-totp-device-import",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/mfa/put-totp-device": {
+      "url": "https://supertokens.com/docs/references/cdi/mfa/put-totp-device",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/thirdparty/get-users-by-email": {
+      "url": "https://supertokens.com/docs/references/cdi/thirdparty/get-users-by-email",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/thirdparty/post-signinup": {
+      "url": "https://supertokens.com/docs/references/cdi/thirdparty/post-signinup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-metadata/post-user-metadata-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/user-metadata/post-user-metadata-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-metadata/put-user-metadata": {
+      "url": "https://supertokens.com/docs/references/cdi/user-metadata/put-user-metadata",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant-list": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant-list",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant-list-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-tenant-list-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-app-list": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-app-list",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-app-list-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-app-list-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-connectionuridomain-list": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-connectionuridomain-list",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-connectionuridomain-list-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/get-multitenancy-connectionuridomain-list-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-config-thirdparty-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-config-thirdparty-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-tenant-user": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-tenant-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-tenant-user-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-tenant-user-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-tenant-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-tenant-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-app-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-app-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-connectionuridomain-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/post-multitenancy-connectionuridomain-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-config-thirdparty": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-config-thirdparty",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-tenant": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-tenant",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-tenant-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-tenant-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-app": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-app",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-app-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-app-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-connectionuridomain": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-connectionuridomain",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-connectionuridomain-v2": {
+      "url": "https://supertokens.com/docs/references/cdi/multitenancy/put-multitenancy-connectionuridomain-v2",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-jwks": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-jwks",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-auth": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-auth",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-consent-request": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-consent-request",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-login-request": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-login-request",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-client": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-client",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-clients": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-clients",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-sessions-logout": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-sessions-logout",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-client": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-client",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-client-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-client-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-token-introspect": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-token-introspect",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-session-revoke": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-session-revoke",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-token": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/get-oauth2-token",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-token-revoke": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-token-revoke",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-tokens-revoke": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-tokens-revoke",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-consent-request-accept": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-consent-request-accept",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-consent-request-reject": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-consent-request-reject",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-login-request-accept": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-login-request-accept",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-login-request-reject": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-login-request-reject",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-logout-request-accept": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-logout-request-accept",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-logout-request-reject": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/post-oauth2-logout-request-reject",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/oauth/put-oauth2-client": {
+      "url": "https://supertokens.com/docs/references/cdi/oauth/put-oauth2-client",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/get-session-user": {
+      "url": "https://supertokens.com/docs/references/cdi/session/get-session-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/get-session": {
+      "url": "https://supertokens.com/docs/references/cdi/session/get-session",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/get-session-data": {
+      "url": "https://supertokens.com/docs/references/cdi/session/get-session-data",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/post-session": {
+      "url": "https://supertokens.com/docs/references/cdi/session/post-session",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/post-session-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/session/post-session-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/post-jwt": {
+      "url": "https://supertokens.com/docs/references/cdi/session/post-jwt",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/post-session-refresh": {
+      "url": "https://supertokens.com/docs/references/cdi/session/post-session-refresh",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/post-session-regenerate": {
+      "url": "https://supertokens.com/docs/references/cdi/session/post-session-regenerate",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/post-session-verify": {
+      "url": "https://supertokens.com/docs/references/cdi/session/post-session-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/put-jwt-data": {
+      "url": "https://supertokens.com/docs/references/cdi/session/put-jwt-data",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/session/put-session-data": {
+      "url": "https://supertokens.com/docs/references/cdi/session/put-session-data",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/get-user": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/get-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code-check": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code-check",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code-consume": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code-consume",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-code-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-codes-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/post-signinup-codes-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/passwordless/put-user": {
+      "url": "https://supertokens.com/docs/references/cdi/passwordless/put-user",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/get-webauthn-credential": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/get-webauthn-credential",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/get-webauthn-credentials": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/get-webauthn-credentials",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-recover": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-recover",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-registration-options": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-registration-options",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-signin-options": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-signin-options",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-signin": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-signin",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-signup": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-signup",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-register": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-register",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-token-recovery": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-token-recovery",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-token-consume": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/post-webauthn-token-consume",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/put-webauthn-email": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/put-webauthn-email",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/delete-webauthn-options": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/delete-webauthn-options",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/webauthn/delete-webauthn-credential": {
+      "url": "https://supertokens.com/docs/references/cdi/webauthn/delete-webauthn-credential",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/mfa/post-totp-device": {
+      "url": "https://supertokens.com/docs/references/fdi/mfa/post-totp-device",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/mfa/post-totp-device-remove": {
+      "url": "https://supertokens.com/docs/references/fdi/mfa/post-totp-device-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/mfa/post-totp-device-verify": {
+      "url": "https://supertokens.com/docs/references/fdi/mfa/post-totp-device-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/mfa/post-totp-verify": {
+      "url": "https://supertokens.com/docs/references/fdi/mfa/post-totp-verify",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/fdi/mfa/put-mfa-info": {
+      "url": "https://supertokens.com/docs/references/fdi/mfa/put-mfa-info",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/get-user-roles": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/get-user-roles",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/get-permission-roles": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/get-permission-roles",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/get-role-permissions": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/get-role-permissions",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/get-roles": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/get-roles",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/post-user-role-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/post-user-role-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/post-role-permissions-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/post-role-permissions-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/post-role-remove": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/post-role-remove",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/put-user-role": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/put-user-role",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/references/cdi/user-roles/put-role": {
+      "url": "https://supertokens.com/docs/references/cdi/user-roles/put-role",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/post-authentication/account-linking/automatic-account-linking": {
+      "url": "https://supertokens.com/docs/post-authentication/account-linking/automatic-account-linking",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/totp/embed": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/totp/embed",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/email-sms-otp/embed": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/email-sms-otp/embed",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/how-it-works": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/how-it-works",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/backend-setup/first-factor": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/backend-setup/first-factor",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/frontend-custom": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/frontend-custom",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/prebuilt-ui/init": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/legacy-mfa/prebuilt-ui/init",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/additional-verification/mfa/migration/old-sdk-to-new": {
+      "url": "https://supertokens.com/docs/additional-verification/mfa/migration/old-sdk-to-new",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/cookieHandler.html": {
+      "url": "https://supertokens.com/docs/modules/cookieHandler.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/modules/windowHandler.html": {
+      "url": "https://supertokens.com/docs/modules/windowHandler.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/supertokens.com/discord": {
+      "url": "https://supertokens.com/docs/supertokens.com/discord",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_constants/file-___root_project_lib_src_constants-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_constants/file-___root_project_lib_src_constants-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_dio/file-___root_project_lib_dio-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_dio/file-___root_project_lib_dio-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_dio-interceptor-wrapper/file-___root_project_lib_src_dio-interceptor-wrapper-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_dio-interceptor-wrapper/file-___root_project_lib_src_dio-interceptor-wrapper-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_errors/file-___root_project_lib_src_errors-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_errors/file-___root_project_lib_src_errors-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_http/file-___root_project_lib_http-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_http/file-___root_project_lib_http-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/supertokens/supertokens-library.html": {
+      "url": "https://supertokens.com/docs/supertokens/supertokens-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_supertokens-http-client/Client-class.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_supertokens-http-client/Client-class.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_supertokens/file-___root_project_lib_src_supertokens-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_supertokens/file-___root_project_lib_src_supertokens-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_supertokens-http-client/file-___root_project_lib_src_supertokens-http-client-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_supertokens-http-client/file-___root_project_lib_src_supertokens-http-client-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/file-___root_project_lib_src_supertokens_dio_extension/file-___root_project_lib_src_supertokens_dio_extension-library.html": {
+      "url": "https://supertokens.com/docs/file-___root_project_lib_src_supertokens_dio_extension/file-___root_project_lib_src_supertokens_dio_extension-library.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Classes.html": {
+      "url": "https://supertokens.com/docs/Classes.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Classes/SuperTokens.html": {
+      "url": "https://supertokens.com/docs/Classes/SuperTokens.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Classes/SuperTokensURLProtocol.html": {
+      "url": "https://supertokens.com/docs/Classes/SuperTokensURLProtocol.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Enums.html": {
+      "url": "https://supertokens.com/docs/Enums.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Enums/APIAction.html": {
+      "url": "https://supertokens.com/docs/Enums/APIAction.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Enums/EventType.html": {
+      "url": "https://supertokens.com/docs/Enums/EventType.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Enums/SuperTokensError.html": {
+      "url": "https://supertokens.com/docs/Enums/SuperTokensError.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Enums/SuperTokensTokenTransferMethod.html": {
+      "url": "https://supertokens.com/docs/Enums/SuperTokensTokenTransferMethod.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Extensions.html": {
+      "url": "https://supertokens.com/docs/Extensions.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/Extensions/Dictionary.html": {
+      "url": "https://supertokens.com/docs/Extensions/Dictionary.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/guides": {
+      "url": "https://supertokens.com/docs/guides",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/classes/default.html": {
+      "url": "https://supertokens.com/docs/classes/default.html",
+      "status": "pending"
+    },
+    "https://supertokens.com/docs/com/supertokens/session/package-summary.html": {
+      "url": "https://supertokens.com/docs/com/supertokens/session/package-summary.html",
+      "status": "pending"
+    }
+  },
+  "stats": {
+    "totalDiscovered": 466,
+    "totalCrawled": 153,
+    "totalFailed": 47,
+    "totalPages": 153,
+    "totalChunks": 1293,
+    "lastEmbeddingRun": "2025-06-17T04:31:33.988Z"
+  }
+}

@@ -4,10 +4,17 @@ import { join } from 'node:path'
 import split2 from 'split2'
 import type { CrawledPage } from '../types/index.js'
 
+/**
+ * Unified crawler that uses crawl.py with optional --no-browser flag
+ * Both modes use crawler4ai for parsing, ensuring consistent output format
+ *
+ * @param useBrowser - If true, uses Playwright/browser. If false, uses HTTP fetch with --no-browser flag
+ */
 export async function crawlUrls(
   projectName: string,
   urls: string[],
   outputFormat: 'markdown' | 'json' = 'markdown',
+  useBrowser = true,
 ): Promise<CrawledPage[]> {
   const configPath = join('sites', projectName, 'config.json')
   const scriptsDir = join(process.cwd(), 'scripts')
@@ -28,49 +35,71 @@ export async function crawlUrls(
   }
 
   return new Promise((resolve, reject) => {
-    const crawler = spawn(pythonCmd, [scriptPath, configPath, outputFormat, ...urls])
+    // Build args: script, config, format, [--no-browser], urls...
+    const args = [scriptPath, configPath, outputFormat]
+    if (!useBrowser) {
+      args.push('--no-browser')
+    }
+    args.push(...urls)
 
-    // Parse JSON output line by line
-    crawler.stdout.pipe(split2()).on('data', (line: string) => {
+    const pythonProcess = spawn(pythonCmd, args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+
+    // Handle stdout - parse JSON results
+    pythonProcess.stdout.pipe(split2()).on('data', (line: string) => {
       if (!line.trim()) return
 
       try {
-        const data = JSON.parse(line)
-        if (!data.error) {
-          pages.push(data as CrawledPage)
+        const result = JSON.parse(line)
+
+        pages.push({
+          url: result.url,
+          content: result.content,
+          title: result.title || result.metadata?.title || '',
+          depth: 0, // Depth tracking not implemented in Python scripts
+          score: 1.0, // Default score
+          metadata: {
+            ...result.metadata,
+            title: result.title || result.metadata?.title || '',
+            crawledAt: new Date().toISOString(),
+            crawler: useBrowser ? 'browser' : 'http',
+          },
+        })
+      } catch (error) {
+        console.error('Failed to parse crawler output:', error)
+        console.error('Raw line:', line)
+      }
+    })
+
+    // Handle stderr - parse error messages
+    pythonProcess.stderr.pipe(split2()).on('data', (line: string) => {
+      if (!line.trim()) return
+
+      try {
+        const errorResult = JSON.parse(line)
+        if (errorResult.error) {
+          errors.push(`${errorResult.url}: ${errorResult.error}`)
         }
-      } catch (e) {
-        console.error('Failed to parse crawler output:', e)
+      } catch {
+        // If not JSON, just log it
+        console.error('Crawler stderr:', line)
       }
     })
 
-    // Capture errors
-    crawler.stderr.pipe(split2()).on('data', (line: string) => {
-      if (!line.trim()) return
-
-      try {
-        const error = JSON.parse(line)
-        errors.push(`${error.url}: ${error.error}`)
-      } catch (e) {
-        // Non-JSON error output
-        console.error('Crawler error:', line)
-      }
+    pythonProcess.on('error', (error) => {
+      reject(new Error(`Failed to start crawler: ${error.message}`))
     })
 
-    crawler.on('close', (code) => {
-      if (code === 0) {
-        console.log(`Crawled ${pages.length} pages successfully`)
+    pythonProcess.on('close', (code) => {
+      if (code !== 0 && pages.length === 0) {
+        reject(new Error(`Crawler exited with code ${code}. Errors: ${errors.join(', ')}`))
+      } else {
         if (errors.length > 0) {
-          console.warn(`Failed to crawl ${errors.length} pages:`, errors)
+          console.warn('Some URLs failed to crawl:', errors)
         }
         resolve(pages)
-      } else {
-        reject(new Error(`Crawler exited with code ${code}`))
       }
-    })
-
-    crawler.on('error', (err) => {
-      reject(new Error(`Failed to start crawler: ${err.message}`))
     })
   })
 }
@@ -81,20 +110,21 @@ export async function crawlProject(
     force?: boolean
     urls?: string[]
     outputFormat?: 'markdown' | 'json'
+    useBrowser?: boolean
   },
 ): Promise<CrawledPage[]> {
-  // Load config to get start URLs
-  const configPath = join(process.cwd(), 'sites', projectName, 'config.json')
-  const configContent = await import('node:fs').then(fs => 
-    fs.promises.readFile(configPath, 'utf-8')
-  )
-  const config = JSON.parse(configContent)
-
   // Determine URLs to crawl
-  const urlsToCrawl = options?.urls || [config.baseUrl]
+  const urlsToCrawl = options?.urls || []
+  const outputFormat = options?.outputFormat || 'markdown'
+  const useBrowser = options?.useBrowser ?? true
 
-  // TODO: Implement incremental crawling by checking state.json
-  // For now, just crawl the provided URLs
+  if (urlsToCrawl.length === 0) {
+    console.warn('No URLs provided to crawl')
+    return []
+  }
 
-  return crawlUrls(projectName, urlsToCrawl, options?.outputFormat)
+  console.log(
+    `Crawling ${urlsToCrawl.length} URLs using ${useBrowser ? 'browser' : 'HTTP'} mode...`,
+  )
+  return crawlUrls(projectName, urlsToCrawl, outputFormat, useBrowser)
 }

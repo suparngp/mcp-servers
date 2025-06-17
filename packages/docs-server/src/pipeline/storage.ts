@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs'
 import { dirname, join } from 'node:path'
-import type { CleanedDocument, CrawledPage, SiteState } from '../types/index.js'
+import type { CleanedDocument, CrawledPage, SiteState, UrlState } from '../types/index.js'
 
 const SITES_DIR = 'sites'
 
@@ -22,13 +22,46 @@ export async function loadSiteState(projectName: string): Promise<SiteState> {
   const statePath = join(SITES_DIR, projectName, 'state.json')
   try {
     const content = await fs.readFile(statePath, 'utf-8')
-    return JSON.parse(content)
+    const state = JSON.parse(content)
+
+    // Handle legacy state format
+    if (!state.urls && state.crawledUrls) {
+      // Convert old format to new format
+      const urls: Record<string, UrlState> = {}
+      for (const [url, crawledAt] of Object.entries(state.crawledUrls)) {
+        urls[url] = {
+          url,
+          status: 'completed',
+          crawledAt: crawledAt as string,
+        }
+      }
+
+      return {
+        lastCrawl: state.lastCrawl,
+        lastDiscovery: null,
+        baseUrl: '',
+        urls,
+        stats: {
+          totalDiscovered: Object.keys(urls).length,
+          totalCrawled: Object.keys(urls).length,
+          totalFailed: 0,
+          ...state.stats,
+        },
+      }
+    }
+
+    return state
   } catch {
     // Return default state if file doesn't exist
     return {
       lastCrawl: null,
-      crawledUrls: {},
+      lastDiscovery: null,
+      baseUrl: '',
+      urls: {},
       stats: {
+        totalDiscovered: 0,
+        totalCrawled: 0,
+        totalFailed: 0,
         totalPages: 0,
         totalChunks: 0,
         lastEmbeddingRun: null,
@@ -177,13 +210,18 @@ async function walkDirectory(dir: string): Promise<string[]> {
   return files
 }
 
-export async function cleanupOldFiles(projectName: string, keepUrls: Set<string>) {
-  const state = await loadSiteState(projectName)
+export async function cleanupOldFiles(
+  projectName: string,
+  keepUrls: Set<string>,
+  state?: SiteState,
+) {
+  const siteState = state || (await loadSiteState(projectName))
+
   const urlsToRemove: string[] = []
 
   // Find URLs that are no longer being crawled
-  for (const url of Object.keys(state.crawledUrls)) {
-    if (!keepUrls.has(url)) {
+  for (const [url, urlState] of Object.entries(siteState.urls)) {
+    if (!keepUrls.has(url) && urlState.status === 'completed') {
       urlsToRemove.push(url)
     }
   }
@@ -208,9 +246,9 @@ export async function cleanupOldFiles(projectName: string, keepUrls: Set<string>
       // File might not exist
     }
 
-    delete state.crawledUrls[url]
+    delete siteState.urls[url]
   }
 
-  await saveSiteState(projectName, state)
+  await saveSiteState(projectName, siteState)
   return urlsToRemove.length
 }

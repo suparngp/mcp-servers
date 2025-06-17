@@ -4,7 +4,8 @@ import { loadSiteState } from '../pipeline/storage.js'
 
 export const listProjectsDefinition = {
   name: 'list_projects',
-  description: 'List all indexed documentation projects',
+  description:
+    'List all available documentation projects with their indexing status. Shows which API documentation, SDK references, and technical guides are available for searching.',
   inputSchema: {
     type: 'object',
     properties: {},

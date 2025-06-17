@@ -117,10 +117,10 @@ function slidingWindowChunk(doc: CleanedDocument, options: ChunkingOptions): Doc
     const chunkWords = words.slice(i, i + options.maxSize)
     const chunkText = chunkWords.join(' ')
 
-    if (chunkText.length >= options.minSize) {
+    if (chunkText.length >= options.minSize && chunkText.trim()) {
       chunks.push({
         id: generateChunkId(doc.url, i),
-        content: chunkText,
+        content: chunkText.trim(),
         metadata: {
           url: doc.url,
           title: doc.metadata.title,
@@ -147,10 +147,10 @@ function fixedSizeChunk(doc: CleanedDocument, options: ChunkingOptions): Documen
   for (let i = 0; i < text.length; i += options.maxSize - options.overlap) {
     const chunkText = text.slice(i, i + options.maxSize)
 
-    if (chunkText.length >= options.minSize) {
+    if (chunkText.length >= options.minSize && chunkText.trim()) {
       chunks.push({
         id: generateChunkId(doc.url, i),
-        content: chunkText,
+        content: chunkText.trim(),
         metadata: {
           url: doc.url,
           title: doc.metadata.title,
@@ -193,9 +193,15 @@ function createChunk(
     }
   }
 
+  // Validate that content is not empty
+  const trimmedContent = contextualContent.trim()
+  if (!trimmedContent) {
+    throw new Error(`Empty chunk content for URL: ${doc.url}`)
+  }
+
   return {
     id: generateChunkId(doc.url, index),
-    content: contextualContent,
+    content: trimmedContent,
     metadata: {
       url: doc.url,
       title: doc.metadata.title,

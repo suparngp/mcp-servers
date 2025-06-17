@@ -24,6 +24,7 @@ export interface SiteConfig {
     waitForSelector?: string
     respectRobots: boolean
     headers?: Record<string, string>
+    preferSimple?: boolean
   }
   extraction: {
     selector: string
@@ -51,10 +52,25 @@ export interface CrawledPage {
   metadata: Record<string, unknown>
 }
 
+export interface UrlState {
+  url: string
+  status: 'pending' | 'crawling' | 'completed' | 'failed'
+  crawledAt?: string
+  error?: string
+  retries?: number
+  contentHash?: string
+  embeddedAt?: string
+}
+
 export interface SiteState {
   lastCrawl: string | null
-  crawledUrls: Record<string, string>
+  lastDiscovery: string | null
+  baseUrl: string
+  urls: Record<string, UrlState>
   stats: {
+    totalDiscovered: number
+    totalCrawled: number
+    totalFailed: number
     totalPages: number
     totalChunks: number
     lastEmbeddingRun: string | null
