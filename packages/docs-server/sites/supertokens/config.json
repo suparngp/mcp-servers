@@ -2,6 +2,9 @@
   "name": "supertokens",
   "displayName": "SuperTokens Documentation",
   "baseUrl": "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/anonymous-session",
+  "discovery": {
+    "strategy": "crawl"
+  },
   "crawl": {
     "strategy": {
       "type": "bfs",

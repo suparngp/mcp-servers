@@ -2,6 +2,9 @@
   "name": "infisical",
   "displayName": "Infisical Documentation",
   "baseUrl": "https://infisical.com/docs/api-reference/endpoints/identities/create",
+  "discovery": {
+    "strategy": "crawl"
+  },
   "crawl": {
     "strategy": {
       "type": "bfs",

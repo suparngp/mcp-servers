@@ -30,25 +30,76 @@ export async function getDocsHandler(args: { project: string; path: string }) {
   const db = getDocsDatabase(apiKey)
 
   try {
-    // Normalize path
-    let normalizedPath = args.path
-    if (!normalizedPath.endsWith('.md')) {
-      normalizedPath += '.md'
+    // Try multiple path variations
+    const pathVariations = []
+    let basePath = args.path
+    
+    // Remove leading slash if present
+    if (basePath.startsWith('/')) {
+      basePath = basePath.substring(1)
     }
-    if (normalizedPath === '/.md') {
-      normalizedPath = '/index.md'
+    
+    // Try the path as-is
+    pathVariations.push(basePath)
+    
+    // Try with .md extension
+    if (!basePath.endsWith('.md')) {
+      pathVariations.push(basePath + '.md')
+    }
+    
+    // Try with index.md for directory paths
+    if (!basePath.includes('.')) {
+      pathVariations.push(basePath + '/index.md')
+      if (!basePath.endsWith('/')) {
+        pathVariations.push(basePath + '/index.md')
+      }
+    }
+    
+    // Try with leading slash variations
+    for (const p of [...pathVariations]) {
+      pathVariations.push('/' + p)
+    }
+    
+    // Special case for root
+    if (basePath === '' || basePath === '/') {
+      pathVariations.push('index.md')
+      pathVariations.push('/index.md')
     }
 
-    const doc = await db.getDocByPath(args.project, normalizedPath)
+    // Try each variation
+    let doc = null
+    let triedPaths = []
+    
+    for (const path of pathVariations) {
+      doc = await db.getDocByPath(args.project, path)
+      triedPaths.push(path)
+      if (doc) break
+    }
 
     if (!doc) {
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `Documentation not found for path: ${args.path} in project: ${args.project}`,
-          },
-        ],
+      // If still not found, try a search as fallback
+      const searchResults = await db.searchDocs(args.path, {
+        projectName: args.project,
+        limit: 1
+      })
+      
+      if (searchResults.length > 0) {
+        // Found via search - get the full document
+        const foundPath = searchResults[0].metadata?.path
+        if (foundPath && typeof foundPath === 'string') {
+          doc = await db.getDocByPath(args.project, foundPath)
+        }
+      }
+      
+      if (!doc) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Documentation not found for path: ${args.path} in project: ${args.project}\n\nTried paths: ${triedPaths.join(', ')}`,
+            },
+          ],
+        }
       }
     }
 
