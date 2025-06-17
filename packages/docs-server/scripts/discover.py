@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """
 URL discovery for documentation sites
-Discovers all pages by following links from a starting URL
+Supports two strategies:
+1. Crawl: Discovers pages by following links from a starting URL
+2. Sitemap: Discovers pages from sitemap.xml
 """
 import asyncio
 import json
 import sys
 from urllib.parse import urljoin, urlparse
 import re
+import xml.etree.ElementTree as ET
 import aiohttp
 from bs4 import BeautifulSoup
 
@@ -23,6 +26,17 @@ class UrlDiscoverer:
         parsed = urlparse(self.base_url)
         self.base_domain = parsed.netloc
         self.base_path = parsed.path.rstrip('/')
+        
+        # For discovery, we often want to explore a broader path than the exact base URL
+        # Extract the common prefix from base_path for sites with nested documentation
+        # e.g., /docs/documentation/getting-started/introduction -> /docs/
+        path_parts = self.base_path.split('/')
+        if len(path_parts) > 2 and 'docs' in path_parts:
+            # Find the 'docs' part and use everything up to and including it
+            docs_index = path_parts.index('docs')
+            self.discovery_base_path = '/'.join(path_parts[:docs_index+1])
+        else:
+            self.discovery_base_path = self.base_path
         
         # Patterns from config
         self.include_patterns = [
@@ -102,8 +116,8 @@ class UrlDiscoverer:
                 if parsed.netloc != self.base_domain:
                     continue
                 
-                # Check if within base path
-                if not parsed.path.startswith(self.base_path):
+                # Check if within discovery base path
+                if not parsed.path.startswith(self.discovery_base_path):
                     continue
                 
                 # Check patterns
@@ -192,6 +206,69 @@ class UrlDiscoverer:
                     'error': f'Worker error: {str(e)}'
                 }), file=sys.stderr)
     
+    async def discover_from_sitemap(self, sitemap_url):
+        """Discover URLs from sitemap.xml"""
+        headers = {
+            'User-Agent': self.config.get('crawl', {}).get('headers', {}).get('User-Agent', 
+                         'Mozilla/5.0 (compatible; DocsCrawler/1.0)')
+        }
+        self.session = aiohttp.ClientSession(headers=headers)
+        
+        try:
+            # Fetch sitemap
+            async with self.session.get(sitemap_url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+                if response.status != 200:
+                    raise Exception(f"Failed to fetch sitemap: HTTP {response.status}")
+                sitemap_content = await response.text()
+            
+            # Parse XML
+            root = ET.fromstring(sitemap_content)
+            
+            # Handle different sitemap namespaces
+            namespaces = {'': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+            
+            # Extract URLs
+            urls = []
+            for url_elem in root.findall('.//url', namespaces):
+                loc_elem = url_elem.find('loc', namespaces)
+                if loc_elem is not None and loc_elem.text:
+                    url = loc_elem.text.strip()
+                    # Check if URL should be included
+                    if self.should_include_url(url):
+                        urls.append(url)
+            
+            # Also check for plain <loc> tags without namespace
+            for loc_elem in root.findall('.//loc'):
+                if loc_elem.text:
+                    url = loc_elem.text.strip()
+                    if url not in urls and self.should_include_url(url):
+                        urls.append(url)
+            
+            # Output discovered URLs
+            for url in urls:
+                self.discovered_urls[url] = {
+                    'depth': 0,
+                    'from_page': 'sitemap'
+                }
+                
+                print(json.dumps({
+                    'type': 'url',
+                    'url': url,
+                    'depth': 0,
+                    'from_page': 'sitemap'
+                }))
+                sys.stdout.flush()
+            
+            # Output summary
+            print(json.dumps({
+                'type': 'complete',
+                'total_discovered': len(urls),
+                'source': 'sitemap'
+            }), file=sys.stderr)
+            
+        finally:
+            await self.session.close()
+    
     async def discover_all(self):
         """Discover all URLs starting from base URL"""
         # Create session
@@ -256,9 +333,30 @@ async def main():
         }), file=sys.stderr)
         sys.exit(1)
     
-    # Discover URLs
+    # Check discovery strategy
+    discovery_config = config.get('discovery', {})
+    strategy = discovery_config.get('strategy', 'crawl')
+    
+    # Create discoverer
     discoverer = UrlDiscoverer(config, base_url, max_depth)
-    await discoverer.discover_all()
+    
+    if strategy == 'sitemap':
+        # Get sitemap URL
+        sitemap_url = discovery_config.get('sitemapUrl')
+        if not sitemap_url:
+            # Try common sitemap locations
+            parsed = urlparse(base_url)
+            sitemap_url = f"{parsed.scheme}://{parsed.netloc}/sitemap.xml"
+        
+        print(json.dumps({
+            'type': 'info',
+            'message': f'Using sitemap discovery from: {sitemap_url}'
+        }), file=sys.stderr)
+        
+        await discoverer.discover_from_sitemap(sitemap_url)
+    else:
+        # Default to crawl strategy
+        await discoverer.discover_all()
 
 
 if __name__ == '__main__':

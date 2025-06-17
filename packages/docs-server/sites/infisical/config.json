@@ -1,12 +1,12 @@
 {
-  "name": "supertokens",
-  "displayName": "SuperTokens Documentation",
-  "baseUrl": "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/anonymous-session",
+  "name": "infisical",
+  "displayName": "Infisical Documentation",
+  "baseUrl": "https://infisical.com/docs/api-reference/endpoints/identities/create",
   "crawl": {
     "strategy": {
       "type": "bfs",
-      "maxDepth": 2,
-      "maxPages": 200,
+      "maxDepth": 3,
+      "maxPages": 2000,
       "includeExternal": false
     },
     "includePatterns": ["/docs/"],

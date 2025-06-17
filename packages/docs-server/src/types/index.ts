@@ -2,6 +2,10 @@ export interface SiteConfig {
   name: string
   displayName: string
   baseUrl: string
+  discovery?: {
+    strategy: 'crawl' | 'sitemap'
+    sitemapUrl?: string
+  }
   crawl: {
     strategy: {
       type: 'bfs' | 'dfs' | 'best-first'

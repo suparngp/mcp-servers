@@ -73,20 +73,72 @@ export class DocsDatabase {
       totalChunks: String(chunk.metadata.totalChunks),
     }))
 
-    // Add all chunks at once since we're replacing the entire document
-    try {
-      await collection.add({
-        ids,
-        documents,
-        metadatas,
-      })
-    } catch (error) {
-      console.error('Failed to add documents to ChromaDB:', error)
-      console.error('First chunk content preview:', documents[0]?.substring(0, 100))
-      throw error
+    // Batch chunks to avoid exceeding token limits
+    // OpenAI's text-embedding-3-small has a limit of 300,000 tokens per request
+    // We'll use a conservative estimate of ~4 chars per token and batch at 200k tokens
+    const MAX_CHARS_PER_BATCH = 200000 * 4 // ~200k tokens worth of characters
+    
+    let totalAdded = 0
+    let currentBatch = {
+      ids: [] as string[],
+      documents: [] as string[],
+      metadatas: [] as any[],
+      charCount: 0,
+    }
+    
+    for (let i = 0; i < chunks.length; i++) {
+      const chunkChars = documents[i].length
+      
+      // If adding this chunk would exceed the limit, process the current batch
+      if (currentBatch.charCount + chunkChars > MAX_CHARS_PER_BATCH && currentBatch.ids.length > 0) {
+        try {
+          await collection.add({
+            ids: currentBatch.ids,
+            documents: currentBatch.documents,
+            metadatas: currentBatch.metadatas,
+          })
+          totalAdded += currentBatch.ids.length
+          console.log(`Added batch of ${currentBatch.ids.length} chunks (${currentBatch.charCount} chars)`)
+        } catch (error) {
+          console.error('Failed to add batch to ChromaDB:', error)
+          console.error('Batch size:', currentBatch.ids.length, 'chars:', currentBatch.charCount)
+          throw error
+        }
+        
+        // Reset batch
+        currentBatch = {
+          ids: [],
+          documents: [],
+          metadatas: [],
+          charCount: 0,
+        }
+      }
+      
+      // Add chunk to current batch
+      currentBatch.ids.push(ids[i])
+      currentBatch.documents.push(documents[i])
+      currentBatch.metadatas.push(metadatas[i])
+      currentBatch.charCount += chunkChars
+    }
+    
+    // Process any remaining chunks
+    if (currentBatch.ids.length > 0) {
+      try {
+        await collection.add({
+          ids: currentBatch.ids,
+          documents: currentBatch.documents,
+          metadatas: currentBatch.metadatas,
+        })
+        totalAdded += currentBatch.ids.length
+        console.log(`Added final batch of ${currentBatch.ids.length} chunks (${currentBatch.charCount} chars)`)
+      } catch (error) {
+        console.error('Failed to add final batch to ChromaDB:', error)
+        console.error('Batch size:', currentBatch.ids.length, 'chars:', currentBatch.charCount)
+        throw error
+      }
     }
 
-    return chunks.length
+    return totalAdded
   }
 
   async searchDocs(

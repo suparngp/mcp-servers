@@ -1,15 +1,19 @@
 {
-  "name": "supertokens",
-  "displayName": "SuperTokens Documentation",
-  "baseUrl": "https://supertokens.com/docs/post-authentication/session-management/advanced-workflows/anonymous-session",
+  "name": "logto",
+  "displayName": "Logto Documentation",
+  "baseUrl": "https://docs.logto.io",
+  "discovery": {
+    "strategy": "sitemap",
+    "sitemapUrl": "https://docs.logto.io/sitemap.xml"
+  },
   "crawl": {
     "strategy": {
       "type": "bfs",
       "maxDepth": 2,
-      "maxPages": 200,
+      "maxPages": 500,
       "includeExternal": false
     },
-    "includePatterns": ["/docs/"],
+    "includePatterns": [],
     "excludePatterns": [],
     "contentTypes": ["text/html"],
     "stream": false,
