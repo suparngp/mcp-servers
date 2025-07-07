@@ -3,7 +3,7 @@ import { getDocsDatabase } from '../db/chroma.js'
 export const getDocsDefinition = {
   name: 'get_docs',
   description:
-    'Retrieve full documentation content by URL path. Use this to get complete API documentation, guides, or reference material when you know the specific path.',
+    'Retrieve full documentation content by URL path. Use this to get complete API documentation, guides, or reference material when you know the specific path. Make sure to pass the project name for accurate results.',
   inputSchema: {
     type: 'object',
     properties: {

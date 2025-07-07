@@ -3,7 +3,7 @@ import { getDocsDatabase } from '../db/chroma.js'
 export const searchDocsDefinition = {
   name: 'search_docs',
   description:
-    'Search indexed documentation using semantic search. Includes API references, SDK documentation, guides, and technical documentation. Use natural language queries to find relevant information.',
+    'Search indexed documentation using semantic search. Includes API references, SDK documentation, guides, and technical documentation. Use natural language queries to find relevant information. Make sure to pass the project name for accurate results.',
   inputSchema: {
     type: 'object',
     properties: {

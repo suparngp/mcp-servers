@@ -229,7 +229,9 @@ function findBreakPoint(lines: string[], currentIndex: number, maxLookback: numb
 }
 
 function generateChunkId(url: string, index: number): string {
+  // Normalize URL by removing trailing slash for consistent IDs
+  const normalizedUrl = url.endsWith('/') ? url.slice(0, -1) : url
   const hash = createHash('sha256')
-  hash.update(url + index)
+  hash.update(normalizedUrl + index)
   return hash.digest('hex').substring(0, 16)
 }

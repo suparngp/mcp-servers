@@ -65,7 +65,8 @@ async function processUrl(
       )
 
       // Create cleaned document
-      const pathname = new URL(url).pathname === '/' ? '/index.md' : `${new URL(url).pathname}.md`
+      let pathname = new URL(url).pathname
+      pathname = pathname === '/' ? '/index.md' : `${pathname.endsWith('/') ? pathname.slice(0, -1) : pathname}.md`
       const cleanedDoc: CleanedDocument = {
         url,
         path: pathname,

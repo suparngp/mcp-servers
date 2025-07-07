@@ -77,7 +77,9 @@ export async function saveSiteState(projectName: string, state: SiteState) {
 
 export async function saveRawPage(projectName: string, page: CrawledPage) {
   const url = new URL(page.url)
-  const pathname = url.pathname === '/' ? '/index' : url.pathname
+  let pathname = url.pathname === '/' ? '/index' : url.pathname
+  // Remove trailing slash to avoid creating directories
+  pathname = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
   const filePath = join(SITES_DIR, projectName, 'raw', `${pathname}.md`)
 
   await ensureDirectory(dirname(filePath))
@@ -105,7 +107,9 @@ export async function saveRawPage(projectName: string, page: CrawledPage) {
 }
 
 export async function saveCleanedDocument(projectName: string, doc: CleanedDocument) {
-  const filePath = join(SITES_DIR, projectName, 'cleaned', doc.path)
+  // Remove trailing slash from path to avoid creating directories
+  const cleanPath = doc.path.endsWith('/') ? doc.path.slice(0, -1) : doc.path
+  const filePath = join(SITES_DIR, projectName, 'cleaned', cleanPath)
 
   await ensureDirectory(dirname(filePath))
   await fs.writeFile(filePath, doc.content)
@@ -228,7 +232,9 @@ export async function cleanupOldFiles(
 
   // Remove files and update state
   for (const url of urlsToRemove) {
-    const pathname = new URL(url).pathname === '/' ? '/index' : new URL(url).pathname
+    let pathname = new URL(url).pathname === '/' ? '/index' : new URL(url).pathname
+    // Remove trailing slash to match saved file paths
+    pathname = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
     const rawPath = join(SITES_DIR, projectName, 'raw', `${pathname}.md`)
     const cleanedPath = join(SITES_DIR, projectName, 'cleaned', `${pathname}.md`)
 
