@@ -1,10 +1,11 @@
-import { ChromaClient } from 'chromadb'
+import { ChromaClient, Collection } from 'chromadb'
 import { OpenAIEmbeddingFunction } from 'chromadb'
 import type { DocumentChunk } from '../types/index.js'
 
 export class DocsDatabase {
   private client: ChromaClient
   private embedder: OpenAIEmbeddingFunction
+  private collectionPromises: Map<string, Promise<Collection>> = new Map()
 
   constructor(apiKey: string) {
     this.client = new ChromaClient({
@@ -20,22 +21,37 @@ export class DocsDatabase {
   async getOrCreateCollection(projectName: string) {
     const collectionName = `docs_${projectName.toLowerCase().replace(/[^a-z0-9]/g, '_')}`
 
-    try {
-      return await this.client.getCollection({
-        name: collectionName,
-        embeddingFunction: this.embedder,
-      })
-    } catch {
-      // Collection doesn't exist, create it
-      return await this.client.createCollection({
-        name: collectionName,
-        embeddingFunction: this.embedder,
-        metadata: {
-          project: projectName,
-          created: new Date().toISOString(),
-        },
-      })
+    // Check if we already have a promise in flight for this collection
+    if (this.collectionPromises.has(collectionName)) {
+      return await this.collectionPromises.get(collectionName)!
     }
+
+    // Create a new promise for this collection
+    const promise = (async () => {
+      try {
+        return await this.client.getCollection({
+          name: collectionName,
+          embeddingFunction: this.embedder,
+        })
+      } catch {
+        // Collection doesn't exist, create it
+        return await this.client.createCollection({
+          name: collectionName,
+          embeddingFunction: this.embedder,
+          metadata: {
+            project: projectName,
+            created: new Date().toISOString(),
+          },
+        })
+      }
+    })()
+
+    // Store the promise so concurrent calls reuse it
+    this.collectionPromises.set(collectionName, promise)
+
+    // Once resolved, we can keep the promise cached (it's already resolved)
+    // No need to remove it - a resolved promise is safe to await multiple times
+    return await promise
   }
 
   async addDocuments(
@@ -92,7 +108,8 @@ export class DocsDatabase {
       // If adding this chunk would exceed the limit, process the current batch
       if (currentBatch.charCount + chunkChars > MAX_CHARS_PER_BATCH && currentBatch.ids.length > 0) {
         try {
-          await collection.add({
+          // Use upsert to handle race conditions where IDs might already exist
+          await collection.upsert({
             ids: currentBatch.ids,
             documents: currentBatch.documents,
             metadatas: currentBatch.metadatas,
@@ -124,7 +141,8 @@ export class DocsDatabase {
     // Process any remaining chunks
     if (currentBatch.ids.length > 0) {
       try {
-        await collection.add({
+        // Use upsert to handle race conditions where IDs might already exist
+        await collection.upsert({
           ids: currentBatch.ids,
           documents: currentBatch.documents,
           metadatas: currentBatch.metadatas,
