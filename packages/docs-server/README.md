@@ -19,41 +19,59 @@ This server solves the problem of coding agents not having access to up-to-date 
 ## Prerequisites
 
 - Node.js 20+
-- Python 3.8+
+- macOS: Homebrew with python@3.13 and direnv (see Brewfile)
+- Other OS: Python 3.8+ and virtualenv tooling
 - Docker (for ChromaDB)
 - pnpm package manager
 - OpenAI API key
 
 ## Installation
 
-1. **Clone and install dependencies:**
+1. **Install system tools (macOS using Brewfile):**
    ```bash
    cd packages/docs-server
+   brew bundle --no-upgrade                # installs python@3.13, direnv, pnpm, docker (cask)
+   brew unlink python@3.13                 # keep system /usr/bin/python3 as default
+   # Once per shell: enable direnv hook (zsh)
+   echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+2. **Trust direnv for this project (auto-activate venv):**
+   ```bash
+   direnv allow   # optional: pnpm setup will run this automatically if direnv is installed
+   ```
+   On entering this directory, `scripts/venv` with Python 3.13 will be created/activated.
+
+3. **Install Node dependencies:**
+   ```bash
    pnpm install
    ```
 
-2. **Set up Python environment:**
+4. **Initialize Python environment (runs venv setup, Playwright install, and direnv allow):**
    ```bash
    pnpm setup
-   # Or manually:
-   cd scripts
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   pip install -r requirements.txt
    ```
 
-3. **Configure environment:**
+5. **Configure environment:**
    ```bash
    cp .env.example .env
    # Edit .env and add your OpenAI API key:
    # OPENAI_API_KEY=sk-...
    ```
 
-4. **Start ChromaDB:**
+6. **Start ChromaDB:**
    ```bash
    docker-compose up -d
    ```
    This starts ChromaDB on port 7777 with persistent storage in `./data/chroma`.
+
+Note: Setup attempts to add `docs.local` to `/etc/hosts` (127.0.0.1 docs.local). If your shell cannot run sudo non-interactively, add it manually:
+```bash
+echo '127.0.0.1 docs.local' | sudo tee -a /etc/hosts
+# Optional IPv6:
+echo '::1 docs.local' | sudo tee -a /etc/hosts
+```
 
 ## Usage
 

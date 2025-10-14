@@ -1,0 +1,11 @@
+# Brewfile for @mcp-servers/docs-server (macOS)
+# Install with:  brew bundle --no-upgrade
+# After install, ensure Homebrew's Python stays unlinked so system python3 remains default:
+#   brew unlink python@3.13
+
+brew "python@3.13"
+brew "direnv"
+brew "pnpm"
+
+# Optional GUI dependencies
+cask "docker"
