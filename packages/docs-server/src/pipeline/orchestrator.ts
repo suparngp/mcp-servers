@@ -101,7 +101,7 @@ export async function runPipeline(
       console.log('No URLs need crawling')
     } else {
       // Determine crawler mode: explicit option > config preference > default (browser)
-      const useBrowser = options.useBrowser ?? !config.crawl.preferSimple ?? true
+      const useBrowser = options.useBrowser ?? (config.crawl.preferSimple === undefined ? true : !config.crawl.preferSimple)
 
       const pages = await crawlProject(projectName, {
         urls: urlsToCrawl,
