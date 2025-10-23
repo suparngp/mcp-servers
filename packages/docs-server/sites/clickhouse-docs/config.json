@@ -50,7 +50,7 @@
   ],
   "chunking": {
     "strategy": "semantic",
-    "maxSize": 1000,
+    "maxSize": 800,
     "overlap": 200,
     "minSize": 10
   },

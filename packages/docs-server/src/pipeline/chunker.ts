@@ -193,6 +193,14 @@ function createChunk(
     }
   }
 
+  // CRITICAL: Enforce hard limit to prevent exceeding embedding API token limits
+  // OpenAI text-embedding-3-small has 8192 token limit
+  // Using ~4 chars per token estimate: 6000 chars ≈ 1500 tokens (safe margin)
+  const MAX_CHUNK_CHARS = 6000
+  if (contextualContent.length > MAX_CHUNK_CHARS) {
+    contextualContent = contextualContent.substring(0, MAX_CHUNK_CHARS)
+  }
+
   // Validate that content is not empty
   const trimmedContent = contextualContent.trim()
   if (!trimmedContent) {

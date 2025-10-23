@@ -1,7 +1,7 @@
 {
-  "name": "drizzle",
-  "displayName": "Drizzle ORM Documentation",
-  "baseUrl": "https://orm.drizzle.team/docs/get-started",
+  "name": "warp",
+  "displayName": "Warp Documentation",
+  "baseUrl": "https://docs.warp.dev",
   "discovery": {
     "strategy": "crawl"
   },
@@ -12,25 +12,21 @@
       "maxPages": 500,
       "includeExternal": false
     },
-    "includePatterns": ["/docs/"],
+    "includePatterns": [],
     "excludePatterns": [],
     "contentTypes": ["text/html"],
     "stream": false,
     "delay": 1.0,
     "timeout": 30,
-    "jsEnabled": true,
-    "waitForSelector": "main",
+    "jsEnabled": false,
     "respectRobots": true,
-    "headers": {
-      "User-Agent": "MCP-Docs-Server/1.0"
-    },
     "preferSimple": true
   },
   "extraction": {
     "selector": "main",
     "excludeSelectors": [
       "nav",
-      "header", 
+      "header",
       "footer",
       ".navbar",
       ".sidebar",

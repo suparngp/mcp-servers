@@ -107,7 +107,7 @@ This guide provides the exact JSON structure for configuring documentation sites
     // Strategy: "semantic", "fixed", or "sliding"
     "strategy": "semantic",
     // Maximum chunk size in tokens
-    "maxSize": 1000,
+    "maxSize": 800,
     // Overlapping tokens between chunks
     "overlap": 200,
     // Minimum chunk size in tokens
@@ -256,7 +256,7 @@ This guide provides the exact JSON structure for configuring documentation sites
   },
   "chunking": {
     "strategy": "semantic",
-    "maxSize": 1500,  // Larger chunks for API docs
+    "maxSize": 1200,  // Larger chunks for API docs
     "overlap": 300
   }
 }
