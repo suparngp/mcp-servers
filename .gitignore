@@ -8,3 +8,4 @@ dist
 .env.local
 .env.*.local
 pnpm-lock.yaml
+/packages/docs-server/chroma
