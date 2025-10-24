@@ -1,6 +1,7 @@
 import { config } from 'dotenv'
 import Fastify from 'fastify'
 import { getDocsDatabase } from './db/chroma.js'
+import { readCleanedFile } from './utils/fileReader.js'
 
 // Load environment variables
 config()
@@ -1112,20 +1113,20 @@ fastify.get('/api/search', async (request, reply) => {
 fastify.get('/api/doc/:project/*', async (request, reply) => {
   const { project } = request.params as { project: string }
   let path = (request.params as any)['*']
-  
+
   // Remove leading slash if present (paths in DB don't have leading slash)
   if (path.startsWith('/')) {
     path = path.substring(1)
   }
-  
+
   // Try with the path as-is first
   let doc = await db.getDocByPath(project, path)
-  
+
   // If not found and doesn't end with .md, try adding it
   if (!doc && !path.endsWith('.md')) {
     doc = await db.getDocByPath(project, path + '.md')
   }
-  
+
   // If still not found and ends with .md, try without it
   if (!doc && path.endsWith('.md')) {
     doc = await db.getDocByPath(project, path.replace(/\.md$/, ''))
@@ -1138,7 +1139,24 @@ fastify.get('/api/doc/:project/*', async (request, reply) => {
     return reply.status(404).send({ error: 'Document not found', project, path })
   }
 
-  reply.send(doc)
+  // Read content from local file
+  const content = await readCleanedFile(project, doc.path)
+
+  if (!content) {
+    console.error(`File not found for document - project: ${project}, path: ${doc.path}`)
+    return reply.status(404).send({
+      error: 'Document file not found',
+      message: 'Document exists in index but file not available. Cleaned files may not be committed to git yet.',
+      project,
+      path: doc.path
+    })
+  }
+
+  reply.send({
+    path: doc.path,
+    metadata: doc.metadata,
+    content: content
+  })
 })
 
 // Start server

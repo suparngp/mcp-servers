@@ -1,9 +1,10 @@
 import { getDocsDatabase } from '../db/chroma.js'
+import { readCleanedFile, paginateContent } from '../utils/fileReader.js'
 
 export const getDocsDefinition = {
   name: 'get_docs',
   description:
-    'Retrieve full documentation content by URL path. Use this to get complete API documentation, guides, or reference material when you know the specific path. Make sure to pass the project name for accurate results.',
+    'Retrieve full documentation content by URL path. Use this to get complete API documentation, guides, or reference material when you know the specific path. Content is paginated with ~15,000 tokens per page. Make sure to pass the project name for accurate results.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -16,12 +17,17 @@ export const getDocsDefinition = {
         description:
           'URL path of the documentation (e.g., /references/cdi/introduction, /api/authentication, /guides/quickstart)',
       },
+      page: {
+        type: 'number',
+        description: 'Page number (1-indexed). If omitted, returns page 1. Use totalPages in response to know how many pages are available.',
+        minimum: 1,
+      },
     },
     required: ['project', 'path'],
   },
 }
 
-export async function getDocsHandler(args: { project: string; path: string }) {
+export async function getDocsHandler(args: { project: string; path: string; page?: number }) {
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
     throw new Error('OPENAI_API_KEY environment variable not set')
@@ -103,16 +109,39 @@ export async function getDocsHandler(args: { project: string; path: string }) {
       }
     }
 
+    // Read content from local file instead of ChromaDB
+    const fileContent = await readCleanedFile(args.project, doc.path)
+
+    if (!fileContent) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `Documentation found in index but file not available: ${doc.path}\n\nThis may happen if the cleaned files haven't been committed to git yet.`,
+          },
+        ],
+      }
+    }
+
+    // Paginate content
+    const { pages, totalPages, tokensPerPage } = paginateContent(fileContent, 15000)
+    const currentPage = Math.min(Math.max(args.page || 1, 1), totalPages)
+    const pageContent = pages[currentPage - 1]
+
+    // Build response with pagination info
+    let responseText = `# ${doc.metadata?.title || 'Documentation'}
+
+**URL:** ${doc.metadata?.url || 'N/A'}
+**Last Updated:** ${doc.metadata?.cleanedAt || doc.metadata?.crawledAt || 'Unknown'}
+**Page:** ${currentPage} of ${totalPages} (~${tokensPerPage} tokens per page)
+
+${totalPages > 1 ? `---\n**Note:** This document has ${totalPages} pages. To view other pages, call this tool again with the \`page\` parameter.\n---\n\n` : ''}${pageContent}`
+
     return {
       content: [
         {
           type: 'text',
-          text: `# ${doc.metadata?.title || 'Documentation'}
-
-**URL:** ${doc.metadata?.url || 'N/A'}
-**Last Updated:** ${doc.metadata?.cleanedAt || doc.metadata?.crawledAt || 'Unknown'}
-
-${doc.content}`,
+          text: responseText,
         },
       ],
     }

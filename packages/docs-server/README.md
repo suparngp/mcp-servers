@@ -58,13 +58,23 @@ This server solves the problem of coding agents not having access to up-to-date 
    cp .env.example .env
    # Edit .env and add your OpenAI API key:
    # OPENAI_API_KEY=sk-...
+
+   # Option 1: Use ChromaDB Cloud (recommended)
+   # CHROMA_API_KEY=your-chroma-cloud-api-key
+   # CHROMA_TENANT_ID=your-tenant-id
+   # CHROMA_DATABASE=docs
+
+   # Option 2: Use Local ChromaDB
+   # Leave CHROMA_API_KEY unset and start local ChromaDB (step 6)
    ```
 
-6. **Start ChromaDB:**
+6. **Start ChromaDB (if using local):**
    ```bash
    docker-compose up -d
    ```
    This starts ChromaDB on port 7777 with persistent storage in `./data/chroma`.
+
+   **Note:** If using ChromaDB Cloud, skip this step and set `CHROMA_API_KEY` in your `.env` file.
 
 Note: Setup attempts to add `docs.local` to `/etc/hosts` (127.0.0.1 docs.local). If your shell cannot run sudo non-interactively, add it manually:
 ```bash

@@ -1,0 +1,88 @@
+[Introducing Warp Code: the fastest way from prompt to productionLearn more ](https://www.warp.dev/blog/introducing-warp-code-prompt-to-prod)
+ * * [Quickstart Guided](/)
+ * [Migrate to Warp](/getting-started/migrate-to-warp)
+ * [Supported Shells](/getting-started/supported-shells)
+ * [Keyboard Shortcuts](/getting-started/keyboard-shortcuts)
+ * [Changelog](/getting-started/changelog)
+ * * [Agents Overview](/agents/agents-overview)
+ * [Using Agents](/agents/using-agents)
+ * [Agent Conversations](/agents/using-agents/agent-conversations)
+ * [Agent Context](/agents/using-agents/agent-context)
+ * [Blocks as Context](/agents/using-agents/agent-context/blocks-as-context)
+ * [Images as Context](/agents/using-agents/agent-context/images-as-context)
+ * [URLs as Context](/agents/using-agents/agent-context/urls-as-context)
+ * [Selection as Context](/agents/using-agents/agent-context/selection-as-context)
+ * [Using @ to Add Context](/agents/using-agents/agent-context/using-to-add-context)
+ * [Managing Agents](/agents/using-agents/managing-agents)
+ * [Agent Profiles & Permissions](/agents/using-agents/agent-profiles-permissions)
+ * [Agent Task Lists](/agents/using-agents/agent-tasklists)
+ * [Model Choice](/agents/using-agents/model-choice)
+ * [Slash Commands](/agents/slash-commands)
+ * [Active AI](/agents/active-ai)
+ * [Generate](/agents/generate)
+ * [Voice](/agents/voice)
+ * [AI FAQs](/agents/ai-faqs)
+ * * [Code Overview](/code/code-overview)
+ * [Code Editor](/code/code-editor)
+ * [Codebase Context](/code/codebase-context)
+ * [Code Review](/code/code-review)
+ * [Code Diffs in Agent Conversations](/code/reviewing-code)
+ * * [Universal Input](/terminal/universal-input)
+ * [Appearance](/terminal/appearance)
+ * [Blocks](/terminal/blocks)
+ * [Modern Text Editing](/terminal/editor)
+ * [Command Entry](/terminal/entry)
+ * [Command Completions](/terminal/command-completions)
+ * [Command Palette](/terminal/command-palette)
+ * [Session Management](/terminal/sessions)
+ * [Window Management](/terminal/windows)
+ * [Warpify](/terminal/warpify)
+ * [More Features](/terminal/more-features)
+ * [Comparisons](/terminal/comparisons)
+ * [Integrations](/terminal/integrations-and-plugins)
+ * * [Warp Drive](/knowledge-and-collaboration/warp-drive)
+ * [Model Context Protocol (MCP)](/knowledge-and-collaboration/mcp)
+ * [Rules](/knowledge-and-collaboration/rules)
+ * [Teams](/knowledge-and-collaboration/teams)
+ * [Admin Panel](/knowledge-and-collaboration/admin-panel)
+ * [Session Sharing](/knowledge-and-collaboration/session-sharing)
+ * * [Warp CLI](/developers/cli)
+ * * [Privacy](/privacy/privacy)
+ * [Secret Redaction](/privacy/secret-redaction)
+ * [Network Log](/privacy/network-log)
+ * * [Refer a Friend & Earn Rewards](/community/refer-a-friend)
+ * [Warp Preview & Alpha Program](/community/warp-preview-and-alpha-program)
+ * * [Sending Feedback & Logs](/support-and-billing/sending-us-feedback)
+ * [Plans & Pricing](/support-and-billing/plans-and-pricing)
+ * [Updating Warp](/support-and-billing/updating-warp)
+ * [Using Warp Offline](/support-and-billing/using-warp-offline)
+ * [Logging Out & Uninstalling](/support-and-billing/uninstalling-warp)
+ * [Known Issues](/support-and-billing/known-issues)
+ * [Troubleshooting Login](/support-and-billing/troubleshooting-login-issues)
+ * [Open Source Licenses](/support-and-billing/licenses)
+[Powered by GitBook](https://www.gitbook.com/?utm_source=content&utm_medium=trademark&utm_campaign=-MbqIgTw17KQvq_DQuRr)
+ * [Attaching images as context](#attaching-images-as-context)
+ * [Model behavior and image handling](#model-behavior-and-image-handling)
+Was this helpful?
+## 
+[](#attaching-images-as-context)
+**Attaching images as context**
+To provide visual context, you can attach images directly to an agent prompt. This is useful for including screenshots, diagrams, or other visual references alongside your query.
+You can attach images in the following ways:
+ * Using the **image upload button** found on the toolbelt (either on the bottom left or right), depending on which input mode you're using:
+![](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2297236823-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F-MbqIgTw17KQvq_DQuRr%252Fuploads%252F4htvbN0EBGCNhRqUO483%252Fimage.png%3Falt%3Dmedia%26token%3Df83713e7-aa74-44c4-bb37-bdfe4ad6ff6e&width=768&dpr=4&quality=100&sign=4aba5860&sv=2)
+Attaching 5 images on the new "Universal" input (bottom left toolbelt)
+![](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2297236823-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F-MbqIgTw17KQvq_DQuRr%252Fuploads%252FVOrS1o4QbdsqAqZo9PfR%252Fimage.png%3Falt%3Dmedia%26token%3Dfad1d6f1-2475-400b-909d-ed50fc9ad751&width=768&dpr=4&quality=100&sign=23b45362&sv=2)
+Attaching 4 images on the "Classic" input (bottom right)
+ * Copy and paste images directly (e.g. right-click an image > "Copy image" or copy from a file manager) into Warp.
+ * Drag and drop images, such as from a file manager or screenshot utility.
+Warp accepts the following image formats: `.jpg` , `.jpeg` , `.png` , `.gif` , and .`webp` .
+You can attach up to **5 images per request** , and up to **20 images across a single conversation**. Each image is sent to the model provider and immediately discarded — nothing is stored on Warp's servers.
+### 
+[](#model-behavior-and-image-handling)
+Model behavior and image handling
+All supported models listed in [Model Choice](/agents/using-agents/model-choice) can interpret image input.
+Attaching images will consume additional requests, proportional to the number of images added. To stay within model limits, Warp will intelligently resize images before passing it as context, minimizing token usage and respecting the model's maximum image dimensions.
+[PreviousBlocks as Context](/agents/using-agents/agent-context/blocks-as-context)[NextURLs as Context](/agents/using-agents/agent-context/urls-as-context)
+Last updated 1 month ago
+Was this helpful?

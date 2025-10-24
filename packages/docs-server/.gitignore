@@ -15,9 +15,10 @@ venv/
 
 # Data directories
 sites/*/raw/
-sites/*/cleaned/
 sites/*/state.json
 data/
+
+# Note: sites/*/cleaned/ is now committed to git so get_docs can read from local files
 
 # Environment files
 .env

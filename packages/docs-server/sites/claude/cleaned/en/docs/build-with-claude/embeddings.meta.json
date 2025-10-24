@@ -1,0 +1,7 @@
+{
+  "title": "This will automatically use the environment variable VOYAGE_API_KEY.",
+  "crawledAt": "2025-10-23T17:59:04.399Z",
+  "cleanedAt": "2025-10-23T17:59:07.807Z",
+  "url": "https://docs.claude.com/en/docs/build-with-claude/embeddings",
+  "description": "* [Intro to Claude](/en/docs/intro)"
+}

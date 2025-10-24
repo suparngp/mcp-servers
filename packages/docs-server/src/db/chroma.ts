@@ -1,16 +1,43 @@
-import { ChromaClient, Collection } from 'chromadb'
+import { ChromaClient, CloudClient, Collection } from 'chromadb'
 import { OpenAIEmbeddingFunction } from 'chromadb'
+import OpenAI from 'openai'
 import type { DocumentChunk } from '../types/index.js'
 
 export class DocsDatabase {
-  private client: ChromaClient
+  private client: ChromaClient | CloudClient
   private embedder: OpenAIEmbeddingFunction
+  private openai: OpenAI
   private collectionPromises: Map<string, Promise<Collection>> = new Map()
 
   constructor(apiKey: string) {
-    this.client = new ChromaClient({
-      path: process.env.CHROMA_URL || 'http://localhost:7777',
-    })
+    this.openai = new OpenAI({ apiKey })
+    // Check if using cloud or local ChromaDB
+    const chromaApiKey = process.env.CHROMA_API_KEY
+
+    if (chromaApiKey) {
+      // Use CloudClient for cloud-hosted ChromaDB
+      const tenantId = process.env.CHROMA_TENANT_ID
+      const database = process.env.CHROMA_DATABASE
+
+      if (!tenantId || !database) {
+        throw new Error(
+          'CHROMA_TENANT_ID and CHROMA_DATABASE must be set when using CHROMA_API_KEY'
+        )
+      }
+
+      this.client = new CloudClient({
+        apiKey: chromaApiKey,
+        tenant: tenantId,
+        database: database,
+      })
+      console.log('Using ChromaDB Cloud')
+    } else {
+      // Use local ChromaDB
+      this.client = new ChromaClient({
+        path: process.env.CHROMA_URL || 'http://localhost:7777',
+      })
+      console.log('Using local ChromaDB at', process.env.CHROMA_URL || 'http://localhost:7777')
+    }
 
     this.embedder = new OpenAIEmbeddingFunction({
       openai_api_key: apiKey,
@@ -75,13 +102,19 @@ export class DocsDatabase {
 
     // Prepare data for ChromaDB
     const ids = chunks.map((chunk) => chunk.id)
-    const documents = chunks.map((chunk) => {
-      // Validate content
+
+    // Validate and extract content for embedding generation
+    const contentsForEmbedding = chunks.map((chunk) => {
       if (!chunk.content || typeof chunk.content !== 'string') {
         throw new Error(`Invalid chunk content for chunk ${chunk.id}: ${typeof chunk.content}`)
       }
       return chunk.content
     })
+
+    // Store only minimal placeholder documents (empty strings)
+    // Content will be read from local files via fileReader.ts
+    const placeholderDocuments = chunks.map(() => '')
+
     const metadatas = chunks.map((chunk) => ({
       ...chunk.metadata,
       // Ensure all values are strings for ChromaDB
@@ -89,69 +122,43 @@ export class DocsDatabase {
       totalChunks: String(chunk.metadata.totalChunks),
     }))
 
-    // Batch chunks to avoid exceeding token limits
-    // OpenAI's text-embedding-3-small has a limit of 300,000 tokens per request
-    // We'll use a conservative estimate of ~4 chars per token and batch at 200k tokens
-    const MAX_CHARS_PER_BATCH = 200000 * 4 // ~200k tokens worth of characters
-    
+    // Batch chunks to avoid exceeding OpenAI embedding limits
+    // OpenAI's text-embedding-3-small has a limit of ~8000 texts per request
+    const BATCH_SIZE = 2000 // Conservative batch size
+
     let totalAdded = 0
-    let currentBatch = {
-      ids: [] as string[],
-      documents: [] as string[],
-      metadatas: [] as any[],
-      charCount: 0,
-    }
-    
-    for (let i = 0; i < chunks.length; i++) {
-      const chunkChars = documents[i].length
-      
-      // If adding this chunk would exceed the limit, process the current batch
-      if (currentBatch.charCount + chunkChars > MAX_CHARS_PER_BATCH && currentBatch.ids.length > 0) {
-        try {
-          // Use upsert to handle race conditions where IDs might already exist
-          await collection.upsert({
-            ids: currentBatch.ids,
-            documents: currentBatch.documents,
-            metadatas: currentBatch.metadatas,
-          })
-          totalAdded += currentBatch.ids.length
-          console.log(`Added batch of ${currentBatch.ids.length} chunks (${currentBatch.charCount} chars)`)
-        } catch (error) {
-          console.error('Failed to add batch to ChromaDB:', error)
-          console.error('Batch size:', currentBatch.ids.length, 'chars:', currentBatch.charCount)
-          throw error
-        }
-        
-        // Reset batch
-        currentBatch = {
-          ids: [],
-          documents: [],
-          metadatas: [],
-          charCount: 0,
-        }
-      }
-      
-      // Add chunk to current batch
-      currentBatch.ids.push(ids[i])
-      currentBatch.documents.push(documents[i])
-      currentBatch.metadatas.push(metadatas[i])
-      currentBatch.charCount += chunkChars
-    }
-    
-    // Process any remaining chunks
-    if (currentBatch.ids.length > 0) {
+
+    for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
+      const endIdx = Math.min(i + BATCH_SIZE, chunks.length)
+      const batchIds = ids.slice(i, endIdx)
+      const batchContents = contentsForEmbedding.slice(i, endIdx)
+      const batchPlaceholders = placeholderDocuments.slice(i, endIdx)
+      const batchMetadatas = metadatas.slice(i, endIdx)
+
       try {
-        // Use upsert to handle race conditions where IDs might already exist
-        await collection.upsert({
-          ids: currentBatch.ids,
-          documents: currentBatch.documents,
-          metadatas: currentBatch.metadatas,
+        // Generate embeddings using OpenAI directly
+        console.log(`Generating embeddings for batch of ${batchIds.length} chunks...`)
+        const embeddingResponse = await this.openai.embeddings.create({
+          model: 'text-embedding-3-small',
+          input: batchContents,
         })
-        totalAdded += currentBatch.ids.length
-        console.log(`Added final batch of ${currentBatch.ids.length} chunks (${currentBatch.charCount} chars)`)
+
+        const embeddings = embeddingResponse.data.map(e => e.embedding)
+
+        // Store embeddings + minimal placeholders in ChromaDB
+        // We pass embeddings directly and empty documents to minimize storage
+        await collection.upsert({
+          ids: batchIds,
+          embeddings: embeddings,
+          documents: batchPlaceholders,
+          metadatas: batchMetadatas,
+        })
+
+        totalAdded += batchIds.length
+        console.log(`Added batch of ${batchIds.length} chunks with embeddings (minimal storage)`)
       } catch (error) {
-        console.error('Failed to add final batch to ChromaDB:', error)
-        console.error('Batch size:', currentBatch.ids.length, 'chars:', currentBatch.charCount)
+        console.error('Failed to add batch to ChromaDB:', error)
+        console.error('Batch size:', batchIds.length)
         throw error
       }
     }
@@ -223,20 +230,14 @@ export class DocsDatabase {
       return null
     }
 
-    // Sort by chunk index and concatenate
-    const chunks = results.ids.map((id, index) => ({
-      id,
-      content: results.documents[index],
-      metadata: results.metadatas[index],
-      chunkIndex: Number.parseInt((results.metadatas?.[index] as any)?.chunkIndex || '0'),
-    }))
-
-    chunks.sort((a, b) => a.chunkIndex - b.chunkIndex)
+    // Get metadata from first chunk (all chunks have same metadata)
+    const metadata = results.metadatas[0]
 
     return {
       path,
-      content: chunks.map((c) => c.content).join('\n\n'),
-      metadata: chunks[0].metadata,
+      metadata,
+      // Note: Content is no longer returned here
+      // The caller should read from local files using fileReader.ts
     }
   }
 

@@ -1,0 +1,71 @@
+[Introducing Warp Code: the fastest way from prompt to productionLearn more ](https://www.warp.dev/blog/introducing-warp-code-prompt-to-prod)
+ * [Getting Started](/university)
+ * Developer Workflows
+ * [Beginner](/university/developer-workflows/beginner)
+ * [Power User](/university/developer-workflows/power-user)
+ * [DevOps](/university/developer-workflows/devops)
+ * [Backend](/university/developer-workflows/backend)
+ * [Frontend / UI](/university/developer-workflows/frontend-ui)
+ * [Testing & Security](/university/developer-workflows/testing-and-security)
+ * End-To-End Builds
+ * [Building a Real-time Chat App (Github MCP + Railway )](/university/end-to-end-builds/building-a-real-time-chat-app-github-mcp-+-railway)
+ * [Building a Chrome Extension (D3.js + Javascript + HTML + CSS)](/university/end-to-end-builds/building-a-chrome-extension-d3.js-+-javascript-+-html-+-css)
+ * MCP Servers
+ * [Puppeteer MCP: Scraping Amazon Web Reviews ](/university/mcp-servers/puppeteer-mcp-scraping-amazon-web-reviews)
+ * [Sentry MCP: Fix Sentry Error in Empower Website](/university/mcp-servers/sentry-mcp-fix-sentry-error-in-empower-website)
+ * [Context7 MCP: Update Astro Project with Best Practices](/university/mcp-servers/context7-mcp-update-astro-project-with-best-practices)
+ * [Figma Remote MCP: Create a Website from a Figma File from Scratch](/university/mcp-servers/figma-remote-mcp-create-a-website-from-a-figma-file-from-scratch)
+ * [Linear MCP: Retrieve issue data](/university/mcp-servers/linear-mcp-retrieve-issue-data)
+ * [Linear MCP: Updating Tickets with a Lean Build Approach](/university/mcp-servers/linear-mcp-updating-tickets-with-a-lean-build-approach)
+ * [SQLite and Stripe MCP: Basic Queries You Can Make After Set Up](/university/mcp-servers/sqlite-and-stripe-mcp-basic-queries-you-can-make-after-set-up)
+ * Terminal / Command Line Tips
+ * [Improve Your Kubernetes Workflow (kubectl + helm)](/university/terminal-command-line-tips/improve-your-kubernetes-workflow-kubectl-+-helm)
+[Powered by GitBook](https://www.gitbook.com/?utm_source=content&utm_medium=trademark&utm_campaign=c5dAwvMCRiTxUOdDicqy)
+ * [Developer Workflows](#developer-workflows)
+ * [MCP Servers](#mcp-servers)
+Was this helpful?
+Warp University has lessons that show how professional developers are using Warp’s agentic platform in real-world projects — from automating code reviews and managing cloud deployments to building custom MCP servers and integrating Warp into production pipelines.
+Each module walks through an end-to-end example, with real code, real prompts, and reproducible results. Whether you’re a senior engineer exploring agentic workflows or a team lead looking to scale automation across your org, Warp University helps you turn concepts into production-grade practices.
+### 
+[](#developer-workflows)
+Developer Workflows
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FBeoQcdEoh5drxGoCKWJS%252FWarp%2520Drive%2520Workflows%2520Postgres.jpg%3Falt%3Dmedia%26token%3D6c364382-b417-42a2-9e08-49d2e4e3953a&width=490&dpr=4&quality=100&sign=853261fd&sv=2)
+[How To: Write SQL Commands inside a Postgres REPL](/university/developer-workflows/backend/how-to-write-sql-commands-inside-a-postgres-repl)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252Fd3TAL2yF0SMWojw65cDx%252FWarp%2520Drive%2520Prompts%2520Debugging%2520App.png%3Falt%3Dmedia%26token%3Daf5628ed-30e8-42f0-8b1d-51f8a251fc14&width=490&dpr=4&quality=100&sign=50e51969&sv=2)
+[How to: Generate Unit and Security Tests to Debug Faster](/university/developer-workflows/testing-and-security/how-to-generate-unit-and-security-tests-to-debug-faster)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FnFBxh5JFC1ocSMBErqog%252FWarp%2520Edu%2520Prompts%2520Matrix.png%3Falt%3Dmedia%26token%3Db2158bdd-39a2-43f3-ba7f-ca7afc46c368&width=490&dpr=4&quality=100&sign=2bd343fc&sv=2)
+[How To: Create Priority Matrix for Database Optimization](/university/developer-workflows/backend/how-to-create-priority-matrix-for-database-optimization)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252Ff2gA1sKxyAUlEchBNksz%252FWarp-Edu-Agent-Profiles.jpg%3Falt%3Dmedia%26token%3Daa4fdbbc-d0e4-4ffb-91c4-f2c703190bdc&width=490&dpr=4&quality=100&sign=5be4181b&sv=2)
+[How To: Configure YOLO and Strategic Agent Profiles](/university/developer-workflows/power-user/how-to-configure-yolo-and-strategic-agent-profiles)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FQWUIBWXeOrx2leqwvTci%252FWarp-Edu-Workflows-run-logs-Email.png%3Falt%3Dmedia%26token%3D0b08f70b-798f-49af-929a-558fc6a9dd2c&width=490&dpr=4&quality=100&sign=9d552127&sv=2)
+[How to: Analyze Cloud Run Logs (gcloud)](/university/developer-workflows/devops/how-to-analyze-cloud-run-logs-gcloud)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252Fe3C35wKWP3r6Td8Y6FDa%252FWarp%2520Drive%2520Workflows%2520Codebase.jpg%3Falt%3Dmedia%26token%3D5158b929-a74f-4333-9ade-3e67d2acd0a1&width=490&dpr=4&quality=100&sign=c44723e&sv=2)
+[How to: Explain Your Codebase Using Warp (Rust Codebase)](/university/developer-workflows/beginner/how-to-explain-your-codebase-using-warp-rust-codebase)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FtdviytF85sfiRuP8n6Nz%252FWarp%2520Drive%2520Edu%2520Rules%2520%281%29.jpg%3Falt%3Dmedia%26token%3Ddbcc9d4b-f12c-4ce4-b45d-a50a89f25d42&width=490&dpr=4&quality=100&sign=750a59a6&sv=2)
+[How To: Sync Your Monorepos](/university/developer-workflows/power-user/how-to-sync-your-monorepos)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FdhnyeVZ2rGLPHtQx2n6O%252FWarp%2520Drive%2520Prompts%2520Senior%2520Dev.png%3Falt%3Dmedia%26token%3D25b2637e-a917-4046-8dc6-bd63cae64982&width=490&dpr=4&quality=100&sign=c1178477&sv=2)
+[How To: Review PRs Like A Senior Dev](/university/developer-workflows/power-user/how-to-review-prs-like-a-senior-dev)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FMYl7hCd0y4BSFFoCoaE9%252FWarp%2520Drive%2520Edu%2520Rules%2520Preferences%2520%281%29.jpg%3Falt%3Dmedia%26token%3Dde507814-4f03-488e-8633-7fd2dce1ca7b&width=490&dpr=4&quality=100&sign=a31641a3&sv=2)
+[How To: Set Coding Best Practices](/university/developer-workflows/power-user/how-to-set-coding-best-practices)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252F4EANExOcndQ5DvVEzo9t%252FWarp%2520Drive%2520Workflows.jpg%3Falt%3Dmedia%26token%3D71de4ec3-eabb-4e29-bcdd-b84b9e94ff15&width=490&dpr=4&quality=100&sign=b9f3f5e4&sv=2)
+[How To: Run 3 Agents in Parallel (Summarize Logs + Analyze PR + Modify UI)](/university/developer-workflows/power-user/how-to-run-3-agents-in-parallel-summarize-logs-+-analyze-pr-+-modify-ui)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FtEWSjjcJLsryOX66zOr2%252FWarp%2520Drive%2520Edu%2520Rules.jpg%3Falt%3Dmedia%26token%3Db65ebe7d-32af-4b7c-a97f-74915e85c134&width=490&dpr=4&quality=100&sign=c93c0c3e&sv=2)
+[How To: Prevent Secrets from Leaking](/university/developer-workflows/testing-and-security/how-to-prevent-secrets-from-leaking)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FIXPA6CPfOXeOjFNnRm03%252FWarp%2520Drive%2520Docker%2520Setup.png%3Falt%3Dmedia%26token%3D99598971-55a9-4cd1-83e9-6cacdcaba5e5&width=490&dpr=4&quality=100&sign=3cc6a193&sv=2)
+[How To: Create a Production Ready Docker Setup](/university/developer-workflows/devops/how-to-create-a-production-ready-docker-setup)
+### 
+[](#mcp-servers)
+MCP Servers
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252Fh4i2ffWUjBQTY1zKLCpv%252FWarp%2520Drive%2520Linear.jpg%3Falt%3Dmedia%26token%3Dee953999-75dd-421f-9ca7-b3d2cc8265f5&width=490&dpr=4&quality=100&sign=7a24a175&sv=2)
+[Linear MCP: Retrieve issue data](/university/mcp-servers/linear-mcp-retrieve-issue-data)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FRBCSyLWbQhj7IzMY19Tl%252FWarp%2520Drive%2520Remote%2520Figma.jpg%3Falt%3Dmedia%26token%3D57b45d59-6785-42bf-a7f9-239db9b52527&width=490&dpr=4&quality=100&sign=b8615a3c&sv=2)
+[Figma Remote MCP: Create a Website from a Figma File from Scratch](/university/mcp-servers/figma-remote-mcp-create-a-website-from-a-figma-file-from-scratch)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FlrH7zoMwpuzPBMH5FOM4%252FWarp%2520Drive%2520Puppeteer.jpg%3Falt%3Dmedia%26token%3D8c3ebc95-c3d8-4e08-8249-6199bf8fdc45&width=490&dpr=4&quality=100&sign=a1d92978&sv=2)
+[Puppeteer MCP: Scraping Amazon Web Reviews ](/university/mcp-servers/puppeteer-mcp-scraping-amazon-web-reviews)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FvkChAGd5VTHNgnH0vrZy%252FWarp%2520Drive%2520Edu%2520Sentry.jpg%3Falt%3Dmedia%26token%3D41704616-0003-45b1-96f9-918f4379e0cf&width=490&dpr=4&quality=100&sign=766c6986&sv=2)
+[Sentry MCP: Fix Sentry Error in Empower Website](/university/mcp-servers/sentry-mcp-fix-sentry-error-in-empower-website)
+![Cover](https://docs.warp.dev/~gitbook/image?url=https%3A%2F%2F2121742425-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fc5dAwvMCRiTxUOdDicqy%252Fuploads%252FYEJK00bdo7NsSOzPlMZ4%252FWarp%2520Drive%2520Context%25207.jpg%3Falt%3Dmedia%26token%3Dd65cce24-f172-4241-bd84-54ec32e34eb5&width=490&dpr=4&quality=100&sign=ce09706d&sv=2)
+[Context7 MCP: Update Astro Project with Best Practices](/university/mcp-servers/context7-mcp-update-astro-project-with-best-practices)
+[NextBeginner](/university/developer-workflows/beginner)
+Last updated 8 days ago
+Was this helpful?

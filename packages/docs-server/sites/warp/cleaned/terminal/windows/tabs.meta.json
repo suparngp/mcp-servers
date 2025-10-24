@@ -1,0 +1,7 @@
+{
+  "title": "Set name, where MyTabName would be whatever you want to see in the Tab ( either a fixed string, $PWD, or something else )",
+  "crawledAt": "2025-10-23T17:00:55.976Z",
+  "cleanedAt": "2025-10-23T17:00:59.221Z",
+  "url": "https://docs.warp.dev/terminal/windows/tabs",
+  "description": "How to use Tabs"
+}
