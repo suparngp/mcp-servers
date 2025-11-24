@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:36:34.324Z",
+  "cleanedAt": "2025-11-21T18:36:34.745Z",
+  "url": "https://launchdarkly.com/docs/tutorials/ollama-javascript",
+  "description": "LaunchDarkly’s [new AI Configs](https://launchdarkly.com/blog/launch-week-2024-introducing-ai-configs/) now support bringing your own model. This capability unlocks more flexibility than ever before for supporting fine-tuned models, or even running your own models on local hardware."
+}

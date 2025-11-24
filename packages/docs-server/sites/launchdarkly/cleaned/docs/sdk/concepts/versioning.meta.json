@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:37.686Z",
+  "cleanedAt": "2025-11-21T18:31:38.184Z",
+  "url": "https://launchdarkly.com/docs/sdk/concepts/versioning",
+  "description": "This topic explains LaunchDarkly’s SDK versioning policy, which is based on the semantic versioning standard."
+}

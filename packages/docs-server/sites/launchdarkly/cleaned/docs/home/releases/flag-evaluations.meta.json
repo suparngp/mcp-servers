@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:47.665Z",
+  "cleanedAt": "2025-11-21T18:13:48.180Z",
+  "url": "https://launchdarkly.com/docs/home/releases/flag-evaluations",
+  "description": "This topic explains how to use flag evaluations graphs to observe flag evaluations over time. Flag evaluations graphs give your engineering and product teams insight into how many times different contexts are receiving each variation of a flag over time, as well as any changes to the flag that could have affected how many times each flag was evaluated."
+}

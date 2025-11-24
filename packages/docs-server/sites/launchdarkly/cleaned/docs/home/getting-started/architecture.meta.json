@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:01.459Z",
+  "cleanedAt": "2025-11-21T18:13:01.831Z",
+  "url": "https://launchdarkly.com/docs/home/getting-started/architecture",
+  "description": "This topic gives a high-level explanation of LaunchDarkly’s platform architecture. You may want to read this topic if you are a developer considering implementing LaunchDarkly in your project, or an administrator who wants to understand how LaunchDarkly interacts with your app. If you’re an end user of the LaunchDarkly user interface (UI), you may not need to know what’s explained in this topic."
+}

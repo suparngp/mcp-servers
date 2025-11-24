@@ -1,0 +1,7 @@
+{
+  "title": "Messages and chat history",
+  "crawledAt": "2025-10-31T04:56:44.617Z",
+  "cleanedAt": "2025-10-31T04:56:45.602Z",
+  "url": "https://ai.pydantic.dev/message-history/",
+  "description": "Pydantic AI provides access to messages exchanged during an agent run. These messages can be used both to continue a coherent conversation, and to understand how an agent performed."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:27.843Z",
+  "cleanedAt": "2025-11-21T18:32:28.052Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/php/migration-3-to-4",
+  "description": "This topic explains how to adapt code that currently uses a 3.x version of the [PHP server-side SDK](/docs/sdk/server-side/php) to use version 4.0 or later."
+}

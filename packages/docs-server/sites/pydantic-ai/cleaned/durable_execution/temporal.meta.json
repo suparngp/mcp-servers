@@ -1,0 +1,7 @@
+{
+  "title": "Durable Execution with Temporal",
+  "crawledAt": "2025-10-31T05:05:32.693Z",
+  "cleanedAt": "2025-10-31T05:05:32.892Z",
+  "url": "https://ai.pydantic.dev/durable_execution/temporal/",
+  "description": "[Temporal](https://temporal.io) is a popular [durable execution](https://docs.temporal.io/evaluate/understanding-temporal#durable-execution) platform that's natively supported by Pydantic AI."
+}

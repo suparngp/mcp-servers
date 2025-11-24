@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:52.399Z",
+  "cleanedAt": "2025-11-21T18:32:52.835Z",
+  "url": "https://launchdarkly.com/docs/sdk/relay-proxy/sdk-config",
+  "description": "This topic explains how to use the Relay Proxy. It also explains the Relay Proxy’s two modes and gives detail on how to perform flag evaluations with the Relay Proxy."
+}

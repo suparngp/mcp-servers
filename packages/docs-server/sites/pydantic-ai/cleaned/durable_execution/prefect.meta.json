@@ -1,0 +1,7 @@
+{
+  "title": "Durable Execution with Prefect",
+  "crawledAt": "2025-10-31T05:05:22.535Z",
+  "cleanedAt": "2025-10-31T05:05:22.839Z",
+  "url": "https://ai.pydantic.dev/durable_execution/prefect/",
+  "description": "[Prefect](https://www.prefect.io/) is a workflow orchestration framework for building resilient data pipelines in Python, natively integrated with Pydantic AI."
+}

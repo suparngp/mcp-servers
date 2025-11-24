@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:37.085Z",
+  "cleanedAt": "2025-11-21T18:33:37.418Z",
+  "url": "https://launchdarkly.com/docs/integrations/ditto",
+  "description": "This topic links to Ditto’s documentation for its legacy LaunchDarkly integration. Ditto is a platform that serves as a single source of truth for product copy, managing text from draft to design to development. You can sync Ditto variants in your workspace with LaunchDarkly feature flags."
+}

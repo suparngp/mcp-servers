@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:39.517Z",
+  "cleanedAt": "2025-11-21T18:13:39.687Z",
+  "url": "https://launchdarkly.com/docs/home/flags/twilio",
+  "description": "This topic explains how to create segments that sync with a Twilio Segment Audience. Segment syncing lets you import audiences from Twilio Segment to LaunchDarkly to more efficiently target and deliver feature flags. You manage the membership of these segments in Twilio."
+}

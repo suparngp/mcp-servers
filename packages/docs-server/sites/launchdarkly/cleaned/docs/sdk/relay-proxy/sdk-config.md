@@ -1,0 +1,141 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Configuring an SDK to use the Relay Proxy](#configuring-an-sdk-to-use-the-relay-proxy)
+ * [Configuring SDKs to use different modes](#configuring-sdks-to-use-different-modes)
+ * [Using proxy mode](#using-proxy-mode)
+ * [Using daemon mode](#using-daemon-mode)
+ * [Using a persistent store](#using-a-persistent-store)
+ * [Using DynamoDB with the Relay Proxy](#using-dynamodb-with-the-relay-proxy)
+ * [Using Redis with the Relay Proxy](#using-redis-with-the-relay-proxy)
+ * [Configuring the Relay Proxy for segments](#configuring-the-relay-proxy-for-segments)
+ * [Server-side flag evaluation using segments and the Relay Proxy](#server-side-flag-evaluation-using-segments-and-the-relay-proxy)
+ * [Securing connections to and from the Relay Proxy](#securing-connections-to-and-from-the-relay-proxy)
+ * [Securing inbound connections to the Relay Proxy](#securing-inbound-connections-to-the-relay-proxy)
+ * [Passing Relay Proxy traffic through a proxy](#passing-relay-proxy-traffic-through-a-proxy)
+## Overview
+This topic explains how to use the Relay Proxy. It also explains the Relay Proxy’s two modes and gives detail on how to perform flag evaluations with the Relay Proxy.
+To learn more about deploying and configuring the Relay Proxy, read [Deploying the Relay Proxy](/docs/sdk/relay-proxy/deploying).
+## Configuring an SDK to use the Relay Proxy
+After the Relay Proxy is up and running, you must set certain values in your SDK’s configuration to connect to the Relay Proxy. Precise steps to set the configuration values depend on your particular SDK.
+The values you may replace are:
+ * The base URI for the polling service. The default value is `https://app.launchdarkly.com`, `https://sdk.launchdarkly.com`, or `https://clientsdk.launchdarkly.com`, depending on which SDK you use.
+ * The base URI for the streaming service. The default value is `https://stream.launchdarkly.com` for server-side SDKs and `https://clientstream.launchdarkly.com` for client-side and mobile SDKs.
+ * The base URI for the events service. The default value is `https://events.launchdarkly.com` or `https://mobile.launchdarkly.com`, depending on which SDK you use. To learn more, read the Relay Proxy GitHub repository’s [Event forwarding](https://github.com/launchdarkly/ld-relay/blob/v8/docs/events.md).
+Each SDK uses these values to determine where to request flag updates. Change the values to point to the Relay Proxy URI instead of directly to LaunchDarkly’s services. In some SDKs, you must set the base URI of each service to the Relay Proxy’s base URI, using a separate configuration property for each service but setting each one to the same value. In other SDKs, you can set the base URI for all services with a single configuration property.
+If the Relay Proxy is unreachable for any reason, then LaunchDarkly is unreachable. LaunchDarkly SDKs do not fall back to the LaunchDarkly service URIs if the Relay Proxy is unavailable.
+##### Ensuring version compatibility
+Some SDKs support compression of event payloads. When enabled, the SDK compresses events before sending them to LaunchDarkly servers or to the Relay Proxy. This can reduce egress bandwidth cost.
+The Relay Proxy supports receiving compressed event payloads from SDKs starting in version 8.9. If you choose to enable compression of event payloads in your SDK, you **must** upgrade Relay Proxy to version 8.9 or greater. To learn more, read [Using proxy mode](/docs/sdk/features/relay-proxy-configuration/proxy-mode).
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Relay Proxy configuration](/docs/sdk/features/relay-proxy-configuration)
+## Configuring SDKs to use different modes
+After you set up the Relay Proxy, you can configure your SDKs to run in either **proxy** mode or **daemon** mode.
+Which mode you choose depends on the types of SDKs you are using:
+ * Client-side and mobile SDKs can only use the Relay Proxy in proxy mode. This is because in daemon mode, the SDK connects directly to the Relay Proxy’s data store, which is not a supported behavior for client-side SDKs.
+ * Server-side SDKs can use it in either mode.
+We generally recommend configuring your SDKs for proxy mode. Daemon mode is a workaround for environments where normal operation is not possible.
+The two modes are not mutually exclusive. If you have configured multiple services to use Relay Proxy, some of these services can operate in proxy mode while others are in daemon mode. If this is your use case, we recommend configuring your SDKs to follow the best practices listed in each of the following subsections.
+###### Expand Using proxy mode
+### Using proxy mode
+Proxy mode is the most common use case for connecting to the Relay Proxy. LaunchDarkly SDKs are configured to run in proxy mode by default. Client-side SDKs must use proxy mode. To learn more about configuring the Relay Proxy for client-side SDKs, read the Relay Proxy GitHub repository’s [Client-side/mobile connections](https://github.com/launchdarkly/ld-relay/blob/v8/docs/client-side.md).
+In proxy mode, several Relay Proxy instances should exist in a high-availability configuration behind a load balancer. Relay Proxy nodes do not need to communicate with each other. There is no master node or cluster.
+You can scale the Relay Proxy horizontally by deploying more nodes behind the load balancer. Do not use a single node when your SDKs are in proxy mode.
+Here is a diagram showing how the Relay Proxy works in proxy mode:
+![SDKs configured to use the Relay Proxy while in proxy mode.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/aa0e794c9cbb7a6569cc2cb12d9074e7050a1a69efd16358cb97e663547adbb0/assets/images/__not_from_LD_app_UI/relay-proxy-proxy-mode.png)
+SDKs configured to use the Relay Proxy while in proxy mode.
+You should not use a persistent feature store between the Relay Proxy and your application in proxy mode.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Using proxy mode](/docs/sdk/features/relay-proxy-configuration/proxy-mode)
+To learn more, read the Relay Proxy GitHub repository’s [Proxy mode](https://github.com/launchdarkly/ld-relay/blob/v8/docs/proxy-mode.md) and [Using TLS docs](https://github.com/launchdarkly/ld-relay/blob/v8/docs/tls.md).
+###### Expand Using daemon mode
+### Using daemon mode
+Daemon mode requires that you configure server-side LaunchDarkly SDKs to communicate directly with the Relay Proxy’s persistent data store. We recommend this configuration when you’re using LaunchDarkly with PHP or in a serverless environment.
+There is no need to put a load balancer in front of the Relay Proxy when your SDKs are configured to run in daemon mode. You need only one instance of the Relay Proxy to keep the persistent store up to date. Multiple instances do not help the Relay Proxy to scale with the number of connected clients.
+The persistent store will contain the flag and segment rules for your configured environments. The amount of data is typically quite small. The data will be the same information returned by the streaming and polling endpoints. To learn more about using daemon mode, read the Relay Proxy GitHub repository’s [Daemon mode](https://github.com/launchdarkly/ld-relay/blob/v8/docs/daemon-mode.md).
+Here is a diagram showing how the Relay Proxy works in daemon mode:
+![SDKs configured to use the Relay Proxy while in daemon mode.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/0e385b8ebc40c55843a7c5ee5708caafb47224dc461906769ee023acfa3644a1/assets/images/__not_from_LD_app_UI/relay-proxy-daemon-mode.png)
+SDKs configured to use the Relay Proxy while in daemon mode.
+To use daemon mode:
+ 1. Configure your SDK to use a persistent data store. The SDK and the Relay Proxy must use the same data store.
+ 2. Configure your SDK to use daemon mode.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Storing data](/docs/sdk/features/storing-data), [Using daemon mode](/docs/sdk/features/relay-proxy-configuration/daemon-mode)
+If you use LaunchDarkly in a serverless environment, we recommend using DynamoDB as a persistent feature store. In this scenario, the Relay Proxy’s purpose is to keep the feature store updated. To learn more about setting up a persistent feature store for use in daemon mode, read [Using a persistent feature store without connecting to LaunchDarkly](/docs/sdk/concepts/data-stores#using-a-persistent-feature-store-without-connecting-to-launchdarkly). For a tutorial that demonstrates a persistent store set up in a serverless environment, read [Use a persistent feature store](/docs/guides/infrastructure/serverless#option-2-use-a-persistent-feature-store).
+##### Restoring your SDK to proxy mode
+If you have set your SDK to daemon mode and wish to restore it to proxy mode, you can do that by removing the configuration that enabled daemon mode. By default, LaunchDarkly SDKs run in proxy mode, so removing the additional configuration returns the SDK to proxy mode. To learn more about customizing SDK configuration, read the documentation for your SDK.
+We recommend that you use a monitoring service, such as Datadog, when your SDKs are configured to run in daemon mode. Because the Relay Proxy’s data store communicates directly with the SDKs when the Relay Proxy is in daemon mode, an external monitoring service can provide information about problems that might otherwise be lost during an outage.
+### Using a persistent store
+If you configure your SDKs for daemon mode, or if you are using synced segments or larger list-based segments with server-side SDKs, then you must use a persistent store with the Relay Proxy:
+ * If you are using daemon mode, then you can use DynamoDB, Redis, or Consul as a persistent store.
+ * If you are using synced segments or larger list-based segments, then you can only use DynamoDB or Redis. To learn more, read [Configuring the Relay Proxy for segments](/docs/sdk/relay-proxy/sdk-config#configuring-the-relay-proxy-for-segments).
+We recommend setting an infinite time to live (TTL) on the cache for your persistent store so flags do not evaluate to their fallback values if the Relay Proxy loses its connection to the persistent store. To learn more, read [Using a persistent feature store](/docs/sdk/relay-proxy/guidelines#using-a-persistent-feature-store).
+The Relay Proxy can only use one persistent store at a time. For example, if you enabled both Redis and DynamoDB it would result in an error.
+LaunchDarkly SDKs have their own options for configuring persistent storage. If you configure your SDK to use the Relay Proxy in daemon mode, the SDK needs to be using the same storage configuration as the Relay Proxy. If you are not using daemon mode, the two configurations are completely independent. For example, you could have a Relay Proxy using Redis, but a client using DynamoDB or not using persistent storage at all.
+Here is a diagram showing how a persistent store works with the Relay Proxy in proxy mode:
+![SDKs configured to use a persistent store and the Relay Proxy.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/13aa680ef6e683912ee33929594981a37eb796c1dcfc18b9930d40f1c7387baf/assets/images/__not_from_LD_app_UI/relay-proxy-diagram-persistent-store.png)
+SDKs configured to use a persistent store and the Relay Proxy.
+If you are not using synced segments or larger list-based segments with server-side SDKs, and are not running any SDKs in daemon mode, we do not recommend using a persistent store. To learn more, read the Relay Proxy GitHub repository’s [Persistent storage](https://github.com/launchdarkly/ld-relay/blob/v8/docs/persistent-storage.md).
+###### Expand Using DynamoDB with the Relay Proxy
+### Using DynamoDB with the Relay Proxy
+##### Data size limit in DynamoDB
+DynamoDB does not support storing values greater than 400KB, including the size of the column metadata. Using DynamoDB as a persistent feature store with the Relay Proxy will not work if the JSON representation of a segment exceeds that size. To learn more, read the [AWS documentation on item size](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-items).
+We generally recommend using DynamoDB for persistent storage with the Relay Proxy, because the Relay Proxy doesn’t support Redis in cluster mode or other sharding. However, using DynamoDB can incur higher costs. The Relay Proxy and LaunchDarkly SDKs will continually write updates to DynamoDB while in proxy mode. To mitigate this, consider running multiple Relays in AWS without a persistent store.
+###### Expand Using Redis with the Relay Proxy
+### Using Redis with the Relay Proxy
+If you use Redis with the Relay Proxy, each of your Redis hosts will need enough RAM to load the full set of segments and flag configurations, because the Relay Proxy doesn’t support Redis in cluster mode or other sharding.
+Redis has a few different persistence modes, including snapshotting, write ahead log (WAL), and no persistence. Redis’ default configuration uses snapshotting, which means that if there is a Redis outage, it will be restored with a potentially stale copy of segment and flag configuration data. The Relay Proxy will refresh this.
+We recommend using either snapshotting or WAL when you are using Redis with the Relay Proxy. We discourage using no persistence, because it means that whenever Redis reboots, its store will be empty. The Relay Proxy will not realize that Redis is empty if it became empty after the Relay Proxy fully initialized.
+## Configuring the Relay Proxy for segments
+##### Using the Relay Proxy is not required for segments
+If you want to use synced segments or larger list-based segments with server-side SDKs, you must use a persistent store. You can either use the Relay Proxy with a persistent store, or a persistent store integration. You do not need to use both. To learn more, read [SDK and integration configuration for segments](/docs/home/flags/segment-config).
+##### This feature is not available on all versions of the Relay Proxy
+If you want to use synced segments or larger list-based segments with server-side SDKs, you must use the Relay Proxy v8 or above configured with persistent storage. (The functionality was first introduced in the Relay Proxy in v6.4.0, which is no longer actively maintained.)
+LaunchDarkly uses different implementations for different types of segments so that all of your segments have good performance. Some segments require the Relay Proxy if you are using server-side SDKs.
+Both larger list-based segments, defined as those with more than 15,000 entries, and segments synced from external tools are larger than LaunchDarkly can fit into its streaming and in-memory protocol. To use these segments with the Relay Proxy, you must configure the Relay Proxy to use either Redis or DynamoDB for persistent storage. The Relay Proxy populates and stores segment data in the persistent data store, which your SDK then uses for flag evaluation.
+Here is a diagram showing how these “big segments” work with the Relay Proxy:
+![SDKs configured to use big segments and the Relay Proxy.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/e846dbbb20344f71cef862638458e2474574e2fcfb44ad1fc73dcc8cb18f746c/assets/images/__not_from_LD_app_UI/relay-proxy-diagram-big-segments.png)
+SDKs configured to use big segments and the Relay Proxy.
+If your SDKs are already configured to use the Relay Proxy without a data store, you will need to reconfigure them to connect to the store in order to use these segments. To learn more, read [Persistent data stores](/docs/sdk/concepts/data-stores) and the Relay Proxy GitHub repository’s [Persistent storage](https://github.com/launchdarkly/ld-relay/blob/v8/docs/persistent-storage.md).
+Here are the requirements for using synced segments or larger list-based segments with client-side and server-side SDKs and the Relay Proxy:
+ * If you use a client-side SDK, there’s no additional setup required. However, if you use the Relay Proxy with a client-side SDK, the Relay Proxy must be configured to use persistent storage with Redis or DynamoDB.
+ * If you use a server-side SDK, you must use the Relay Proxy and configure your server-side SDKs to use the same persistent storage as the Relay Proxy for segments.
+ * The persistent store and feature store configurations for your SDK are separate. If you are using a feature store for your SDK, you can use either the same or a different persistent store for your segments. For example, if you configure your SDK to use Redis for a feature store, you can still configure it to use DynamoDB for the persistent store for segments.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Big segments](/docs/sdk/features/big-segments)
+### Server-side flag evaluation using segments and the Relay Proxy
+In unusual cases, server-side SDKs may return incorrect evaluations if the required segments data is unavailable. If an SDK tries to evaluate a flag rule that depends on a big segment but the segment data is unavailable, it continues evaluating the rest of the rules and records this problem in the `EvaluationReason`. In this case, the evaluation will return the result based on the remaining flag rules instead of the fallback value. To understand when and if this is happening, you can add code that examines the `EvaluationReason`.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Try it in your SDK: [Evaluation reasons](/docs/sdk/features/evaluation-reasons)
+## Securing connections to and from the Relay Proxy
+You can secure traffic into the Relay Proxy with TLS connections, and also set an environment variable to convey Relay Proxy traffic through another proxy.
+### Securing inbound connections to the Relay Proxy
+As a best practice, we recommend enabling TLS on all inbound connections to the Relay Proxy. This ensures that inbound traffic to the Relay Proxy is secure.
+To enable TLS on inbound connections, position the Relay Proxy behind a secure load balancer.
+### Passing Relay Proxy traffic through a proxy
+In some cases, you may want to pass relay traffic through a proxy when it communicates with LaunchDarkly’s services. Go’s standard HTTP library provides a built-in HTTPS proxy.
+If you include the `HTTPS_PROXY` environment variable in your configuration, the SDK will proxy all network requests through the URL you provide. Configuration instructions for Mac, Linux, and Windows systems appear below.
+To set the `HTTPS_PROXY` environment variable:
+Mac and Linux configurationWindows configuration
+```
+$
+| export HTTPS_PROXY=https://web-proxy.domain.com:8080
+---|--- 
+```
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:43.666Z",
+  "cleanedAt": "2025-11-21T18:13:44.200Z",
+  "url": "https://launchdarkly.com/docs/home/releases/progressive-health-checks",
+  "description": "Use health checks for progressive rollouts to confirm your rollout setup and troubleshoot configuration problems. Progressive rollouts gradually increase traffic to a flag or AI Config variation over time. Health checks confirm that your rollout configuration is valid by verifying that your flag is turned on and receiving evaluations from the correct context kind."
+}

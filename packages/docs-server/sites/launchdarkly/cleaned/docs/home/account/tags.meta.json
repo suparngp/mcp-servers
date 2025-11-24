@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:53.880Z",
+  "cleanedAt": "2025-11-21T18:14:54.345Z",
+  "url": "https://launchdarkly.com/docs/home/account/tags",
+  "description": "This topic explains how to use tags with LaunchDarkly resources. Tags are customizable labels that help you categorize flags, segments, metrics, projects, environments, and other resources."
+}

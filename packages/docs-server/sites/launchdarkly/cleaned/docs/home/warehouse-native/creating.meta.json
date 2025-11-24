@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:45.456Z",
+  "cleanedAt": "2025-11-21T18:14:45.751Z",
+  "url": "https://launchdarkly.com/docs/home/warehouse-native/creating",
+  "description": "This topic explains how to set up and configure an experiment in LaunchDarkly that uses metric events from your own data warehouse."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview[​](#overview \"Direct link to Overview\")",
+  "crawledAt": "2025-11-23T07:15:49.680Z",
+  "cleanedAt": "2025-11-23T07:15:49.872Z",
+  "url": "https://openfeature.dev/specification/sections/flag-evaluation",
+  "description": "The `evaluation API` allows for the evaluation of feature flag values, independent of any flag control plane or vendor. In the absence of a [provider](/specification/sections/providers) the `evaluation API` uses the \"No-op provider\", which simply returns the supplied default flag value."
+}

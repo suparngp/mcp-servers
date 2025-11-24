@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:28.052Z",
+  "cleanedAt": "2025-11-21T18:32:28.555Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/lua/migration-1-to-2",
+  "description": "This topic explains the changes in the Lua SDK 2.0 release and how to adapt code that uses a 1.x version of the [Lua SDK](/docs/sdk/server-side/lua) to use version 2.0 or later."
+}

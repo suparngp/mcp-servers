@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:45.408Z",
+  "cleanedAt": "2025-11-21T18:14:45.609Z",
+  "url": "https://launchdarkly.com/docs/home/infrastructure/eu",
+  "description": "This topic explains how the version of LaunchDarkly that is available on domains residing in the European Union (EU) is different from the version of LaunchDarkly available in the United States. The LaunchDarkly EU instance complies with EU data residency principles, including the protection and confidentiality of EU customer information."
+}

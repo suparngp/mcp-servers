@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:54.924Z",
+  "cleanedAt": "2025-11-21T18:31:55.497Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/events",
+  "description": "This topic explains how to send `custom` events using the track feature in each SDK. The track feature is available in server-side, client-side, and most edge SDKs."
+}

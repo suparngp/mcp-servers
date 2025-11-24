@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:19.260Z",
+  "cleanedAt": "2025-11-21T18:14:19.649Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/start-stop-exp",
+  "description": "This topic explains how to start recording an experiment iteration and stop the experiment iteration when you’re finished. To learn more about running experiments, read [Managing experiments](/docs/home/experimentation/manage)."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:53.091Z",
+  "cleanedAt": "2025-11-21T18:15:54.025Z",
+  "url": "https://launchdarkly.com/docs/guides/experimentation/mutually-exclusive",
+  "description": "This guide provides an example of how to create mutually exclusive experiments using experiment layers. Mutually exclusive experiments are two or more experiments configured to prevent contexts from being included in more than one experiment at a time."
+}

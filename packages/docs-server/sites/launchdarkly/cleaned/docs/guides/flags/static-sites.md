@@ -1,0 +1,499 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [Guides](/docs/guides)
+ * [Account management](/docs/guides/account)
+ * [AI Configs](/docs/guides/ai-configs)
+ * [Experimentation](/docs/guides/experimentation)
+ * [Feature flags](/docs/guides/flags)
+ * [Infrastructure](/docs/guides/infrastructure)
+ * [Integrations](/docs/guides/integrations)
+ * [Metrics](/docs/guides/metrics)
+ * [SDKs](/docs/guides/sdk)
+ * [Statistical methodology](/docs/guides/statistical-methodology)
+ * [REST API](/docs/guides/api)
+ * [Teams and custom roles](/docs/guides/teams-roles)
+ * [Additional resources](/docs/guides/additional-resources)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Prerequisites](#prerequisites)
+ * [Concepts](#concepts)
+ * [Static websites](#static-websites)
+ * [Content management system](#content-management-system)
+ * [Content delivery network](#content-delivery-network)
+ * [Single page application](#single-page-application)
+ * [Module bundlers](#module-bundlers)
+ * [Static site generators](#static-site-generators)
+ * [Characteristics of static sites](#characteristics-of-static-sites)
+ * [Differences between static sites and single page applications](#differences-between-static-sites-and-single-page-applications)
+ * [Enhance static sites with feature flags](#enhance-static-sites-with-feature-flags)
+ * [Best practices for using feature flags with static sites](#best-practices-for-using-feature-flags-with-static-sites)
+ * [Load the SDK and LaunchDarkly client](#load-the-sdk-and-launchdarkly-client)
+ * [Bootstrap the client](#bootstrap-the-client)
+ * [Bootstrap using local storage](#bootstrap-using-local-storage)
+ * [Bootstrap using server-rendered content](#bootstrap-using-server-rendered-content)
+ * [Delay when your site renders](#delay-when-your-site-renders)
+ * [Release features in realtime](#release-features-in-realtime)
+ * [Use React](#use-react)
+ * [Use static site generators](#use-static-site-generators)
+ * [Conclusion](#conclusion)
+## Overview
+This guide explores some best practices for using feature flags on static websites.
+In this guide, you will:
+ * Learn how the JavaScript SDK works on client-side applications
+ * Learn best practices for managing client-side flags on a static website
+## Prerequisites
+To complete this guide, you must have the following prerequisites:
+ * A basic understanding of feature flags. To learn more, read [Getting started](/docs/home/getting-started).
+ * Know how to make a flag available to client-side SDKs. To learn more, read [Make flags available to client-side and mobile SDKs](/docs/home/flags/new#make-flags-available-to-client-side-and-mobile-sdks).
+ * A basic understanding of how to use the LaunchDarkly JavaScript SDK. To learn more, read [JavaScript SDK reference](/docs/sdk/client-side/javascript).
+ * Access to a LaunchDarkly account with permission to create flags.
+### Concepts
+This guide relies on the following concepts:
+### Static websites
+Static websites are a set of one or more webpages served from a web server or content delivery network (CDN). We call them “static” sites because their pages are not generated dynamically. Static sites change when a new version is published, either with a content management system or with a new deployment.
+### Content management system
+You can use a content management system (CMS) to manage the creation, management, and publishing workflow of a website. There are many different CMSs like [Contentful](https://www.contentful.com/) and [Prismic](https://prismic.io/).
+### Content delivery network
+A content delivery network (CDN) is a geographically distributed group of servers that work together to deliver internet content quickly. A CDN lets you transfer the assets necessary for loading internet content, including HTML pages, JavaScript files, stylesheets, images, and videos.
+Some of the more popular CDNs are [AWS CloudFront](https://aws.amazon.com/cloudfront/) and [Cloudflare](https://cloudflare.com/).
+### Single page application
+A single page application (SPA) is a website that does not perform a page reload when you use different aspects of it.
+Popular SPAs include Gmail, Google Maps, Facebook, Twitter, and many other web applications intended for use by the general public.
+### Module bundlers
+Module bundlers are tools developers use to bundle JavaScript modules into a single JavaScript file that can be executed in the browser.
+The most well-known bundlers are [Webpack](https://webpack.js.org/) and [Rollup](https://rollupjs.org/).
+### Static site generators
+Static site generators are tools that let you build and manage a static site. Static site generators are not CMS’. You can use a static site generator to define the structure, templates, and build process of a static site.
+Some static site generators include [Gatsby](https://www.gatsbyjs.com/) and [Next.js](https://nextjs.org/).
+## Characteristics of static sites
+A basic static site is the one that is truly static. Each webpage exists as a static file that lives on a filesystem and is served up by a traditional web server like Apache or Nginx. You can also serve these files from a CDN.
+Typically, a content management system creates and manages these static sites. The CMS is responsible for publishing the actual pages to a web server.
+Here is a diagram showing the topology of a sample static website:
+![Traditional static website topology.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a31438cc20a85b31f2ac7cd33749c0785d23221a6234eec419dd35d608668d72/assets/images/__not_from_LD_app_UI/classic-static-site.png)
+Traditional static website topology.
+Static websites may have some dynamic content. While the file that produced the webpage itself may be static, the webpage could contain JavaScript that produces dynamic content and allows for dynamic interactions when rendered in a browser.
+This distinction is important. Most of today’s websites contain JavaScript even if they render like static sites. The most common JavaScript in these types of websites is used for tracking analytics.
+Another characteristic of these types of static sites is how viewers navigate them. In the example above, a viewer may land on the homepage (`/index.html`), then click on a link to the “about” page (`/about/index.html`). That action instructs the browser to make an HTTP request for the `/about/index.html` page causing it to be loaded into the browser as an entirely new page.
+### Differences between static sites and single page applications
+In a SPA, there is one or a limited number of static pages that comprise an entire website or web application. All viewer interactions in that site are managed by JavaScript.
+For example, when a viewer clicks on a link within a SPA, JavaScript code on the page intercepts the request and performs the action intended by the developer rather than telling the browser to load the URL associated with that link.
+Here is a diagram showing a sample single page application interaction:
+![Single page application interaction.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/c73db92b5dbbb0e2aa3878d8504f250b71ba4ea7535636457ef2700b4739039b/assets/images/__not_from_LD_app_UI/single-page-app.png)
+Single page application interaction.
+SPAs retrieve additional data they need throughout their lifecycle without reloading the page.
+SPA sites aren’t necessarily static HTML pages. Some are dynamically generated by an application server. For the purpose of this guide, we consider these two types of SPAs mostly the same because the feature flagging strategies you can use to manage them are similar.
+## Enhance static sites with feature flags
+With LaunchDarkly, web developers can use feature flags on a static site to gain the following capabilities:
+ * Expose a site feature to a targeted set of contexts, rather than to all.
+ * Release a feature independently of when the feature’s code is deployed.
+ * Release a feature on a specific schedule.
+ * Perform an A/B/n test on a feature before releasing it to all contexts.
+Feature flags can give developers more control over the features they create.
+## Best practices for using feature flags with static sites
+[LaunchDarkly SDKs](/docs/sdk) can operate on a server or on a client. Static sites must use the [LaunchDarkly client-side JavaScript SDK](/docs/sdk/client-side/javascript).
+Code referencing feature flags on your static site will fail if a viewer has JavaScript turned off on their browser.
+If your site is built with React or uses the Gatsby web framework, you can use the corresponding library for easier integration:
+ * **The React Web SDK** is specifically for use on React-based web applications. This SDK uses the JavaScript SDK, but is built to make it easy to integrate into a React codebase. To learn more, read [React SDK](/docs/sdk/client-side/react).
+ * **The Gatsby plugin** is a small plugin for the Gatsby framework. This plugin utilizes the React Web SDK, but makes it easy to use LaunchDarkly inside of a Gatsby codebase. To learn more, read [Gatsby plugin](/docs/sdk/client-side/react/gatsby).
+In this guide, we focus on the JavaScript SDK because the core concepts and best practices described here are generic. They apply to the other client-side SDKs.
+The LaunchDarkly SDK exposes the LaunchDarkly client. This client is used to interact with the LaunchDarkly service and provides access to feature flags in your application’s control flow.
+## Load the SDK and LaunchDarkly client
+Most web apps have lots of JavaScript to load and initialize during the page load. Loading the LaunchDarkly SDK and initializing the client at the most optimal time during the loading sequence is important.
+In most cases, we recommend loading and initializing the SDK as early as possible, especially if you have features that rely on flag values to be available during the initial page render.
+There are a few options available when loading the SDK:
+ * **Load from a CDN with a`<script>` tag**: This is the simplest and most traditional way especially if you’re not using a module bundler like [Webpack](https://webpack.js.org/) or [Rollup](https://rollupjs.org/). To learn more, read [Script tag](/docs/sdk/client-side/javascript#make-the-sdk-available-with-a-script-tag).
+ * **Use a module bundler** : Bundling along with [code splitting](https://webpack.js.org/guides/code-splitting/) to split up your JavaScripts into smaller bundles and only load the bundles needed for the corresponding page. An advantage to code splitting is that it lets you load script bundles in parallel.
+Generally, you will want to load the SDK as early as possible on the page. The earlier the SDK is loaded, the earlier your code can initialize the LaunchDarkly client. Similarly to initializing the SDK, the timing and method with which you initialize the client can impact a viewer’s experience of your site.
+To initialize the client, you must first define a context.
+The only required property of the context is the `key`. The `key` property is a unique property that LaunchDarkly uses to keep track of the flag values for that particular context instance. In LaunchDarkly client-side SDKs, the SDK sets the context `key` to a generated UUID. This identifier remains constant across browser sessions.
+If your context is anonymous, use the `anonymous` property:
+Initializing with an anonymous context
+```
+1
+| const context = {
+---|--- 
+2
+| kind: 'user',
+3
+| anonymous: true
+4
+| };
+5
+| const client = LDClient.initialize('client-side-id-123abc', context);
+```
+To learn more, read [Anonymous contexts](/docs/home/flags/anonymous-contexts).
+The client initialization connects to LaunchDarkly’s servers and fetches the initial flag values for the context. This initialization cycle can take around 100-200ms and can delay your initial page render by at least that much. You could render the page before you have the flag values available, however, your site viewers may experience parts of the page changing as the flag values load.
+To learn more, read [Initialize the client](/docs/sdk/client-side/javascript#initialize-the-client).
+## Bootstrap the client
+Bootstrapping lets you decrease startup times for client-side SDKs by providing them with an initial set of flag values that are immediately available during client initialization. The SDK serves these values to the context before it has established a connection to LaunchDarkly so there is no inconsistency in the flag variations they receive.
+There are two methods of bootstrapping the client:
+ * Using the browser’s local storage
+ * Sending HTML and JavaScript with flag information from the server
+### Bootstrap using local storage
+In this method, the client stores the latest flag settings in the browser’s local storage so the client can initialize itself without an additional delay from fetching the flags from the LaunchDarkly servers. The client still initializes and connects to LaunchDarkly’s service to fetch the most recent flag values, but is no longer dependent on those values to reach its `ready` state.
+While truly static sites don’t have the flag values available before the JavaScript on the page starts executing, the LaunchDarkly client can cache the initial set of flag values retrieved from the server.
+This technique uses the browser’s local storage:
+Bootstrapping with local storage
+```
+1
+| const context = {
+---|--- 
+2
+| kind: 'user',
+3
+| anonymous: true
+4
+| };
+5
+| const options = { bootstrap: 'localStorage' };
+6
+| const ldclient = LDClient.initialize('client-side-id-123abc', context, options);
+```
+The local storage cache updates when new values arrive. On subsequent page loads, it fetches the most recently cached flag values from local storage and emits the `ready` event immediately.
+Bootstrapping using local storage has some benefits:
+ * It is easy to set up, and requires little maintenance.
+ * It is useful when you can’t dynamically add bootstrapping data to the page.
+Bootstrapping using local storage also has some downsides:
+ * The first time the viewer visits your site, local storage is empty. This means they will receive the site’s default behavior before the values from feature flags load, and only after their second visit will the page utilize the values in local storage.
+ * If there is a long time between page visits, the values stored in local storage may be out of date.
+ * Some viewers have privacy settings that block sites from using their browser’s local storage.
+ * Flag changes that happen while the viewer is on the page automatically update the local storage cache, keeping it in sync with the server. However, if the viewer is not on the page when the flag change happens, the flag value in local storage may go out of sync with the server. The next time this viewer visits that page, they could experience a flicker because of the client using the previous flag value from local storage. If you bootstrap using local storage, it’s important to choose effective defaults for your flag values to limit rendering delays. On SPA sites, this may not be a problem. Viewers will likely only load a site once per browser session. In this case, [subscribe to flag changes](/docs/guides/flags/static-sites#release-features-in-realtime) to trigger the appropriate behavior in your app in real-time.
+### Bootstrap using server-rendered content
+While bootstrapping from local storage is a must on a purely static site, you can also bootstrap using HTML and JavaScript from a server.
+In this method, the server sends to the browser an HTML page containing the JavaScript and the feature flags your site needs during the initial render. Your site then bootstraps the LaunchDarkly client with those flags. Feature flags are ready immediately, and clients always receive the latest feature flag values.
+Bootstrapping using server-rendered content requires more setup than bootstrapping from local storage, but provides more benefits.
+The benefits of bootstrapping using server-rendered content include:
+ * It provides values the first time a viewer visits a page.
+ * Bootstrapped values will not become out of date if there is a lag between page visits.
+ * It does not rely on a viewer’s privacy settings to function.
+The downside to bootstrapping using server-rendered content is that it requires significantly more set up work than bootstrapping from local storage.
+All of the server-side SDKs have a function, named some variation of `allFlagsState`, to evaluate flags on behalf of a specified context. We recommend populating the initial set of bootstrap values with a JSON object containing flag metadata derived from calling the server-side SDK’s all flags method.
+If your back end passes values to your front end on page load, you can call your server-side SDK’s all flags function on page load and pass the results as a parameter to your front-end initialization code.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Try it in your SDK: [Getting all flags](/docs/sdk/features/all-flags)
+Here’s an example of how to bootstrap from a server:
+Bootstrapping from a server
+```
+1
+| // If your server passes values to your front end on page load,
+---|--- 
+2
+| // you can call your server-side SDK's all flags state function
+3
+| // on page load and pass the results as a parameter to your
+4
+| // front-end initialization code.
+5
+| function onPageLoad(flags) {
+6
+| ...
+7
+| 
+8
+| var ldclient = LDClient.initialize(
+9
+| 'client-side-id-123abc',
+10
+| context,
+11
+| {
+12
+| bootstrap: flags
+13
+| }
+14
+| );
+15
+| 
+16
+| ...
+17
+| }
+18
+| 
+19
+| ...
+20
+| 
+21
+| <script>
+22
+| // Elsewhere on the page, the server injects this
+23
+| onPageLoad({
+24
+| // flag values for context
+25
+| 'bool-flag-key-123abc': true,
+26
+| 'string-flag-key-123abc': 'Canada',
+27
+| });
+28
+| <script>
+```
+All LaunchDarkly server-side SDKs can evaluate all flags on a context’s behalf. These flags can then be combined with the HTML response.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Bootstrapping with JavaScript](/docs/sdk/features/bootstrapping#javascript)
+## Delay when your site renders
+You can delay rendering your site until the feature flags are available.
+For example, if you redesign your site and use a feature flag to control the rollout, your old design may appear briefly on initial render. In most cases, [using local storage](/docs/guides/flags/static-sites#bootstrap-using-local-storage) might be enough to reduce the risk of your page flickering after the feature flags are loaded. Depending on how complex your site is or whether your page is generated or rendered on the server, you may be able to take advantage of [bootstrapping using server-rendered content](/docs/guides/flags/static-sites#bootstrap-using-server-rendered-content).
+If that’s not possible, choosing to delay rendering is an option, but could reflect poorly on your site’s perceived performance.
+## Release features in realtime
+When your app initializes the LaunchDarkly client, the LaunchDarkly servers will send the full set of evaluated flags values to the browser. The browser will store the flags either in memory or local storage.
+If a flag changes after the page renders, the LaunchDarkly client is not notified of the change. If the site is a SPA, you might want the site to react to the flag change and re-render any affected components or interaction logic in the page in realtime.
+To enable this, subscribe to flag changes in your app:
+Subscribe to all flag changesSubscribe to a specific flag
+```
+1
+| ldclient.on('change', function(flags) {
+---|--- 
+2
+| console.log('flags changed:', flags);
+3
+| // add your feature behavior here...
+4
+| });
+```
+Use this technique to release features to your clients in real-time.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Subscribing to flag changes](/docs/sdk/features/flag-changes#javascript)
+## Use React
+[React](https://reactjs.org/) is a popular JavaScript UI library. LaunchDarkly has a [React Web SDK](/docs/sdk/client-side/react) that lets developers use LaunchDarkly in their React app. One of the helpers the React Web SDK provides is called [`asyncWithLDProvider`](/docs/sdk/client-side/react/react-web#initialize-using-asyncwithldprovider). It ensures that the flags are available to your React components when they render.
+Here is an example:
+Initializing LaunchDarkly React Web SDK
+```
+1
+| import { asyncWithLDProvider } from 'launchdarkly-react-client-sdk';
+---|--- 
+2
+| 
+3
+| (async () => {
+4
+| const LDProvider = await asyncWithLDProvider({
+5
+| clientSideID: 'client-side-id-123abc',
+6
+| context: {
+7
+| "kind": "user",
+8
+| "key": "user-key-123abc",
+9
+| "name": "Sandy Smith",
+10
+| "email": "sandy@example.com"
+11
+| },
+12
+| options: {
+13
+| "bootstrap": "localStorage",
+14
+| }
+15
+| });
+16
+| 
+17
+| render(
+18
+| <LDProvider>
+19
+| <YourApp />
+20
+| </LDProvider>,
+21
+| document.getElementById('reactDiv'),
+22
+| );
+23
+| })();
+```
+Use this provider so your app does not flicker due to the client’s initialization delay. However, the page may render more slowly while the initial flag values are retrieved. You can alleviate this by using the bootstrapping techniques described above.
+The `asyncWithLDProvider` automatically subscribes to changes to flags in your environment. If a flag value changes, any component in the React tree using that flag re-renders automatically.
+After the flags load, you can access those flags from any component in your app:
+Accessing the LaunchDarkly client from React components using hooks
+```
+1
+| import React from 'react';
+---|--- 
+2
+| import { useFlags, useLDClient } from 'launchdarkly-react-client-sdk';
+3
+| 
+4
+| const HooksDemo = () => {
+5
+| const { devTestFlag } = useFlags();
+6
+| const client = useLDClient();
+7
+| 
+8
+| const onLoginSuccessful = () => client.identify({ key: 'context-key-123abc' });
+9
+| 
+10
+| return (
+11
+| <div>{devTestFlag ? 'Flag on' : 'Flag off'}</div>
+12
+| );
+13
+| };
+14
+| 
+15
+| export default HooksDemo;
+```
+This example uses [React hooks](https://reactjs.org/docs/hooks-intro.html). If you are using a version of React without hooks support, you can use the higher-order component [`withLDConsumer`](/docs/sdk/client-side/react/react-web##using-withldconsumer) instead:
+Accessing the LaunchDarkly client using a higher-order component
+```
+1
+| import { withLDConsumer } from 'launchdarkly-react-client-sdk';
+---|--- 
+2
+| 
+3
+| const Home = ({ flags, client /*, ...otherProps */ }) => {
+4
+| 
+5
+| // You can call any of the methods from the JavaScript SDK
+6
+| // client.identify({...})
+7
+| 
+8
+| return flags.devTestFlag ? <div>Flag on</div> : <div>Flag off</div>;
+9
+| };
+10
+| 
+11
+| export default withLDConsumer()(Home);
+```
+To learn more, read the [React Web SDK reference](/docs/sdk/client-side/react/react-web).
+## Use static site generators
+Lots of static site generators are available today that make it easier to build and manage a static site. Some popular ones are [Gatsby](https://www.gatsbyjs.com/) and [Next.js](https://nextjs.org/), but there are [many, many more](https://www.staticgen.com/).
+LaunchDarkly has a [plugin for Gatsby](https://www.gatsbyjs.com/plugins/gatsby-plugin-launchdarkly/?=launchdarkly) that wraps the LaunchDarkly React Web SDK and makes it easier to use inside a Gatsby-based site.
+Using the LaunchDarkly Gatsby plugin is very similar to the React Web SDK. The only thing that differs is how you configure the client.
+From `gatsby-config.js`:
+LaunchDarkly Gatsby plugin configuration
+```
+1
+| // gatsby-config.js
+---|--- 
+2
+| ...
+3
+| plugins: [
+4
+| ...
+5
+| {
+6
+| resolve: 'gatsby-plugin-launchdarkly',
+7
+| options: {
+8
+| clientSideID: 'client-side-id-123abc',
+9
+| options: {
+10
+| // any LaunchDarkly options you may want to implement
+11
+| bootstrap: 'localStorage', // caches flag values in localstorage
+12
+| },
+13
+| },
+14
+| },
+15
+| ...
+16
+| ]
+17
+| ...
+```
+After it’s configured, you can access all of the methods of the React Web SDK through `gatsby-launchdarkly-plugin`:
+How to import the LaunchDarkly SDK
+```
+1
+| // gatsby-plugin-launchdarkly exposes launchdarkly-react-client-sdk
+---|--- 
+2
+| import { useFlags, useLDClient } from 'gatsby-plugin-launchdarkly';
+```
+This plugin assumes that the end user viewing your site is anonymous. In this case, the LaunchDarkly SDK tracks your client so it remembers what variation of the flag the client received. This behavior happens automatically.
+If you have a signed-in end user, you may want LaunchDarkly to know that in order to target that context with a feature.
+You can do this by accessing the `client` object directly:
+Example with signed-in end user
+```
+1
+| import React from 'react';
+---|--- 
+2
+| import { useFlags, useLDClient } from 'gatsby-plugin-launchdarkly';
+3
+| 
+4
+| const HooksDemo = () => {
+5
+| const { someNewFeature } = useFlags();
+6
+| const client = useLDClient();
+7
+| 
+8
+| // Calling `identify` will cause the flags to be re-evaluated for the new
+9
+| // end user that's logged in. Changes in flag values will stream in and
+10
+| // could cause your component to re-render.
+11
+| const onLoginSuccessful = (user) => client.identify({
+12
+| kind: 'user',
+13
+| key: user.key,
+14
+| firstName: user.firstName,
+15
+| lastName: user.lastName,
+16
+| });
+17
+| 
+18
+| return (
+19
+| <div>{someNewFeature ? 'Flag on' : 'Flag off'}</div>
+20
+| );
+21
+| };
+22
+| 
+23
+| export default HooksDemo;
+```
+To learn more, read [Gatsby plugin](https://www.gatsbyjs.com/plugins/gatsby-plugin-launchdarkly/?=launchdarkly).
+## Conclusion
+This guide shows you strategies for implementing feature flags on static sites.
+These strategies include:
+ * Load and initialize the SDK as fast as possible before the initial page render, or in parallel assuming you don’t need the flag values right away.
+ * Efficiently bootstrap the LaunchDarkly client with the initial flag values.
+ * Host your site from a CDN. A CDN will bring your site closer to the viewer and hopefully improve your site’s perceived performance.
+##### Want to know more? Start a trial.
+Your 14-day trial begins as soon as you sign up. Get started in minutes using the in-app Quickstart. You'll discover how easy it is to release, monitor, and optimize your software. 
+Want to try it out? [Start a trial](https://app.launchdarkly.com/signup).
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

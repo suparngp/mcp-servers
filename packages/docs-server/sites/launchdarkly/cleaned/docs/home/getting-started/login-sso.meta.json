@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:12:55.497Z",
+  "cleanedAt": "2025-11-21T18:12:55.948Z",
+  "url": "https://launchdarkly.com/docs/home/getting-started/login-sso",
+  "description": "This topic explains how to use a third-party single sign-on (SSO) provider or identity provider (IdP) to log into LaunchDarkly for the first time."
+}

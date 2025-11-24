@@ -1,0 +1,7 @@
+{
+  "title": "Joins and Reducers",
+  "crawledAt": "2025-10-31T05:06:02.597Z",
+  "cleanedAt": "2025-10-31T05:06:02.916Z",
+  "url": "https://ai.pydantic.dev/graph/beta/joins/",
+  "description": "Join nodes synchronize and aggregate data from parallel execution paths. They use **Reducers** to combine multiple inputs into a single output."
+}

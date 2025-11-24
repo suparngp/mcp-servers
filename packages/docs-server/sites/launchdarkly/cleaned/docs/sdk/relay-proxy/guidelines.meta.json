@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:48.395Z",
+  "cleanedAt": "2025-11-21T18:32:48.735Z",
+  "url": "https://launchdarkly.com/docs/sdk/relay-proxy/guidelines",
+  "description": "This topic includes guidelines for configuring and using the Relay Proxy successfully. These guidelines are not exhaustive or required. The most effective practices for your organization may be different based on your configuration and deployment requirements."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:16.786Z",
+  "cleanedAt": "2025-11-21T18:33:17.278Z",
+  "url": "https://launchdarkly.com/docs/integrations/datadog/dashboard-widget",
+  "description": "The Datadog UI extensions have been deprecated by Datadog as of March 31, 2025. You can recreate the functionality using the Datadog App Builder:"
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:23.973Z",
+  "cleanedAt": "2025-11-21T18:32:24.637Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/go/migration-5-to-6",
+  "description": "This topic explains the changes in the Go SDK 6.0 release and how to migrate to that version."
+}

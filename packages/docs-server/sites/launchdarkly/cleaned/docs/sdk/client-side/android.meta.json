@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:03.241Z",
+  "cleanedAt": "2025-11-21T18:32:03.682Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/android",
+  "description": "**Version 5 of the Android SDK introduces optional automatic collection of environment attributes**. To learn more about upgrading, read [Android SDK 4.x to 5.0 migration guide](/docs/sdk/client-side/android/migration-4-to-5)."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Centralized Rate Limiter",
+  "crawledAt": "2025-11-21T18:36:38.376Z",
+  "cleanedAt": "2025-11-21T18:36:38.536Z",
+  "url": "https://launchdarkly.com/docs/blog/rate-limiters",
+  "description": "The Centralized Rate Limiter limits requests to the APIs hosted at app.launchdarkly.com. It is designed to be exact and to fail dangerously. It is exact because we return 429 errors to API clients that indicate when they can retry their request and be within their rate limit. It fails dangerously: when Redis is unavailable and we cannot check the rates, all traffic is allowed."
+}

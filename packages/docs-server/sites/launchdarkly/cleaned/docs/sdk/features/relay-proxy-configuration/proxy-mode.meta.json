@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:55.071Z",
+  "cleanedAt": "2025-11-21T18:31:55.436Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/relay-proxy-configuration/proxy-mode",
+  "description": "Each SDK connects to several LaunchDarkly web services. These include services for getting feature flag data via streaming or polling, and a service for storing analytics events. By default, the SDK connects directly to LaunchDarkly for these services."
+}

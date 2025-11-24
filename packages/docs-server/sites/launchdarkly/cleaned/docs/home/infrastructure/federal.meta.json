@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:45.509Z",
+  "cleanedAt": "2025-11-21T18:14:46.024Z",
+  "url": "https://launchdarkly.com/docs/home/infrastructure/federal",
+  "description": "This topic explains how the version of LaunchDarkly that is available on domains controlled by the United States government is different from the version of LaunchDarkly available to the general public. If you are an employee or contractor for a United States federal agency and use LaunchDarkly in your work, you likely use the federal instance of LaunchDarkly. This instance is compliant with the United States government’s Federal Risk and Authorization Management Program (FedRAMP)."
+}

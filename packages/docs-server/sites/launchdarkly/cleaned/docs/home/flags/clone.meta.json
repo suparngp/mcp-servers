@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:01.482Z",
+  "cleanedAt": "2025-11-21T18:13:01.907Z",
+  "url": "https://launchdarkly.com/docs/home/flags/clone",
+  "description": "You can create new flags by cloning existing flags. When you clone a flag, LaunchDarkly makes a new flag and copies the original flag’s targeting configuration for all environments, including default values and whether the flag is toggled on or off. You can then modify the clone’s configuration if needed."
+}

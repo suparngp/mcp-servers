@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.370Z",
+  "cleanedAt": "2025-11-21T18:14:32.068Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/custom",
+  "description": "This topic explains how to create a custom conversion binary metric in LaunchDarkly. Custom conversion binary metrics track how many contexts trigger an event. You can use this metric with any event you set up in your codebase."
+}

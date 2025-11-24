@@ -1,0 +1,7 @@
+{
+  "title": "Mistral",
+  "crawledAt": "2025-10-31T05:06:12.637Z",
+  "cleanedAt": "2025-10-31T05:06:12.927Z",
+  "url": "https://ai.pydantic.dev/models/mistral/",
+  "description": "To use `MistralModel`, you need to either install `pydantic-ai`, or install `pydantic-ai-slim` with the `mistral` optional group:"
+}

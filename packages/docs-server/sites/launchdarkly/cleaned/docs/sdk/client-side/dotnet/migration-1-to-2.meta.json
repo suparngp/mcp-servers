@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:59.283Z",
+  "cleanedAt": "2025-11-21T18:31:59.661Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/dotnet/migration-1-to-2",
+  "description": "This topic explains how to adapt code that currently uses a 1.x version of the [.NET client-side SDK](/docs/sdk/client-side/dotnet), previously called the Xamarin SDK, to use version 2.0 or later."
+}

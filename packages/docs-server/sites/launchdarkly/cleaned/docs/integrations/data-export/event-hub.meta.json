@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:00.287Z",
+  "cleanedAt": "2025-11-21T18:33:00.623Z",
+  "url": "https://launchdarkly.com/docs/integrations/data-export/event-hub",
+  "description": "This topic explains how to configure and use the Azure Event Hubs Data Export destination. By connecting your LaunchDarkly project to Azure Event Hubs, you can export LaunchDarkly SDK events from flags and environments to an Event Hub of your choosing."
+}

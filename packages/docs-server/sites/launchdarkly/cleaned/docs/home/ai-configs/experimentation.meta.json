@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:27.429Z",
+  "cleanedAt": "2025-11-21T18:13:27.789Z",
+  "url": "https://launchdarkly.com/docs/home/ai-configs/experimentation",
+  "description": "This topic introduces the role of AI Configs in LaunchDarkly Experimentation. LaunchDarkly’s Experimentation feature lets you measure the effect of features on end users by tracking metrics your team cares about. By connecting metrics you create to AI Configs in your LaunchDarkly environment, you can measure changes in customer behavior based on the different AI Config variations your application serves. This helps you make more informed decisions and ensures that the features your development team ships align with your business objectives."
+}

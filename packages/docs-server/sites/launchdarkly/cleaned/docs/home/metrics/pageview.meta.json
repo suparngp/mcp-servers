@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.318Z",
+  "cleanedAt": "2025-11-21T18:14:32.064Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/pageview",
+  "description": "This topic explains how to create a page viewed metric in LaunchDarkly. Page viewed metrics track how often end users view an element on a page hosted at a specific URL. For example, you might want to track how often customers view an item when its price is discounted different amounts."
+}

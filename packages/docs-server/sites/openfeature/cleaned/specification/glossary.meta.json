@@ -1,0 +1,7 @@
+{
+  "title": "Feature Flag[​](#feature-flag \"Direct link to Feature Flag\")",
+  "crawledAt": "2025-11-23T07:15:46.042Z",
+  "cleanedAt": "2025-11-23T07:15:46.213Z",
+  "url": "https://openfeature.dev/specification/glossary",
+  "description": "A mechanism that allows an Application Author to define alternative codepaths within a deployed piece of software, which is conditionally executed at runtime, based on a rule set."
+}

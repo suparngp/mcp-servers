@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:37.589Z",
+  "cleanedAt": "2025-11-21T18:31:37.960Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/anonymous",
+  "description": "This topic explains how to configure contexts as anonymous in LaunchDarkly SDKs. These features are available for all SDKs."
+}

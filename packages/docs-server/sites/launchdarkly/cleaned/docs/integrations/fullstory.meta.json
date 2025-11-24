@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:37.283Z",
+  "cleanedAt": "2025-11-21T18:33:37.685Z",
+  "url": "https://launchdarkly.com/docs/integrations/fullstory",
+  "description": "The FullStory integration requires the LaunchDarkly JavaScript SDK version 2.24 or higher, or the React Web SDK version 2.27 or higher."
+}

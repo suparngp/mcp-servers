@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:44.078Z",
+  "cleanedAt": "2025-11-21T18:31:44.553Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/evaluating",
+  "description": "This topic explains how to use the flag evaluation feature to serve different feature flag variations to contexts and users. This feature is available for all of the LaunchDarkly SDKs."
+}

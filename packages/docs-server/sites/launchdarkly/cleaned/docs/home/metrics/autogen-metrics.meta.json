@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:35.918Z",
+  "cleanedAt": "2025-11-21T18:14:36.360Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/autogen-metrics",
+  "description": "This topic explains the metrics LaunchDarkly automatically generates from SDK events and how you can use them to monitor the health of your applications."
+}

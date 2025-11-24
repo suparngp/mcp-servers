@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:57.686Z",
+  "cleanedAt": "2025-11-21T18:15:58.057Z",
+  "url": "https://launchdarkly.com/docs/guides/experimentation/sample-size-calc",
+  "description": "This guide explains why sample size calculations are important for frequentist experiments, and how to calculate them. You can use this information to help you determine a sample size for a frequentist experiment with LaunchDarkly’s [sample size calculator](https://launchdarkly.com/sample-size-calculator/)."
+}

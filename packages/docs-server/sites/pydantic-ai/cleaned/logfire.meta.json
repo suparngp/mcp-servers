@@ -1,0 +1,7 @@
+{
+  "title": "Pydantic Logfire Debugging and Monitoring",
+  "crawledAt": "2025-10-31T04:56:44.612Z",
+  "cleanedAt": "2025-10-31T04:56:45.604Z",
+  "url": "https://ai.pydantic.dev/logfire/",
+  "description": "Applications that use LLMs have some challenges that are well known and understood: LLMs are **slow** , **unreliable** and **expensive**."
+}

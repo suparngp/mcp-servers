@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:53.028Z",
+  "cleanedAt": "2025-11-21T18:15:53.933Z",
+  "url": "https://launchdarkly.com/docs/guides/ai-configs/config-outside-code-nodejs",
+  "description": "This guide shows how to manage AI model configuration and prompts for an OpenAI-powered application in a runtime environment. It uses the LaunchDarkly [Node.js (server-side) AI SDK](/docs/sdk/ai/node-js) and [AI Configs](/docs/home/ai-configs) to dynamically customize your application."
+}

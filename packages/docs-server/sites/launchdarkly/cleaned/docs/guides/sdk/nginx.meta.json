@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:24.997Z",
+  "cleanedAt": "2025-11-21T18:16:25.350Z",
+  "url": "https://launchdarkly.com/docs/guides/sdk/nginx",
+  "description": "This guide explains how to use our [Lua server-side SDK](https://github.com/launchdarkly/lua-server-sdk) with the [NGINX OpenResty framework](https://openresty.org/)."
+}

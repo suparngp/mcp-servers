@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.326Z",
+  "cleanedAt": "2025-11-21T18:14:32.085Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/event-filters",
+  "description": "This topic explains how to use filters to include only specific custom events in a metric, based on context attributes or event properties. You can create and apply filters directly in the LaunchDarkly user interface (UI) without changing your event instrumentation."
+}

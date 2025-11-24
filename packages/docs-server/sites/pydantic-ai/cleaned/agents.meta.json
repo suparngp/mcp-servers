@@ -1,0 +1,7 @@
+{
+  "title": "Agents",
+  "crawledAt": "2025-10-31T05:22:11.866Z",
+  "cleanedAt": "2025-10-31T05:22:11.994Z",
+  "url": "https://ai.pydantic.dev/agents/",
+  "description": "Agents are Pydantic AI's primary interface for interacting with LLMs."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview[​](#overview \"Direct link to Overview\")",
+  "crawledAt": "2025-11-23T07:15:49.514Z",
+  "cleanedAt": "2025-11-23T07:15:49.758Z",
+  "url": "https://openfeature.dev/specification/sections/tracking",
+  "description": "The `tracking API` enables the association of feature flag evaluations with subsequent actions or application states, in order to facilitate experimentation and analysis of the impact of feature flags on business objectives."
+}

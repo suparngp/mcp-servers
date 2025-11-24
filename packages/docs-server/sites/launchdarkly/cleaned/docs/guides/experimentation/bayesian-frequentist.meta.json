@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:57.691Z",
+  "cleanedAt": "2025-11-21T18:15:58.123Z",
+  "url": "https://launchdarkly.com/docs/guides/experimentation/bayesian-frequentist",
+  "description": "This guide explains the difference between Bayesian and frequentist statistics, both of which are available in LaunchDarkly’s Experimentation framework."
+}

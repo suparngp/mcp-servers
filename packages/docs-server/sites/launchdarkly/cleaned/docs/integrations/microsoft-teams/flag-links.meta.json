@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:56.670Z",
+  "cleanedAt": "2025-11-21T18:32:57.020Z",
+  "url": "https://launchdarkly.com/docs/integrations/microsoft-teams/flag-links",
+  "description": "This topic explains how flag links work in Microsoft Teams. A flag link being shared in any conversation can be unfurled to display a preview of the flag. Flag links being shared in public channels will also be automatically registered within LaunchDarkly. The LaunchDarkly app can also be used to manually link conversations in public channels to a flag."
+}

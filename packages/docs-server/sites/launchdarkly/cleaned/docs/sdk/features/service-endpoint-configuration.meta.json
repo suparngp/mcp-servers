@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:44.060Z",
+  "cleanedAt": "2025-11-21T18:31:44.598Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/service-endpoint-configuration",
+  "description": "This topic explains how to configure LaunchDarkly SDKs to connect to alternate service endpoints."
+}

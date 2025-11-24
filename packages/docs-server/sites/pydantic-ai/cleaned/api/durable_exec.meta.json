@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.durable_exec`",
+  "crawledAt": "2025-10-31T05:43:52.116Z",
+  "cleanedAt": "2025-10-31T05:43:52.272Z",
+  "url": "https://ai.pydantic.dev/api/durable_exec/",
+  "description": "Bases: `WrapperAgent[](../agent/#pydantic_ai.agent.WrapperAgent \"pydantic_ai.agent.WrapperAgent\")[AgentDepsT[](../tools/#pydantic_ai.tools.AgentDepsT \"pydantic_ai.tools.AgentDepsT\"), OutputDataT[](../output/#pydantic_ai.output.OutputDataT \"pydantic_ai.output.OutputDataT\")]`"
+}

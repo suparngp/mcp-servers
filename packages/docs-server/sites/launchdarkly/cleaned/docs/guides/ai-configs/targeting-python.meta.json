@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:53.050Z",
+  "cleanedAt": "2025-11-21T18:15:53.989Z",
+  "url": "https://launchdarkly.com/docs/guides/ai-configs/targeting-python",
+  "description": "This guide shows how to manage AI model usage by customer tier in an OpenAI-powered application. It uses the LaunchDarkly [Python AI SDK](/docs/sdk/ai/python) and [AI Configs](/docs/home/ai-configs) to dynamically adjust the model used based on customer details."
+}

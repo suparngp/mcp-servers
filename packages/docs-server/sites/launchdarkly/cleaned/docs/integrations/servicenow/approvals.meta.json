@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:33.009Z",
+  "cleanedAt": "2025-11-21T18:33:33.629Z",
+  "url": "https://launchdarkly.com/docs/integrations/servicenow/approvals",
+  "description": "This topic explains how to use the ServiceNow approvals integration to request approvals for LaunchDarkly changes in ServiceNow."
+}

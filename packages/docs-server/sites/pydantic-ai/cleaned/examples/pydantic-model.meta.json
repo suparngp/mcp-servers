@@ -1,0 +1,7 @@
+{
+  "title": "Pydantic Model",
+  "crawledAt": "2025-10-31T05:05:51.326Z",
+  "cleanedAt": "2025-10-31T05:05:51.545Z",
+  "url": "https://ai.pydantic.dev/examples/pydantic-model/",
+  "description": "Simple example of using Pydantic AI to construct a Pydantic model from a text input."
+}

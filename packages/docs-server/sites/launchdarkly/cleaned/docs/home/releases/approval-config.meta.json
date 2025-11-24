@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:55.368Z",
+  "cleanedAt": "2025-11-21T18:13:55.868Z",
+  "url": "https://launchdarkly.com/docs/home/releases/approval-config",
+  "description": "This topic explains how to customize approval requests for each environment in your LaunchDarkly project. For example, you can prevent LaunchDarkly from applying a proposed change if any reviewer declines an approval request for your Production environment. Or, you may allow anyone, including the person making the approval request, to approve and apply a proposed change in your QA environment."
+}

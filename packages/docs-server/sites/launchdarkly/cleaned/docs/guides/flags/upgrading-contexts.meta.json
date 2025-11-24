@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:57.676Z",
+  "cleanedAt": "2025-11-21T18:15:57.950Z",
+  "url": "https://launchdarkly.com/docs/guides/flags/upgrading-contexts",
+  "description": "This guide summarizes what contexts are and describes best practices for upgrading your LaunchDarkly account and SDKs from users to contexts."
+}

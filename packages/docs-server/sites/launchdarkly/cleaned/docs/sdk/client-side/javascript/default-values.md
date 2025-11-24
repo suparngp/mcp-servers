@@ -1,0 +1,45 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Causes](#causes)
+ * [Options for resolving](#options-for-resolving)
+ * [Initialize the client earlier](#initialize-the-client-earlier)
+ * [Block drawing the page until the flag values are available](#block-drawing-the-page-until-the-flag-values-are-available)
+ * [Bootstrap the flag values to be available immediately](#bootstrap-the-flag-values-to-be-available-immediately)
+ * [Use the React Web SDK’s asyncWithLDProvider function](#use-the-react-web-sdks-asyncwithldprovider-function)
+## Overview
+This topic explains how to resolve issues that can arise from using default flag values on page load. You can use these solutions with the JavaScript and React Web SDKs.
+When using feature flags on your website, the content that the end user receives often depends on the values of those flags. If the page is initially rendered with one set of flag variations and then updated with a new set, this can cause a jarring switch between two views of the content. This can appear as a “flash” or “flicker” of the initial content during a page load. Usually we don’t expect this to happen, but under certain use cases extra steps might be necessary to prevent it.
+## Causes
+Because feature flags must be evaluated for a particular context to get the correct variations, the default behavior of the JavaScript and React Web SDKs is to request the flags for that user from LaunchDarkly’s servers. After the SDK retrieves the flags, it sends a `ready` event to signal that it is ready to evaluate flags. If the page is initially rendered before the `ready` event triggers an update to the page, the initial rendering could be displayed briefly before the final page content.
+## Options for resolving
+You have several options for addressing this initial “flicker,” including the following:
+ * [Initialize the client earlier](/docs/sdk/client-side/javascript/default-values#initialize-the-client-earlier)
+ * [Don’t draw the page until you have the flag values](/docs/sdk/client-side/javascript/default-values#block-drawing-the-page-until-the-flag-values-are-available)
+ * [Bootstrap the flag values](/docs/sdk/client-side/javascript/default-values#bootstrap-the-flag-values-to-be-available-immediately)
+ * [Use React Web’s `asyncWithLDProvider` function](/docs/sdk/client-side/javascript/default-values#use-the-react-web-sdks-asyncwithldprovider-function)
+### Initialize the client earlier
+To reduce the chance and duration of these flashes, you can optimize your page to allow evaluating the flags earlier. By moving LaunchDarkly’s script higher in the page’s `<head>` and initializing the SDK earlier in your code, you can reduce the amount of time waiting for the SDK script to download and the SDK to initialize. This means drawing the right content earlier, preventing or reducing the impact of “flashes.”
+### Block drawing the page until the flag values are available
+A different approach is to block showing the page content until the `ready` event signals that the flag values are available. To use this approach, set the styling on the `body` to be hidden at the start of loading the page. When the SDK sends the `ready` event, update the page content based on the flag values. Then set the `body` to be visible. This means only drawing the right content. However, the SDK may take 100ms or more to fetch the flag values, so this approach can lead to an undesirable delay in page load time.
+### Bootstrap the flag values to be available immediately
+Bootstrapping refers to providing the LaunchDarkly client object with an initial, immediately available set of feature flag values. Then, your code can call `variation` on page load with no delay. With this approach the SDK does not fetch the flags, and instead directly uses the given bootstrap flag values. This allows flag evaluation to be ready immediately. To learn more, read [Bootstrapping](/docs/sdk/features/bootstrapping#javascript).
+### Use the React Web SDK’s asyncWithLDProvider function
+If you are using the React Web SDK, another option is to use the `asyncWithLDProvider` function. To learn more, read [Initialize using asyncWithLDProvider](/docs/sdk/client-side/react/react-web#initialize-using-asyncwithldprovider).
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:15.261Z",
+  "cleanedAt": "2025-11-21T18:14:15.488Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/create",
+  "description": "The topics in this category explain how to set up and configure an experiment in LaunchDarkly. When an end user performs a metric-tracked action in your application after they encounter a feature flag or AI Config, the experiment logs an event."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "evals evals evals evals evals",
+  "crawledAt": "2025-11-21T18:36:38.506Z",
+  "cleanedAt": "2025-11-21T18:36:38.718Z",
+  "url": "https://launchdarkly.com/docs/blog/2025-hackathon-recap",
+  "description": "_Problem_ : LaunchDarkly developers want to roll back poorly behaving models before their customers experience problems. [AI models in production can fail in subtle or unexpected ways](https://launchdarkly.com/blog/catch-ai-hallucinations/) that are hard to catch before users are impacted. Unlike traditional software, generative AI is non-deterministic and environment-sensitive – a prompt or model change that seemed fine in staging can behave very differently in production."
+}

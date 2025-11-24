@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:59.145Z",
+  "cleanedAt": "2025-11-21T18:31:59.537Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/ai-metrics",
+  "description": "This topic explains how to record metrics from your AI model generation, including duration, generation, satisfaction, and several token-related metrics. For each AI SDK, the function to record metrics takes a completion from your AI model generation, so you can make the call to your AI model provider and record metrics from model generation in one step."
+}

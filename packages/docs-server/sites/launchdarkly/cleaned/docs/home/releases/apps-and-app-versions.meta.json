@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:02.415Z",
+  "cleanedAt": "2025-11-21T18:14:02.691Z",
+  "url": "https://launchdarkly.com/docs/home/releases/apps-and-app-versions",
+  "description": "This topic explains what applications and application versions are and how to use them. An application is a LaunchDarkly resource that describes what you are delivering to a customer. LaunchDarkly automatically creates applications when it establishes a connection with a LaunchDarkly SDK that contains application information. After an application is created, you can build flag targeting rules based on application name, version, or other properties, such as whether or not a particular application version is supported."
+}

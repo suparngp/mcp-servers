@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.316Z",
+  "cleanedAt": "2025-11-21T18:14:31.864Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/metric-groups",
+  "description": "This topic explains what metric groups are and when to use them. A metric group is a reusable list of metrics you can use to standardize metrics across multiple flags or experiments."
+}

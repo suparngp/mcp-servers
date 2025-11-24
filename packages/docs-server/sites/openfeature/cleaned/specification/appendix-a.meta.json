@@ -1,0 +1,7 @@
+{
+  "title": "In-memory provider[​](#in-memory-provider \"Direct link to In-memory provider\")",
+  "crawledAt": "2025-11-23T07:15:39.013Z",
+  "cleanedAt": "2025-11-23T07:15:39.251Z",
+  "url": "https://openfeature.dev/specification/appendix-a",
+  "description": "> OpenFeature SDK implementations **SHOULD** provide an `in-memory provider`."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Evaluators Overview",
+  "crawledAt": "2025-10-31T05:05:36.798Z",
+  "cleanedAt": "2025-10-31T05:05:36.987Z",
+  "url": "https://ai.pydantic.dev/evals/evaluators/overview/",
+  "description": "Evaluators are the core of Pydantic Evals. They analyze task outputs and provide scores, labels, or pass/fail assertions."
+}

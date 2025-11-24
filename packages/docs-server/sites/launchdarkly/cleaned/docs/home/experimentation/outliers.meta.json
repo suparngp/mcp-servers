@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:23.322Z",
+  "cleanedAt": "2025-11-21T18:14:23.611Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/outliers",
+  "description": "This topic explains how LaunchDarkly Experimentation handles outliers in its Bayesian experiment analyses."
+}

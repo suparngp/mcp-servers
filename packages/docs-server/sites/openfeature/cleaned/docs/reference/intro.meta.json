@@ -1,0 +1,7 @@
+{
+  "title": "What are feature flags?[​](#what-are-feature-flags \"Direct link to What are feature flags?\")",
+  "crawledAt": "2025-11-23T07:15:38.829Z",
+  "cleanedAt": "2025-11-23T07:15:39.015Z",
+  "url": "https://openfeature.dev/docs/reference/intro",
+  "description": "In the most basic case, you can think of a feature flag as an if/else statement that can be controlled at runtime. Feature flags allow application behavior to be altered without the deployment of new code."
+}

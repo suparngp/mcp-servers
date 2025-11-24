@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:20.161Z",
+  "cleanedAt": "2025-11-21T18:15:20.482Z",
+  "url": "https://launchdarkly.com/docs/home/account/scim",
+  "description": "This topic explains how to enable SCIM user provisioning to work with your SSO-enabled LaunchDarkly account. SCIM facilitates _user provisioning_ , which means your IdP can use it to create, update, and deactivate members in LaunchDarkly."
+}

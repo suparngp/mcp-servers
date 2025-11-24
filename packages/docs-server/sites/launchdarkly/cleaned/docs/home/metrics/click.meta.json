@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.520Z",
+  "cleanedAt": "2025-11-21T18:14:32.110Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/click",
+  "description": "This topic explains how to create a clicked or tapped metric in LaunchDarkly. Clicked or tapped metrics track how often an end user interacts with an element of your product’s UI."
+}

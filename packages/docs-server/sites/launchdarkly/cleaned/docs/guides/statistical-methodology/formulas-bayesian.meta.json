@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:28.772Z",
+  "cleanedAt": "2025-11-21T18:16:29.129Z",
+  "url": "https://launchdarkly.com/docs/guides/statistical-methodology/formulas-bayesian",
+  "description": "This section includes an explanation of advanced statistical concepts. We provide them for informational purposes, but you do not need to understand these concepts to use the formulas in the experiment results user interface (UI)."
+}

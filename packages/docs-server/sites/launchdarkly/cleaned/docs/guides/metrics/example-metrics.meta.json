@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:14.469Z",
+  "cleanedAt": "2025-11-21T18:16:14.823Z",
+  "url": "https://launchdarkly.com/docs/guides/metrics/example-metrics",
+  "description": "This guide provides examples of metrics you can use with LaunchDarkly features such as Experimentation and guarded rollouts."
+}

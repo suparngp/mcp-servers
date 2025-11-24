@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:15.880Z",
+  "cleanedAt": "2025-11-21T18:32:16.475Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/react/migration-6-to-7-react-native",
+  "description": "This topic explains the changes in the React Native SDK 7.0 release and how to adapt code that uses a 6.x version of the [React Native SDK](/docs/sdk/client-side/react/react-native) to use version 7.0 or later."
+}

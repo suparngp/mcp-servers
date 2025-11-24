@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:24.066Z",
+  "cleanedAt": "2025-11-21T18:32:24.637Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/go/migration-4-to-5",
+  "description": "This topic explains how to adapt code that currently uses a 4.x version of the [Go server-side SDK](/docs/sdk/server-side/go) to use version 5.0 or later."
+}

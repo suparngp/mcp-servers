@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:19.134Z",
+  "cleanedAt": "2025-11-21T18:14:19.640Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/randomization",
+  "description": "This topic explains what randomization units are and how to use them in LaunchDarkly Experimentation. An experiment’s randomization unit is the [context kind](/docs/home/flags/context-kinds) the experiment uses to assign traffic to each of its variations."
+}

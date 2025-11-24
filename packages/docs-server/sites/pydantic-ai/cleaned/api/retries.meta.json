@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.retries`",
+  "crawledAt": "2025-10-31T04:57:47.652Z",
+  "cleanedAt": "2025-10-31T04:57:48.191Z",
+  "url": "https://ai.pydantic.dev/api/retries/",
+  "description": "Retries utilities based on tenacity, especially for HTTP requests."
+}

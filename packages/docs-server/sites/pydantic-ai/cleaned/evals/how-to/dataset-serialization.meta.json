@@ -1,0 +1,7 @@
+{
+  "title": "Dataset Serialization",
+  "crawledAt": "2025-10-31T05:05:40.423Z",
+  "cleanedAt": "2025-10-31T05:05:40.589Z",
+  "url": "https://ai.pydantic.dev/evals/how-to/dataset-serialization/",
+  "description": "Learn how to save and load datasets in different formats, with support for custom evaluators and IDE integration."
+}

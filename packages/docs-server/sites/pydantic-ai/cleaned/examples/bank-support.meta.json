@@ -1,0 +1,7 @@
+{
+  "title": "Bank support",
+  "crawledAt": "2025-10-31T05:05:44.711Z",
+  "cleanedAt": "2025-10-31T05:05:45.010Z",
+  "url": "https://ai.pydantic.dev/examples/bank-support/",
+  "description": "Small but complete example of using Pydantic AI to build a support agent for a bank."
+}

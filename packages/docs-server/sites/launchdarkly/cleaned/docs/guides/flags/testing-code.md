@@ -1,0 +1,339 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [Guides](/docs/guides)
+ * [Account management](/docs/guides/account)
+ * [AI Configs](/docs/guides/ai-configs)
+ * [Experimentation](/docs/guides/experimentation)
+ * [Feature flags](/docs/guides/flags)
+ * [Infrastructure](/docs/guides/infrastructure)
+ * [Integrations](/docs/guides/integrations)
+ * [Metrics](/docs/guides/metrics)
+ * [SDKs](/docs/guides/sdk)
+ * [Statistical methodology](/docs/guides/statistical-methodology)
+ * [REST API](/docs/guides/api)
+ * [Teams and custom roles](/docs/guides/teams-roles)
+ * [Additional resources](/docs/guides/additional-resources)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Prerequisites](#prerequisites)
+ * [Concepts](#concepts)
+ * [Flag variations](#flag-variations)
+ * [Fallback values](#fallback-values)
+ * [Flag targeting](#flag-targeting)
+ * [Test types](#test-types)
+ * [Test code that integrates feature flags and SDKs](#test-code-that-integrates-feature-flags-and-sdks)
+ * [Unit tests](#unit-tests)
+ * [Example unit test](#example-unit-test)
+ * [Mock tests](#mock-tests)
+ * [Integration and end-to-end tests](#integration-and-end-to-end-tests)
+ * [Read flags from a file](#read-flags-from-a-file)
+ * [Use a dedicated LaunchDarkly environment](#use-a-dedicated-launchdarkly-environment)
+ * [Use a dedicated LaunchDarkly environment with targeting](#use-a-dedicated-launchdarkly-environment-with-targeting)
+ * [Bootstrapping](#bootstrapping)
+ * [Use the Relay Proxy in offline mode](#use-the-relay-proxy-in-offline-mode)
+ * [Use wrappers](#use-wrappers)
+ * [Example end-to-end Cypress test](#example-end-to-end-cypress-test)
+ * [Manual tests](#manual-tests)
+ * [Use the LaunchDarkly CLI](#use-the-launchdarkly-cli)
+ * [Use multiple environments](#use-multiple-environments)
+ * [Use targeted testing with the REST API](#use-targeted-testing-with-the-rest-api)
+ * [Manage test data in your production environment](#manage-test-data-in-your-production-environment)
+ * [Conclusion](#conclusion)
+## Overview
+This guide discusses some of the challenges of testing code that uses feature flags and provides recommendations for how to address those challenges.
+In a traditional development process, a quality assurance (QA) team does testing on staging, then deploys to production. However, staging is never an exact replica of production. If something is working on staging but breaks on production, then the QA team has to rerun all their tests a second time. A more efficient approach is to skip or minimize testing on staging and test in production from the beginning.
+Some of our most successful customers are able to deploy to production multiple times per day because their QA and user acceptance testing (UAT) teams can validate functionality in a real production environment before exposing that functionality to the rest of their user base. When you use feature flags to expose your feature to test contexts only, if your QA or UAT team finds a bug, there is no impact on any other contexts and there is no need to do a full rollback. After your feature is working for your test contexts, you can begin an incremental rollout to the rest of your audience.
+In addition to manual testing in production, this guide discusses multiple types of automated tests you can run while developing your code, including unit testing, mock testing, integration testing, and end-to-end testing. We also provide example unit tests, example Cypress tests, and a mock to use with the Jest test runner and the React Web SDK.
+## Prerequisites
+To complete this guide, you must have the following prerequisites:
+ * Access to a LaunchDarkly account with permission to create flags, environments, and projects.
+## Concepts
+To complete this guide, you should understand the following concepts:
+### Flag variations
+Flag variations let you use one flag to serve multiple variations of a feature to different contexts simultaneously. There is no limit to the number of variations you can add to a flag, making them useful for testing scenarios. To learn more, read [Creating flag variations](/docs/home/flags/variations).
+### Fallback values
+A fallback value is the variation your app serves to a context if it can’t evaluate a flag, such as if your app can’t connect to LaunchDarkly. You can view the fallback value on a flag’s **Targeting** tab.
+Configure your flags’ fallback values within your SDK.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Evaluating flags](/docs/sdk/features/evaluating)
+### Flag targeting
+Flag targeting lets you control which contexts receive which variation of a feature flag. Targeting is useful when testing your code in production because it lets you target only specific test contexts and exclude your general context population. To learn more, read [Target with flags](/docs/home/flags/target).
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/openapi-logo.svg)
+You can also use the REST API: [Creating flags using the API](/docs/api/feature-flags)
+### Test types
+This guide discusses the following test types:
+ * **Unit tests:** unit tests break down testing into small, manageable chunks by automating tests on individual units of code. Unit tests run quickly and can be run while you’re still working on your code. You should parse your unit tests into the smallest pieces possible so you can test individual functions. Unit tests are a type of automated testing.
+ * **Mock tests:** mock tests are a type of unit test that let you test your code within a simulated version of an internal or external service. The simulation isolates the behavior of your code so you can focus on the code being tested, and not on the behavior of the service. Any variables external to the mock, such as values coming from an SDK, should be as firmly controlled as possible. Mock tests are a type of automated testing.
+ * **Integration and end-to-end tests:** integration and end-to-end tests assess multiple pieces of code working together. In contrast to mock testing, these test real components and services and how they interact with each other. Because of their increased complexity, integration and end-to-end tests are slower and more complex than unit and mock tests. Integration and end-to-end tests are types of automated testing.
+ * **Manual tests:** manual tests require humans to perform the steps of the test without automated tools. Manual testing allows the tester to experience the application from an end user’s perspective. Manual tests can be the most time-consuming and complicated types of tests.
+## Test code that integrates feature flags and SDKs
+It is a common misconception that when testing code that uses feature flags, you must test every possible combination of every flag variation with every other flag, in both the on and off state. The number of combinations this would require quickly becomes unrealistic. This is called the “combinatorial explosion myth.” In reality, you do not need to test every combination of feature flags when testing your code, and even if you tried, it is likely impossible to do. Instead, choose a defined set of scenarios to limit the number of different flag states to test.
+Consider testing the following flag combinations:
+ * Flags and their settings as they are in the current production state.
+ * Flags and their settings as they will be in the upcoming production state. You may have multiple combinations, one for each feature.
+ * Flag fallback values. This is the variation your code will use if it can’t connect to LaunchDarkly, or there is some other error evaluating the flag.
+ * Any state considered particularly important or problematic, especially if the state has previously caused errors.
+## Unit tests
+You can write unit tests for individual pieces of code in your application and test them independently. Because unit tests assess discrete pieces of functionality, wrapping that functionality in feature flags doesn’t affect these tests.
+You don’t want to connect to a LaunchDarkly SDK when running unit tests because you can’t ensure the values you’re pulling into your test will be consistent. You can use a mock test instead, which prevents variation in the values you’re using. To learn more, read [Mock tests](/docs/guides/flags/testing-code#mock-tests).
+You can also use a test data source to mock the behavior of a LaunchDarkly SDK so it has predictable behavior when evaluating flags. However, not all SDKs support using a test data source.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Test data sources](/docs/sdk/features/test-data-sources)
+### Example unit test
+In this example, we’re switching from MySQL to ElasticSearch as the search engine. The migration from the old to the new search engine is controlled by a feature flag.
+The code for sending queries to each search engine is separated into dedicated functions. This makes it easier to exercise the dedicated logic for each search engine in a unit test, without needing to mock the feature flag result.
+Here’s the code we’re testing:
+Example unit test
+```
+1
+| function newSearch(searchQuery) {
+---|--- 
+2
+| esQuery = [ ... logic for formatting ElasticSearch query ... ]
+3
+| result = ElasticSearch.getall(esQuery);
+4
+| return result;
+5
+| }
+6
+| 
+7
+| function oldSearch(searchQuery) {
+8
+| mysqlQuery = [ ... logic for formatting MySQL query ... ]
+9
+| result = MySQL.getall.getall(mysqlQuery);
+10
+| return result;
+11
+| }
+12
+| 
+13
+| 
+14
+| function search(searchQuery) {
+15
+| // Feature Flag - false is the fallback value
+16
+| useNewSearch = ldclient.variation("new-search-algorithm", context, false);
+17
+| 
+18
+| if (useNewSearch) {
+19
+| newSearch(searchQuery);
+20
+| } else {
+21
+| oldSearch(searchQuery);
+22
+| }
+23
+| }
+```
+This unit test checks that the correct search function is being called depending on the flag variations of `true` for the new engine and `false` for the old engine:
+Example unit test
+```
+1
+| function testNewSearch() {
+---|--- 
+2
+| searchQuery = “my test query”;
+3
+| result = newSearch(searchQuery);
+4
+| assert(result.contains(searchQuery));
+5
+| }
+6
+| 
+7
+| function testOldSearch() {
+8
+| searchQuery = “my test query”;
+9
+| result = oldSearch(searchQuery);
+10
+| assert(result.contains(searchQuery));
+11
+| }
+12
+| 
+13
+| function testSearchWithNewSearchOn() {
+14
+| searchQuery = "my search term";
+15
+| // ldclient.variation will return true for this flag
+16
+| setupLDMock("new-search-algorithm", true);
+17
+| // replace the inner search function with a spy
+18
+| newSearchSpy = addSpy(newSearch);
+19
+| // we don't care about the result, we're testing that separately
+20
+| result = search(searchQuery);
+21
+| // we just care that it used the right search function
+22
+| assert(newSearchSpy.wasCalled());
+23
+| }
+24
+| 
+25
+| function testSearchWithNewSearchOff() {
+26
+| searchQuery = "my search term";
+27
+| // ldclient.variation will return false for this flag
+28
+| setupLDMock("new-search-algorithm", false);
+29
+| // replace the inner search function with a spy
+30
+| oldSearchSpy = addSpy(oldSearch);
+31
+| // we don't care about the result, we're testing that separately
+32
+| result = search(searchQuery);
+33
+| // we just care that it used the right search function
+34
+| assert(oldSearchSpy.wasCalled());
+35
+| }
+```
+## Mock tests
+Mock tests are a type of unit test that lets you test your code within a simulated version of an internal or external service. The simulation isolates the behavior of your code so you can focus on the code being tested, and not on the behavior of the service.
+We provide a mock to use with the Jest test runner and the React Web SDK, available in our [Jest mock GitHub repo](https://github.com/launchdarkly/jest-launchdarkly-mock). Although this mock is Jest-specific, it is simple enough you can use it with other JavaScript frameworks as well. To learn more about using the mock, read [Unit testing with Jest](/docs/guides/sdk/unit-tests).
+## Integration and end-to-end tests
+As you expand out from testing a unit to testing the whole system, you can start running integration and end-to-end tests. The presence of feature flags matters with these types of tests because the state of a flag could violate your test assertions.
+When running these types of tests, your code should use the real LaunchDarkly SDK to evaluate flags. However, it should use consistent flag configurations for the test.
+To keep your input consistent, you should use one of the following methods to get values from your SDK.
+### Read flags from a file
+Reading flags from a file is our recommended approach for testing with feature flags without connecting to LaunchDarkly. With this method, you configure your SDK to read from a file instead of connecting to LaunchDarkly. Reading from a file allows you to run tests in a local environment without connecting to an external network. However, only server-side SDKs support using flag files.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Reading flags from a file](/docs/sdk/features/flags-from-files)
+### Use a dedicated LaunchDarkly environment
+Using a dedicated LaunchDarkly environment is an easy option to set up because it requires no code changes. However, it depends on the environment configuration staying static, unless testers or automated testing infrastructure deliberately change it. For each test that requires a specific set of flag values, you must configure the environment correctly. An automated test runner can change the configuration before running each test, but this adds a delay. If multiple test runners are invoked concurrently, their configuration changes will conflict with each other and cause errors.
+### Use a dedicated LaunchDarkly environment with targeting
+Using a dedicated LaunchDarkly environment with targeting is similar to the previous option, but the flags in the environment are configured with targeting rules so that they return different values depending on the context object you provide in the code. This allows you to run an entire set of tests with different flag values for each without needing to reconfigure any flags during the test run. This also means that multiple concurrent test runs will not conflict with each other.
+To learn more, read [Target with flags](/docs/home/flags/target).
+To ensure the correct use of targeting in test runs, the test must meet these requirements:
+ * The code must supply a distinct but predictable context object for each test.
+ * Each flag used in a test must have a targeting configuration that returns the correct flag variation for that test’s context object.
+There are many options for setting up a context object to reflect the needed flag values for the current test.
+Here are some examples:
+ * Perform each test as a distinct context. Add the context’s ID to the context object, and use the ID in flags’ individual context targeting.
+ * Specify the name of the test in a context attribute that LaunchDarkly matches in the test’s targeting rules.
+ * Specify a separate attribute for each flag and the variation required of that flag.
+### Bootstrapping
+The bootstrapping feature lets you provide browser-based SDKs with an initial set of flag values.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Bootstrapping](/docs/sdk/features/bootstrapping)
+### Use the Relay Proxy in offline mode
+Using the Relay Proxy in offline mode lets the Relay Proxy run as a separate component, loading flag values from a file without connecting to LaunchDarkly. We do not generally recommend this method because it is more complicated to implement. However, it can be useful in situations where you are already considering the use of the Relay Proxy and would like to configure your test environment to mirror production. To learn more, read [Offline mode](/docs/sdk/relay-proxy/offline).
+### Use wrappers
+Instead of building a real LaunchDarkly client, you can put a wrapper around your SDK to determine whether flag values will be fixed or in a predefined state. Using wrappers around a LaunchDarkly SDK is a common practice that provides benefits such as standardization, extending capabilities using API, and more. To learn more about wrappers, read [Use cases for SDK wrappers](/docs/guides/sdk/sdk-wrappers).
+### Example end-to-end Cypress test
+Cypress is a JavaScript end-to-end testing framework for front-end web applications. This example explains how to create a Cypress plugin to modify flags that control the instances of LaunchDarkly you test with Cypress.
+Cypress tests can fail if you don’t have the right flag settings in your testing instance. You may not be able to differentiate between failures caused by flag settings, general flakiness, or real problems. You can use this plugin to ensure that you don’t get failures due to flag settings by targeting the test context in the correct flags before running tests.
+To begin, create the following custom Cypress command: `setContextFlags(flags: LDFlagSet)`.
+This command:
+ * Accepts an argument that maps flag keys to variation values, and adds the configured context to the variation with the specified value for each flag included in the argument.
+ * Turns each flag’s targeting on so the context targeting can take effect. If the context is already targeted to receive a variation of a flag other than the requested variation, this command will remove the context from the current variation and add them to the requested variation.
+Here is an example:
+Example Cypress test
+```
+1
+| // target the configured context to receive the 'true' value of the specified flags
+---|--- 
+2
+| cy.setContextFlags({
+3
+| 'flag-key-1': true,
+4
+| 'flag-key-2': true,
+5
+| 'flag-key-3': true,
+6
+| });
+7
+| 
+8
+| 
+9
+| // target the configured context to receive the 'false' value of the specified flags
+10
+| cy.setContextFlags({
+11
+| 'flag-key-1': false,
+12
+| 'flag-key-2': false,
+13
+| 'flag-key-3': false,
+14
+| });
+```
+Next, create `clearContextFlags(flags: LDFlagSet)`.
+This command:
+ * Accepts an argument that maps flag keys to variation values.
+ * Removes the configured context from the variation with the specified value for each flag included in the argument.
+Here is an example:
+Example Cypress test
+```
+1
+| // remove the configured context from the 'true' variation of the specified flags
+---|--- 
+2
+| cy.clearContextFlags({
+3
+| 'flag-key-1': true,
+4
+| 'flag-key-2': true,
+5
+| 'flag-key-3': true,
+6
+| });
+```
+You can use this plugin to write Cypress tests that cover all configurations of your LaunchDarkly instance, instead of running Cypress tests against fixed configurations.
+For a real-world example of using Cypress for end-to-end testing, read Gleb Bahmutov’s blog post [Control LaunchDarkly From Cypress Tests](https://glebbahmutov.com/blog/cypress-and-launchdarkly/).
+## Manual tests
+Manual testing within your LaunchDarkly instance is useful because you can be in control of the flags in your test. However, if multiple people are working within the same environment when testing, they can accidentally overlap and affect each other’s tests.
+## Use the LaunchDarkly CLI
+LaunchDarkly provides a command line interface (CLI) so that you can set up and manage your feature flags, account members, projects, environments, teams, and other resources. The LaunchDarkly CLI also includes a `dev-server` command that you can use to start a local server, retrieve flag values from a LaunchDarkly source environment, and update those flag values locally. This means you can test your code locally, without having to coordinate with other developers in your organization who are using the same LaunchDarkly source environment.
+To learn more, read [Using the LaunchDarkly CLI for local testing](/docs/guides/flags/ldcli-dev-server).
+### Use multiple environments
+To avoid overlap between multiple manual tests, you can use multiple LaunchDarkly test environments. You can create a unique environment for each QA tester, or create an environment for each QA test run that you delete at the end of the test. In either case, environments are free and easy to create and copy.
+The downside to multiple test environments is that you have to carefully manage your SDK keys because each environment has its own key.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/openapi-logo.svg)
+You can also use the REST API: [Create environment](/docs/api/environments/post-environment)
+### Use targeted testing with the REST API
+You can use the LaunchDarkly REST API with test environments to set context targets and flag statuses. This method uses fewer environments and more targeted testing, which lets multiple people run tests concurrently. To use this method, you must coordinate how targeting is set up for testers.
+Targeting can work in two different ways:
+ * Targeting context attributes: if you pass an attribute within the context that indicates which test is being run, then your targeting can match on that attribute. Give the attribute a human-readable name of the scenario you’re running so you can easily tell what tests are being run with those contexts.
+ * Targeting context IDs: If you don’t have this level of control over context attributes, you can target context IDs. In this method, you should keep track of which IDs are being used in which tests.
+To learn more, read our [REST API documentation](/docs/api).
+### Manage test data in your production environment
+When you begin manual testing within your LaunchDarkly production instance, testing activity will appear in flag statuses, graphs, application performance management (APM) tools, and so on. You may want to filter out testing activity so your statistics aren’t affected. The best way to do this is to configure your SDK not to transmit events from tests. If you can’t configure your SDK to do this, then you may be able to configure the receiving service to ignore test events.
+Filtering out test event data is a good use case for SDK wrappers. You can control whether the code sends events or not by putting the wrapper into a different mode, and then control that mode with a feature flag.
+## Conclusion
+Feature flag-driven development empowers your organization to deploy at a faster pace with less risk. It also creates additional complexity when testing your code that uses feature flags. This guide covered various types of tests you can run in production, and the advantages and drawbacks to each.
+Here are some blog posts for further reading:
+ * [Strategies for Testing With Feature Flags](https://launchdarkly.com/blog/testing-with-feature-flags/)
+ * [Using LaunchDarkly in Automated Testing](https://launchdarkly.com/blog/automated-testing-in-launchdarkly/)
+ * [Testing Failure Scenarios With Feature Flags](https://launchdarkly.com/blog/testing-failure-scenarios-with-feature-flags/)
+##### Want to know more? Start a trial.
+Your 14-day trial begins as soon as you sign up. Get started in minutes using the in-app Quickstart. You'll discover how easy it is to release, monitor, and optimize your software. 
+Want to try it out? [Start a trial](https://app.launchdarkly.com/signup).
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

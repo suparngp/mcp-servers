@@ -1,0 +1,7 @@
+{
+  "title": "FastMCP Client",
+  "crawledAt": "2025-10-31T05:06:09.320Z",
+  "cleanedAt": "2025-10-31T05:06:09.636Z",
+  "url": "https://ai.pydantic.dev/mcp/fastmcp-client/",
+  "description": "[FastMCP](https://gofastmcp.com/) is a higher-level MCP framework that bills itself as \"The fast, Pythonic way to build MCP servers and clients.\" It supports additional capabilities on top of the MCP specification like [Tool Transformation](https://gofastmcp.com/patterns/tool-transformation), [OAuth](https://gofastmcp.com/clients/auth/oauth), and more."
+}

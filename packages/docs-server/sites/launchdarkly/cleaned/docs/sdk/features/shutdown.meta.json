@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:54.846Z",
+  "cleanedAt": "2025-11-21T18:31:55.236Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/shutdown",
+  "description": "This topic explains how to safely shut down different LaunchDarkly SDKs. This feature is available for client-side, server-side, and edge SDKs."
+}

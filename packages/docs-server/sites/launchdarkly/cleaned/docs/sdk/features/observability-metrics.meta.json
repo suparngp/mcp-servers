@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:44.332Z",
+  "cleanedAt": "2025-11-21T18:32:44.805Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/observability-metrics",
+  "description": "The observability plugin provides different functions depending on what kind of data you want to record."
+}

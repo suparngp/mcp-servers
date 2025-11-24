@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:32.681Z",
+  "cleanedAt": "2025-11-21T18:31:33.315Z",
+  "url": "https://launchdarkly.com/docs/sdk/concepts/flag-evaluation-rules",
+  "description": "This topic explains the algorithm used to evaluate a feature flag. This document is intended to be used by developers contributing to or building server-side SDKs for LaunchDarkly."
+}

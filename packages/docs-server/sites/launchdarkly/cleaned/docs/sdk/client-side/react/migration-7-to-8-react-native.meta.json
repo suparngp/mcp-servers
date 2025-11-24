@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:15.815Z",
+  "cleanedAt": "2025-11-21T18:32:16.052Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/react/migration-7-to-8-react-native",
+  "description": "This topic explains the changes in the React Native 8.0 release and how to migrate to that version."
+}

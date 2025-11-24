@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:06.951Z",
+  "cleanedAt": "2025-11-21T18:13:07.379Z",
+  "url": "https://launchdarkly.com/docs/home/flags/target",
+  "description": "This category explains how to use flag targeting to control which of your customers receive which variation of a feature flag. Configuring flags to serve different variations to different end users, or “contexts,” is called “flag targeting.”"
+}

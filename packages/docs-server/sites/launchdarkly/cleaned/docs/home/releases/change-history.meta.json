@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:02.479Z",
+  "cleanedAt": "2025-11-21T18:14:02.772Z",
+  "url": "https://launchdarkly.com/docs/home/releases/change-history",
+  "description": "The LaunchDarkly change history used to be called the audit log. The [LaunchDarkly REST API](/docs/api/audit-log) still references the audit log."
+}

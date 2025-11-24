@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:28.397Z",
+  "cleanedAt": "2025-11-21T18:33:28.740Z",
+  "url": "https://launchdarkly.com/docs/integrations/redis",
+  "description": "This topic links to the documentation for configuring a persistent store with Redis, to support big segments."
+}

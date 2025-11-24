@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:16.747Z",
+  "cleanedAt": "2025-11-21T18:33:17.293Z",
+  "url": "https://launchdarkly.com/docs/integrations/aws-cloudwatch-rum",
+  "description": "The CloudWatch RUM integration requires the JavaScript SDK version 2.24 or higher, or the React Web SDK version 2.29 or higher."
+}

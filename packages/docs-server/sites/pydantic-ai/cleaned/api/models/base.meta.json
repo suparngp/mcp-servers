@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.models`",
+  "crawledAt": "2025-10-31T04:58:18.733Z",
+  "cleanedAt": "2025-10-31T04:58:18.952Z",
+  "url": "https://ai.pydantic.dev/api/models/base/",
+  "description": "Logic related to making requests to an LLM."
+}

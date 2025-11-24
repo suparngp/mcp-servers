@@ -1,0 +1,7 @@
+{
+  "title": "Outlines",
+  "crawledAt": "2025-10-31T05:06:15.509Z",
+  "cleanedAt": "2025-10-31T05:06:15.841Z",
+  "url": "https://ai.pydantic.dev/models/outlines/",
+  "description": "As Outlines is a library allowing you to run models from various different providers, it does not include the necessary dependencies for any provider by default. As a result, to use the [`OutlinesModel`](../../api/models/outlines/#pydantic_ai.models.outlines.OutlinesModel), you must install `pydantic-ai-slim` with an optional group composed of outlines, a dash, and the name of the specific model provider you would use through Outlines. For instance:"
+}

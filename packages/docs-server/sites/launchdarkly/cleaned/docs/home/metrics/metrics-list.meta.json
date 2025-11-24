@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:27.110Z",
+  "cleanedAt": "2025-11-21T18:14:27.357Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/metrics-list",
+  "description": "This topic explains how to view, search, and filter metrics in LaunchDarkly. The **Metrics** list is the central location for reviewing and managing all metrics in a project. From this list, you can find metrics by name, tag, maintainer, or type, and understand how they connect to experiments, guarded rollouts, and metric groups."
+}

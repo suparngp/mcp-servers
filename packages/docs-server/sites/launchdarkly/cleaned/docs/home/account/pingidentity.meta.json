@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:20.151Z",
+  "cleanedAt": "2025-11-21T18:15:20.402Z",
+  "url": "https://launchdarkly.com/docs/home/account/pingidentity",
+  "description": "We provide guidance for setting up SAML-based single sign-on (SSO) with PingIdentity, but PingIdentity is not an officially supported identity provider (IdP). We cannot provide additional support or configuration guidance for this configuration."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:37.572Z",
+  "cleanedAt": "2025-11-21T18:31:37.861Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/app-config",
+  "description": "This topic explains how to configure LaunchDarkly SDKs to send application metadata to LaunchDarkly. This feature is available for client-side and server-side SDKs."
+}

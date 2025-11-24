@@ -1,0 +1,7 @@
+{
+  "title": "Filtering applications and application versions",
+  "crawledAt": "2025-11-21T18:34:20.122Z",
+  "cleanedAt": "2025-11-21T18:34:20.743Z",
+  "url": "https://launchdarkly.com/docs/api/applications-beta",
+  "description": "The `filter` parameter supports the following operators: `equals`, `notEquals`, `anyOf`, `startsWith`."
+}

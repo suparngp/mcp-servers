@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:44.312Z",
+  "cleanedAt": "2025-11-21T18:32:44.819Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/observability-traces",
+  "description": "This topic explains how to record traces through the SDK observability plugin."
+}

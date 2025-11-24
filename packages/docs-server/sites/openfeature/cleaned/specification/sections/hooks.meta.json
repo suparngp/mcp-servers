@@ -1,0 +1,7 @@
+{
+  "title": "Overview[​](#overview \"Direct link to Overview\")",
+  "crawledAt": "2025-11-23T07:15:49.474Z",
+  "cleanedAt": "2025-11-23T07:15:49.648Z",
+  "url": "https://openfeature.dev/specification/sections/hooks",
+  "description": "`Hooks` are a mechanism whereby application developers can add arbitrary behavior to flag evaluation. They operate similarly to middleware in many web frameworks."
+}

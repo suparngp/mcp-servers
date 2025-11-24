@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:03.449Z",
+  "cleanedAt": "2025-11-21T18:16:03.749Z",
+  "url": "https://launchdarkly.com/docs/guides/flags/targeting-recommendations",
+  "description": "This guide describes when individual targeting is appropriate and why LaunchDarkly recommends bulk targeting. It also explains how the SDK uses big segments to support scalable and efficient targeting."
+}

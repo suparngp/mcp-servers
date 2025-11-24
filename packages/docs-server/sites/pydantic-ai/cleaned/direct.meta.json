@@ -1,0 +1,7 @@
+{
+  "title": "Direct Model Requests",
+  "crawledAt": "2025-10-31T04:56:44.591Z",
+  "cleanedAt": "2025-10-31T04:56:44.890Z",
+  "url": "https://ai.pydantic.dev/direct/",
+  "description": "The `direct` module provides low-level methods for making imperative requests to LLMs where the only abstraction is input and output schema translation, enabling you to use all models with the same API."
+}

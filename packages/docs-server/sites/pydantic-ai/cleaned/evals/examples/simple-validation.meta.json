@@ -1,0 +1,7 @@
+{
+  "title": "Example: Simple Validation",
+  "crawledAt": "2025-10-31T05:05:36.891Z",
+  "cleanedAt": "2025-10-31T05:05:37.288Z",
+  "url": "https://ai.pydantic.dev/evals/examples/simple-validation/",
+  "description": "A proof of concept example of evaluating a simple text transformation function with deterministic checks."
+}

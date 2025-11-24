@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:48.378Z",
+  "cleanedAt": "2025-11-21T18:32:48.725Z",
+  "url": "https://launchdarkly.com/docs/sdk/relay-proxy/use-cases",
+  "description": "This topic explains common use cases for implementing the LaunchDarkly Relay Proxy. It also describes the costs associated with running it, to help you decide whether it’s appropriate for your configuration."
+}

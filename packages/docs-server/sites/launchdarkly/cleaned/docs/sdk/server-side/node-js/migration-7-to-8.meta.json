@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:27.971Z",
+  "cleanedAt": "2025-11-21T18:32:28.333Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/node-js/migration-7-to-8",
+  "description": "This topic summarizes changes and explains how to adapt code that uses a 7.x version of the [Node.js (server-side) SDK](/docs/sdk/server-side/node-js) to use version 8.0 or later."
+}

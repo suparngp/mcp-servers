@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:37:18.570Z",
+  "cleanedAt": "2025-11-21T18:37:18.780Z",
+  "url": "https://launchdarkly.com/docs/sdk/edge/cloudflare/migration-1-to-2",
+  "description": "This topic explains the changes in the Cloudflare SDK 2.0 release and how to adapt code that uses a 1.0 version of the [Cloudflare SDK](/docs/sdk/edge/cloudflare) to use version 2.0 or later."
+}

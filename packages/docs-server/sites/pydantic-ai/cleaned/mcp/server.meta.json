@@ -1,0 +1,7 @@
+{
+  "title": "Server",
+  "crawledAt": "2025-10-31T05:06:09.308Z",
+  "cleanedAt": "2025-10-31T05:06:09.643Z",
+  "url": "https://ai.pydantic.dev/mcp/server/",
+  "description": "Pydantic AI models can also be used within MCP Servers."
+}

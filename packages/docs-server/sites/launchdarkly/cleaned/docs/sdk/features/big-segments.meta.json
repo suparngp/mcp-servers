@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:37.603Z",
+  "cleanedAt": "2025-11-21T18:31:37.962Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/big-segments",
+  "description": "[Segments synced from external tools](/docs/home/flags/synced-segments) and [larger list-based segments](/docs/home/flags/segment-types#larger-list-based-segments) are the two kinds of big segment. Big segments are available to customers on only select plans. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/)."
+}

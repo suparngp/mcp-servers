@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:11.474Z",
+  "cleanedAt": "2025-11-21T18:32:11.995Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/javascript/requirements-polyfills",
+  "description": "This topic explains how to add different types of polyfills in the JavaScript SDK."
+}

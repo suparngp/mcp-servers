@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:07.453Z",
+  "cleanedAt": "2025-11-21T18:32:07.793Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/ios/migration-7-to-8-objc",
+  "description": "This topic explains the changes in the iOS SDK 8.0 release and how to adapt Objective-C code that currently uses a 6.x or 7.x version of the [iOS client-side SDK](/docs/sdk/client-side/ios) to use version 8.0 or later."
+}

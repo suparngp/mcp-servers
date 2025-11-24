@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:51.618Z",
+  "cleanedAt": "2025-11-21T18:13:52.081Z",
+  "url": "https://launchdarkly.com/docs/home/releases/config-deployment",
+  "description": "This topic explains how to configure your app to send deployment information to LaunchDarkly. In LaunchDarkly, a **deployment** is a new code change your team has introduced to an environment."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:43.983Z",
+  "cleanedAt": "2025-11-21T18:31:44.264Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/hooks",
+  "description": "This topic explains how to define and add hooks to LaunchDarkly SDKs. Hooks are collections of developer-defined callbacks. They contain methods that the SDK executes at various points of interest."
+}

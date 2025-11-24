@@ -1,0 +1,63 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Using a persistent feature store while still connecting to LaunchDarkly](#using-a-persistent-feature-store-while-still-connecting-to-launchdarkly)
+ * [Using a persistent feature store without connecting to LaunchDarkly](#using-a-persistent-feature-store-without-connecting-to-launchdarkly)
+ * [Initialization when working with persistent feature stores](#initialization-when-working-with-persistent-feature-stores)
+ * [Using persistent stores for segments](#using-persistent-stores-for-segments)
+## Overview
+This topic explains what a persistent feature store is and how a persistent feature store can keep flag data.
+In their default configuration, LaunchDarkly’s server-side SDKs:
+ * connect to LaunchDarkly and receive feature flag data
+ * store the flags in memory
+ * update the in-memory state if LaunchDarkly sends updates
+Flag evaluations always refer to the last known state in memory. This collection of last known flag data is cached in the “feature store” or “data store”, and cached values have no expiration or time-to-live (TTL) value.
+Alternatively, you can use a database for the feature store. Most of the server-side SDKs support Redis, DynamoDB, and Consul for this purpose.
+Whichever database you use, there are two ways to use it:
+ * Exactly like the default configuration, except substituting a database for the in-memory store, or
+ * Using _only_ the database as a source of flag data, without connecting to LaunchDarkly.
+## Using a persistent feature store while still connecting to LaunchDarkly
+In this configuration, the SDK receives feature flag data from LaunchDarkly and puts it in the feature store. The only difference is that the store is in a database.
+When flags are evaluated, the SDK checks the database to get the latest flag state, usually with some form of in-memory caching to improve performance.
+The main reason to do this is to accelerate flag updates when your application has to restart, and after restarting, it takes longer to establish a connection to LaunchDarkly than you want. If you have a persistent feature store that has already been populated, the SDK can still evaluate flags using the last known flag state from the store until newer data is available from LaunchDarkly.
+To set up this configuration, most people create some kind of object for the specific type of database and put it in the client configuration’s feature store property. For example, in PHP, this property is called the “feature requester.”
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Storing data](/docs/sdk/features/storing-data)
+If there are multiple instances of your application configured to store data in the same database, those multiple instances may overwrite each other’s data. This is not a problem because each instance receives feature flags from LaunchDarkly, so the copy of the data should be identical. However, it is inefficient. Instead, you may want to use a persistent feature store without connecting to LaunchDarkly, as described below.
+## Using a persistent feature store without connecting to LaunchDarkly
+This is similar to the previous configuration, except that the SDK does not connect to LaunchDarkly at all. Instead, it relies on some other process which _does_ have a LaunchDarkly connection to write the latest flag data to the database, where the SDK will then read it.
+The other process could be the Relay Proxy in offline or daemon mode, or any other application that creates an SDK client with the same persistent store. To learn more about working with persistent stores in your SDK, read [Storing data](/docs/sdk/features/storing-data). To learn more about the Relay Proxy, read [The Relay Proxy](/docs/sdk/relay-proxy).
+##### Different SDKs have different names for using a persistent store without connecting to LaunchDarkly
+Using the Relay Proxy is one option for using a persistent feature store without having the SDK connect to LaunchDarkly. Because the Relay Proxy was previously known as the LaunchDarkly Daemon, some of the SDKs refer to using this mode as “LDD mode” or “daemon mode.” Creating the client is the same as above in terms of specifying the persistent store, but you must also add an option to make the SDK _not_ connect to LaunchDarkly.
+Other SDKs, such as the C++ (server-side) SDK, refer to this mode as “lazy load,” because flag data is loaded from the persistent store lazily, on demand as the SDK requests it.
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Storing data](/docs/sdk/features/storing-data)
+## Initialization when working with persistent feature stores
+LaunchDarkly SDKs define their initialized state as when the SDK has successfully connected to LaunchDarkly and received an initial set of current flag data. The SDK allows your code to still proceed with using the client if it is not yet in an initialized state, so that your application can start up even if there are problems connecting to LaunchDarkly.
+If you are using a persistent feature store, and there are already some flag data in the database, then the SDK will use that last known flag data. However, the last known flag data from the database is not the current flag data, because it is not what’s available directly from LaunchDarkly. Therefore, the SDK is technically not initialized.
+In this situation, LaunchDarkly logs a warning when your code evaluates a feature flag. The warning message begins with “Feature Flag evaluation attempted before client has initialized - using last known values from feature store for feature key” and includes the flag key. This message confirms that your code is evaluating the feature flag using data from the persistent feature store. You should expect to find this warning in your log repeatedly if you are using a persistent feature store.
+If the SDK could also not find any flag data in your feature store, then LaunchDarkly logs a different warning. The warning message begins with “Feature Flag evaluation attempted before client has initialized! Feature store unavailable - returning default” and includes the default value parameter that you passed to the `variation()` call. This message confirms that your code is evaluating the feature flag using the default value.
+## Using persistent stores for segments
+While it is optional to use a database for a feature store, you must use a database for a persistent store if you are using big segments. You can use either Redis or DynamoDB.
+Big segments are segments that are either [synced from an external tool](/docs/home/flags/synced-segments), or are [list-based segments](/docs/home/flags/segment-types#larger-list-based-segments) with more than 15,000 entries. They require a persistent store. LaunchDarkly uses different implementations for different types of segments so that all of your segments have good performance.
+LaunchDarkly keeps the persistent store up to date using either a persistent store integration or the Relay Proxy. You must configure one or the other. Then, LaunchDarkly consults the persistent store during flag evaluation.
+To learn more about configuring your persistent store to use these segments, read [SDK and integration configuration for segments](/docs/home/flags/segment-config).
+![](https://fern-image-hosting.s3.us-east-1.amazonaws.com/launchdarkly/terminal.svg)
+Configure your SDK: [Big segments](/docs/sdk/features/big-segments)
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:20.123Z",
+  "cleanedAt": "2025-11-21T18:15:20.350Z",
+  "url": "https://launchdarkly.com/docs/home/account/api-create",
+  "description": "This topic explains how to create API access tokens. These are required to authenticate with the [LaunchDarkly REST API](/docs/api) and are one of the options to authenticate with the [LaunchDarkly CLI](/docs/home/getting-started/ldcli)."
+}

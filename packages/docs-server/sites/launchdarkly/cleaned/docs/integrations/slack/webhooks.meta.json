@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:56.713Z",
+  "cleanedAt": "2025-11-21T18:32:57.100Z",
+  "url": "https://launchdarkly.com/docs/integrations/slack/webhooks",
+  "description": "This topic explains how to use the Slack webhook integration to set up [Slack Incoming Webhooks](https://api.slack.com/messaging/webhooks) to receive any activities in LaunchDarkly. When you change something in LaunchDarkly, for example, when you update a feature flag, update a segment, or invite a new account member, LaunchDarkly sends an incoming webhook to Slack."
+}

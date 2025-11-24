@@ -1,0 +1,7 @@
+{
+  "title": "pydantic_ai.models.mcp_sampling",
+  "crawledAt": "2025-10-31T04:58:44.746Z",
+  "cleanedAt": "2025-10-31T04:58:45.127Z",
+  "url": "https://ai.pydantic.dev/api/models/mcp-sampling/",
+  "description": "Bases: `ModelSettings[](../../settings/#pydantic_ai.settings.ModelSettings \"pydantic_ai.settings.ModelSettings\")`"
+}

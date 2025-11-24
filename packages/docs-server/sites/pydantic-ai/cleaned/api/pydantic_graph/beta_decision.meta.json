@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_graph.beta.decision`",
+  "crawledAt": "2025-10-31T05:19:36.588Z",
+  "cleanedAt": "2025-10-31T05:19:36.718Z",
+  "url": "https://ai.pydantic.dev/api/pydantic_graph/beta_decision/",
+  "description": "Decision node implementation for conditional branching in graph execution."
+}

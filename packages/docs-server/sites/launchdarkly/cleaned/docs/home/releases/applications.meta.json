@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:02.573Z",
+  "cleanedAt": "2025-11-21T18:14:02.987Z",
+  "url": "https://launchdarkly.com/docs/home/releases/applications",
+  "description": "This topic explains how to create, edit, and delete applications. An application is a LaunchDarkly resource that describes what you are delivering to a customer."
+}

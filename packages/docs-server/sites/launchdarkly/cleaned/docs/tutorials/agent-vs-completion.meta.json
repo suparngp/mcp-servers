@@ -1,0 +1,7 @@
+{
+  "title": "TL;DR",
+  "crawledAt": "2025-11-21T18:36:25.980Z",
+  "cleanedAt": "2025-11-21T18:36:26.365Z",
+  "url": "https://launchdarkly.com/docs/tutorials/agent-vs-completion",
+  "description": "LaunchDarkly’s “prompt-based vs. agent” choice is about **input schemas and framework compatibility** , not execution automation. **Prompt-based mode** returns a messages array (perfect for chat UIs), while **agent mode** returns an instructions string (optimized for LangGraph/CrewAI frameworks). Both provide the same core benefits: provider abstraction, A/B testing, metrics tracking, and the ability to change AI behavior without deploying code."
+}

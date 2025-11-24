@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.ag_ui`",
+  "crawledAt": "2025-10-31T05:13:20.383Z",
+  "cleanedAt": "2025-10-31T05:13:20.512Z",
+  "url": "https://ai.pydantic.dev/api/ag_ui/",
+  "description": "Provides an AG-UI protocol adapter for the Pydantic AI agent."
+}

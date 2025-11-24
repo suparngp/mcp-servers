@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.builtin_tools`",
+  "crawledAt": "2025-10-31T04:56:59.004Z",
+  "cleanedAt": "2025-10-31T04:56:59.500Z",
+  "url": "https://ai.pydantic.dev/api/builtin_tools/",
+  "description": "Bases: `ABC[](https://docs.python.org/3/library/abc.html#abc.ABC \"abc.ABC\")`"
+}

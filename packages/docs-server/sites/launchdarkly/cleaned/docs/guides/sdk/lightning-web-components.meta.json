@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:24.729Z",
+  "cleanedAt": "2025-11-21T18:16:24.949Z",
+  "url": "https://launchdarkly.com/docs/guides/sdk/lightning-web-components",
+  "description": "This guide explains how to configure your Salesforce environment to use the LaunchDarkly JavaScript or React Web client-side SDKs in Lightning Web Components (LWCs)."
+}

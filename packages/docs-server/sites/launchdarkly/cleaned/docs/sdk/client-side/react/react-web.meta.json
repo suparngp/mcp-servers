@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:11.433Z",
+  "cleanedAt": "2025-11-21T18:32:11.912Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/react/react-web",
+  "description": "If you want to add LaunchDarkly to your React Native codebase, use the React Native SDK instead. The React Web SDK is intended for use in web applications, and the React Native SDK is specifically designed to run in mobile environments. To learn more, read [React Native SDK](/docs/sdk/client-side/react/react-native)."
+}

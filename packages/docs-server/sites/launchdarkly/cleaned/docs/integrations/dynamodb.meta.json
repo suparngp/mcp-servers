@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:28.630Z",
+  "cleanedAt": "2025-11-21T18:33:29.245Z",
+  "url": "https://launchdarkly.com/docs/integrations/dynamodb",
+  "description": "This topic links to the documentation for configuring a persistent store with DynamoDB, to support big segments."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:15.826Z",
+  "cleanedAt": "2025-11-21T18:32:16.075Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/vue/migration-1-to-2",
+  "description": "This topic explains the changes in the Vue SDK 2.0 release and how to adapt code that uses a 1.x version of the [Vue SDK](/docs/sdk/client-side/vue) to use version 2.0 or later."
+}

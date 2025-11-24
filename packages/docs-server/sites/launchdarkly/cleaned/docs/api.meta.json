@@ -1,0 +1,7 @@
+{
+  "title": "Authentication",
+  "crawledAt": "2025-11-21T18:33:48.036Z",
+  "cleanedAt": "2025-11-21T18:33:48.356Z",
+  "url": "https://launchdarkly.com/docs/api",
+  "description": "LaunchDarkly’s REST API uses the HTTPS protocol with a minimum TLS version of 1.2."
+}

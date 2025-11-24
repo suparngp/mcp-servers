@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:03.188Z",
+  "cleanedAt": "2025-11-21T18:32:03.661Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/c-c--/migration-1-to-2",
+  "description": "This topic explains how to adapt code that currently uses a 1.x version of the [C/C++ client-side SDK](/docs/sdk/client-side/c-c--) to use version 2.0."
+}

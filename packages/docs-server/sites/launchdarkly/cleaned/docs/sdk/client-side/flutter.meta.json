@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:03.017Z",
+  "cleanedAt": "2025-11-21T18:32:03.186Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/flutter",
+  "description": "**Version 4 of the Flutter SDK is implemented in Flutter and supports development on all Flutter platforms**. To learn more about upgrading, read [Flutter SDK 3.x to 4.0 migration guide](/docs/sdk/client-side/flutter/migration-3-to-4). **Version 3 of the Flutter SDK introduces optional automatic collection of environment attributes**. To learn more about upgrading, read [Flutter SDK 2.x to 3.0 migration guide](/docs/sdk/client-side/flutter/migration-2-to-3)."
+}

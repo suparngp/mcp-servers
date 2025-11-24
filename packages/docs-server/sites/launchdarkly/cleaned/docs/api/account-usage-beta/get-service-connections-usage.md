@@ -1,0 +1,170 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [Overview](/docs/api)
+ * [Access Tokens](/docs/api/access-tokens)
+ * [Account Members](/docs/api/account-members)
+ * [Account Usage Beta](/docs/api/account-usage-beta)
+ * [AI Configs Beta](/docs/api/ai-configs-beta)
+ * [Announcements](/docs/api/announcements)
+ * [Applications Beta](/docs/api/applications-beta)
+ * [Approvals](/docs/api/approvals)
+ * [Approvals Beta](/docs/api/approvals-beta)
+ * [Audit Log](/docs/api/audit-log)
+ * [Code References](/docs/api/code-references)
+ * [Contexts](/docs/api/contexts)
+ * [Context Settings](/docs/api/context-settings)
+ * [Custom Roles](/docs/api/custom-roles)
+ * [Data Export Destinations](/docs/api/data-export-destinations)
+ * [Environments](/docs/api/environments)
+ * [Experiments](/docs/api/experiments)
+ * [Feature Flags](/docs/api/feature-flags)
+ * [Feature Flags Beta](/docs/api/feature-flags-beta)
+ * [Flag Import Configurations Beta](/docs/api/flag-import-configurations-beta)
+ * [Flag Links Beta](/docs/api/flag-links-beta)
+ * [Flag Triggers](/docs/api/flag-triggers)
+ * [Follow Flags](/docs/api/follow-flags)
+ * [Holdouts Beta](/docs/api/holdouts-beta)
+ * [Insights Charts Beta](/docs/api/insights-charts-beta)
+ * [Insights Deployments Beta](/docs/api/insights-deployments-beta)
+ * [Insights Flag Events Beta](/docs/api/insights-flag-events-beta)
+ * [Insights Pull Requests Beta](/docs/api/insights-pull-requests-beta)
+ * [Insights Repositories Beta](/docs/api/insights-repositories-beta)
+ * [Insights Scores Beta](/docs/api/insights-scores-beta)
+ * [Integration Audit Log Subscriptions](/docs/api/integration-audit-log-subscriptions)
+ * [Integration Delivery Configurations Beta](/docs/api/integration-delivery-configurations-beta)
+ * [Integrations Beta](/docs/api/integrations-beta)
+ * [Layers](/docs/api/layers)
+ * [Metrics](/docs/api/metrics)
+ * [Metrics Beta](/docs/api/metrics-beta)
+ * [O Auth2clients](/docs/api/o-auth-2-clients)
+ * [Persistent Store Integrations Beta](/docs/api/persistent-store-integrations-beta)
+ * [Projects](/docs/api/projects)
+ * [Relay Proxy Configurations](/docs/api/relay-proxy-configurations)
+ * [Release Pipelines Beta](/docs/api/release-pipelines-beta)
+ * [Releases Beta](/docs/api/releases-beta)
+ * [Scheduled Changes](/docs/api/scheduled-changes)
+ * [Segments](/docs/api/segments)
+ * [Tags](/docs/api/tags)
+ * [Teams](/docs/api/teams)
+ * [Teams Beta](/docs/api/teams-beta)
+ * [Users](/docs/api/users)
+ * [Users Beta](/docs/api/users-beta)
+ * [User Settings](/docs/api/user-settings)
+ * [Views Beta](/docs/api/views-beta)
+ * [Webhooks](/docs/api/webhooks)
+ * [Workflows](/docs/api/workflows)
+ * [Workflow Templates](/docs/api/workflow-templates)
+ * [Other](/docs/api/other)
+ * Release Policies Beta
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+GET
+/api/v2/usage/service-connections
+Python
+```
+1
+| import requests
+---|--- 
+2
+| 
+3
+| url = "https://app.launchdarkly.com/api/v2/usage/service-connections"
+4
+| 
+5
+| headers = {"Authorization": "<apiKey>"}
+6
+| 
+7
+| response = requests.get(url, headers=headers)
+8
+| 
+9
+| print(response.json())
+```
+[](/docs/api/account-usage-beta/get-service-connections-usage?explorer=true)
+200Retrieved
+```
+1
+| {
+---|--- 
+2
+| "_links": {},
+3
+| "metadata": [
+4
+| {}
+5
+| ],
+6
+| "series": [
+7
+| {
+8
+| "0": 11,
+9
+| "1": 15,
+10
+| "time": 1677888000000
+11
+| }
+12
+| ]
+13
+| }
+```
+Get a time series array showing the number of service connection minutes from your account. The supported granularity varies by aggregation type. The maximum time range is 365 days.
+### Authentication
+Authorizationstring
+API Key authentication via header
+### Query Parameters
+fromstringOptional`format: "string"`
+The series of data returned starts from this timestamp (Unix milliseconds). Defaults to the beginning of the current month.
+tostringOptional`format: "string"`
+The series of data returned ends at this timestamp (Unix milliseconds). Defaults to the current time.
+projectKeystringOptional`format: "string"`
+A project key to filter results by. Can be specified multiple times, one query parameter per project key.
+environmentKeystringOptional`format: "string"`
+An environment key to filter results by. If specified, exactly one `projectKey` must be provided. Can be specified multiple times, one query parameter per environment key.
+connectionTypestringOptional`format: "string"`
+A connection type to filter results by. Can be specified multiple times, one query parameter per connection type.
+relayVersionstringOptional`format: "string"`
+A relay version to filter results by. Can be specified multiple times, one query parameter per relay version.
+sdkNamestringOptional`format: "string"`
+An SDK name to filter results by. Can be specified multiple times, one query parameter per SDK name.
+sdkVersionstringOptional`format: "string"`
+An SDK version to filter results by. Can be specified multiple times, one query parameter per SDK version.
+sdkTypestringOptional`format: "string"`
+An SDK type to filter results by. Can be specified multiple times, one query parameter per SDK type.
+groupBystringOptional`format: "string"`
+If specified, returns data for each distinct value of the given field. Can be specified multiple times to group data by multiple dimensions, one query parameter per dimension. 
+Valid values: `projectId`, `environmentId`, `connectionType`, `relayVersion`, `sdkName`, `sdkVersion`, `sdkType`.
+aggregationTypestringOptional`format: "string"`
+Specifies the aggregation method. Defaults to `month_to_date`. 
+Valid values: `month_to_date`, `incremental`.
+granularitystringOptional`format: "string"`
+Specifies the data granularity. Defaults to `daily`. `monthly` granularity is only supported with the **month_to_date** aggregation type. 
+Valid values: `daily`, `hourly`, `monthly`.
+### Response
+Usage response
+_linksmap from strings to any
+The location and content type of related resources
+metadatalist of maps from strings to any
+Metadata about each series
+serieslist of maps from strings to doubles
+An array of data points with timestamps. Each element of the array is an object with a ‘time’ field, whose value is the timestamp, and one or more key fields. If there are multiple key fields, they are labeled ‘0’, ‘1’, and so on, and are explained in the `metadata`.
+### Errors
+400
+Bad Request Error
+401
+Unauthorized Error
+403
+Forbidden Error
+429
+Too Many Requests Error
+503
+Service Unavailable Error
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

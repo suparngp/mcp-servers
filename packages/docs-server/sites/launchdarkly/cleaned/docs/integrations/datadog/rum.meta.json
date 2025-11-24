@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:20.303Z",
+  "cleanedAt": "2025-11-21T18:33:20.733Z",
+  "url": "https://launchdarkly.com/docs/integrations/datadog/rum",
+  "description": "This topic links to Datadog’s documentation for its LaunchDarkly Real User Monitoring (RUM) integration. Datadog is an observability service for cloud-scale applications, providing monitoring of servers, databases, tools, and services, through a SaaS-based data analytics platform."
+}

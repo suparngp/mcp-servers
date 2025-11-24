@@ -1,0 +1,7 @@
+{
+  "title": "Metrics & Attributes",
+  "crawledAt": "2025-10-31T05:05:40.213Z",
+  "cleanedAt": "2025-10-31T05:05:40.464Z",
+  "url": "https://ai.pydantic.dev/evals/how-to/metrics-attributes/",
+  "description": "Track custom metrics and attributes during task execution for richer evaluation insights."
+}

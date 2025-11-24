@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:11.757Z",
+  "cleanedAt": "2025-11-21T18:33:12.502Z",
+  "url": "https://launchdarkly.com/docs/integrations/intellij",
+  "description": "This topic explains how to configure the LaunchDarkly IntelliJ IDEA plugin and use it to interact with feature flags from within IntelliJ integrated development environments (IDEs)."
+}

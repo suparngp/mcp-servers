@@ -115,21 +115,62 @@ export class DocsDatabase {
     // Content will be read from local files via fileReader.ts
     const placeholderDocuments = chunks.map(() => '')
 
-    const metadatas = chunks.map((chunk) => ({
-      ...chunk.metadata,
-      // Ensure all values are strings for ChromaDB
-      chunkIndex: String(chunk.metadata.chunkIndex),
-      totalChunks: String(chunk.metadata.totalChunks),
-    }))
+    const metadatas = chunks.map((chunk) => {
+      // Ensure all metadata values are valid for ChromaDB
+      const sanitized: Record<string, string | number | boolean> = {}
+      for (const [key, value] of Object.entries(chunk.metadata)) {
+        // Skip null/undefined values entirely
+        if (value == null) {
+          continue
+        }
+        // Convert arrays and objects to JSON strings
+        if (typeof value === 'object') {
+          sanitized[key] = JSON.stringify(value)
+        } else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+          // Keep primitive types as-is
+          sanitized[key] = value
+        } else {
+          // Convert other types to strings
+          sanitized[key] = String(value)
+        }
+      }
+      return sanitized
+    })
 
-    // Batch chunks to avoid exceeding OpenAI embedding limits
-    // OpenAI's text-embedding-3-small has a limit of ~8000 texts per request
-    const BATCH_SIZE = 2000 // Conservative batch size
+    // Batch chunks to avoid exceeding OpenAI embedding limits and ChromaDB limits
+    // OpenAI has a limit of 300,000 tokens per request
+    // ChromaDB Cloud has batch size limits (typically 100-200 items)
+    // Estimate ~4 chars per token as a conservative estimate
+    const MAX_TOKENS_PER_BATCH = 250000 // Conservative limit (leaving buffer)
+    const CHARS_PER_TOKEN = 4
+    const MAX_CHUNKS_PER_BATCH = 100 // Reduced for ChromaDB Cloud compatibility
 
     let totalAdded = 0
+    let i = 0
 
-    for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
-      const endIdx = Math.min(i + BATCH_SIZE, chunks.length)
+    while (i < chunks.length) {
+      let batchTokenEstimate = 0
+      let endIdx = i
+      
+      // Dynamically determine batch size based on token estimation
+      while (endIdx < chunks.length && endIdx - i < MAX_CHUNKS_PER_BATCH) {
+        const contentLength = contentsForEmbedding[endIdx].length
+        const tokenEstimate = Math.ceil(contentLength / CHARS_PER_TOKEN)
+        
+        if (batchTokenEstimate + tokenEstimate > MAX_TOKENS_PER_BATCH && endIdx > i) {
+          // Adding this chunk would exceed limit, stop here
+          break
+        }
+        
+        batchTokenEstimate += tokenEstimate
+        endIdx++
+      }
+      
+      // Ensure we process at least one chunk even if it's large
+      if (endIdx === i) {
+        endIdx = i + 1
+      }
+      
       const batchIds = ids.slice(i, endIdx)
       const batchContents = contentsForEmbedding.slice(i, endIdx)
       const batchPlaceholders = placeholderDocuments.slice(i, endIdx)
@@ -137,7 +178,7 @@ export class DocsDatabase {
 
       try {
         // Generate embeddings using OpenAI directly
-        console.log(`Generating embeddings for batch of ${batchIds.length} chunks...`)
+        console.log(`Generating embeddings for batch of ${batchIds.length} chunks (estimated ${Math.ceil(batchTokenEstimate)} tokens)...`)
         const embeddingResponse = await this.openai.embeddings.create({
           model: 'text-embedding-3-small',
           input: batchContents,
@@ -159,8 +200,11 @@ export class DocsDatabase {
       } catch (error) {
         console.error('Failed to add batch to ChromaDB:', error)
         console.error('Batch size:', batchIds.length)
+        console.error('Estimated tokens:', Math.ceil(batchTokenEstimate))
         throw error
       }
+      
+      i = endIdx
     }
 
     return totalAdded

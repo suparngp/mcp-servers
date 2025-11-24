@@ -1,0 +1,7 @@
+{
+  "title": "Agent User Interaction (AG-UI)",
+  "crawledAt": "2025-10-31T05:05:44.655Z",
+  "cleanedAt": "2025-10-31T05:05:44.965Z",
+  "url": "https://ai.pydantic.dev/examples/ag-ui/",
+  "description": "Example of using Pydantic AI agents with the [AG-UI Dojo](https://github.com/ag-ui-protocol/ag-ui/tree/main/typescript-sdk/apps/dojo) example app."
+}

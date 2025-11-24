@@ -1,0 +1,364 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Identifying .NET platforms for the 6.0 SDK](#identifying-net-platforms-for-the-60-sdk)
+ * [Using updated namespaces](#using-updated-namespaces)
+ * [Understanding changes to SDK configuration](#understanding-changes-to-sdk-configuration)
+ * [Understanding changes to data source methods](#understanding-changes-to-data-source-methods)
+ * [Understanding changes to the data store](#understanding-changes-to-the-data-store)
+ * [Understanding changes to events](#understanding-changes-to-events)
+ * [Understanding changes to networking](#understanding-changes-to-networking)
+ * [Understanding changes to EvaluationDetail and EvaluationReason](#understanding-changes-to-evaluationdetail-and-evaluationreason)
+ * [Understanding changes to add-on integration packages](#understanding-changes-to-add-on-integration-packages)
+ * [Understanding changes to logging](#understanding-changes-to-logging)
+ * [Using the Relay Proxy](#using-the-relay-proxy)
+ * [Converting objects to or from JSON data](#converting-objects-to-or-from-json-data)
+ * [Json.NET](#jsonnet)
+ * [Implementing custom components](#implementing-custom-components)
+ * [Miscellaneous API changes](#miscellaneous-api-changes)
+ * [Understanding what was deprecated](#understanding-what-was-deprecated)
+ * [Understanding new functionality](#understanding-new-functionality)
+## Overview
+This topic explains how to adapt code that currently uses a 5.x version of the [.NET server-side SDK](/docs/sdk/server-side/dotnet) to use version 6.0 or later.
+Before you migrate to 6.0, update to the latest 5.x version. Many of the changes that are mandatory in 6.0 were originally added in a 5.x version and made optional to use.
+If you update to the latest 5.x version, deprecation warnings appear in areas of your code that need to be changed for 6.0. You can then update them while still using 5.x, rather than migrating everything simultaneously.
+To learn more about updating to the latest 5.x version, visit the [SDK’s GitHub repository](https://github.com/launchdarkly/dotnet-server-sdk/releases).
+## Identifying .NET platforms for the 6.0 SDK
+The 6.x version of the SDK is compatible with the following .NET platform versions:
+ * .NET 5.0 and higher.
+ * .NET Framework 4.5.2 and higher.
+ * .NET Core 2.1 and higher.
+ * Any other runtime that supports the .NET Standard 2.0 API. However, even though Xamarin is compatible with .NET Standard 2.0, this SDK is not intended to be used with Xamarin. Use the [client-side .NET SDK](/docs/sdk/client-side/dotnet) instead.
+LaunchDarkly no longer supports older .NET target frameworks, including .NET Standard 1.6, as is documented in the [End of Life policy](https://launchdarkly.com/policies/end-of-life-policy/).
+There are some features that are only available in specific platform versions:
+ * In .NET Core, there is an option to use the .NET Core logging API. To learn more, read [Understanding changes to logging](/docs/sdk/server-side/dotnet/migration-5-to-6#understanding-changes-to-logging).
+ * In all platforms except for .NET Framework 4.5.x, there is an option to use the `System.Text.Json` API to convert types like `User` to and from JSON. To learn more, read [Converting objects to or from JSON data](/docs/sdk/server-side/dotnet/migration-5-to-6#converting-objects-to-or-from-json-data).
+The .NET build tools automatically load the most appropriate build of the SDK for whatever platform your application or library is targeted to.
+## Using updated namespaces
+The namespace convention has changed. Instead of `LaunchDarkly.Client`, the main namespaces are now `LaunchDarkly.Sdk` and `LaunchDarkly.Sdk.Server`. Most of the class names have not changed, so you may be able to fix your `using` statements with a find and replace.
+Package names including the word “client” were confusing, because even though this library is a service client that makes requests to the LaunchDarkly service, we built it to use in a server-side context. Types that are specific to this server-side implementation are now in `LaunchDarkly.Sdk.Server`.
+To learn more about the differences between SDKs, read [Choosing an SDK type](/docs/sdk/concepts/client-side-server-side).
+The full namespace schema is as follows:
+ * `Launchdarkly.Sdk`
+ * Provides: `User`, `IUserBuilder`, `LdValue`, `EvaluationDetail`, `EvaluationReason`
+ * `Launchdarkly.Sdk.Json`
+ * Provides: new features related to [JSON serialization](/docs/sdk/server-side/dotnet/migration-5-to-6#converting-objects-to-or-from-json-data).
+ * `LaunchDarkly.Sdk.Server`
+ * Provides: `Components`, `Configuration`, `LdClient`, `FeatureFlagsState`
+ * `LaunchDarkly.Sdk.Server.Interfaces`
+ * Provides: types like `IDataStore` that are only used if you are writing a [custom component](/docs/sdk/server-side/dotnet/migration-5-to-6#implementing-custom-components). These were formerly in `Launchdarkly.Client`, so moving them makes the API much less cluttered.
+ * It also provides interfaces like `IFlagTracker` that are available through `LdClient`, but are less commonly used.
+ * `LaunchDarkly.Sdk.Server.Integrations`
+ * Provides: the same types that were in `Launchdarkly.Client.Integrations` (added in [5.14.0](https://github.com/launchdarkly/dotnet-server-sdk/releases/tag/5.14.0)), such as `StreamingDataSourceBuilder`. These are for configuring how the SDK connects with LaunchDarkly or other external services.
+## Understanding changes to SDK configuration
+.NET SDK [5.14.0](https://github.com/launchdarkly/dotnet-server-sdk/releases/tag/5.14.0) added newer ways to use `Configuration`. Starting in version 6.0, those ways are mandatory. They are the only way to use `Configuration`.
+Instead of having many unrelated properties, each with their own `ConfigurationBuilder` method, most of the properties are now grouped into areas of functionality, each of which has its own builder class that is only available if you are using that functionality. For instance, if you use streaming mode, there are options you can set to control streaming mode, and if you use polling mode, you use a different builder that does not have the streaming options. Similarly, if you have disabled analytics events, the event-related options are not accessible.
+The basic areas of functionality are “data source” (polling, streaming, or file data), “data store” (memory or database), events, and networking.
+If your code already uses the newer model, you may only need to change the package names in your imports.
+### Understanding changes to data source methods
+For each data source type, there is a factory method whose name ends in `DataSource`. These methods give you a builder object with methods for whatever options are appropriate. Pass that object to `ConfigurationBuilder.DataSource`.
+Here is an example:
+5.x syntax6.0 syntax
+```
+1
+| // 5.x model: setting custom options for streaming mode
+---|--- 
+2
+| var config = Configuration.Builder("sdk-key-123abc")
+3
+| .IsStreamingEnabled(true)
+4
+| .ReconnectTime(TimeSpan.FromSeconds(2))
+5
+| .Build();
+6
+| 
+7
+| // 5.x model: specifying polling mode and setting custom polling options
+8
+| var config = Configuration.Builder("sdk-key-123abc")
+9
+| .IsStreamingEnabled(false)
+10
+| .PollingInterval(TimeSpan.FromSeconds(60))
+11
+| .Build();
+```
+The default is to use streaming mode. Unlike the earlier model, you can no longer construct a meaningless configuration such as “use streaming mode, but set the polling interval to 1 minute” or “disable events, but set the flush interval to 10 seconds.”
+Another data source option is the file-based data source. To learn more, read the API documentation for `Launchdarkly.Sdk.Server.Integrations.FileData`.
+### Understanding changes to the data store
+The default data store is a simple in-memory cache. This is the same as earlier versions.
+If you want to use a persistent data store such as a database integration, you must call a `DataStore` factory method for that integration. This gives you a builder object with whatever options are appropriate for that database. Next, pass the object to `Components.PersistentDataStore`, a wrapper that provides caching options that are not specific to any one database but are built into the SDK. Put this into `ConfigurationBuilder.DataStore`.
+To learn more, read [Persistent data stores](/docs/sdk/concepts/data-stores).
+The following examples use the [Redis integration](https://github.com/launchdarkly/dotnet-server-sdk-redis):
+5.x syntax6.0 syntax
+```
+1
+| // 5.x model: use Redis, set custom Redis URI and key prefix, set cache TTL to 45 seconds
+---|--- 
+2
+| var config = Configuration.Builder("sdk-key-123abc")
+3
+| .FeatureStoreFactory(
+4
+| RedisComponents.RedisFeatureStore()
+5
+| .WithRedisUri(new Uri("redis://my-redis-host"))
+6
+| .WithPrefix("my-prefix")
+7
+| .WithCacheExpiration(TimeSpan.FromSeconds(45))
+8
+| )
+9
+| .Build();
+```
+### Understanding changes to events
+Analytics events are enabled by default. To customize their behavior, call `Components.SendEvents()` to get a builder object with event-related options, and then pass that object to `ConfigurationBuilder.Events`.
+To completely disable events, set `ConfigurationBuilder.Events` to `Components.NoEvents`.
+If you use private user attributes and are configuring private attributes for the entire SDK rather than for individual users, there is a new syntax based on the new `UserAttribute` type. This ensures that built-in attributes are not misspelled and helps to distinguish these parameters from other kinds of string parameters.
+Here is an example:
+5.x syntax6.0 syntax
+```
+1
+| // 5.x model: disabling events
+---|--- 
+2
+| var config = Configuration.Builder("sdk-key-123abc")
+3
+| .SendEvents(false)
+4
+| .Build();
+5
+| 
+6
+| // 5.x model: customizing event behavior
+7
+| var config = Configuration.Builder("sdk-key-123abc")
+8
+| .EventCapacity(20000)
+9
+| .EventFlushInterval(TimeSpan.FromSeconds(10))
+10
+| .PrivateAttribute("email")
+11
+| .PrivateAttribute("myCustomAttribute")
+12
+| .Build();
+```
+It is no longer possible to construct a meaningless configuration like “disable events, but set the flush interval to 10 seconds.”
+### Understanding changes to networking
+Options in this category affect how the SDK communicates with LaunchDarkly over HTTP/HTTPS, including connection timeout, proxy servers, and more. If you need to customize these, call `Components.HttpConfiguration()` to get a builder object, configure this builder, and then pass it to `ConfigurationBuilder.Http`.
+Some of the methods have changed slightly in terms of the type or number of parameters, and there is also a new method for specifying an HTTP proxy in your code rather than from an environment variable. More details are available in `HttpConfigurationBuilder`.
+Here is an example:
+5.x syntax6.0 syntax
+```
+1
+| // 5.x model: setting connection and read timeouts
+---|--- 
+2
+| var config = Configuration.Builder("sdk-key-123abc")
+3
+| .HttpClientTimeout(TimeSpan.FromSeconds(3))
+4
+| .ReadTimeout(TimeSpan.FromSeconds(4))
+5
+| .Build();
+```
+## Understanding changes to EvaluationDetail and EvaluationReason
+The `EvaluationDetail` and `EvaluationReason` types, which were formerly in `LaunchDarkly.Client`, and are now in `LaunchDarkly.Sdk`, have been modified in the following ways:
+ 1. They are now `struct`s rather than `class`es.
+ 2. `EvaluationReason` is no longer a base class with subclasses like `EvaluationReason.Off` for different reasons. Instead, it is always the same `struct` type, and you can distinguish one reason from another by looking at its properties such as `Kind`.
+ 3. `EvaluationReason.RuleIndex` is now an optional `int?` rather than an `int`. If it is not applicable because the reason is not a rule match, the value of this property is now `null`. Previously, the special value of `-1` was used to mean “not applicable.”
+## Understanding changes to add-on integration packages
+The [Redis](https://github.com/launchdarkly/dotnet-server-sdk-redis), [Consul](https://github.com/launchdarkly/dotnet-server-sdk-consul), and [DynamoDB](https://github.com/launchdarkly/dotnet-server-sdk-dynamodb) integrations have new major versions that are compatible with .NET SDK 6.0.
+The configuration syntax is available in [Understanding changes to the data store](/docs/sdk/server-side/dotnet/migration-5-to-6#understanding-changes-to-the-data-store).
+## Understanding changes to logging
+Previously, the SDK used the [`Common.Logging`](https://github.com/net-commons/common-logging) framework, which provides adapters to various popular loggers. But writing the LaunchDarkly packages against such a third-party API causes inconvenience for any developer using LaunchDarkly who prefers a different framework. Also, `Common.Logging` is a relatively heavyweight solution for projects that may only have simple logging requirements.
+Starting in version 6.0, the SDK no longer has a built-in dependency on `Common.Logging` or on any other third-party logging framework. Instead it uses a new package, [`LaunchDarkly.Logging`](https://github.com/launchdarkly/dotnet-logging).
+The new package provides some basic built-in logging implementations suitable for simple applications, such as logging to the console.
+Here is an example of configuring the .NET SDK to send log output to the console, and to enable only log messages of `Warn` level or higher:
+6.0 syntax
+```
+1
+| using LaunchDarkly.Logging;
+---|--- 
+2
+| using LaunchDarkly.Sdk.Server;
+3
+| 
+4
+| var config = Configuration.Builder("sdk-key-123abc")
+5
+| .Logging(Logs.ToConsole.Level(LogLevel.Warn))
+6
+| .Build();
+```
+It also has an adapter system for connecting it to other logging frameworks. If you use .NET Core, the built-in adapter that sends log output to the .NET Core logging framework is `Microsoft.Extensions.Logging`:
+6.0 only
+```
+1
+| var config = Configuration.Builder("sdk-key-123abc")
+---|--- 
+2
+| .Logging(Logs.CoreLogging(loggerFactory))
+3
+| .Build();
+```
+Other adapters are defined in separate packages whose source code is in the [`dotnet-logging-adapters`](https://github.com/launchdarkly/dotnet-logging-adapters) repository. For instance, if you add the package `LaunchDarkly.Logging.Log4net`, you can configure the SDK to send log output to [log4net](https://logging.apache.org/log4net/) like this:
+6.0 only
+```
+1
+| var config = Configuration.Builder("sdk-key-123abc")
+---|--- 
+2
+| .Logging(LdLog4net.Adapter)
+3
+| .Build();
+```
+The SDK’s use of logger names has also changed. Most logging frameworks allow you to use logger names to configure different filtering rules for different kinds of messages, so if you have been using that feature you may need to adjust your configuration.
+Previously, most of the SDK’s log output used the logger name `LaunchDarkly.Client.LdClient`, but some of it used the names of other classes such as `Launchdarkly.Client.StreamProcessor`. These class names were implementation details that were subject to change, so there was not a well-defined set of logger names.
+Starting in version 6.0, the SDK uses the following logger names:
+ * `Launchdarkly.Sdk`: general messages that do not fall into any other categories
+ * `Launchdarkly.Sdk.DataSource`: messages related to how the SDK obtains feature flag data— normally this means messages about the streaming connection to LaunchDarkly, but if you use polling mode or file data instead, those will be logged under this name too
+ * `Launchdarkly.Sdk.DataStore`: messages related to how feature flag data is stored— for instance, database errors if you are using a database integration
+ * `Launchdarkly.Sdk.Evaluation`: messages related to feature flag evaluation
+ * `Launchdarkly.Sdk.Events`: messages related to analytics event processing
+The use of log levels has also changed. Previously, many kinds of I/O errors, such a network failure when the SDK was trying to make a streaming connection or sending events to LaunchDarkly, were logged at `Error` level. This could cause an unwanted amount of noise from monitoring systems, because such errors were often due to temporary problems that the SDK could recover from without intervention.
+Starting in version 6.0, if the SDK gets a network error that might interfere with receiving feature flag data from LaunchDarkly, it first logs it at the `Warn` level. It retries the connection as usual, and reports the problem again at the more serious `Error` level only if it remains unable to get a successful connection for a full minute. You can change that interval with `LoggingConfigurationBuilder`.
+## Using the Relay Proxy
+There are two ways you can configure the SDK to use the [Relay Proxy](/docs/sdk/relay-proxy):
+ * proxy mode, connecting to it via HTTP/HTTPS as if it were the LaunchDarkly service.
+ * daemon mode, receiving flag data only through a database.
+The configuration syntax for both proxy mode and daemon mode has changed in the 6.x SDK.
+Here’s how:
+5.x syntax6.3 and above
+```
+1
+| // proxy mode
+---|--- 
+2
+| var relayUri = new Uri("http://my-relay-host:8000");
+3
+| var config = Configuration.Builder("sdk-key-123abc")
+4
+| .StreamUri(relayUri)
+5
+| .EventsUri(relayUri) // if you want to proxy events
+6
+| .Build();
+7
+| 
+8
+| // daemon mode with a Redis database
+9
+| var config = Configuration.Builder("sdk-key-123abc")
+10
+| .FeatureStore(
+11
+| RedisComponents.RedisFeatureStore().WithUri(new Uri("redis://my-redis-host"))
+12
+| )
+13
+| .UseLdd(true)
+14
+| .Build();
+```
+## Converting objects to or from JSON data
+You might want to convert LaunchDarkly SDK classes such as `User`, `LdValue`, or `FeatureFlagsState` into JSON if you are passing them to front-end JavaScript code. Less commonly, you might want to convert them from JSON. The SDK provides ways to do both.
+First, you can use the serialize and deserialize methods in `LaunchDarkly.Sdk.Json.LdJsonSerialization` to quickly convert things to or from JSON strings.
+Second, the `System.Text.Json` API (available on all platforms except .NET Framework 4.5.x) will correctly convert these types.
+Third, if you prefer to use the popular [Newtonsoft Json.NET](https://www.newtonsoft.com/json) framework, read the following section.
+### Json.NET
+Previously, the SDK used [Json.NET](https://www.newtonsoft.com/json) for all of its JSON operations, and defined custom encodings for types like `FeatureFlagsState` using that framework’s `JsonConverter` API. That meant that if you wanted to convert one of those types to JSON with Json.NET, it worked automatically.
+However, there were problems with having a Json.NET dependency in the SDK. There are many versions of the `Newtonsoft.Json` package, so there could be version conflicts if an application was using both the LaunchDarkly .NET SDK and a different version of Json.NET. Another problem was that Json.NET has some nonstandard behaviors, such as automatically converting strings to dates, and could be customized globally in ways that could interfere with the SDK. Also, using the standard reflection-based serialization/deserialization mechanism in Json.NET is less efficient than other approaches.
+Starting in version 6.0, the SDK no longer uses Json.NET. Instead, it uses the `System.Text.Json` API, except on platforms where that API is not available (.NET Framework 4.5.x), in which case it uses a custom implementation. This removes the potential for package version conflicts, and also is significantly more efficient in terms of memory usage when the SDK is encoding or decoding JSON.
+However, this means that if you want to convert LaunchDarkly SDK types such as `FeatureFlagsState` to JSON, you can’t simply call `Newtonsoft.Json.JsonConvert.SerializeObject` and get correct results, because Json.NET does not know about the custom serializers for these types in the SDK.
+If you want to make Json.NET work correctly with these types, you must add the package `LaunchDarkly.CommonSdk.JsonNet`, and then create Json.NET’s `JsonSerializerSettings` as follows:
+6.0 only
+```
+1
+| var settings = new JsonSerializerSettings
+---|--- 
+2
+| {
+3
+| Converters = new List<JsonConverter>
+4
+| {
+5
+| LaunchDarkly.Sdk.Json.LdJsonNet.Converter
+6
+| }
+7
+| };
+```
+You can then use `settings` in any call to `JsonConvert.SerializeObject` or `JsonConvert.DeserializeObject`, or use it globally by modifying `JsonConvert.DefaultSettings`, and Json.NET will correctly handle the LaunchDarkly SDK types.
+Alternately, if you would rather not install this extra package, you can use `LaunchDarkly.Sdk.Json.LdJsonSerialization` and add an extra step to convert the JSON string to Json.NET’s `JRaw` type:
+6.0 only
+```
+1
+| struct ValuesBeingPassedToJavaScriptCode
+---|--- 
+2
+| {
+3
+| [JsonProperty("user")]
+4
+| public JRaw User;
+5
+| }
+6
+| 
+7
+| ValuesBeingPassedToJavaScriptCode CreateValuesForJavaScript(User user)
+8
+| {
+9
+| var userJson = new JRaw(LdJsonSerialization.SerializeObject(user));
+10
+| return new ValuesBeingPassedToJavaScriptCode { User = userJson };
+11
+| }
+```
+## Implementing custom components
+Most applications use either the default in-memory storage or one of the [database integrations](/docs/sdk/concepts/data-stores) LaunchDarkly provides (Consul, DynamoDB, Redis), but the data store interface (formerly called “feature store”) has always been public so developers can write their own integrations.
+Starting in .NET SDK 6.0, this model has been changed to make it easier to implement database integrations. The basic concepts are the same: the SDK defines its own “data kinds,” such as feature flags and user segments. The data store must provide a way to add and update items of any of these kinds, without knowing anything about their properties except the key and version.
+The main changes are:
+ * Caching is handled by the SDK, not by the store implementation. Now you only need to implement the lower-level operations of adding or updating data.
+ * The SDK serializes and deserializes the data, so the store operates only on strings.
+ * Data structures have been simplified to avoid the use of generics and maps.
+The interface for “data source” components that receive feature flag data, either from LaunchDarkly or from some other source, such as a file, has also changed slightly to use the new data store model.
+To learn more, read the API documentation for the `IPersistentDataStore` and `IDataSource` interfaces. You may also want to review the source code for one of the LaunchDarkly database integrations, such as [Redis](http://github.com/launchdarkly/dotnet-server-sdk-redis), to learn how it changed from the previous major version.
+## Miscellaneous API changes
+Here are several changes to names and types that do not affect the basic functionality of the SDK, but were changed for consistency.
+ * The `Initialized()` method of `LdClient` is now a read-only property, `Initialized`, instead of a method.
+ * The `IConfigurationBuilder` interface has been replaced by the concrete class `ConfigurationBuilder`.
+ * The `ILdClient` interface is now in `LaunchDarkly.Sdk.Server.Interfaces` instead of the main namespace.
+## Understanding what was deprecated
+All types and methods that were marked as deprecated/obsolete in the last 5.x release have been removed from the 6.0 release. If you were using these with a recent version previously, you should already have received deprecation warnings at compile time, with suggestions about their recommended replacements.
+## Understanding new functionality
+The 6.0 release also includes new features as described in the release notes.
+These include:
+ * You can tell the SDK to notify you whenever a feature flag’s configuration has changed with `LdClient.FlagTracker`. To learn more, read [Subscribing to flag changes](/docs/sdk/features/flag-changes#net-server-side).
+ * You can monitor the status of the SDK’s connection to LaunchDarkly services with `LdClient.DataSourceStatusProvider`.
+ * You can monitor the status of a persistent data store (for instance, to get caching statistics, or to be notified if the store’s availability changes due to a database outage) with `LdClient.DataStoreStatusProvider`.
+ * You can configure the SDK’s use of different logging levels depending on the duration of a service outage with `ConfigurationBuilder.Logging` and `LoggingConfigurationBuilder`.
+To learn more, read the API documentation for these classes and methods.
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

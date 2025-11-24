@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:11.387Z",
+  "cleanedAt": "2025-11-21T18:32:11.722Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/node-js/migration-1-to-2",
+  "description": "This topic explains how to adapt code that currently uses a 1.x version of the [Node.js client-side SDK](/docs/sdk/client-side/node-js) to use version 2.0 or later."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:27.124Z",
+  "cleanedAt": "2025-11-21T18:14:27.377Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/metric-health-checks",
+  "description": "This topic explains how to use metric health checks to confirm that your metrics are active and ready for use in experiments and rollouts."
+}

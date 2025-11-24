@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:28.796Z",
+  "cleanedAt": "2025-11-21T18:16:29.346Z",
+  "url": "https://launchdarkly.com/docs/guides/api/comparing-sdk-rest-api",
+  "description": "This guide explains the differences between LaunchDarkly’s SDKs and LaunchDarkly’s REST API and associated client libraries, and when you should use each."
+}

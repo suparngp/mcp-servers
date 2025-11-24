@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:37.581Z",
+  "cleanedAt": "2025-11-21T18:31:37.860Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/aliasing-users",
+  "description": "LaunchDarkly no longer supports `alias` events for SDKs upgraded for contexts. LaunchDarkly continues to support sending and receiving alias events for older SDK versions. To learn more, read about our [SDKs that support contexts](/docs/sdk)."
+}

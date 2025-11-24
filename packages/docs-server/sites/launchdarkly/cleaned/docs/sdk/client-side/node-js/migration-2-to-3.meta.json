@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:11.445Z",
+  "cleanedAt": "2025-11-21T18:32:11.916Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/node-js/migration-2-to-3",
+  "description": "This topic explains the changes in the Node.js SDK 3.0 release and how to adapt code that uses a 2.x version of the [Node.js SDK](/docs/sdk/client-side/node-js) to use version 3.0 or later."
+}

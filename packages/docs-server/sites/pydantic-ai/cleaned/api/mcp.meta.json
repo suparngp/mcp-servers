@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.mcp`",
+  "crawledAt": "2025-10-31T04:56:59.187Z",
+  "cleanedAt": "2025-10-31T04:56:59.670Z",
+  "url": "https://ai.pydantic.dev/api/mcp/",
+  "description": "Bases: `AbstractToolset[](../toolsets/#pydantic_ai.toolsets.AbstractToolset \"pydantic_ai.toolsets.abstract.AbstractToolset\")[Any[](https://docs.python.org/3/library/typing.html#typing.Any \"typing.Any\")]`, `ABC[](https://docs.python.org/3/library/abc.html#abc.ABC \"abc.ABC\")`"
+}

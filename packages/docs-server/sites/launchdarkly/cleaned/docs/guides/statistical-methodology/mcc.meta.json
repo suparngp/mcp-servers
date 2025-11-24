@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:28.738Z",
+  "cleanedAt": "2025-11-21T18:16:28.975Z",
+  "url": "https://launchdarkly.com/docs/guides/statistical-methodology/mcc",
+  "description": "This section includes an explanation of advanced statistical concepts. We provide them for informational purposes, but you do not need to understand these concepts to use LaunchDarkly Experimentation."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Filtering contexts and context instances",
+  "crawledAt": "2025-11-21T18:34:36.224Z",
+  "cleanedAt": "2025-11-21T18:34:37.166Z",
+  "url": "https://launchdarkly.com/docs/api/contexts",
+  "description": "When you [search for contexts](https://launchdarkly.com/docs/api/contexts/search-contexts) or [context instances](https://launchdarkly.com/docs/api/contexts/search-context-instances), you can filter the results using fields and operators with the `filter` parameter. Specify `filter` either as a query parameter or as a request body parameter."
+}

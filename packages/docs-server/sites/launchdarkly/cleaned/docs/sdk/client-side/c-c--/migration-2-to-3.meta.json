@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:03.177Z",
+  "cleanedAt": "2025-11-21T18:32:03.668Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/c-c--/migration-2-to-3",
+  "description": "This topic explains the changes in the C++ SDK 3.0 release and how to adapt code that uses a 2.x version of the [C++ (client-side) SDK](/docs/sdk/client-side/c-c--) to use version 3.0 or later."
+}

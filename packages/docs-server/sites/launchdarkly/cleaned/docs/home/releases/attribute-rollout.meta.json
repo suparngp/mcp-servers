@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:43.650Z",
+  "cleanedAt": "2025-11-21T18:13:44.207Z",
+  "url": "https://launchdarkly.com/docs/home/releases/attribute-rollout",
+  "description": "This topic explains how to perform percentage rollouts by associating flag variations with context attributes, whether the user context is in an anonymous or logged-in state."
+}

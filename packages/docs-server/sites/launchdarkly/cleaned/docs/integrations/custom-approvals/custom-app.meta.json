@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:28.482Z",
+  "cleanedAt": "2025-11-21T18:33:29.245Z",
+  "url": "https://launchdarkly.com/docs/integrations/custom-approvals/custom-app",
+  "description": "This topic describes how to create your own approval application, which serves as an intermediary between LaunchDarkly approvals and your workflow management application. This is the first step required in building a [custom approvals integration](/docs/integrations/custom-approvals). Only customers with complex workflow management or approval systems in third-party applications that LaunchDarkly does not integrate with directly are likely to need a custom approvals integration."
+}

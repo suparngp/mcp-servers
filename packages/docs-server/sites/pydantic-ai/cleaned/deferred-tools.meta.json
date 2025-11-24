@@ -1,0 +1,7 @@
+{
+  "title": "Deferred Tools",
+  "crawledAt": "2025-10-31T04:56:26.354Z",
+  "cleanedAt": "2025-10-31T04:56:26.732Z",
+  "url": "https://ai.pydantic.dev/deferred-tools/",
+  "description": "There are a few scenarios where the model should be able to call a tool that should not or cannot be executed during the same agent run inside the same Python process:"
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Persistent store integrations",
+  "crawledAt": "2025-11-21T18:35:39.175Z",
+  "cleanedAt": "2025-11-21T18:35:39.574Z",
+  "url": "https://launchdarkly.com/docs/api/persistent-store-integrations-beta",
+  "description": "Persistent store integrations, also called “big segment” store integrations, are required when you use a server-side SDK and big segments. You can use the persistent store integrations API endpoints to manage these integrations."
+}

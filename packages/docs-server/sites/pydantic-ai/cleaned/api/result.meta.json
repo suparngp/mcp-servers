@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.result`",
+  "crawledAt": "2025-10-31T04:57:47.667Z",
+  "cleanedAt": "2025-10-31T04:57:48.106Z",
+  "url": "https://ai.pydantic.dev/api/result/",
+  "description": "Bases: `Generic[](https://docs.python.org/3/library/typing.html#typing.Generic \"typing.Generic\")[AgentDepsT[](../tools/#pydantic_ai.tools.AgentDepsT \"pydantic_ai._run_context.AgentDepsT\"), OutputDataT[](../output/#pydantic_ai.output.OutputDataT \"pydantic_ai.output.OutputDataT\")]`"
+}

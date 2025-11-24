@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.339Z",
+  "cleanedAt": "2025-11-21T18:14:32.066Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/custom-count",
+  "description": "This topic explains how to create a custom conversion count metric in LaunchDarkly. Custom conversion count metrics track how many times an event occurs. You can use this metric with any event you set up in your codebase."
+}

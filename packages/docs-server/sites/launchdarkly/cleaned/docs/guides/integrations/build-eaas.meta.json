@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:14.453Z",
+  "cleanedAt": "2025-11-21T18:16:14.772Z",
+  "url": "https://launchdarkly.com/docs/guides/integrations/build-eaas",
+  "description": "This guide explains how LaunchDarkly partners can use the REST API to build an Environment as a Service (EaaS) integration. By the end of this guide, you as a LaunchDarkly partner should have the information you need to create an integration that can manage the full lifecycle of on-demand LaunchDarkly environments."
+}

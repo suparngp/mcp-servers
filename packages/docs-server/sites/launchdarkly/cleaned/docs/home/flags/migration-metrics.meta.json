@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.713Z",
+  "cleanedAt": "2025-11-21T18:13:12.167Z",
+  "url": "https://launchdarkly.com/docs/home/flags/migration-metrics",
+  "description": "Three metrics are available for migration flags: consistency rate, p99 latency, and error rate. You can use these metrics to track the progress of a migration flag. LaunchDarkly reports metrics at the flag and cohort level to provide fine-grained insight into your migration. Flag level metrics can include metrics not reflected in current cohorts. For example, you may see metrics from recently deleted cohorts, evaluations from while the flag was turned off, or if the prerequisite check failed."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:50.434Z",
+  "cleanedAt": "2025-11-21T18:31:50.868Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/migrations",
+  "description": "This topic explains how to use LaunchDarkly SDKs to manage migrations or modernizations. You might use this feature if you are optimizing queries, upgrading to new tech stacks, migrating from one database to another, or other similar technology changes. This feature is available for server-side and edge SDKs only."
+}

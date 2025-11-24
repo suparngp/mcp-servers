@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:36.064Z",
+  "cleanedAt": "2025-11-21T18:14:36.478Z",
+  "url": "https://launchdarkly.com/docs/home/warehouse-native/snowflake-configure",
+  "description": "If you have both [Data Export](/docs/integrations/data-export) and [Experimentation](/docs/home/experimentation) enabled for your LaunchDarkly account, you should have access to Snowflake native Experimentation. If you do not have access or need help getting started, contact your LaunchDarkly representative or [start a Support ticket](https://support.launchdarkly.com/hc/en-us/requests/new)."
+}

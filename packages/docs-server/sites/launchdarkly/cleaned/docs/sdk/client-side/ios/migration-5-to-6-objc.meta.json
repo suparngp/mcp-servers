@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:07.510Z",
+  "cleanedAt": "2025-11-21T18:32:07.790Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/ios/migration-5-to-6-objc",
+  "description": "This topic explains how to adapt Objective-C code that currently uses a 5.x version of the [iOS client-side SDK](/docs/sdk/client-side/ios) to use version 6.0 or later. The sections in this topic address different changes and updates between versions 5.x and 6.0 of the SDK."
+}

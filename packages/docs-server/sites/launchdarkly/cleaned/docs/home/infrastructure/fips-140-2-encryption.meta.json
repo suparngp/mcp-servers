@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:50.080Z",
+  "cleanedAt": "2025-11-21T18:14:50.466Z",
+  "url": "https://launchdarkly.com/docs/home/infrastructure/fips-140-2-encryption",
+  "description": "In some customer environments, notably those serving the US government community, there may be compliance requirements to use [FIPS 140-2](https://csrc.nist.gov/publications/detail/fips/140/2/final) validated encryption modules. This topic explains how customers can use LaunchDarkly in environments that require that all data is encrypted in transit using FIPS 140-2 validated encryption modules."
+}

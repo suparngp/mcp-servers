@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:07.393Z",
+  "cleanedAt": "2025-11-21T18:32:07.564Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/ios",
+  "description": "**Version 9 of the iOS SDK introduces optional automatic collection of environment attributes**. To learn more about upgrading, read [iOS SDK 8.x to 9.0 migration guide](/docs/sdk/client-side/ios/migration-8-to-9)."
+}

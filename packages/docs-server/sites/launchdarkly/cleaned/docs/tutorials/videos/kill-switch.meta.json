@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:36:34.199Z",
+  "cleanedAt": "2025-11-21T18:36:34.522Z",
+  "url": "https://launchdarkly.com/docs/tutorials/videos/kill-switch",
+  "description": "This video explains how to use LaunchDarkly to create a kill switch. When traffic spikes or an external service fails, you shouldn’t need to redeploy just to stop the bleeding."
+}

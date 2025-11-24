@@ -1,0 +1,7 @@
+{
+  "title": "tl;dr: npm stands for nerfed package manager",
+  "crawledAt": "2025-11-21T18:36:38.576Z",
+  "cleanedAt": "2025-11-21T18:36:38.980Z",
+  "url": "https://launchdarkly.com/docs/blog/npm-breach-supply-chain-security",
+  "description": "In case you missed it, two popular npm packages ([`chalk`](https://github.com/chalk/chalk/issues/656) and [`debug`](https://github.com/debug-js/debug/issues/1005#issuecomment-3266885191)) were compromised last week."
+}

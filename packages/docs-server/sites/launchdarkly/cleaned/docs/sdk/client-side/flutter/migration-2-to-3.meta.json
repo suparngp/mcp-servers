@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:07.536Z",
+  "cleanedAt": "2025-11-21T18:32:07.977Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/flutter/migration-2-to-3",
+  "description": "This topic explains the changes in the Flutter SDK 3.0 release and how to migrate to that version."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:45.491Z",
+  "cleanedAt": "2025-11-21T18:14:45.900Z",
+  "url": "https://launchdarkly.com/docs/home/warehouse-native/metrics",
+  "description": "This topic explains how to configure a warehouse native metric for use in warehouse native experiments. Warehouse native metrics are metrics that measure events stored in an external warehouse that you specify. Warehouse native metrics are available for use in only warehouse native experiments."
+}

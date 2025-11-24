@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:31.470Z",
+  "cleanedAt": "2025-11-21T18:13:31.942Z",
+  "url": "https://launchdarkly.com/docs/home/flags/context-kinds",
+  "description": "This topic explains what context kinds are and how to use them. Context kinds let you group context attributes together conceptually. When you create individual targets or add targeting rules for a flag or a segment, the available context attributes are organized by context kind."
+}

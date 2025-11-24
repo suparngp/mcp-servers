@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:43.783Z",
+  "cleanedAt": "2025-11-21T18:13:44.231Z",
+  "url": "https://launchdarkly.com/docs/home/releases/creating-guarded-rollouts",
+  "description": "This topic explains how to create a guarded rollout. Guarded rollouts let you progressively increase traffic to a flag or AI Config variation over time while monitoring chosen metrics for regressions. If LaunchDarkly detects a regression, it can pause the release and send you a notification."
+}

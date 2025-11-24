@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:01.468Z",
+  "cleanedAt": "2025-11-21T18:13:01.885Z",
+  "url": "https://launchdarkly.com/docs/home/flags/types",
+  "description": "This topic explains the four types of feature flags and when to use them. When you create a flag, you can choose from four different flag types for different common use cases."
+}

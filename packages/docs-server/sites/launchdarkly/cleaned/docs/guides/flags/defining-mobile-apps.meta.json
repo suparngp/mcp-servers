@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:37:12.640Z",
+  "cleanedAt": "2025-11-21T18:37:12.988Z",
+  "url": "https://launchdarkly.com/docs/guides/flags/defining-mobile-apps",
+  "description": "This guide discusses best practices for defining applications in LaunchDarkly so that you can easily target specific apps and versions."
+}

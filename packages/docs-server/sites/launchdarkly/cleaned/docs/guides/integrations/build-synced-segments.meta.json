@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:14.495Z",
+  "cleanedAt": "2025-11-21T18:16:15.435Z",
+  "url": "https://launchdarkly.com/docs/guides/integrations/build-synced-segments",
+  "description": "This guide explains how LaunchDarkly partners can use the integration framework to build a synced segments integration."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:19.956Z",
+  "cleanedAt": "2025-11-21T18:32:20.584Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/dotnet/migration-6-to-7",
+  "description": "This topic explains the changes in the .NET (server-side) SDK 7.0 release and how to adapt code that uses a 6.x version of the [.NET (server-side) SDK](/docs/sdk/server-side/dotnet) to use version 7.0 or later."
+}

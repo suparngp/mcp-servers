@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:15.281Z",
+  "cleanedAt": "2025-11-21T18:14:15.631Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/types",
+  "description": "This topic explains the different kinds of experiments you can run in LaunchDarkly, including feature change experiments, funnel optimization experiments, and Data Export experiments. Experiments let you measure the effect of flags or AI Configs on end users by mapping customer behavior to the metrics your team cares about. To learn more, read [Designing experiments](/docs/guides/experimentation/designing-experiments)."
+}

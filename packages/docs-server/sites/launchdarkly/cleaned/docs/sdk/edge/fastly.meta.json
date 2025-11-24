@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:36.526Z",
+  "cleanedAt": "2025-11-21T18:32:36.853Z",
+  "url": "https://launchdarkly.com/docs/sdk/edge/fastly",
+  "description": "Development work on the Fastly SDK is ongoing. The SDK is fully tested and we consider it production-ready, however, we are actively soliciting feedback on its usage. Some external APIs could change prior to the v1 release."
+}

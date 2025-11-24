@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:15.436Z",
+  "cleanedAt": "2025-11-21T18:14:15.865Z",
+  "url": "https://launchdarkly.com/docs/home/product-analytics/chart/attributes",
+  "description": "This topic explains how to use the product analytics **Attributes** tab, and what information that tab contains. An attribute is an attribute of the user or event that helps you analyze your data further to carry out deeper analysis. Attributes in product analytics are a subset of context attributes, specifically those associated with the `user` context. To learn more about context attributes, read [Context attributes](/docs/home/flags/context-attributes)."
+}

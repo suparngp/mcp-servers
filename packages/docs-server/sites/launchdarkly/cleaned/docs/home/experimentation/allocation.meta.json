@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:19.020Z",
+  "cleanedAt": "2025-11-21T18:14:19.367Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/allocation",
+  "description": "This topic explains how to include specific groups of contexts in an experiment audience using audience allocation."
+}

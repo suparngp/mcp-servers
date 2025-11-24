@@ -1,0 +1,282 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Algorithms](#algorithms)
+ * [Receiving feature flag updates](#receiving-feature-flag-updates)
+ * [Receiving flag updates in server-side SDKs](#receiving-flag-updates-in-server-side-sdks)
+ * [Receiving flag updates in SDKs using the client-side ID](#receiving-flag-updates-in-sdks-using-the-client-side-id)
+ * [Receiving flag updates in SDKs using the mobile key](#receiving-flag-updates-in-sdks-using-the-mobile-key)
+ * [Evaluating feature flags](#evaluating-feature-flags)
+ * [Flag evaluation in server-side SDKs](#flag-evaluation-in-server-side-sdks)
+ * [Flag evaluation in client-side SDKs](#flag-evaluation-in-client-side-sdks)
+ * [Recording events](#recording-events)
+ * [Feature and debug events](#feature-and-debug-events)
+ * [Index and identify events](#index-and-identify-events)
+ * [Custom events](#custom-events)
+ * [Summary events](#summary-events)
+ * [Migration op events](#migration-op-events)
+ * [Diagnostic events](#diagnostic-events)
+ * [Principles](#principles)
+ * [Common pitfalls](#common-pitfalls)
+ * [More resources](#more-resources)
+## Overview
+This topic explains how LaunchDarkly SDKs work. Our SDKs are all open source, and we encourage pull requests and other contributions from the community.
+This topic is intended to help anyone create a LaunchDarkly server-side or client-side SDK for a new platform from scratch, or contribute to an existing SDK implementation. We encourage you to reach out to us for additional details if you are interested in contributing to an edge SDK or AI SDK implementation.
+## Algorithms
+There are three main components to a LaunchDarkly SDK implementation:
+ * [Receiving feature flag updates](/docs/sdk/concepts/contributors-guide#receiving-feature-flag-updates)
+ * [Evaluating feature flags](/docs/sdk/concepts/contributors-guide#evaluating-feature-flags)
+ * [Recording events](/docs/sdk/concepts/contributors-guide#recording-events)
+## Receiving feature flag updates
+LaunchDarkly SDKs store all feature flags in memory. SDKs typically receive flag updates asynchronously through our streaming protocol, as is the default case in most SDKs. While LaunchDarkly’s various SDKs typically support the same two mechanisms for receiving feature flag updates, their implementation details vary.
+The SDKs can use either of the following mechanisms to populate a feature flag store, which is a thread-safe, in-memory map from feature flag keys to feature flag JSON. Evaluating a feature flag is a very lightweight and inexpensive effort and requires no per-evaluation requests to LaunchDarkly’s servers.
+Server-side SDKs can read flags from the in-memory store and evaluate them using the evaluation algorithm, and client-side SDKs can retrieve pre-evaluated flag values from the in-memory store. To learn more, read [Evaluating feature flags](/docs/sdk/concepts/contributors-guide#evaluating-feature-flags).
+### Receiving flag updates in server-side SDKs
+Flag updates are triggered when you make changes on your **Flags** list, and arrive by one of two mechanisms:
+ 1. **Through LaunchDarkly’s streaming API** : A server-side SDK can subscribe to LaunchDarkly’s streaming API at `https://stream.launchdarkly.com/all`, or `https://stream.launchdarkly.com/sdk/stream` if using [data saving mode](/docs/sdk/features/data-saving-mode). This call must include an `Authorization` header with the value `${sdk_key}`, where `${sdk_key}` is the SDK key the client application passes to the LaunchDarkly client configuration. Our streaming API uses the [server-sent events protocol](https://html.spec.whatwg.org/multipage/comms.html#server-sent-events).
+ 2. **By polling LaunchDarkly’s evaluation API** : A server-side SDK can poll `https://sdk.launchdarkly.com/sdk/latest-all`, or `https://sdk.launchdarkly.com/sdk/poll` if using [data saving mode](/docs/sdk/features/data-saving-mode). This call must include an `Authorization` header with value `${sdk_key}`, where `${sdk_key}` is the API key the client application passed to the LaunchDarkly client configuration. Ideally, the SDK implementor should periodically poll this resource. We recommend making one call every thirty seconds; at a minimum, you must throttle the implementation to make at most one call per second. This resource may return caching headers. Use [ETags](https://en.wikipedia.org/wiki/HTTP_ETag) and conditional requests to reduce network transfer when no flags have been modified between requests. This is a common use case, so remember to account for it.
+Expose the store itself as an interface so that you can easily implement alternative configurations, for example, a Redis-backed store.
+Additionally, server-side SDKs often support a mechanism for receiving feature flag updates without establishing a direct connection to LaunchDarkly. This mechanism relies on the [LaunchDarkly Relay Proxy](/docs/sdk/relay-proxy) to connect to LaunchDarkly, receive feature flag updates, and keep a persistent feature store up-to-date. When a server-side SDK is configured to operate in this mode, it will defer to the Relay Proxy to update the persistent feature store whenever a feature flag is updated. This mode should be configurable and disabled by default. To learn more, read [Using a persistent feature store without connecting to LaunchDarkly](/docs/sdk/concepts/data-stores#using-a-persistent-feature-store-without-connecting-to-launchdarkly).
+### Receiving flag updates in SDKs using the client-side ID
+This section corresponds to a subset of LaunchDarkly’s client-side SDKs. To learn more about the client-side ID, read [Keys](/docs/sdk/concepts/client-side-server-side#keys).
+Flag updates are triggered when you make changes on your **Flags** list, and arrive by one of two mechanisms:
+ 1. **Through LaunchDarkly’s streaming API** : LaunchDarkly’s streaming API uses the [server-sent events protocol](https://html.spec.whatwg.org/multipage/comms.html#server-sent-events).
+There are two ways to use this method:
+ * **Using a`GET` request**: subscribe to LaunchDarkly’s streaming API at `https://clientstream.launchdarkly.com/eval/<clientSideId>/<context>`. Replace the `clientSideId` variable with the LaunchDarkly environment’s client-side ID. Replace the `context` variable with the base64-encoded, URL-safe version of the context’s JSON object.
+ * **Using a`REPORT` request**: subscribe to our streaming API at `https://clientstream.launchdarkly.com/eval/<clientSideId>`. Replace the `clientSideId` variable with the LaunchDarkly environment’s client-side ID. Not all HTTP clients support `REPORT` requests.
+ 1. **By polling LaunchDarkly’s evaluation API** : The SDK implementor should periodically poll this resource. We recommend making one call every thirty seconds. At a minimum, you must throttle the implementation to make at most one call per second. This resource may return caching headers. Use [ETags](https://en.wikipedia.org/wiki/HTTP_ETag) and conditional requests to reduce network transfer when no flags have been modified between requests. This is a common use case, so remember to account for it.
+There are two ways to use this method:
+ * **Using a`GET` request**: poll `https://clientsdk.launchdarkly.com/sdk/evalx/<clientSideId>/contexts/<context>`. Replace the `clientSideId` variable with the LaunchDarkly environment’s client-side ID. Replace the `context` variable with the base64-encoded, URL-safe version of the context’s JSON object.
+ * **Using a`REPORT` request**: poll `https://clientsdk.launchdarkly.com/sdk/evalx/<clientSideId>/contexts`. Replace the `clientSideId` variable with the LaunchDarkly environment’s client-side ID. Not all HTTP clients support `REPORT` requests.
+### Receiving flag updates in SDKs using the mobile key
+This section corresponds to a subset of LaunchDarkly’s client-side SDKs. To learn more about the mobile key, read [Keys](/docs/sdk/concepts/client-side-server-side#keys).
+Flag updates are triggered when you make changes on your **Flags** list, and arrive by one of two mechanisms:
+ 1. **Through LaunchDarkly’s streaming API** : LaunchDarkly’s streaming API uses the [server-sent events protocol](https://html.spec.whatwg.org/multipage/comms.html#server-sent-events). This call must include an Authorization header with the value `${mobile_key}`, where `${mobile_key}` is the mobile key the client application passes to the LaunchDarkly client configuration.
+There are two ways to use this method:
+ * **Using a`GET` request**: subscribe to LaunchDarkly’s streaming API at `https://clientstream.launchdarkly.com/meval/<context>`. Replace the `context` variable with the base64-encoded, URL-safe version of the context’s JSON object.
+ * **Using a`REPORT` request**: subscribe to LaunchDarkly’s streaming API at `https://clientstream.launchdarkly.com/meval`. Not all HTTP clients support `REPORT` requests.
+ 1. **By polling LaunchDarkly’s evaluation API** : The SDK implementor should periodically poll this resource. We recommend making one call every thirty seconds. At a minimum, you must throttle the implementation to make at most one call per second. Use [ETags](https://en.wikipedia.org/wiki/HTTP_ETag) and conditional requests to reduce network transfer when no flags have been modified between requests. This resource may return caching headers. This call must include an `Authorization` header with value `${mobile_key}`, where `${mobile_key}` is the mobile key the client application passed to the LaunchDarkly client configuration.
+There are two ways to use this method:
+ * **Using a`GET` request**: poll `https://clientsdk.launchdarkly.com/msdk/evalx/contexts/<context>`. Replace the `context` variable with the base64-encoded, URL-safe version of the context’s JSON object.
+ * **Using a`REPORT` request**: poll `https://clientsdk.launchdarkly.com/msdk/evalx/context`. Not all HTTP clients support `REPORT` requests.
+ * **Using a`GET` request**: poll `https://clientsdk.eu.launchdarkly.com/msdk/evalx/contexts/<context>`. Replace the `context` variable with the base64-encoded, URL-safe version of the context’s JSON object.
+ * **Using a`REPORT` request**: poll `https://clientsdk.eu.launchdarkly.com/msdk/evalx/context`. Not all HTTP clients support `REPORT` requests.
+## Evaluating feature flags
+Server-side and client-side SDKs significantly differ in how they evaluate feature flags. For a high-level explanation, read [Flag evaluations](/docs/sdk/concepts/client-side-server-side#flag-evaluations).
+### Flag evaluation in server-side SDKs
+To implement the variation method in a server-side SDK, a feature flag is retrieved from the store and evaluated directly in the SDK. To learn more about evaluation rules, read [Flag evaluation rules in server-side SDKs](/docs/sdk/concepts/flag-evaluation-rules).
+The [LaunchDarkly Go SDK](https://github.com/launchdarkly/go-server-sdk/blob/v7/ldclient.go) serves as our reference evaluation algorithm.
+### Flag evaluation in client-side SDKs
+As described in [Flag evaluations](/docs/sdk/concepts/client-side-server-side#flag-evaluations), client-side SDKs do not evaluate flags on their own. LaunchDarkly’s services are responsible for evaluating flag rules.
+To implement the variation method in a client-side SDK, return the last-known evaluated value from the store for the specified flag key.
+## Recording events
+##### Are you importing data?
+This page is targeted at contributors to LaunchDarkly SDKs. If you are a LaunchDarkly customer looking for a way to import your metric events into LaunchDarkly from an existing data source, or a data provider looking to integrate with LaunchDarkly, use the metric import API to record your events instead. To learn more, read [Importing metric events](/docs/home/metrics/import-events).
+Most SDKs send the following kinds of events:
+ * `summary` events describe a set of individual feature evaluations over an interval.
+ * `feature` events include additional feature flag evaluation details for flags used in Experimentation and flags you enable detailed tracking for.
+ * `debug` events describe feature flag evaluations when debugging mode is on.
+ * `index` and `identify` events push context data to LaunchDarkly.
+ * `page view` and `click` events are sent by JavaScript-based SDKs when pages are visited or clicked as part of an experiment.
+ * `custom` events are sent when an application calls the SDK’s track method.
+ * `migration_op` events report on metrics specific to [migration flags](/docs/home/flags/migration).
+ * `diagnostic` events report on how the SDK is configured and operating.
+Server-side, client-side, and mobile SDKs must batch and send events to the LaunchDarkly server **asynchronously**. This is a requirement.
+For server-side, client-side, and mobile SDKs, do this by creating a background job that runs every 30 seconds and makes a `POST` call to `/bulk` for server-side SDKs, to `/events/bulk/{envId}` for client-side JavaScript SDKs, and to `/mobile/events/bulk` for mobile SDKs.
+This call must have a `Content-Type` header set to `application/json` and must include a JSON body consisting of a list of events. Calls to server-side and mobile SDKs must have an `Authorization` header set to `api_key ${api_key}`. Client-side JavaScript SDKs do not need an `Authorization` header.
+LaunchDarkly has separate subdomains for receiving events from mobile SDKs versus server-side and client-side JavaScript SDKs. Mobile SDKs use `mobile.launchdarkly.com`. Server-side SDKs, edge SDKs, and client-side JavaScript SDKs use `events.launchdarkly.com`.
+On platforms with poor multithreading support like PHP, you may need to get creative. To learn more, read [How to Make Async Requests in PHP](https://segment.com/blog/how-to-make-async-requests-in-php/).
+The time between batch calls to the event API should be configurable. The SDK should have a configuration element for the maximum number of events to store between batch calls. If this capacity is exceeded before a batch call, events should be discarded and a warning logged.
+### Feature and debug events
+A `feature` event should only be generated in one of these scenarios:
+ * the `trackEvents` or `trackEventsFallthrough` attribute on the flag configuration is sent
+ * the `trackEvents` attribute on a targeting rule is sent
+ * the targeting rule or default rule when on has a rollout of kind `"experiment"` and the variation associated with the event is included in the tracked variations for that rollout
+For feature events, the `kind` attribute should always be `"feature"`. Evaluating flag prerequisites generates one additional `feature` event per evaluation. These `feature` events should have the `prereqOf` attribute set to the originating flag’s key. The `prereqOf` attribute should only be set for flags which are evaluated to determine a prerequisite value.
+Depending on your SDK configuration, `feature` events may include all of the context attribute values instead of the `contextKey`. In this case, the SDK sends the context attributes in a `context` property. If `feature` events include all context attribute values, the SDK will not send a corresponding `index` event.
+For an example and the full list of `feature` event properties, read [Feature events](/docs/integrations/data-export/schema-reference#feature-events).
+The `debug` event is a variant on the `feature` event, with two differences. It has `kind` set to `"debug"` and it inlines the `context` value. It is only sent if the `debugEventsUntilDate` attribute is set for a feature flag and indicates a UNIX epoch timestamp in milliseconds that has not yet elapsed. `debug` events are not controlled by the `trackEvents` field.
+For an example and the full list of `debug` event properties, read [Debug events](/docs/integrations/data-export/schema-reference#debug-events).
+### Index and identify events
+SDKs periodically transmit details for the `context` object used in a feature flag evaluation as reported by the `feature` event with a separate `index` event. The SDK will only send `index` events when a context’s attributes change.
+The `kind` for an `index` event is `index`. The value of `context` is the same as described above for a `debug` event.
+For an example and the full list of `index` event properties, read [Index events](/docs/integrations/data-export/schema-reference#index-events).
+`identify` events are produced when the client application calls an SDK method called identify. `identify` events have an identical structure to `index` events, except the `kind` is set to `identify`.
+For an example and the full list of `identify` event properties, read [Identify events](/docs/integrations/data-export/schema-reference#identify-events).
+### Custom events
+SDKs produce `custom` events when the client application calls the SDK’s `track` method.
+Custom events can contain the following optional attributes:
+ * `data` can contain any arbitrary JSON.
+ * `metricValue` can contain a number.
+Depending on your SDK configuration and version, `custom` events may include all of the context attribute values instead of the `contextKey`. This capability is referred to as “Inline contexts in custom events” in the [Supported features](/docs/sdk#supported-features) table, and enables additional features in the LaunchDarkly UI, such as [Filtering custom metric events](/docs/home/metrics/event-filters). In this case, the SDK sends the context attributes in a `context` property. If `custom` events include all context attribute values, the SDK will not send a corresponding `index` event.
+For an example and the full list of `custom` event properties, read [Custom events](/docs/integrations/data-export/schema-reference#custom-events).
+### Summary events
+The SDK is expected to send `summary` events for every flush interval describing all of the feature evaluations that occurred during that interval. Summary events include all feature evaluations, regardless of whether the `trackEvents` field was set for individual flags.
+The `summary` event represents a set of feature flag evaluations occurring during an interval defined by `startDate` and `endDate`, broken out by feature flag.
+The SDK should generate a separate entry in `counters` for each unique value/version/variation combination encountered during the interval.
+The call to `/api/events/bulk` should contain a JSON list of events.
+For an example and the full list of `summary` event properties, including `counters` properties, read [Summary events](/docs/integrations/data-export/schema-reference#summary-events).
+### Migration op events
+SDKs that support migration flags send a `migration_op` event back to LaunchDarkly after each migration operation to record the migration metrics, such as consistency rate, P99 latency, and error rate. To learn more, read the product documentation on [Migration flags](/docs/home/flags/migration) and the SDK feature documentation on [Migrations](/docs/sdk/features/migrations).
+###### Expand Example migration op event
+Here is an example `migration_op` event:
+Migration op event
+```
+1
+| {
+---|--- 
+2
+| "kind": "migration_op",
+3
+| "creationDate": 0,
+4
+| "contextKeys": {
+5
+| "user": "user-key"
+6
+| },
+7
+| "operation": "read",
+8
+| "evaluation": {
+9
+| "key": "migration-flag-key",
+10
+| "value": "OFF",
+11
+| "reason": {
+12
+| "kind": "RULE_MATCH",
+13
+| "ruleIndex": 0,
+14
+| "ruleId": "id",
+15
+| "inExperiment": true,
+16
+| "bigSegmentsStatus": "HEALTHY"
+17
+| },
+18
+| "variation": 0,
+19
+| "version": 3
+20
+| },
+21
+| "samplingRatio": 10,
+22
+| "measurements": [
+23
+| {
+24
+| "key": "invoked",
+25
+| "values": {
+26
+| "old": true,
+27
+| "new": true
+28
+| }
+29
+| },
+30
+| {
+31
+| "key": "consistent",
+32
+| "value": false
+33
+| },
+34
+| {
+35
+| "key": "latency_ms",
+36
+| "values": {
+37
+| "old": 10,
+38
+| "new": 15
+39
+| }
+40
+| },
+41
+| {
+42
+| "key": "error",
+43
+| "values": {
+44
+| "old": false,
+45
+| "new": true
+46
+| }
+47
+| }
+48
+| ]
+49
+| }
+```
+Here is a list of the `migration_op` event properties:
+ * `kind`: The kind of a `migration_op` event is `migration_op`.
+ * `creationDate`: When the SDK requested the migration operation, as UNIX epoch time in milliseconds.
+ * `contextKeys`: The keys of the `context` object used in a feature flag evaluation.
+ * `operation`: The kind of migration operation, either `read` or `write`.
+ * `evaluation`: The results of the migration feature flag evaluation.
+ * `measurements`: The migration flag metrics for this flag evaluation, for the consistency, p99 latency, and error rate. To learn more, read [Migration flag metrics](/docs/home/flags/migration-metrics).
+### Diagnostic events
+`diagnostic` events are optional events which report on the SDK’s configuration and operational behavior. These events are strictly for use by LaunchDarkly’s internal teams and are intended to provide insights into how SDKs are operating in the field. Diagnostic events are not used for any customer-facing features nor is the resulting data accessible to customers. Support for `diagnostic` events varies across LaunchDarkly SDKs.
+`diagnostic` events have two variants:
+ 1. An initial `diagnostic` event is sent upon SDK initialization. This event summarizes high-level information about the underlying platform such as the operating system name and version and the platform version name and version (e.g. Java 1.8 or Python 3.5). Additionally, this event includes information about how the SDK is configured.
+ 2. A `diagnostic` event is sent periodically throughout the SDK’s lifetime. By default this event is sent every 15 minutes. This event describes the SDK’s operational behavior in the time lapsed since the prior `diagnostic` event’s submission. For example, the event includes information about the SDK’s attempts to establish a streaming connection to LaunchDarkly and a counter of how many events were most recently sent to LaunchDarkly.
+The technical details of how to implement `diagnostic` events in a LaunchDarkly SDK are beyond the scope of this document. It is not expected that a third-party would implement `diagnostic` events when building a new SDK from scratch.
+## Principles
+ 1. Minimize external dependencies and try to use as few external libraries as possible. If all you need from a library is a single utility method, prefer inlining it to importing the library, license permitting. This helps minimize version conflicts if client applications happen to be using the same libraries.
+ 2. Be consistent with the conventions and style of the target language. For example, if most libraries in that language are written in snake case, use snake case. If camel case is standard, use camel case. Target language consistency trumps consistency with other LaunchDarkly SDKs.
+ 3. Use the target language’s preferred module and package layout. For example, jar files for Java and gems for Ruby.
+ 4. Publish libraries to the most popular module hosting service for the target language. For example, the Java SDK is published to Maven central. The Python SDK is published to PyPi. .Net should be published by NuGet. Try not to publish to a nonstandard location that requires clients to customize their project build definitions. For example, don’t use Bintray.
+ 5. If there’s a platform standard for generating and publishing documentation, use it. For example, the Java SDK includes Javadoc comments and a build target to produce Javadoc pages.
+ 6. All SDKs should be open sourced and published with the Apache 2.0 license.
+ 7. Follow [semantic versioning](http://semver.org/) guidelines for SDK versions.
+ 8. Write unit tests using a standard testing framework.
+ 9. In statically typed languages, make the SDK as type-safe as possible.
+ 10. Use best practices with respect to logging. A proper logging package should be used, and log entries should have appropriate log levels. Simply logging output to standard out is probably not appropriate.
+ 11. Use best practices with respect to error handling. Be extremely defensive and assume anything can fail. For variation calls, use a top-level catch-all error handler that returns the default value if any exceptions or unexpected errors occur. Log when the default value is returned because of an exception or unexpected error.
+ 12. Make the SDK thread-safe. SDKs should not be expected to have to introduce locking around API calls for thread-safety. Furthermore, the LDClient instance itself should be a thread-safe singleton. Clients should be expected to instantiate one LDClient for the lifetime of their application.
+ 13. All SDK calls to the LaunchDarkly REST API with an entity body should have the `Content-Type` header set to `application/json`.
+ 14. All timestamps should be sent as UNIX time in milliseconds. Event timestamps should reflect as nearly as possible the time that the event was created, not the time that the event was sent.
+ 15. The HTTP client used in the SDK should have reasonable timeouts set by default. If supported by the client library, separate connection and read timeouts should be specified. A reasonable but conservative set of default values is one second for connection timeouts and two seconds for read timeouts.
+## Common pitfalls
+We’ve observed a few common mistakes in integrating the LaunchDarkly SDK at customer sites. It’s helpful for the SDKs to introduce specific logging around these errors and handle them as gracefully as possible:
+ * Passing `null` or the language equivalent as the context `key`, or omitting the `key` property altogether. SDKs should log this at error level and return the default value.
+ * Including a trailing slash in the base URL of a custom config object. Example: `https://sdk.launchdarkly.com/`, which when appended with `/api`, yields `https://sdk.launchdarkly.com//api`. SDKs should deal with this by trimming trailing slashes off of custom base URL parameters.
+## More resources
+Here are some examples from other LaunchDarkly SDK implementations:
+ * [Java Server SDK](https://github.com/launchdarkly/java-core/tree/main/lib/sdk/server) and the corresponding [Javadoc](https://launchdarkly.github.io/java-core/lib/sdk/server/)
+ * [Python Server SDK](https://github.com/launchdarkly/python-server-sdk)
+The [LaunchDarkly REST API documentation](http://apidocs.launchdarkly.com/) may be helpful as well.
+##### Newer versions of LaunchDarkly SDKs replace users with contexts
+A context is a generalized way of referring to the people, services, machines, or other resources that encounter feature flags in your product. Contexts replace another data object in LaunchDarkly: “users.”
+Creating contexts and evaluating flags based on them is supported in the latest major versions of [most of our SDKs](/docs/sdk). For these SDKs, the code samples on this page include the two most recent versions.
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

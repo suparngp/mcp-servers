@@ -1,0 +1,7 @@
+{
+  "title": "Truthy and Falsy",
+  "crawledAt": "2025-11-24T01:47:05.553Z",
+  "cleanedAt": "2025-11-24T01:47:05.777Z",
+  "url": "https://jsonlogic.com/truthy.html",
+  "description": "Because JsonLogic rules need to return the same results when executed by different languages, it carries its own specification on what is truthy and what is falsy."
+}

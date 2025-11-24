@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:23.392Z",
+  "cleanedAt": "2025-11-21T18:14:23.766Z",
+  "url": "https://launchdarkly.com/docs/home/multi-armed-bandits",
+  "description": "This section contains documentation on multi-armed bandits (MABs), which are a type of experiment that uses a decision-making algorithm that dynamically allocates traffic to the best-performing variation of a flag based on a metric you choose."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:19.314Z",
+  "cleanedAt": "2025-11-21T18:13:19.863Z",
+  "url": "https://launchdarkly.com/docs/home/flags/default-rule",
+  "description": "This topic explains how to set the default rule for a flag. LaunchDarkly defines a final default rule, sometimes called the “fallthrough” rule, for any contexts that don’t match any of the previous targeting rules on the flag. The default rule can be a single variation, a [guarded rollout](/docs/home/releases/guarded-rollouts), a [progressive rollout](/docs/home/releases/progressive-rollouts), or a [percentage rollout](/docs/home/releases/percentage-rollouts)."
+}

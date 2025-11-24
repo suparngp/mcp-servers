@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.368Z",
+  "cleanedAt": "2025-11-21T18:14:32.086Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/guardrail-metrics/create",
+  "description": "This topic explains how to create and manage guardrail metrics groups for use in guarded rollouts. LaunchDarkly includes guardrail metrics automatically during guarded rollout setup to help standardize measurement across teams."
+}

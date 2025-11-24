@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:15.857Z",
+  "cleanedAt": "2025-11-21T18:32:16.467Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/roku/migration-1-to-2",
+  "description": "This topic explains the changes in the Roku SDK 2.0 release and how to adapt code that uses a 1.x version of the [Roku SDK](/docs/sdk/client-side/roku) to use version 2.0 or later."
+}

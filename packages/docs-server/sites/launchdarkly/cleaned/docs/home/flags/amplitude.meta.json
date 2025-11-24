@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:35.008Z",
+  "cleanedAt": "2025-11-21T18:13:35.186Z",
+  "url": "https://launchdarkly.com/docs/home/flags/amplitude",
+  "description": "This topic explains how to create segments that sync with an Amplitude cohort. Segment syncing lets you import audiences from Amplitude to LaunchDarkly to more efficiently target and deliver feature flags. You manage the membership of these segments in Amplitude."
+}

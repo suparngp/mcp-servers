@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.516Z",
+  "cleanedAt": "2025-11-21T18:13:12.015Z",
+  "url": "https://launchdarkly.com/docs/home/flags/release",
+  "description": "This topic explains how you can use release flags to progressively roll out functionality. Release flags are temporary flags that initially do not serve the new functionality, then are used to progressively roll out the functionality until they reach 100%."
+}

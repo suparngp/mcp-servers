@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:56.671Z",
+  "cleanedAt": "2025-11-21T18:32:57.019Z",
+  "url": "https://launchdarkly.com/docs/integrations/slack/notifications",
+  "description": "This topic explains how to subscribe to notifications in Slack channels. You can receive notifications when resources are created, updated, deleted, or are ready for removal."
+}

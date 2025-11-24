@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:23.974Z",
+  "cleanedAt": "2025-11-21T18:32:24.543Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/haskell/migration-3-to-4",
+  "description": "This topic explains the changes in the Haskell SDK 4.0 release and how to adapt code that uses a 3.x version of the [Haskell SDK](/docs/sdk/server-side/haskell) to use version 4.0 or later."
+}

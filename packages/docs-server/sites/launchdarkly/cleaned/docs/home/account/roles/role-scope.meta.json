@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:58.085Z",
+  "cleanedAt": "2025-11-21T18:14:58.698Z",
+  "url": "https://launchdarkly.com/docs/home/account/roles/role-scope",
+  "description": "This topic explains how to work with **role scope** and **role attributes**. A role scope is a [resource type](/docs/home/account/roles/role-resources) by which a role may be parameterized. When you define a role, you can optionally specify a role scope and the parameter, which is called a role attribute."
+}

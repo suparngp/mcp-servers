@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:56.603Z",
+  "cleanedAt": "2025-11-21T18:32:56.777Z",
+  "url": "https://launchdarkly.com/docs/integrations/microsoft-teams/approvals",
+  "description": "This topic explains how you can receive approval notifications in Microsoft Teams. Approvals let you request review for changes you plan to make to a flag. You can view approval requests from within the LaunchDarkly Microsoft Teams app. The LaunchDarkly Microsoft Teams app supports approval requests for feature flag changes only."
+}

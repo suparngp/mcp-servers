@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:23.982Z",
+  "cleanedAt": "2025-11-21T18:32:24.585Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/java/migration-5-to-6",
+  "description": "This topic explains the changes in the Java SDK 6.0 release and how to adapt code that uses a 5.x version of the [Java SDK](/docs/sdk/server-side/java) to use version 6.0 or later."
+}

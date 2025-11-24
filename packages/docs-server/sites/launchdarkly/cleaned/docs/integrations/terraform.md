@@ -1,0 +1,38 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [Integrations](/docs/integrations)
+ * [Collaboration tools](/docs/integrations/collaboration)
+ * [Data Export](/docs/integrations/data-export)
+ * [Edge tools](/docs/integrations/edge)
+ * [Environments as a service](/docs/integrations/eaas)
+ * [Experimentation and metric integrations](/docs/integrations/experimentation)
+ * [IDE connectors](/docs/integrations/ide)
+ * [Internal developer platforms](/docs/integrations/idp)
+ * [Observability tools](/docs/integrations/observability)
+ * [Segments integrations](/docs/integrations/segments)
+ * [Workflow management tools](/docs/integrations/workflow)
+ * [More integrations](/docs/integrations/more)
+ * [Managing integrations](/docs/integrations/managing)
+ * [Using the LaunchDarkly integration framework](/docs/integrations/building-integrations)
+ * [Building partner integrations](/docs/integrations/partner-integrations)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Use the Terraform provider](#use-the-terraform-provider)
+##### The Terraform provider is available to customers on select plans
+The Terraform provider is only available to customers on select plans. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/).
+## Overview
+This topic explains what the LaunchDarkly Terraform provider is, what you can use it for, and where to find additional documentation for it.
+Use the LaunchDarkly Terraform provider to manage LaunchDarkly resources as Terraform resources. This allows you to use Terraform scripts to configure and control feature flags, environments, projects, teams, and more.
+You do not have to choose between the LaunchDarkly user interface (UI) and the Terraform provider. You can use a hybrid of both if that meets your needs better. It may make sense to manage one set of LaunchDarkly resources through the Terraform provider, and another set through the UI. For example, you could designate a group of flags to update and configure only through the Terraform provider.
+##### The Terraform provider and roles
+A common scenario is to use roles to define the LaunchDarkly entities that are managed by Terraform. For example, you can tag Terraform-managed resources with a `terraform` tag, and use role policies to prevent team members from modifying those resources with the LaunchDarkly UI.
+To learn more, read [Roles](/docs/home/account/roles).
+## Use the Terraform provider
+To learn more about using the Terraform provider, read the [LaunchDarkly Terraform provider documentation](https://terraform.io/docs/providers/launchdarkly/index.html) hosted on Terraform’s site. Detailed examples of how to configure LaunchDarkly with the Terraform provider are available in the [terraform-provider-launchdarkly repository](https://github.com/launchdarkly/terraform-provider-launchdarkly).
+For a guide on how to use Terraform to manage your LaunchDarkly resources, read [Managing flags with Terraform](/docs/guides/infrastructure/terraform).
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

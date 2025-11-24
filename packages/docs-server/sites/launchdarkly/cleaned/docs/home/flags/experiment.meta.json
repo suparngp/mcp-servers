@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.526Z",
+  "cleanedAt": "2025-11-21T18:13:12.065Z",
+  "url": "https://launchdarkly.com/docs/home/flags/experiment",
+  "description": "This topic explains how you can use experiment flags to test a hypothesis. These flags help you validate the impact of features you roll out to your app or infrastructure."
+}

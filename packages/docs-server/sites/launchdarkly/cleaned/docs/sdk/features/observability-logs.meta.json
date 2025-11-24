@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:44.277Z",
+  "cleanedAt": "2025-11-21T18:32:44.720Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/observability-logs",
+  "description": "The observability plugin automatically sends logs to LaunchDarkly. You can also use `recordLog` to manually create and send a log record."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:07.499Z",
+  "cleanedAt": "2025-11-21T18:32:07.795Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/flutter/migration-1-to-2",
+  "description": "This topic explains the changes in the Flutter 2.0 release and how to migrate to that version."
+}

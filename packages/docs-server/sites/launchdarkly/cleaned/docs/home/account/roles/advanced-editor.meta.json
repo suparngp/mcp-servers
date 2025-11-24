@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:58.078Z",
+  "cleanedAt": "2025-11-21T18:14:58.655Z",
+  "url": "https://launchdarkly.com/docs/home/account/roles/advanced-editor",
+  "description": "This topic explains how to access and use the advanced editor to create complex roles and policies. The advanced editor is a tool for experienced LaunchDarkly members who want to create their own roles. You can use it to create roles and policies that are more complex and detailed than those supported by the policy builder."
+}

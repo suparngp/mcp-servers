@@ -1,0 +1,7 @@
+{
+  "title": "Data Analyst",
+  "crawledAt": "2025-10-31T05:05:44.583Z",
+  "cleanedAt": "2025-10-31T05:05:44.775Z",
+  "url": "https://ai.pydantic.dev/examples/data-analyst/",
+  "description": "Sometimes in an agent workflow, the agent does not need to know the exact tool output, but still needs to process the tool output in some ways. This is especially common in data analytics: the agent needs to know that the result of a query tool is a `DataFrame` with certain named columns, but not necessarily the content of every single row."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:04.167Z",
+  "cleanedAt": "2025-11-21T18:33:04.474Z",
+  "url": "https://launchdarkly.com/docs/integrations/data-export/segment-schema-reference",
+  "description": "This topic explains the different event kinds for Segment Data Export destinations. The JSON schemas for Segment are formatted differently than LaunchDarkly’s. The `index`, `identify`, and `summary` event kinds are **not available** in Segment Data Export destinations, and other events are exported with different labels."
+}

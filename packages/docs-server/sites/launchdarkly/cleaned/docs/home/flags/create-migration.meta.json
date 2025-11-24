@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.496Z",
+  "cleanedAt": "2025-11-21T18:13:11.953Z",
+  "url": "https://launchdarkly.com/docs/home/flags/create-migration",
+  "description": "This topic explains how to create migration flags. Migration flags are temporary flags you can use to migrate data or tech systems without causing outages or downtime."
+}

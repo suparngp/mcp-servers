@@ -1,0 +1,7 @@
+{
+  "title": "Toolsets",
+  "crawledAt": "2025-10-31T04:56:51.967Z",
+  "cleanedAt": "2025-10-31T04:56:52.707Z",
+  "url": "https://ai.pydantic.dev/toolsets/",
+  "description": "A toolset represents a collection of [tools](../tools/) that can be registered with an agent in one go. They can be reused by different agents, swapped out at runtime or during testing, and composed in order to dynamically filter which tools are available, modify tool definitions, or change tool execution behavior. A toolset can contain locally defined functions, depend on an external service to provide them, or implement custom logic to list available tools and handle them being called."
+}

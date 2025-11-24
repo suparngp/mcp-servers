@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:09.818Z",
+  "cleanedAt": "2025-11-21T18:16:10.228Z",
+  "url": "https://launchdarkly.com/docs/guides/flags/eap-targeting",
+  "description": "LaunchDarkly feature flags let you map flag targeting to your precise business needs. Flag and segment targeting can help you govern critical parts of user experiences, tailoring them to each audience segment and adapting them to changing conditions, without requiring custom code."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Anthropic",
+  "crawledAt": "2025-10-31T05:06:09.233Z",
+  "cleanedAt": "2025-10-31T05:06:09.388Z",
+  "url": "https://ai.pydantic.dev/models/anthropic/",
+  "description": "To use `AnthropicModel` models, you need to either install `pydantic-ai`, or install `pydantic-ai-slim` with the `anthropic` optional group:"
+}

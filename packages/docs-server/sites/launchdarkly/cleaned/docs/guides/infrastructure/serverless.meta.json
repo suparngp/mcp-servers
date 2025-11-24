@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:09.862Z",
+  "cleanedAt": "2025-11-21T18:16:10.250Z",
+  "url": "https://launchdarkly.com/docs/guides/infrastructure/serverless",
+  "description": "This guide provides best practice advice for using LaunchDarkly in serverless and short-lived environments. While most uses of serverless architecture require no extra configuration, some apps may benefit from additional configuration to ensure consistent high performance."
+}

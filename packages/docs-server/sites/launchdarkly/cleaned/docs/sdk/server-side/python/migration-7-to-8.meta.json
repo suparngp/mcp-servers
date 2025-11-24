@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:31.974Z",
+  "cleanedAt": "2025-11-21T18:32:32.292Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/python/migration-7-to-8",
+  "description": "This topic explains the changes in the Python SDK 8.0 release and how to adapt code that uses a 7.x version of the [Python SDK](/docs/sdk/server-side/python) to use version 8.0 or later."
+}

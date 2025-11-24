@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:50.193Z",
+  "cleanedAt": "2025-11-21T18:31:50.772Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/offline-mode",
+  "description": "This topic explains how to set an SDK to offline mode. Offline mode closes an SDK’s connection to LaunchDarkly and switches to a feature flag’s last known values."
+}

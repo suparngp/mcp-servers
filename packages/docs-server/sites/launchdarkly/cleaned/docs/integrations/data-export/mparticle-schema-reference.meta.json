@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:00.299Z",
+  "cleanedAt": "2025-11-21T18:33:00.650Z",
+  "url": "https://launchdarkly.com/docs/integrations/data-export/mparticle-schema-reference",
+  "description": "This topic explains the different event kinds for mParticle Data Export destinations. The JSON schemas for mParticle are formatted differently than LaunchDarkly’s. The `index`, `identify`, and `summary` event kinds are **not available** in mParticle Data Export destinations, and other events are exported with different labels."
+}

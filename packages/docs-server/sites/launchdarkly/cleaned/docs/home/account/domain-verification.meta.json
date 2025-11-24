@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:24.405Z",
+  "cleanedAt": "2025-11-21T18:15:24.987Z",
+  "url": "https://launchdarkly.com/docs/home/account/domain-verification",
+  "description": "This topic explains how to verify your domain with LaunchDarkly. This allows members of your organization to access supporting services if your account uses single sign-on (SSO)."
+}

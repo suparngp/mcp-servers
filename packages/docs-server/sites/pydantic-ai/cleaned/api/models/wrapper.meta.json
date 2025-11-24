@@ -1,0 +1,7 @@
+{
+  "title": "pydantic_ai.models.wrapper",
+  "crawledAt": "2025-10-31T04:59:01.033Z",
+  "cleanedAt": "2025-10-31T04:59:01.416Z",
+  "url": "https://ai.pydantic.dev/api/models/wrapper/",
+  "description": "Bases: `Model[](../base/#pydantic_ai.models.Model \"pydantic_ai.models.Model\")`"
+}

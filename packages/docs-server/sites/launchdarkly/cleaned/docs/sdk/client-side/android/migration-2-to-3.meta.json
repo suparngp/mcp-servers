@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:03.072Z",
+  "cleanedAt": "2025-11-21T18:32:03.471Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/android/migration-2-to-3",
+  "description": "This topic explains how to adapt code that currently uses a 2.x version of the [Android client-side SDK](/docs/sdk/client-side/android) to use version 3.0 or later."
+}

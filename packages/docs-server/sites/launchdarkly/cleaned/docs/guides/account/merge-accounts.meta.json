@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:28.073Z",
+  "cleanedAt": "2025-11-21T18:15:28.424Z",
+  "url": "https://launchdarkly.com/docs/guides/account/merge-accounts",
+  "description": "This tutorial explains how to use a LaunchDarkly Labs utility to merge two existing LaunchDarkly projects in different accounts. The utility exports information from a source project, and imports it into a destination project, which can be in a different account. You might want to do this when you upgrade the LaunchDarkly plan you subscribe to, or if your organization has multiple LaunchDarkly accounts that you want to combine into one."
+}

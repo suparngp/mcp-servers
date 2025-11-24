@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:15.335Z",
+  "cleanedAt": "2025-11-21T18:13:15.541Z",
+  "url": "https://launchdarkly.com/docs/home/flags/archive",
+  "description": "This topic explains how to clean up flags you no longer need. LaunchDarkly helps you identify flags that you can remove from your code, then prompts you to archive these flags. Archiving a flag removes it from your **Flags** list in LaunchDarkly, without deleting it."
+}

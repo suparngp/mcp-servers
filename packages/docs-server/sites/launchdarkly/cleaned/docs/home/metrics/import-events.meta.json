@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:35.795Z",
+  "cleanedAt": "2025-11-21T18:14:36.021Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/import-events",
+  "description": "This topic explains how to import metric events from your existing data pipeline for use with [Experimentation](/docs/home/experimentation) and [guarded rollouts](/docs/home/releases/guarded-rollouts). Using the metric import REST API described below, you can send your already-instrumented metrics into LaunchDarkly without writing and deploying new code for each metric."
+}

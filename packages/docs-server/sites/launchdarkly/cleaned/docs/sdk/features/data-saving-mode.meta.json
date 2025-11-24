@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:43.975Z",
+  "cleanedAt": "2025-11-21T18:31:44.228Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/data-saving-mode",
+  "description": "Data saving mode is supported in the server-side SDKs listed below. It is also supported in the [Relay Proxy](/docs/sdk/relay-proxy)."
+}

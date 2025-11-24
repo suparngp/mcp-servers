@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:37.174Z",
+  "cleanedAt": "2025-11-21T18:33:37.601Z",
+  "url": "https://launchdarkly.com/docs/integrations/github-actions/find-code-references",
+  "description": "This topic explains how to use the Find Code References in Pull Request (PR) GitHub Actions integration. The integration lets you determine if you modified any feature flags in a PR as a step in your [GitHub workflow jobs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#jobs) and use those values in later steps."
+}

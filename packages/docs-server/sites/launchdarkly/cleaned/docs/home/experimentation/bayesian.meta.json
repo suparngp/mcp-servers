@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:23.331Z",
+  "cleanedAt": "2025-11-21T18:14:23.613Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/bayesian",
+  "description": "This topic explains how to make decisions about which variation to choose as the winner in a LaunchDarkly experiment that uses Bayesian statistics."
+}

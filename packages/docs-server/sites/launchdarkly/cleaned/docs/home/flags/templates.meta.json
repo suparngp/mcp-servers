@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.432Z",
+  "cleanedAt": "2025-11-21T18:13:11.626Z",
+  "url": "https://launchdarkly.com/docs/home/flags/templates",
+  "description": "This topic explains the different types of flags available in LaunchDarkly. Flag templates are project-wide default settings for different types of flags."
+}

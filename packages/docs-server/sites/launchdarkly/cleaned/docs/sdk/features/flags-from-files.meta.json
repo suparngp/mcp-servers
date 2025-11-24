@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:50.132Z",
+  "cleanedAt": "2025-11-21T18:31:50.336Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/flags-from-files",
+  "description": "This topic explains how to run feature flags from a file when you’re using a server-side SDK."
+}

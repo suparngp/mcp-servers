@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:14.476Z",
+  "cleanedAt": "2025-11-21T18:16:15.471Z",
+  "url": "https://launchdarkly.com/docs/guides/metrics/build-metric",
+  "description": "This guide explains how LaunchDarkly partners can use the REST API to build an integration for [Creating and managing metrics](/docs/home/metrics). By the end of this guide, you as a LaunchDarkly partner should have the information you need to create an integration that can create metrics for our joint customers’ LaunchDarkly experiments."
+}

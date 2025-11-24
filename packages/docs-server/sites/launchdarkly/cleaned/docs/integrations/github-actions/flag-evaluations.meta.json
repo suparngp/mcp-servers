@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:40.517Z",
+  "cleanedAt": "2025-11-21T18:33:41.010Z",
+  "url": "https://launchdarkly.com/docs/integrations/github-actions/flag-evaluations",
+  "description": "This topic explains how to use the Flag Evaluations GitHub Actions integration. The integration lets you evaluate LaunchDarkly feature flags as a step in your [GitHub workflow jobs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#jobs) and use those values in later steps."
+}

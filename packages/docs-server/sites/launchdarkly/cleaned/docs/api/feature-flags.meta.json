@@ -1,0 +1,7 @@
+{
+  "title": "Sample feature flag representation",
+  "crawledAt": "2025-11-21T18:34:51.996Z",
+  "cleanedAt": "2025-11-21T18:34:52.419Z",
+  "url": "https://launchdarkly.com/docs/api/feature-flags",
+  "description": "Every feature flag has a set of top-level attributes, as well as an `environments` map containing the flag rollout and targeting rules specific to each environment. To learn more, read [Using feature flags](https://launchdarkly.com/docs/home/flags/create)."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:53.196Z",
+  "cleanedAt": "2025-11-21T18:15:54.023Z",
+  "url": "https://launchdarkly.com/docs/guides/account/protected-health-info",
+  "description": "This guide explains what to consider when you need to send Protected Health Information (PHI) to LaunchDarkly, and how to enable HIPAA compliance for your LaunchDarkly account."
+}

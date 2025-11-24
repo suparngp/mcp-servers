@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:32.675Z",
+  "cleanedAt": "2025-11-21T18:31:33.188Z",
+  "url": "https://launchdarkly.com/docs/sdk/concepts/version-notifications",
+  "description": "This topic explains how to set up notifications to learn about version updates and end of life notices for LaunchDarkly’s SDKs. You have several options for receiving notifications about new versions of LaunchDarkly’s SDKs. You can also subscribe to notifications about SDK versions that are approaching their end of life."
+}

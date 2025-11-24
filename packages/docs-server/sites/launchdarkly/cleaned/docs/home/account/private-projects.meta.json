@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:49.952Z",
+  "cleanedAt": "2025-11-21T18:14:50.254Z",
+  "url": "https://launchdarkly.com/docs/home/account/private-projects",
+  "description": "This topic explains how to use custom roles to create private projects or restrict access to projects. It gives examples of how to restrict access to one project, effectively creating a private project for members you choose, how to restrict access to all projects, and how to grant access only to one or some projects."
+}

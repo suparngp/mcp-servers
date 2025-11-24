@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:19.154Z",
+  "cleanedAt": "2025-11-21T18:13:19.817Z",
+  "url": "https://launchdarkly.com/docs/home/flags/flag-lifecycle-settings",
+  "description": "This topic describes flag lifecycle settings and how to update them. Flag lifecycle settings let you customize the criteria that LaunchDarkly uses to determine when flags are ready to be archived. [Archiving flags](/docs/home/flags/archive) is a good practice to help clean up flags you no longer need."
+}

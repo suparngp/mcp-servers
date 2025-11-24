@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:31.455Z",
+  "cleanedAt": "2025-11-21T18:13:31.731Z",
+  "url": "https://launchdarkly.com/docs/home/flags/multi-contexts",
+  "description": "This topic includes information about multi-contexts. Contexts are people, services, machines, or other resources that encounter feature flags in your product. Multi-contexts are combinations of several context kinds into one context. Multi-contexts allow your feature flags to target entities based on data from multiple contexts. For multi-contexts, the context `kind` is set to `multi`."
+}

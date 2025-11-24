@@ -1,0 +1,405 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Identifying Java versions for the 5.0 SDK](#identifying-java-versions-for-the-50-sdk)
+ * [Using updated package names](#using-updated-package-names)
+ * [Understanding changes to SDK configuration](#understanding-changes-to-sdk-configuration)
+ * [Understanding changes to data source methods](#understanding-changes-to-data-source-methods)
+ * [Understanding changes to the data store](#understanding-changes-to-the-data-store)
+ * [Understanding changes to events](#understanding-changes-to-events)
+ * [Understanding changes to networking](#understanding-changes-to-networking)
+ * [Understanding changes to the JSON value type](#understanding-changes-to-the-json-value-type)
+ * [Understanding changes to EvaluationDetail](#understanding-changes-to-evaluationdetail)
+ * [Understanding changes to add-on integration packages](#understanding-changes-to-add-on-integration-packages)
+ * [Understanding changes to logging](#understanding-changes-to-logging)
+ * [Using the Relay Proxy](#using-the-relay-proxy)
+ * [Converting objects to or from JSON data](#converting-objects-to-or-from-json-data)
+ * [Gson](#gson)
+ * [Jackson](#jackson)
+ * [Using other third-party dependencies](#using-other-third-party-dependencies)
+ * [Implementing custom components](#implementing-custom-components)
+ * [Miscellaneous API changes](#miscellaneous-api-changes)
+ * [Understanding what was deprecated](#understanding-what-was-deprecated)
+ * [Understanding new functionality](#understanding-new-functionality)
+## Overview
+This topic explains how to adapt code that currently uses a 4.x version of the [Java server-side SDK](/docs/sdk/server-side/java) to use version 5.0 or later.
+Before you migrate to 5.0, update to the latest 4.x version. Many of the changes that are mandatory in 5.0 were originally added in a 4.x version and made optional to use.
+If you update to the latest 4.x version, deprecation warnings appear in areas of your code that need to be changed for 5.0. You can then update them while still using 4.x, rather than migrating everything simultaneously.
+To learn more about updating to the latest 4.x version, visit the [SDK’s GitHub repository](https://github.com/launchdarkly/java-server-sdk/releases).
+## Identifying Java versions for the 5.0 SDK
+The minimum version for LaunchDarkly SDK 5.0 is Java 8. LaunchDarkly no longer supports Java 7, per our [End of Life policy](https://launchdarkly.com/policies/end-of-life-policy/). Because Java 8 is still in [long-term support](https://www.oracle.com/java/technologies/java-se-support-roadmap.html), you must use that version or later to use the version 5.0 SDK.
+The primary impact of this in the public API is that the SDK now uses [`java.time.Duration`](https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html) to represent time intervals. Previously, these were represented by an integer number of milliseconds or seconds, depending on the case. Using `Duration` avoids that ambiguity. This only affects configuration methods.
+Many other improvements have been made internally to take advantage of Java 8 features, but those do not require any changes in your code.
+## Using updated package names
+The package naming convention has changed. Instead of `com.launchdarkly.client`, the main packages are now `com.launchdarkly.sdk` and `com.launchdarkly.sdk.server`. Because most of the class names have not changed, you may be able to fix your import statements with a find and replace.
+The use of the word “client” in package names was potentially confusing, because even though this library is a service client that makes requests to the LaunchDarkly service, we built it to use in a server-side context. Classes that are specific to this server-side implementation are now in `.sdk.server`.
+The base `.sdk` package contains classes that are not specific to server-side Java. They also exist in the Android SDK. When you view the SDK source code, you will find that the base `.sdk` package is implemented in a new repository, [`java-sdk-common`](http://github.com/launchdarkly/java-sdk-common).
+To learn more about the differences between SDKs, read [Choosing an SDK type](/docs/sdk/concepts/client-side-server-side).
+The full package schema is as follows:
+ * [`com.launchdarkly.sdk`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/package-summary.html)
+ * Provides: [`LDUser`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/LDUser.html), [`LDUser.Builder`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/LDUser.Builder.html), [`LDValue`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/LDValue.html), [`EvaluationDetail`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html), [`EvaluationReason`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationReason.html)
+ * [`com.launchdarkly.sdk.json`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/json/package-summary.html)
+ * Provides: new features related to [JSON serialization](/docs/sdk/server-side/java/migration-4-to-5#converting-objects-to-or-from-json-data).
+ * [`com.launchdarkly.sdk.server`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/package-summary.html)
+ * Provides: [`Components`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/Components.html), [`LDClient`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDClient.html), [`LDConfig`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.html), [`FeatureFlagsState`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/FeatureFlagsState.html)
+ * [`com.launchdarkly.sdk.server.interfaces`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/interfaces/package-summary.html)
+ * Provides: types like `DataStore`, formerly `FeatureStore`, and `Event` that are only used if you are writing a [custom component](/docs/sdk/server-side/java/migration-4-to-5#implementing-custom-components). These were formerly in `com.launchdarkly.client`, so moving them makes the API much less cluttered.
+ * [`com.launchdarkly.sdk.server.integrations`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/integrations/package-summary.html)
+ * Provides: the same types that used to be in `com.launchdarkly.client.integrations`, added in [4.12.0](https://github.com/launchdarkly/java-server-sdk/releases/tag/4.12.0).
+## Understanding changes to SDK configuration
+Java SDK [4.12.0](https://github.com/launchdarkly/java-server-sdk/releases/tag/4.12.0) and [4.13.0](https://github.com/launchdarkly/java-server-sdk/releases/tag/4.13.0) added newer ways to use [`LDConfig`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.html). As of 5.0, those ways are mandatory. They are the only way to use `LDConfig`.
+Instead of having many unrelated properties, each with their own [`LDConfig.Builder`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html) method, most of the properties are now grouped into areas of functionality, each of which has its own builder class that is only available if you are using that functionality. For instance, if you use streaming mode, there are options you can set to control streaming mode, and if you use polling mode, you use a different builder that does not have the streaming options. Similarly, if you have disabled analytics events, the event-related options are not accessible.
+The basic areas of functionality are “data source” (polling, streaming, or file data), “data store” (memory or database), events, and networking.
+If your code was already using the newer model, you should not need to change it except for changing the package names in your imports.
+### Understanding changes to data source methods
+For each data source type, there is a factory method whose name ends in `dataSource`. These methods give you a builder object with methods for whatever options are appropriate. Pass that object to [`LDConfig.Builder.dataSource()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#dataSource\(com.launchdarkly.sdk.server.subsystems.ComponentConfigurer\)).
+Here is an example:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x model: setting custom options for streaming mode
+---|--- 
+2
+| LDConfig config = new LDConfig.Builder()
+3
+| .stream(true)
+4
+| .reconnectTimeMs(2000)
+5
+| .build();
+6
+| 
+7
+| // 4.x model: specifying polling mode and setting custom polling options
+8
+| LDConfig config = new LDConfig.Builder()
+9
+| .stream(false)
+10
+| .pollingIntervalMillis(60000)
+11
+| .build();
+```
+The default is to use streaming mode. Unlike the earlier model, it is no longer possible to construct a meaningless configuration such as “use streaming mode, but set the polling interval to 1 minute” or “disable events, but set the flush interval to 10 seconds.”
+Another data source option is the file-based data source. To learn more, read the API documentation for [`com.launchdarkly.sdk.server.integrations.FileData`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/integrations/FileData.html).
+### Understanding changes to the data store
+As before, the default data store is a simple in-memory cache.
+If you want to use a persistent datastore database integration, you must call a `dataStore` factory method for that integration. This gives you a builder object with whatever options are appropriate for that database. Next, pass the object to [`Components.persistentDataStore()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/subsystems/PersistentDataStore.html), a wrapper that provides caching options that are not specific to any one database but are built into the SDK. Put this into [`LDConfig.Builder.dataStore()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#dataStore\(com.launchdarkly.sdk.server.subsystems.ComponentConfigurer\)).
+To learn more, read [Persistent data stores](/docs/sdk/concepts/data-stores).
+The following examples use the Redis integration:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x model: use Redis, set custom Redis URI and key prefix, set cache TTL to 45 seconds
+---|--- 
+2
+| LDConfig config = new LDConfig.Builder()
+3
+| .featureStore(
+4
+| Components.redisFeatureStore(URI.create("redis://my-redis-host"))
+5
+| .prefix("my-prefix")
+6
+| .cacheTime(45, TimeUnit.SECOND)
+7
+| )
+8
+| .build();
+```
+### Understanding changes to events
+Analytics events are enabled by default. To customize their behavior, call [`Components.sendEvents()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/Components.html#sendEvents\(\)) to get a builder object with event-related options, and then pass that object to [`LDConfig.Builder.events()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#events\(com.launchdarkly.sdk.server.subsystems.ComponentConfigurer\)).
+To completely disable events, set [`LDConfig.Builder.events()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#events\(com.launchdarkly.sdk.server.subsystems.ComponentConfigurer\)) to [`Components.noEvents()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/Components.html#noEvents\(\)).
+If you use private user attributes and are configuring private attributes for the entire SDK rather than for individual users, there is a new syntax based on the new [`UserAttribute`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/UserAttribute.html) class. This ensures that built-in attributes are not misspelled and helps to distinguish these parameters from other kinds of string parameters.
+Here is an example:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x model: disabling events
+---|--- 
+2
+| LDConfig config = new LDConfig.Builder()
+3
+| .sendEvents(false)
+4
+| .build();
+5
+| 
+6
+| // 4.x model: customizing event behavior
+7
+| LDConfig config = new LDConfig.Builder()
+8
+| .capacity(20000)
+9
+| .flushInterval(10)
+10
+| .privateAttributes("email", "name", "myCustomAttribute")
+11
+| .build();
+```
+It is no longer possible to construct a meaningless configuration like “disable events, but set the flush interval to 10 seconds.”
+### Understanding changes to networking
+Options in this category affect how the SDK communicates with LaunchDarkly over HTTP/HTTPS, including connection timeout, proxy servers, and more. If you need to customize these, call [`Components.httpConfiguration()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/subsystems/HttpConfiguration.html) to get a builder object, configure this builder, and then pass it to [`LDConfig.Builder.http()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#http\(com.launchdarkly.sdk.server.subsystems.ComponentConfigurer\)).
+Some of the methods have changed slightly in terms of the type or number of parameters. More details are available in [`HttpConfigurationBuilder`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/integrations/HttpConfigurationBuilder.html). The biggest difference is in how you specify an authenticated proxy server, which now uses a more general concept of authentication schemes.
+Here is an example:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x model: setting connection and socket timeouts
+---|--- 
+2
+| LDConfig config = new LDConfig.Builder()
+3
+| .connectTimeout(3)
+4
+| .socketTimeout(4)
+5
+| .build();
+6
+| 
+7
+| // 4.x model: specifying an HTTP proxy with basic authentication
+8
+| LDConfig config = new LDConfig.Builder()
+9
+| .proxyHost("my-proxy")
+10
+| .proxyPort(8080)
+11
+| .proxyUsername("user")
+12
+| .proxyPassword("pass")
+13
+| .build();
+```
+## Understanding changes to the JSON value type
+Before [Java SDK 4.9.0](https://github.com/launchdarkly/java-server-sdk/releases/tag/4.9.0), if you wanted to describe a value that could be of any valid JSON type (boolean, number, string, array, object, or null), you would use the [Gson](https://github.com/google/gson) type `JsonElement`.
+For example, `LDClient.jsonVariation()` returned that type, and also took a default value parameter of that type. However, there were two problems with using `JsonElement`:
+ 1. it made the SDK’s public API dependent on third-party types, and
+ 2. the array and object types were mutable, which was a potential [concurrency problem](https://launchdarkly.com/blog/avoid-concurrency-pitfalls-with-the-launchdarkly-sdks/).
+Version 4.9.0 added the immutable class [`LDValue`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/LDValue.html) as a replacement for this, along with [`LDClient.jsonValueVariation()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDClient.html#jsonValueVariation\(java.lang.String,com.launchdarkly.sdk.LDContext,com.launchdarkly.sdk.LDValue\)), which is equivalent to `jsonVariation`, but uses `LDValue`, and overloads in `LDUser.Builder.custom()` for setting user attributes of any JSON type. As of version 5.0, this is now the only option and `JsonElement` is no longer exposed in the public API.
+Here is an example of setting a user custom attribute to a list of strings:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x way: set user's "groups" to ["cats", "dogs"]
+---|--- 
+2
+| JsonArray groups = new JsonArray();
+3
+| groups.add("cats");
+4
+| groups.add("dogs");
+5
+| LDUser user = new LDUser.Builder("key")
+6
+| .custom("group", groups)
+7
+| .build();
+8
+| 
+9
+| // The following shortcut method was exactly equivalent:
+10
+| LDUser user = new LDUser.Builder("key")
+11
+| .customString("group", Arrays.asList("cats", "dogs"))
+12
+| .build();
+```
+## Understanding changes to EvaluationDetail
+The [`EvaluationDetail`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html) class, which was formerly in `com.launchdarkly.client`, and is now in `com.launchdarkly.sdk`, has been modified in the following two ways:
+ 1. The constructor is now private. To obtain an instance, call the factory method [`EvaluationDetail.fromValue()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html#fromValue\(T,int,com.launchdarkly.sdk.EvaluationReason\)) or [`EvaluationDetail.error()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html#error\(com.launchdarkly.sdk.EvaluationReason.ErrorKind,com.launchdarkly.sdk.LDValue\)). This lets the SDK reuse instances for commonly used values, instead of allocating new ones.
+ 2. The [`variationIndex`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html#getVariationIndex\(\)) property is now an `int` rather than a nullable `Integer`. Instead of a null, the constant [`NO_VARIATION`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html#NO_VARIATION) (-1) is used in the case where evaluation failed and so no flag variation was selected. This is similar to how Java’s `List.indexOf()` and `String.indexOf()` can return -1 to mean “not found.” The method [`isDefaultValue()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/EvaluationDetail.html#isDefaultValue\(\)) still works as before.
+Here is an example:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x model: create an EvaluationDetail instance, maybe for testing
+---|--- 
+2
+| EvaluationDetail<String> myValue = new EvaluationDetail<>(EvaluationReason.off(), 1, "x");
+3
+| 
+4
+| // 4.x model: check the variation index of the result
+5
+| EvaluationDetail<String> resultDetail =
+6
+| client.stringVariationDetail(flagKey, user, "default string value");
+7
+| Integer variation = resultDetail.getVariationIndex();
+8
+| if (variation == null) {
+9
+| // do something for the default value case
+10
+| // note that "if (resultDetail.isDefaultValue())" would also have worked
+11
+| } else {
+12
+| doSomethingWithVariation(variation.intValue());
+13
+| }
+```
+## Understanding changes to add-on integration packages
+The Redis integration is no longer part of the main SDK distribution. It is now in a separate package: `launchdarkly-java-server-sdk-redis-store` on Maven, [`launchdarkly/java-server-sdk-redis`](https://github.com/launchdarkly/java-server-sdk-redis) on GitHub.
+The [Consul](https://github.com/launchdarkly/java-server-sdk-consul) and [DynamoDB](https://github.com/launchdarkly/java-server-sdk-dynamodb) integrations were already in separate packages, but they have new major versions that are compatible with Java SDK 5.0.
+For the configuration syntax, read [Data store](/docs/sdk/server-side/java/migration-4-to-5#understanding-changes-to-the-data-store) above.
+## Understanding changes to logging
+The SDK still uses [SLF4J](https://www.slf4j.org/) as a logging framework, but the use of logger names has changed. In SLF4J, logger names can be used to configure different filtering rules for different kinds of messages, so if you have been using that feature you may need to adjust your configuration.
+Previously, most of the SDK’s log output used the logger name `com.launchdarkly.client.LDClient`, but some of it used the names of other classes in the same package, such as `com.launchdarkly.client.DefaultEventProcessor` or `com.launchdarkly.eventsource`. These class names were implementation details that were subject to change, so there was not a well-defined set of logger names.
+Starting in version 5.0, the SDK uses the following logger names:
+ * `com.launchdarkly.sdk.server.LDClient`: general messages that do not fall into any other categories
+ * `com.launchdarkly.sdk.server.LDClient.DataSource`: messages related to how the SDK obtains feature flag data— normally this means messages about the streaming connection to LaunchDarkly, but if you use polling mode or file data instead, those will be logged under this name too
+ * `com.launchdarkly.sdk.server.LDClient.DataStore`: messages related to how feature flag data is stored— for instance, database errors if you are using a database integration
+ * `com.launchdarkly.sdk.server.LDClient.Evaluation`: messages related to feature flag evaluation
+ * `com.launchdarkly.sdk.server.LDClient.Events`: messages related to analytics event processing
+The use of log levels has also changed somewhat. Previously, many kinds of I/O errors— for instance, a network failure when the SDK was trying to make a streaming connection to LaunchDarkly, or trying to send analytics events— were logged at `ERROR` level. This could cause an unwanted amount of noise from monitoring systems, because such errors were often due to temporary problems that the SDK could recover from without intervention.
+Starting in version 5.0, if the SDK gets a network error that might interfere with receiving feature flag data from LaunchDarkly, it will log it at first at `WARN` level. Then it will continue retrying the connection as usual. If it remains unable to get a successful connection for a full minute, then it will report the problem again at the more serious `ERROR` level. You can change the connection interval using [`LoggingConfigurationBuilder`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/integrations/LoggingConfigurationBuilder.html).
+## Using the Relay Proxy
+There are two ways you can configure the SDK to use the [Relay Proxy](/docs/sdk/relay-proxy):
+ * proxy mode, connecting to it via HTTP/HTTPS just as if it were the LaunchDarkly service
+ * daemon mode, receiving flag data only through a database.
+A new syntax for configuring these was added in version 4.12.0, and in version 5.0 the new syntax is the only way.
+Here is an example:
+4.x syntax5.0 syntax
+```
+1
+| // 4.x model: proxy mode with streaming
+---|--- 
+2
+| URI relayUri = URI.create("http://my-relay-host:8000");
+3
+| LDConfig config = new LDConfig.Builder()
+4
+| .baseUri(relayUri)
+5
+| .streamUri(relayUri)
+6
+| .eventsUri(relayUri) // if you want to proxy events
+7
+| .build();
+8
+| 
+9
+| // 4.x model: proxy mode with polling
+10
+| URI relayUri = URI.create("http://my-relay-host:8000");
+11
+| LDConfig config = new LDConfig.Builder()
+12
+| .stream(false)
+13
+| .baseUri(relayUri)
+14
+| .eventsUri(relayUri) // if you want to proxy events
+15
+| .build();
+16
+| 
+17
+| // 4.x model: daemon mode with a Redis database
+18
+| LDConfig config = new LDConfig.Builder()
+19
+| .featureStore(
+20
+| Components.redisFeatureStore(URI.create("redis://my-redis-host"))
+21
+| )
+22
+| .useLdd(true)
+23
+| .build();
+```
+## Converting objects to or from JSON data
+You might want to convert LaunchDarkly SDK classes such as `LDUser`, `LDValue`, or `FeatureFlagsState` into JSON if you are passing them to front-end JavaScript code. Less commonly, you might want to convert them from JSON. The SDK provides ways to do both.
+First, you can use the serialize and deserialize methods in [`com.launchdarkly.sdk.json.JsonSerialization`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/json/JsonSerialization.html) to quickly convert things to or from JSON strings.
+Second, if you prefer to use the popular [Gson](https://github.com/google/gson) or [Jackson](https://github.com/FasterXML/jackson) JSON frameworks for Java, read the following section.
+### Gson
+Previously, classes from Gson were exposed in the SDK’s public API, so `gson` had to be a regular dependency on your application classpath. This has been changed so that even though Gson is used internally by the SDK, it is a private shaded copy that does not interact with outside code. This means it cannot conflict with any other Gson dependency in your application.
+However, this also means that if you want to convert LaunchDarkly SDK objects such as `LDUser`, `LDValue`, or `FeatureFlagsState` to or from JSON—for instance, to pass them to front-end JavaScript code—and you are using Gson, you can’t simply call `Gson.toJson()` or `Gson.fromJson()` and get correct results. The Gson in your application does not automatically recognize the Gson annotations and custom serializers that are contained in the SDK.
+To make this work correctly, you must add an extra step to the setup of your Gson instance:
+Java
+```
+1
+| import com.google.gson.*;
+---|--- 
+2
+| import com.launchdarkly.sdk.json.LDGson;
+3
+| 
+4
+| Gson gson = new GsonBuilder()
+5
+| .registerTypeAdapterFactory(LDGson.typeAdapters())
+6
+| // any other GsonBuilder options go here
+7
+| .create();
+```
+If you have registered [`LDGson.typeAdapters()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/json/LDGson.html#typeAdapters\(\)) in the Gson instance you’re using, `toJson()` and `fromJson()` will work as expected with LaunchDarkly types.
+### Jackson
+Previously, it was not possible to convert LaunchDarkly SDK classes to or from JSON using Jackson. This is now possible as long as you configure your Jackson `ObjectMapper` with [`LDJackson.module()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/json/LDJackson.html#module\(\)) as follows:
+Java
+```
+1
+| import com.google.jackson.databind.*;
+---|--- 
+2
+| import com.launchdarkly.sdk.json.LDJackson;
+3
+| 
+4
+| ObjectMapper mapper = new ObjectMapper();
+5
+| mapper.registerModule(LDJackson.module());
+```
+## Using other third-party dependencies
+Because Java 7 compatibility is no longer an issue, the SDK now uses more modern versions of the `okhttp`, `guava`, and `gson` packages internally.
+As before, if you want to force the SDK to use the same versions of these dependencies that you are using, you can use the “thin” jar which does not embed them.
+## Implementing custom components
+Most applications use either the default in-memory storage or one of the [database integrations](/docs/sdk/concepts/data-stores) provided by LaunchDarkly, including Consul, DynamoDB, and Redis. However, the data store interface, formerly called “feature store,” has always been public so developers can write their own integrations.
+Starting in Java SDK 5.0, this model has been changed to make it easier to implement database integrations. The basic concepts are the same: the SDK defines its own “data kinds,” such as feature flags and user segments. The data store must provide a way to add and update items of any of these kinds, without knowing anything about their properties except the key and version.
+The main changes are:
+ * Caching is now handled by the SDK, not by the store implementation. Now you only need to implement the lower-level operations of adding or updating data.
+ * The SDK takes care of serializing and deserializing the data, so the store operates only on strings.
+ * Data structures have been simplified to avoid the use of generics and maps.
+The interface for “data source” components that receive feature flag data, either from LaunchDarkly or from some other source, such as a file, has also changed slightly to use the new data store model.
+You may also want to review the source code for one of the LaunchDarkly database integrations, such as [Redis](http://github.com/launchdarkly/java-server-sdk-redis), to learn how it changed from the previous major version.
+## Miscellaneous API changes
+Here are several changes to names and types that do not affect the basic functionality of the SDK, but were changed for consistency.
+ * The `initialized()` method of `LDClient` was renamed to `isInitialized()`, for consistency with Java naming conventions for methods that return a boolean.
+ * The `intVariation()` and `doubleVariation()` methods of `LDClient` previously used the nullable types `Integer` and `Double`. They have been changed to use `int` and `double`, because the point of these type-specific methods is to be able to conveniently treat the feature flag value as a numeric type without having to worry about whether it is a null value or some other type. The `boolVariation` method already used the non-nullable `boolean` type, so it has not changed.
+## Understanding what was deprecated
+All types and methods that were marked as deprecated in the last 4.x release have been removed from the 5.0 release. If you were using these with a recent version previously, you should already have received deprecation warnings at compile time, with suggestions about their recommended replacements.
+For a full list of all deprecated symbols, read the [release notes for 5.0.0](https://github.com/launchdarkly/java-server-sdk/releases/tag/5.0.0).
+The built-in New Relic integration has also been removed. This was never part of the public API, so it does not affect any application code.
+## Understanding new functionality
+The 5.0 release also includes new features as described in the release notes.
+These include:
+ * You can tell the SDK to notify you whenever a feature flag’s configuration has changed, using [`LDClient.getFlagTracker()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDClient.html#getFlagTracker\(\)).
+ * You can monitor the status of the SDK’s connection to LaunchDarkly services with [`LDClient.getDataSourceStatusProvider()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDClient.html#getDataSourceStatusProvider\(\)).
+ * You can monitor the status of a persistent data store, for example to get caching statistics or to be notified if the store’s availability changes due to a database outage, with [`LDClient.getDataStoreStatusProvider()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDClient.html#getDataStoreStatusProvider\(\)).
+ * You can configure the SDK’s use of different logging levels depending on the duration of a service outage with [`LDConfig.Builder.logging()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#logging\(com.launchdarkly.sdk.server.subsystems.ComponentConfigurer\)) and [`LoggingConfigurationBuilder`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/integrations/LoggingConfigurationBuilder.html).
+ * The thread priority for SDK background tasks can be configured with [`LDConfig.Builder.threadPriority()`](https://launchdarkly.github.io/java-server-sdk/com/launchdarkly/sdk/server/LDConfig.Builder.html#threadPriority\(int\)).
+To learn more, read the [complete API documentation](https://launchdarkly.github.io/java-server-sdk/) for these classes and methods.
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

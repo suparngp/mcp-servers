@@ -1,0 +1,7 @@
+{
+  "title": "Client",
+  "crawledAt": "2025-10-31T05:06:02.487Z",
+  "cleanedAt": "2025-10-31T05:06:02.646Z",
+  "url": "https://ai.pydantic.dev/mcp/client/",
+  "description": "Pydantic AI can act as an [MCP client](https://modelcontextprotocol.io/quickstart/client), connecting to MCP servers to use their tools."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:11.133Z",
+  "cleanedAt": "2025-11-21T18:14:11.754Z",
+  "url": "https://launchdarkly.com/docs/home/product-analytics/chart/stickiness",
+  "description": "This topic explains how to create a stickiness chart in the product analytics **Dashboards** tab. Stickiness charts let you track how often users perform an event in a specific interval so you can understand how specific features are used."
+}

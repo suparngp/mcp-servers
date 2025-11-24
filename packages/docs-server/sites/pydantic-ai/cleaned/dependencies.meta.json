@@ -1,0 +1,7 @@
+{
+  "title": "Dependencies",
+  "crawledAt": "2025-10-31T04:56:26.405Z",
+  "cleanedAt": "2025-10-31T04:56:26.900Z",
+  "url": "https://ai.pydantic.dev/dependencies/",
+  "description": "Pydantic AI uses a dependency injection system to provide data and services to your agent's [system prompts](../agents/#system-prompts), [tools](../tools/) and [output validators](../output/#output-validator-functions)."
+}

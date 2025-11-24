@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:27.210Z",
+  "cleanedAt": "2025-11-21T18:14:27.622Z",
+  "url": "https://launchdarkly.com/docs/home/holdouts/create",
+  "description": "This topic explains how to create and add experiments to holdouts. Holdouts let you exclude a percentage of your audience from all experiments over a set amount of time. This can help you understand how much of an impact your experiments have on certain metrics."
+}

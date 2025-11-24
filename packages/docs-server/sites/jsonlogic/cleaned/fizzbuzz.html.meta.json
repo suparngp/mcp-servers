@@ -1,0 +1,7 @@
+{
+  "title": "Can JsonLogic solve Fizz Buzz?",
+  "crawledAt": "2025-11-24T01:47:05.714Z",
+  "cleanedAt": "2025-11-24T01:47:05.897Z",
+  "url": "https://jsonlogic.com/fizzbuzz.html",
+  "description": "Although JsonLogic, itself, doesn’t have/need a looping construct, the rule for one integer is:"
+}

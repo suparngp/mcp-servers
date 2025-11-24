@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.profiles`",
+  "crawledAt": "2025-10-31T04:57:47.765Z",
+  "cleanedAt": "2025-10-31T04:57:48.518Z",
+  "url": "https://ai.pydantic.dev/api/profiles/",
+  "description": "Describes how requests to and responses from specific models or families of models need to be constructed and processed to get the best results, independent of the model and provider classes used."
+}

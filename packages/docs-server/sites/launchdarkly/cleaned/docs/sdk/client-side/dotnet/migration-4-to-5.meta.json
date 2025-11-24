@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:59.106Z",
+  "cleanedAt": "2025-11-21T18:31:59.526Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/dotnet/migration-4-to-5",
+  "description": "This topic explains the changes in the .NET (client-side) SDK 5.0 release and how to migrate to that version."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview[​](#overview \"Direct link to Overview\")",
+  "crawledAt": "2025-11-23T07:15:45.710Z",
+  "cleanedAt": "2025-11-23T07:15:45.879Z",
+  "url": "https://openfeature.dev/specification/sections/evaluation-context",
+  "description": "The `evaluation context` provides ambient information for the purposes of flag evaluation. Contextual data may be used as the basis for targeting, including rule-based evaluation, overrides for specific subjects, or fractional flag evaluation."
+}

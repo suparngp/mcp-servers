@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:15.358Z",
+  "cleanedAt": "2025-11-21T18:14:15.828Z",
+  "url": "https://launchdarkly.com/docs/home/experimentation/a-a-test",
+  "description": "This topic explains how to set up and configure an A/A test in LaunchDarkly. A/A tests are a type of feature change experiment that splits users into different, but identical, variations. When you run an A/A test, you compare two groups receiving the same product experience. This lets you validate that your experiment setup is working as intended, your metrics are tracking events as expected, and builds trust in your experiment results."
+}

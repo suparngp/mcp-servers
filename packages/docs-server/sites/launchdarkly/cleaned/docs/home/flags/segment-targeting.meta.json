@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:35.160Z",
+  "cleanedAt": "2025-11-21T18:13:36.083Z",
+  "url": "https://launchdarkly.com/docs/home/flags/segment-targeting",
+  "description": "This topic explains how to target a segment in a flag rule. If you have many flags that need to target the same group of users or other contexts, we recommend that you [create a single segment](/docs/home/flags/segments-create) for your flags to target. This lets you manage targeting for that group in one place instead of recreating identical rules in each flag."
+}

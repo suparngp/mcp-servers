@@ -1,0 +1,7 @@
+{
+  "title": "What’s next for building with kill switches and WebSockets?",
+  "crawledAt": "2025-11-21T18:36:29.655Z",
+  "cleanedAt": "2025-11-21T18:36:30.252Z",
+  "url": "https://launchdarkly.com/docs/tutorials/python-flask-websockets-kill-switch-flags",
+  "description": "High-traffic events, such as product launches or promotional campaigns, can strain an application’s infrastructure, leading to degraded performance or downtime. Implementing [kill switch flags using LaunchDarkly](/docs/home/flags/killswitch) allows you to gracefully degrade non-essential features, ensuring core functionalities remain available."
+}

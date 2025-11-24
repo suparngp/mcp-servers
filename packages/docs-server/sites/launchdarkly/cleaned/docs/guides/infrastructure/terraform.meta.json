@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:09.599Z",
+  "cleanedAt": "2025-11-21T18:16:09.752Z",
+  "url": "https://launchdarkly.com/docs/guides/infrastructure/terraform",
+  "description": "This guide explains how to use Terraform to manage your LaunchDarkly resources, which can simplify change control for your team."
+}

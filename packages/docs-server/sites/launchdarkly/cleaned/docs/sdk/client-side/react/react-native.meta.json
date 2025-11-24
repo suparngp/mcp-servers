@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:11.420Z",
+  "cleanedAt": "2025-11-21T18:32:11.913Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/react/react-native",
+  "description": "**Version 10 of the React Native SDK has been rewritten in pure TypeScript and is compatible with Expo**. Only iOS and Android platforms are supported. Web is not supported. Version 10 is a rewrite of the React Native SDK. It is based on the JavaScript SDK, and it replaces [launchdarkly-react-native-client-sdk](https://github.com/launchdarkly/react-native-client-sdk). To learn more about upgrading, read [React Native SDK 9.x to 10.0 migration guide](/docs/sdk/client-side/react/migration-9-to-10-react-native)."
+}

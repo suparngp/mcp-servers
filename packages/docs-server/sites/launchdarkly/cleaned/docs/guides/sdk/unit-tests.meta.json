@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:24.828Z",
+  "cleanedAt": "2025-11-21T18:16:25.069Z",
+  "url": "https://launchdarkly.com/docs/guides/sdk/unit-tests",
+  "description": "This guide explains how to unit test LaunchDarkly React applications with Jest. [jest-launchdarkly-mock](https://github.com/launchdarkly/jest-launchdarkly-mock) allows you to simulate, or “mock,” flag evaluations locally. This lets you verify testing behavior happens correctly, while also letting you use the React SDK in your React application."
+}

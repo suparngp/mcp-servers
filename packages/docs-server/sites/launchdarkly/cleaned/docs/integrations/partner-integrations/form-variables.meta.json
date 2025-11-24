@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:44.128Z",
+  "cleanedAt": "2025-11-21T18:33:44.450Z",
+  "url": "https://launchdarkly.com/docs/integrations/partner-integrations/form-variables",
+  "description": "This topic explains how to use form variables to collect configuration data from members when they begin using your integration. Most integrations need to collect one or more pieces of configuration data that support the integration, such as API tokens or webhook endpoints."
+}

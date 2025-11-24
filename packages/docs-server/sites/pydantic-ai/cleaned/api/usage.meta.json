@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.usage`",
+  "crawledAt": "2025-10-31T04:58:18.793Z",
+  "cleanedAt": "2025-10-31T04:58:19.161Z",
+  "url": "https://ai.pydantic.dev/api/usage/",
+  "description": "Bases: `UsageBase`"
+}

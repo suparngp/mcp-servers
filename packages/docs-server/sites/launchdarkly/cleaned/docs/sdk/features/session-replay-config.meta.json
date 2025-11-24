@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:37:18.515Z",
+  "cleanedAt": "2025-11-21T18:37:18.669Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/session-replay-config",
+  "description": "This topic explains how to configure the SDK session replay plugin."
+}

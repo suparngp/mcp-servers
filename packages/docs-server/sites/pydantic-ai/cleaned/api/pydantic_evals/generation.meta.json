@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_evals.generation`",
+  "crawledAt": "2025-10-31T04:59:00.965Z",
+  "cleanedAt": "2025-10-31T04:59:01.133Z",
+  "url": "https://ai.pydantic.dev/api/pydantic_evals/generation/",
+  "description": "Utilities for generating example datasets for pydantic_evals."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:16:14.450Z",
+  "cleanedAt": "2025-11-21T18:16:14.727Z",
+  "url": "https://launchdarkly.com/docs/guides/metrics/launchdarkly-metrics",
+  "description": "This guide explains the different kinds of LaunchDarkly metrics and what you can use them for. LaunchDarkly uses different kinds of metrics to do things like measure flag change impact, gauge application performance, track account usage, and more."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.538Z",
+  "cleanedAt": "2025-11-21T18:13:12.065Z",
+  "url": "https://launchdarkly.com/docs/home/flags/migration",
+  "description": "This topic explains how you can use migration flags to take the complexity and risk out of migrations when you need to change or modernize your database infrastructure. Migration flags require a server-side SDK."
+}

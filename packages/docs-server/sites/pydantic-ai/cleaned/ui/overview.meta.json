@@ -1,0 +1,7 @@
+{
+  "title": "UI Event Streams",
+  "crawledAt": "2025-10-31T05:06:15.492Z",
+  "cleanedAt": "2025-10-31T05:06:15.839Z",
+  "url": "https://ai.pydantic.dev/ui/overview/",
+  "description": "If you're building a chat app or other interactive frontend for an AI agent, your backend will need to receive agent run input (like a chat message or complete [message history](../../message-history/)) from the frontend, and will need to stream the [agent's events](../../agents/#streaming-all-events) (like text, thinking, and tool calls) to the frontend so that the user knows what's happening in real time."
+}

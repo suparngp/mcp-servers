@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_evals.evaluators`",
+  "crawledAt": "2025-10-31T05:29:03.268Z",
+  "cleanedAt": "2025-10-31T05:29:03.390Z",
+  "url": "https://ai.pydantic.dev/api/pydantic_evals/evaluators/",
+  "description": "Bases: `Evaluator[](#pydantic_evals.evaluators.Evaluator \"pydantic_evals.evaluators.evaluator.Evaluator\")[object[](https://docs.python.org/3/library/functions.html#object), object[](https://docs.python.org/3/library/functions.html#object), object[](https://docs.python.org/3/library/functions.html#object)]`"
+}

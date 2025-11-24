@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:31:32.723Z",
+  "cleanedAt": "2025-11-21T18:31:33.411Z",
+  "url": "https://launchdarkly.com/docs/sdk/concepts/evaluation-reasons",
+  "description": "This topic explains how to use LaunchDarkly to determine why a context instance receives a given flag variation. It can be useful to have this information when you’re diagnosing problems or doing analysis of the impact of different flags."
+}

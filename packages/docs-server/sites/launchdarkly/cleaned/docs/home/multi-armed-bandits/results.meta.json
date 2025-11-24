@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:27.214Z",
+  "cleanedAt": "2025-11-21T18:14:27.662Z",
+  "url": "https://launchdarkly.com/docs/home/multi-armed-bandits/results",
+  "description": "This topic explains how to read the results of a multi-armed bandit (MAB). MABs automatically shift traffic to the leading variation over time, so you do not need to actively monitor a MAB, and you do not need to manually ship the leading variation. However, you can still use the **Results** tab to view the performance of each variation, and understand how the MAB is reallocating traffic."
+}

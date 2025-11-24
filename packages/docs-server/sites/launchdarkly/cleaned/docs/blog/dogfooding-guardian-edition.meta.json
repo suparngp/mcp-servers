@@ -1,0 +1,7 @@
+{
+  "title": "🐥 🐥 🐥 Splitting releases reduces risk",
+  "crawledAt": "2025-11-21T18:36:38.511Z",
+  "cleanedAt": "2025-11-21T18:36:38.846Z",
+  "url": "https://launchdarkly.com/docs/blog/dogfooding-guardian-edition",
+  "description": "Larger changesets increase risk. That’s why we strive to keep pull requests as small as possible, and why we work so hard to keep our deployment pipeline unblocked and continuously deploying. In that same vein, we can also avoid big-bang releases in order to de-risk the overall rollout of a feature. We often tend to approach this by releasing to multiple segments over time as a way to reduce the blast radius, but that’s not the only lever we have available to us!"
+}

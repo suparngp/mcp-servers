@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:03.954Z",
+  "cleanedAt": "2025-11-21T18:33:04.399Z",
+  "url": "https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference",
+  "description": "This topic explains the different event kinds for warehouse Data Export destinations. The schemas for warehouse Data Export destinations are formatted differently than LaunchDarkly’s [streaming Data Export integrations](/docs/integrations/data-export/schema-reference)."
+}

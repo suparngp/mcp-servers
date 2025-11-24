@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:35.102Z",
+  "cleanedAt": "2025-11-21T18:13:35.443Z",
+  "url": "https://launchdarkly.com/docs/home/flags/segments",
+  "description": "This topic introduces the concept of segments. Segments let you group together users, accounts, or other contexts so you can easily target them as a group in your flag targeting rules. This helps guarantee that the right groups of people are getting the right flag variations every time, instead of having to build your flag targeting rules from scratch for every flag."
+}

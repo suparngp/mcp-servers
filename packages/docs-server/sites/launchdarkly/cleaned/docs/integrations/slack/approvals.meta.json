@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:56.756Z",
+  "cleanedAt": "2025-11-21T18:32:57.170Z",
+  "url": "https://launchdarkly.com/docs/integrations/slack/approvals",
+  "description": "This topic explains how to manage approvals for flag and segment changes using the Slack app. Approvals let you request review for changes make to a flag or segment. You can view and act on approval requests from within the LaunchDarkly Slack app."
+}

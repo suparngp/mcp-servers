@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:36:29.757Z",
+  "cleanedAt": "2025-11-21T18:36:30.255Z",
+  "url": "https://launchdarkly.com/docs/tutorials/multi-agent-mcp-targeting",
+  "description": "Here’s what nobody tells you about multi-agentic systems: the hard part isn’t building them but making them profitable. One misconfigured model serving enterprise features to free users can burn $20K in a weekend. Meanwhile, you’re manually juggling dozens of requirements for different user tiers, regions, and privacy compliance and each one is a potential failure point."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:11.503Z",
+  "cleanedAt": "2025-11-21T18:13:12.065Z",
+  "url": "https://launchdarkly.com/docs/home/flags/killswitch",
+  "description": "This topic explains how you can use kill switch or circuit breaker flags to shut off functionality. These flags are permanent safety mechanisms that you can use to turn off non-core functionality or third-party tools in an emergency."
+}

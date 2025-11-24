@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.providers`",
+  "crawledAt": "2025-10-31T05:27:48.193Z",
+  "cleanedAt": "2025-10-31T05:27:48.330Z",
+  "url": "https://ai.pydantic.dev/api/providers/",
+  "description": "Bases: `ABC[](https://docs.python.org/3/library/abc.html#abc.ABC \"abc.ABC\")`, `Generic[](https://docs.python.org/3/library/typing.html#typing.Generic \"typing.Generic\")[InterfaceClient]`"
+}

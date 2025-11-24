@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.models.openai`",
+  "crawledAt": "2025-10-31T04:58:44.764Z",
+  "cleanedAt": "2025-10-31T04:58:45.126Z",
+  "url": "https://ai.pydantic.dev/api/models/openai/",
+  "description": "For details on how to set up authentication with this model, see [model configuration for OpenAI](../../../models/openai/)."
+}

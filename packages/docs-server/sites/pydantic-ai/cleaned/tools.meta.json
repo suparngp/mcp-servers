@@ -1,0 +1,7 @@
+{
+  "title": "Function Tools",
+  "crawledAt": "2025-10-31T04:56:51.954Z",
+  "cleanedAt": "2025-10-31T04:56:52.262Z",
+  "url": "https://ai.pydantic.dev/tools/",
+  "description": "Function tools provide a mechanism for models to perform actions and retrieve extra information to help them generate a response."
+}

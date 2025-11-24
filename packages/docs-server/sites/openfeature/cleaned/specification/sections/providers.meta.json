@@ -1,0 +1,7 @@
+{
+  "title": "Overview[​](#overview \"Direct link to Overview\")",
+  "crawledAt": "2025-11-23T07:15:49.643Z",
+  "cleanedAt": "2025-11-23T07:15:49.870Z",
+  "url": "https://openfeature.dev/specification/sections/providers",
+  "description": "The `provider` API defines interfaces that Provider Authors can use to abstract a particular flag management system, thus enabling the use of the `evaluation API` by Application Authors."
+}

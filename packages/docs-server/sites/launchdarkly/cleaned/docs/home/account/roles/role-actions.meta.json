@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:58.057Z",
+  "cleanedAt": "2025-11-21T18:14:58.727Z",
+  "url": "https://launchdarkly.com/docs/home/account/roles/role-actions",
+  "description": "This topic is a complete reference of all actions that are available to use in role policies. It includes tables with all supported actions and details about them. These actions are scoped by resource type."
+}

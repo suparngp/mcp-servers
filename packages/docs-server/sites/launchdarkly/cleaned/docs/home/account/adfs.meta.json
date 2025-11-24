@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:16.066Z",
+  "cleanedAt": "2025-11-21T18:15:16.465Z",
+  "url": "https://launchdarkly.com/docs/home/account/adfs",
+  "description": "This topic explains how to configure SSO integration between a self-hosted Active Directory Federation Services (ADFS) server and LaunchDarkly."
+}

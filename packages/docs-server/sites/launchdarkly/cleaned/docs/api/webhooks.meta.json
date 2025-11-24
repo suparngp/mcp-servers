@@ -1,0 +1,7 @@
+{
+  "title": "Designating the payload",
+  "crawledAt": "2025-11-21T18:36:15.045Z",
+  "cleanedAt": "2025-11-21T18:36:15.238Z",
+  "url": "https://launchdarkly.com/docs/api/webhooks",
+  "description": "The webhook payload is identical to an audit log entry. To learn more, read [Get audit log entry](https://launchdarkly.com/docs/api/audit-log/get-audit-log-entry)."
+}

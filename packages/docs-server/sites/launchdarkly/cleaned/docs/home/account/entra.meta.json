@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:15:16.108Z",
+  "cleanedAt": "2025-11-21T18:15:16.611Z",
+  "url": "https://launchdarkly.com/docs/home/account/entra",
+  "description": "This topic explains how to integrate LaunchDarkly with Microsoft Entra ID (formerly Azure Active Directory). The Entra ID App Gallery includes LaunchDarkly and provides a LaunchDarkly application template that facilitates configuration."
+}

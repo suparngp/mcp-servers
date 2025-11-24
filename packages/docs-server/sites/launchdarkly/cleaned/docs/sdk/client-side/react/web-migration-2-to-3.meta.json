@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:11.574Z",
+  "cleanedAt": "2025-11-21T18:32:11.995Z",
+  "url": "https://launchdarkly.com/docs/sdk/client-side/react/web-migration-2-to-3",
+  "description": "This topic explains the changes in the React Web SDK 3.0 release and how to adapt code that uses a 2.28 version of the [React Web SDK](/docs/sdk/client-side/react/react-web) to use version 3 or later."
+}

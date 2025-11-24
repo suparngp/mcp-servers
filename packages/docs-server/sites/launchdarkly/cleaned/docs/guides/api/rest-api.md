@@ -1,0 +1,368 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [Guides](/docs/guides)
+ * [Account management](/docs/guides/account)
+ * [AI Configs](/docs/guides/ai-configs)
+ * [Experimentation](/docs/guides/experimentation)
+ * [Feature flags](/docs/guides/flags)
+ * [Infrastructure](/docs/guides/infrastructure)
+ * [Integrations](/docs/guides/integrations)
+ * [Metrics](/docs/guides/metrics)
+ * [SDKs](/docs/guides/sdk)
+ * [Statistical methodology](/docs/guides/statistical-methodology)
+ * [REST API](/docs/guides/api)
+ * [Teams and custom roles](/docs/guides/teams-roles)
+ * [Additional resources](/docs/guides/additional-resources)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Prerequisites](#prerequisites)
+ * [Curl](#curl)
+ * [LaunchDarkly API documentation](#launchdarkly-api-documentation)
+ * [Postman](#postman)
+ * [Concepts](#concepts)
+ * [LaunchDarkly data hierarchy](#launchdarkly-data-hierarchy)
+ * [REST API basics](#rest-api-basics)
+ * [Setting up your headers](#setting-up-your-headers)
+ * [Required headers](#required-headers)
+ * [Optional headers](#optional-headers)
+ * [Exercise: Reading flag and environment information](#exercise-reading-flag-and-environment-information)
+ * [Reading a flag](#reading-a-flag)
+ * [Finding an environment](#finding-an-environment)
+ * [Exercise: Creating and updating a resource](#exercise-creating-and-updating-a-resource)
+ * [Creating a flag](#creating-a-flag)
+ * [Updating a flag](#updating-a-flag)
+ * [Using JSON Patch in the LaunchDarkly API](#using-json-patch-in-the-launchdarkly-api)
+ * [Using semantic patch in the LaunchDarkly API](#using-semantic-patch-in-the-launchdarkly-api)
+ * [Common use cases](#common-use-cases)
+ * [Additional considerations](#additional-considerations)
+ * [Conclusion](#conclusion)
+## Overview
+This guide explains how to get started with the LaunchDarkly REST API. It describes how to create API access tokens, make requests, and evaluate the responses. It introduces common use cases and helps familiarize you with the LaunchDarkly API documentation.
+The LaunchDarkly REST API is a programmatic alternative to interacting with the LaunchDarkly user interface (UI). You can use the LaunchDarkly API to perform any action that’s available in the **Flags** list, including creating and manipulating flags, members, or environments. For example, the REST API is often used for toggling feature flags, updating segments, and building custom integrations.
+##### Use the LaunchDarkly SDKs to evaluate flags
+We do _not_ recommend using the REST API to evaluate feature flags in your application’s code. For that, use the LaunchDarkly SDKs. The SDKs include features like caching of flag values and streaming of updates that you won’t receive automatically when using the REST API to evaluate flag values. To learn more, read [Getting started with SDKs](/docs/sdk/concepts/getting-started) and [Comparing LaunchDarkly’s SDKs and REST API](/docs/guides/api/comparing-sdk-rest-api).
+This guide is for you if you opened the [LaunchDarkly API documentation](/docs/api) and weren’t quite sure what to do next. It assumes you have a basic understanding of REST APIs, but want some guidance getting started. For example, maybe you haven’t used REST extensively, or you’re new to LaunchDarkly, or both.
+In this guide, you will:
+ * Set up your request headers to access LaunchDarkly APIs, including creating access tokens
+ * Read the details of LaunchDarkly resources using the REST API
+ * Create and update LaunchDarkly resources using the REST API
+ * Learn common use cases for working with the REST API
+##### Client libraries
+LaunchDarkly auto-generates client libraries based on our OpenAPI specification, so that you can work with the LaunchDarkly REST API in your language of choice. After you use this guide to explore the basics of the LaunchDarkly REST API, you may prefer to work with a client library instead. To learn more, visit the [collection of client libraries on GitHub](https://github.com/search?q=topic%3Alaunchdarkly-api+org%3Alaunchdarkly&type=Repositories).
+## Prerequisites
+To complete this guide, you must have the following prerequisites:
+ * An active LaunchDarkly account with the ability to create a flag. If you have not yet created a feature flag in your project, read [Getting started](/docs/home/getting-started) and [Creating new flags](/docs/home/flags/new).
+ * Access to a tool for making calls to the REST API. There are many options for this, described below:
+ * [Curl](/docs/guides/api/rest-api#curl)
+ * [LaunchDarkly API documentation](/docs/guides/api/rest-api#launchdarkly-api-documentation)
+ * [Postman](/docs/guides/api/rest-api#postman)
+### Curl
+[Curl](https://curl.se/) is a common command line tool that you can use to make calls to the REST API. This guide uses curl in its examples. You can run the examples in this guide from your own command line.
+### LaunchDarkly API documentation
+The LaunchDarkly API documentation provides interactive examples of each documented request, plus sample code to execute each request using curl, Python, and Node.js. You can run the examples in this guide by modifying the examples in the API documentation.
+###### Click to read more about using interactive examples in the API documentation.
+Here’s how to run the examples in this guide using the API documentation:
+ 1. Find the documentation for the request you want to make in the [API documentation](/docs/api).
+ 2. Click **Try it**.
+![The interactive "Try it" form in the API documentation, before any information is entered.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a708b55fbc3aaf18585f73194ac4a819dc2949bc9d82d5e956427d0fac4e341a/assets/images/__not_from_LD_app_UI/api-documentation-try-it.png)
+The interactive "Try it" form in the API documentation, before any information is entered.
+ 1. Select the Request tab.
+ 2. In the “Security” section, enter your access token under **Authorization**.
+ 3. In the “Parameters” section, enter the values for any parameters you are including in the request.
+![The interactive "Try it" form in the API documentation, with parameters filled in.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/3119fc239938022e61aa8e290d113d0c1c093322e6d85cc04403e928550a92e4/assets/images/__not_from_LD_app_UI/api-documentation-interactive-example.png)
+The interactive "Try it" form in the API documentation, with parameters filled in.
+ 1. Click **Send**.
+ 2. Select the Response tab and review the headers and body of the response.
+### Postman
+The [Postman](https://www.postman.com/) platform is another option for making calls to the REST API. It offers tooling for setting up, executing, and storing REST requests. You can create a free Postman account and run the examples in this guide from the Postman client. If you are familiar with Postman, you can optionally create a Postman collection using the [LaunchDarkly OpenAPI specification](https://app.launchdarkly.com/api/v2/openapi.json). Importing the LaunchDarkly specification makes it easier to navigate the APIs within Postman. To learn more, read [OpenAPI](https://learning.postman.com/docs/integrations/available-integrations/working-with-openAPI/).
+## Concepts
+This guide relies on the following concepts:
+### LaunchDarkly data hierarchy
+LaunchDarkly accounts can contain one or more **projects**. A project can contain multiple **environments** , and **feature flags** exist across all environments within a project. When you create a new flag, it is created in every environment in your LaunchDarkly project. However, the changes you make to a flag in one environment do not apply to the same flag in any other environment. If you want to, you can configure the same flag in a unique way for every environment you have.
+Many software projects have a test, staging, and production environment within each project. In LaunchDarkly, you can define any environment structure that suits your organization’s needs. For example, your mobile team might need `android test`, `android prod`, `ios test`, and `ios prod` environments in a “Mobile apps” project.
+Most REST API calls require the project key, the flag key, or both to identify the resource.
+To learn more, read [Projects](/docs/home/account/project) and [Environments](/docs/home/account/environment).
+### REST API basics
+The LaunchDarkly REST API is a programmatic alternative to interacting with the LaunchDarkly user interface (UI). You can use the REST API to perform any action that’s available in the LaunchDarkly UI. The API uses HTTP requests to access LaunchDarkly resources. Each request consists of an HTTP method, a base URI, path parameters, and a set of request headers. Some requests also include query parameters or a request body. This guide assumes a basic familiarity with these request components.
+There are many tools to create a REST request. This guide uses [curl](/docs/guides/api/rest-api#curl), a common command line tool. The complete [LaunchDarkly API documentation](/docs/guides/api/rest-api#launchdarkly-api-documentation) provides interactive examples of each request using curl, Python, and Node.js. [Postman](/docs/guides/api/rest-api#postman) is a platform for using APIs, especially REST APIs, and is a good alternative if you would like additional tooling for setting up your requests.
+## Setting up your headers
+Each request you make has required and optional header information. Each header comprises a key/value pair. Many tools for making requests, including the interactive samples in the LaunchDarkly API documentation and Postman, save these headers for you across requests.
+### Required headers
+For all requests, the `Authorization` header is required. This header authenticates you and checks whether you are authorized to take the requested action on the specified resource. For example, if you request information about a project, but you do not have read access to that project, the response will be an error indicating you don’t have sufficient permission.
+The value of the `Authorization` header is an API access token. The access token can be either a personal or service token. In LaunchDarkly, you can create access tokens in the **Organization settings** , from the **Authorization** page. For this guide, you’ll need a token with both read and write permissions, so select a **Role** of “Writer” when you create your token.
+To learn more, read [Creating API access tokens](/docs/home/account/api-create).
+##### You cannot use SDK keys as access tokens
+API access tokens authenticate the requests you make to LaunchDarkly’s REST API. LaunchDarkly also has identifying keys, mobile keys, and client-side IDs that are used by your chosen SDK. **These keys cannot be used to access the REST API.** To learn more, read [Comparing LaunchDarkly’s SDKs and REST API](/docs/guides/api/comparing-sdk-rest-api).
+For all requests that include a request body, the API requires a `Content-Type` header with the value `application/json`. If the request does not include a body, the API ignores the `Content-Type` header. This means it is safe to always include the `Content-Type` header, even when the API doesn’t require it.
+To include the required headers for your requests in curl, use the `-H` option:
+Example curl
+```
+$
+| curl -X GET 'https://app.launchdarkly.com/api/v2/projects/MY-PROJECT-KEY' \
+---|--- 
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN' \
+>
+| -H 'Content-Type: application/json'
+```
+In this example, the `-X` option specifies the type of request, `PATCH`. The URL specifies the resource that the request is acting on. Each `-H` option specifies a header that will be included in the request. You must include the `-X`, request type, URL, and headers each time you use curl to make a request.
+The LaunchDarkly REST API supports semantic patch for a few of its endpoints. [Semantic patch](/docs/guides/api/rest-api#using-semantic-patch-in-the-launchdarkly-api) is described later in this guide. For semantic patch requests, you must append `domain-model=launchdarkly.semanticpatch` to the `Content-Type` header.
+### Optional headers
+The most commonly used optional header is the `LD-API-Version` header. You can use this to specify a particular API version, including a beta version. If this header is not included, your request uses the API version specified in your access token.
+The header value is the version number of the API version you’d like to request. The version number is the date the version was released, using the `yyyymmdd` format. To learn more, read [Versioning](/docs/api#versioning).
+The API documentation indicates if a feature is in beta. Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible. To learn more, read [Beta resources](/docs/api#beta-resources).
+To set the optional `LD-API-Version` header for your requests in curl, use the `-H` option:
+Example curl
+```
+$
+| curl -X GET 'https://app.launchdarkly.com/api/v2/projects' \
+---|--- 
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN' \
+>
+| -H 'LD-API-Version: 20240415'
+>
+| 
+>
+| ## alternatively, to access a feature in beta
+>
+| -H 'LD-API-Version: beta'
+```
+## Exercise: Reading flag and environment information
+In this exercise, you’ll read two resources from LaunchDarkly using the REST API. You’ll also learn how to use LaunchDarkly’s API documentation.
+### Reading a flag
+First, you’ll read information about a single feature flag. While it’s unlikely that you would use the REST API just to read flag information, it’s a good introduction to how our APIs work. If you have not yet created a feature flag in your project, follow the procedure in [Creating new flags](/docs/home/flags/new).
+Each request consists of an HTTP method, a set of request headers, a base URI, a resource name, and path parameters. Let’s review each component of the request.
+To read information about a single feature flag, use the HTTP GET method. In curl, use the `-X GET` option to specify the type of HTTP method.
+This request requires an `Authorization` header. In curl, use the `-H` option to specify the header. To learn more, read [Required headers](/docs/guides/api/rest-api#required-headers).
+The base URI is always `https://app.launchdarkly.com`.
+The resource name for a request to read information about a single flag is `flags`. The required path parameters are the project key and the feature flag key. You can find this information in the API documentation.
+In the LaunchDarkly API documentation for each request:
+ * the resource name is shown in the request sample.
+ * the path parameters are shown in a table in the “Request” section of the request documentation. The request sample denotes path parameters that must be replaced with curly braces. For example, the path for this request is written as: `/api/v2/flags/{projectKey}/{key}`.
+ * the response is described in the “Responses” section of the request documentation. Expand the section to view the JSON schema for the response object.
+To review the API documentation for this request, read [Get feature flag](/docs/api/feature-flags/get-feature-flag).
+To read the “my-first-flag” flag from your default project:
+Example curl
+```
+$
+| curl -X GET 'https://app.launchdarkly.com/api/v2/flags/default/my-first-flag' \
+---|--- 
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN'
+```
+The response to this request is a `200` success code and a JSON object containing everything LaunchDarkly knows about the requested flag. In the request documentation, the “Responses” section expands to describe the JSON schema for the response object. Fields that are always present in the response are marked as required in this schema. Fields that are read-only are named beginning with an underscore (`_`).
+![The 200 success code and JSON object response for a GET request placed from the LaunchDarkly API documentation.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/9b4c1205fbffe26de3a99584686b5c1ae71bfff91a6676eccc6d3948e80dc326/assets/images/__not_from_LD_app_UI/get-flag-response.png)
+The 200 success code and JSON object response for a GET request placed from the LaunchDarkly API documentation.
+### Finding an environment
+Next, you’ll read information about environments. [Environments](/docs/home/account/environment) are organizational units contains within projects. They allow you to manage feature flags throughout your entire development lifecycle, from local development through production. You might use the REST API to read information about environments if you’re interested in comparing settings across environments.
+To read information about environments, use the HTTP GET method. In curl, use the `-X GET` option to specify the type of HTTP method.
+This request requires an `Authorization` header. In curl, use the `-H` option to specify the header. To learn more, read [Required headers](/docs/guides/api/rest-api#required-headers).
+The resource name for this request is `environments`. The required path parameter is the project key.
+In the LaunchDarkly API documentation for each request:
+ * the resource name is shown in the request sample.
+ * the path parameters are shown in a table in the “Request” section of the request documentation. The request sample denotes path parameters that must be replaced with curly braces. For example, the path for this request is written as: `/api/v2/projects/{projectKey}/environments`.
+ * the response is described in the “Responses” section of the request documentation. Expand the section to view the JSON schema for the response object.
+To review the API documentation for this request, read [List environments](/docs/api/environments/get-environments-by-project).
+To find all environments in your default project:
+Example curl
+```
+$
+| curl -X GET 'https://app.launchdarkly.com/api/v2/projects/default/environments' \
+---|--- 
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN'
+```
+The `totalCount` of environments may be quite large. You can add query parameters to your request to search for a smaller set of environments. Query parameters are optional parameters appended to the request path, following a `?`.
+Many of the LaunchDarkly REST APIs, including the `environments` API, let you limit your search results in one of the following ways:
+ * Filtering for an exact match on one or more fields, using the `filter` parameter and a comma-separated list of the fields and values to search, in the format `attributeKey:attributeValue`
+ * Restricting the size of the result set, using the `limit` parameter and the number of items to return
+ * Sorting the result set, using the `sort` parameter and the field by which to sort
+The documentation for each request describes the available query parameters. To include multiple query parameters, use an ampersand (`&`) to separate them. To review the API documentation for this request, read [List environments](/docs/api/environments/get-environments-by-project).
+To find limited sets of environments in your default project:
+Example curl
+```
+$
+| # filter, returns all environments with 'local' in their name or key
+---|--- 
+>
+| curl -X GET 'https://app.launchdarkly.com/api/v2/projects/default/environments?filter=query:local' \
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN'
+>
+| 
+>
+| # separate multiple query parameters with an &
+>
+| curl -X GET 'https://app.launchdarkly.com/api/v2/projects/default/environments?filter=query:local&tags=temporary' \
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN'
+```
+You must URL-encode any non-alphanumeric characters before you can use them in your request. This means you must convert characters such as punctuation marks to a different string, based on their ASCII encoding. In the example, if you wanted to find environments that contained “local dev” rather than just “local,” then you would need to use `filter=query:local%20dev"` because `%20` is the encoding for a space. To learn more about URL-encoding, read [HTML URL Encoding Reference](https://www.w3schools.com/tags/ref_urlencode.ASP).
+If you include multiple query parameters, the API returns only results that match all of the queries. That is, the query parameters are “and”-ed together. In the example, the final request returns only those environments with ‘local’ in their name or key that also have a “temporary” tag.
+The response to this request is a `200` success code and a JSON object containing everything LaunchDarkly knows about the matching environments. In the request documentation, the “Responses” section expands to describe the JSON schema for the response object. Fields that are always present in the response are marked as required in this schema. Fields that are read-only are named beginning with an underscore (`_`).
+![The 200 success code and JSON object response for a GET request placed from the LaunchDarkly API documentation.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/25a5c8b236245994701b9b8f5e8b1795e020f8312f3b96a43d3cc38fef1d8533/assets/images/__not_from_LD_app_UI/get-environments-response.png)
+The 200 success code and JSON object response for a GET request placed from the LaunchDarkly API documentation.
+## Exercise: Creating and updating a resource
+In this exercise, you’ll create a new resource. Then, you’ll update it, twice, using two different methods for updating that are available in the LaunchDarkly REST API.
+### Creating a flag
+In the first exercise, you read information about a flag. In this exercise, you’ll create a new flag. Again, while you may not use the REST API just to create a flag, it’s a good introduction to what our APIs look like. Let’s review each component of the request.
+To create a single feature flag, use the HTTP POST method. In curl, use the `-X POST` option to specify the type of HTTP method.
+This request requires an `Authorization` header. In curl, use the `-H` option to specify the header. Each `POST` request also requires a request body that describes what you want to create. Because the request body is in JSON, make sure to include the `Content-Type: application/json` request header. To learn more, read [Required headers](/docs/guides/api/rest-api#required-headers).
+The resource name for this request is `flags`. The required path parameter is the project key. This request also requires a request body, specified in JSON. The body must include the name and key of the flag you are creating. In curl, use the `-d` option to specify data you are sending part of the request body.
+In the LaunchDarkly API documentation for each request:
+ * the resource name is shown in the request sample.
+ * the path parameters are shown in a table in the “Request” section of the request documentation. The request sample denotes path parameters that must be replaced with curly braces. For example, the path for this request is written as: `/api/v2/flags/{projKey}`.
+ * the request body is described in the “Request” section for `POST` requests. Each request body is a JSON object, and the required and optional fields are listed with name, type, and description.
+ * the response is described in the “Responses” section of the request documentation. Expand the section to view the JSON schema for the response object.
+To review the API documentation for this request, read [Create a feature flag](/docs/api/feature-flags/post-feature-flag).
+To add a new flag in your default project:
+Example curl
+```
+$
+| curl -X POST 'https://app.launchdarkly.com/api/v2/flags/default' \
+---|--- 
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN' \
+>
+| -H 'Content-Type: application/json' \
+>
+| -d ' {
+>
+| "key": "my-new-flag",
+>
+| "name": "My new flag"
+>
+| }'
+```
+The response to this request is `201` success code and a JSON object containing everything LaunchDarkly knows about the newly created flag. In the request documentation, the “Responses” section expands to describe the JSON schema for the response object.
+![The 201 success code and JSON object response for a POST request placed from the LaunchDarkly API documentation.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/3d737ddf3d6b5864b65bb3408413d024e13ad7d4bfa921b684d07933844ca3aa/assets/images/__not_from_LD_app_UI/post-flag-response.png)
+The 201 success code and JSON object response for a POST request placed from the LaunchDarkly API documentation.
+In LaunchDarkly, navigate to the [Feature flags](https://app.launchdarkly.com/features) page to view your newly-created flag.
+### Updating a flag
+As created, your new flag isn’t very useful yet. Next, you’ll update it, using a `PATCH` request. LaunchDarkly’s REST API primarily uses [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902) to specify modifications. For some resources, the API also supports semantic patch. In this section, you’ll look at examples of both methods.
+To update a flag, use the HTTP PATCH method. In curl, use the `-X PATCH` option to specify the type of HTTP method.
+This request requires an `Authorization` header. In curl, use the `-H` option to specify the header. Each `PATCH` request also requires a request body that describes the update. Because the request body is in JSON, make sure to include the `Content-Type: application/json` request header. To learn more, read [Required headers](/docs/guides/api/rest-api#required-headers).
+The resource name for the request to update a flag is `flags`, just as it was for creating a flag. To update a flag, the required path parameters include not only the project key but also the feature flag key.
+#### Using JSON Patch in the LaunchDarkly API
+LaunchDarkly’s REST API primarily uses [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902) to specify modifications. To use JSON Patch, your request body should include an array of operations. These operations are performed sequentially to complete the request. Each operation is itself a JSON object that requires the following fields:
+ * `op`: the name of the operation. The most common operation is `replace`, which replaces the current value of a field with a new value that you specify.
+ * `path`: the reference to the field you want updated, within its JSON object. For example, you can use `/description` for the field named “description” at the root level of your feature flag object.
+ * `value`: the data used by the operation. For a `replace` operation, this is the new value.
+In the LaunchDarkly API documentation for each request:
+ * the resource name is shown in the request sample.
+ * the path parameters are shown in a table in the “Request” section of the request documentation. The request sample denotes path parameters that must be replaced with curly braces. For example, the path for this request is written as: `/api/v2/flags/{projKey}/{key}`.
+ * the request body is described in the “Request” section for `PATCH` requests. Each request body is a JSON object, and the required and optional fields are listed with name, type, and description.
+ * the response is described in the “Responses” section of the request documentation. Expand the section to view the JSON schema for the response object.
+To update the flag you just created using JSON Patch:
+Example curl
+```
+$
+| curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/my-new-flag' \
+---|--- 
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN' \
+>
+| -H 'Content-Type: application/json' \
+>
+| -d '[
+>
+| {
+>
+| "op": "replace",
+>
+| "path": "/description",
+>
+| "value": "New description for this flag"
+>
+| }
+>
+| ]'
+```
+The response to this request is `200` success code and a JSON representation of the updated object. In the request documentation, the “Responses” section expands to describe the JSON schema for the response object.
+![The 200 success code and JSON object response for a PATCH request placed from the LaunchDarkly API documentation.](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/55cde170bf0830c383467a3f9a09c078e3fa3867c1b44ee30d8a1b76e52a8cab/assets/images/__not_from_LD_app_UI/patch-flag-response.png)
+The 200 success code and JSON object response for a PATCH request placed from the LaunchDarkly API documentation.
+#### Using semantic patch in the LaunchDarkly API
+A few of the LaunchDarkly REST API endpoints support semantic patch. Semantic patch is a way to specify the modifications you’d like as a set of executable instructions, rather than a specific JSON update. To learn more, read the blog post [Announcing Semantic Patch](https://launchdarkly.com/blog/announcing-semantic-patch/).
+For semantic patch requests, the structure of the PATCH request is the same. However, you must append `domain-model=launchdarkly.semanticpatch` to the `Content-Type` header. To learn more, read [Required headers](/docs/guides/api/rest-api#required-headers).
+Although the structure of the request is the same, the content of the request body is different. Set your request body to an object with the following fields:
+ * `environmentKey`: the environment where the modifications should occur. Recall that your LaunchDarkly project has multiple environments. With semantic patch, you can only update in one environment at a time.
+ * `instructions`: an array of instructions. Each instruction must include a `kind` field that indicates the instruction. Depending on the `kind`, the API may require additional parameters for the instruction. When this is the case, add the parameters as additional fields to the instruction object.
+When a request supports semantic patch, the API documentation lists the supported `kind`s and describes their parameters. To review the API documentation for this request, read [Update feature flag](/docs/api/feature-flags/patch-feature-flag).
+For feature flags, a common use of semantic patch is to issue an instruction to toggle targeting on or off. To update your feature flag’s targeting state:
+Example curl
+```
+$
+| curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/my-new-flag' \
+---|--- 
+>
+| -H 'LD-API-Version: 20240415' \
+>
+| -H 'Authorization: EXAMPLE-API-ACCESS-TOKEN' \
+>
+| -H 'Content-Type: application/json; domain-model=launchdarkly.semanticpatch' \
+>
+| -d ' {
+>
+| "environmentKey": "production",
+>
+| "instructions": [
+>
+| { "kind": "turnFlagOn" }
+>
+| ]
+>
+| }'
+```
+The response to this request is `200` success code and a JSON representation of the updated object. In the request documentation, the “Responses” section expands to describe the JSON schema for the response object.
+To learn more about how the LaunchDarkly REST API performs updates, including which endpoints support semantic patches, read [Updates](/docs/api#updates).
+## Common use cases
+The exercises in this guide have introduced you to the basics of reading, creating, and updating using LaunchDarkly’s REST API. From this basic understanding, you can start thinking about how you might use the API as part of your feature management.
+Here are some examples of common use cases:
+ * **Check for flags in a particular state.** For example, if you want to create your own dashboard outside of LaunchDarkly you might [list feature flags](/docs/api/feature-flags/get-feature-flags) that are active in a production environment, evaluated in the last four hours, and have a particular tag.
+ * **Update feature flags.** You already learned how to [update a feature flag](/docs/guides/api/rest-api#updating-a-flag) with a `PATCH` request. You can also build conditional logic into your updates by taking advantage of the additional operations that are available within a JSON Patch request, or explore the operations available through semantic patch. To learn more, read [Updates](/docs/api#updates). Some examples of common reasons to update feature flags include:
+ * Writing automated tests for your application. You can set flags to different states and re-run your test suite for each state.
+ * Adding or removing individual targets, or adding or removing targeting rules. You can change a flag’s targeting programmatically. To learn more, read the semantic patch instructions in [Update feature flag](/docs/api/feature-flags/patch-feature-flag).
+ * **Add or remove segments.** Segments allow you to create targeting rules and lists of contexts that can be shared by one or more feature flags. To learn more, read [Segments](/docs/api/segments).
+ * **Create new projects and environments for local testing.** For example, each developer has their own development instance of your product. Each instance requires its own set of resources, such as databases, static files, and feature flags. You can use the REST API to [create new projects](/docs/api/projects/post-project) and [create new environments](/docs/api/environments/post-environment) as part of this local setup.
+ * **Manage account members.** For example, you can [invite new members](/docs/api/account-members/post-members) or [find account members](/docs/api/account-members/get-members) in a particular role.
+ * **Build custom integrations.** Using the REST API is one of several methods for connecting other services to LaunchDarkly. For example, if you are using webhooks to subscribe to changes in LaunchDarkly, you can use the REST API to request additional information when you are notified about some types of changes. To learn more, read [Connect apps and services to LaunchDarkly](/docs/home/infrastructure/apps).
+ * **Experiment with new functionality.** For example, you might be brainstorming a custom integration. If you are not sure what information you can access or manipulate in LaunchDarkly, you can experiment or prototype directly with the REST APIs. Once you’ve determined a path forward you can build out your new functionality, for example using a [client library](https://github.com/search?q=topic%3Alaunchdarkly-api+org%3Alaunchdarkly&type=Repositories) of your choice.
+## Additional considerations
+If you decide to use LaunchDarkly’s REST API as part of your feature management, there are a few considerations to keep in mind:
+ * **Review the client libraries.** LaunchDarkly auto-generates client libraries based on our OpenAPI specification, so that you can work with the LaunchDarkly REST API in your language of choice. To learn more, visit the [collection of client libraries on GitHub](https://github.com/search?q=topic%3Alaunchdarkly-api+org%3Alaunchdarkly&type=Repositories).
+ * **Pay attention to error codes.** Some error codes returned by the REST API are effectively permanent. For example, if you receive a `403 Forbidden` response, you don’t have access to the resource you’re requesting. Other error codes are temporary but require careful handling. For example, most resources return a `429 Rate limited` response if you make too many requests over a short timeframe. Make sure to call each resource only when you need to. If your code is looping and repeatedly getting a `429` error, build in a back off to reduce the rate at which you’re calling an individual resource. To learn more, read the [LaunchDarkly Knowledge Base article on avoiding API rate limits](https://support.launchdarkly.com/hc/en-us/articles/22328238491803-Error-429-Too-Many-Requests-API-Rate-Limit).
+Alternatively, consider if there is another way to approach the problem. For example, if your flag targets individual contexts and you frequently add and remove the same context, try using flag targeting rules instead.
+ * **Contact the LaunchDarkly Support team.** If you’re considering building out significant functionality with the REST API, [start a Support ticket](https://support.launchdarkly.com/hc/en-us/requests/new). There may already be a complete or partial solution available that doesn’t require custom code on your part.
+## Conclusion
+In this guide, you learned to:
+ * Set up your request headers to access LaunchDarkly APIs, including creating access tokens
+ * Read feature flag and context information from LaunchDarkly using the REST API
+ * Create and update feature flags using the REST API
+ * Understand common use cases for working with the REST API
+ * Navigate the LaunchDarkly [API documentation](/docs/api)
+ * Find the [client library](https://github.com/search?q=topic%3Alaunchdarkly-api+org%3Alaunchdarkly&type=Repositories) you need to work in your preferred language
+We hope that this has helped you get started using LaunchDarkly’s REST APIs.
+##### Want to know more? Start a trial.
+Your 14-day trial begins as soon as you sign up. Get started in minutes using the in-app Quickstart. You'll discover how easy it is to release, monitor, and optimize your software. 
+Want to try it out? [Start a trial](https://app.launchdarkly.com/signup).
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

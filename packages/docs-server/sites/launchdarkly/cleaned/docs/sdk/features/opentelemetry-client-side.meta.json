@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:44.339Z",
+  "cleanedAt": "2025-11-21T18:32:44.862Z",
+  "url": "https://launchdarkly.com/docs/sdk/features/opentelemetry-client-side",
+  "description": "This topic explains how to enable OpenTelemetry in client-side SDKs, using the LaunchDarkly observability plugins. [OpenTelemetry](https://opentelemetry.io/) (OTel) is an open source observability framework and toolkit designed to create and manage telemetry data such as traces, metrics, and logs."
+}

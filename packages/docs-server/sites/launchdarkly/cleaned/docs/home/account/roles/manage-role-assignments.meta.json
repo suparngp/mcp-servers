@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:58.075Z",
+  "cleanedAt": "2025-11-21T18:14:58.728Z",
+  "url": "https://launchdarkly.com/docs/home/account/roles/manage-role-assignments",
+  "description": "This topic explains the different role types, and how different roles interact. You can use LaunchDarkly’s roles to give each member precise permissions and access to different aspects of LaunchDarkly."
+}

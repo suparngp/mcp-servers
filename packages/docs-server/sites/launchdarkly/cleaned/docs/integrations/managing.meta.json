@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:40.516Z",
+  "cleanedAt": "2025-11-21T18:33:41.011Z",
+  "url": "https://launchdarkly.com/docs/integrations/managing",
+  "description": "This topic explains how to manage push-based LaunchDarkly integrations. In a push-based integration, LaunchDarkly delivers events to the third-party integration through an integration service and logs whether the integration’s configuration successfully received the event."
+}

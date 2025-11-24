@@ -1,0 +1,7 @@
+{
+  "title": "Evaluations[​](#evaluations \"Direct link to Evaluations\")",
+  "crawledAt": "2025-11-23T07:15:45.738Z",
+  "cleanedAt": "2025-11-23T07:15:45.903Z",
+  "url": "https://openfeature.dev/specification/appendix-d",
+  "description": "Flag evaluation telemetry comprises data resolved from the provider resolution (evaluation details and flag metadata) as well as metadata about the provider itself. This is particularly relevant to telemetry-related [hooks](/specification/sections/hooks)."
+}

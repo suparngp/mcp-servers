@@ -1,0 +1,7 @@
+{
+  "title": "Rolling dice",
+  "crawledAt": "2025-11-21T18:36:34.281Z",
+  "cleanedAt": "2025-11-21T18:36:34.596Z",
+  "url": "https://launchdarkly.com/docs/blog/dungeons-downtimes",
+  "description": "For most of us on the Metrics team, this was the first time we were on-call after hours at LaunchDarkly. Some of us are frontend engineers and haven’t debugged backend issues before, and some of us are backend engineers that haven’t debugged frontend issues before. So to prepare ourselves, we role-played a mock incident in the style of Dungeons and Dragons tabletop."
+}

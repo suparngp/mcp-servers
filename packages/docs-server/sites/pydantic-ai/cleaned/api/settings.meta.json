@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.settings`",
+  "crawledAt": "2025-10-31T04:57:47.604Z",
+  "cleanedAt": "2025-10-31T04:57:47.781Z",
+  "url": "https://ai.pydantic.dev/api/settings/",
+  "description": "Bases: `TypedDict[](https://typing-extensions.readthedocs.io/en/latest/index.html#typing_extensions.TypedDict \"typing_extensions.TypedDict\")`"
+}

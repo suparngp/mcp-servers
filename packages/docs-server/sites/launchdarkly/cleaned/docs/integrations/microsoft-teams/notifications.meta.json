@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:56.663Z",
+  "cleanedAt": "2025-11-21T18:32:56.947Z",
+  "url": "https://launchdarkly.com/docs/integrations/microsoft-teams/notifications",
+  "description": "This topic explains how to receive notifications in Microsoft Teams when someone changes a feature flag that you have subscribed to notifications for."
+}

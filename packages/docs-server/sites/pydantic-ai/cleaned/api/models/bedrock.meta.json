@@ -1,0 +1,7 @@
+{
+  "title": "`pydantic_ai.models.bedrock`",
+  "crawledAt": "2025-10-31T04:58:18.773Z",
+  "cleanedAt": "2025-10-31T04:58:19.162Z",
+  "url": "https://ai.pydantic.dev/api/models/bedrock/",
+  "description": "For details on how to set up authentication with this model, see [model configuration for Bedrock](../../../models/bedrock/)."
+}

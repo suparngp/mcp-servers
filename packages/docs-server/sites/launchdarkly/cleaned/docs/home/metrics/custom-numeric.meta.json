@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:14:31.293Z",
+  "cleanedAt": "2025-11-21T18:14:31.515Z",
+  "url": "https://launchdarkly.com/docs/home/metrics/custom-numeric",
+  "description": "This topic explains how to create a custom numeric metric in LaunchDarkly. Custom numeric metrics track changes to the amount of something, such as dollars spent or latency time. Unlike conversion metrics, which track how many users triggered an event or the number of times an event occurs, numeric metrics let you measure changes in value against a baseline flag variation you choose."
+}

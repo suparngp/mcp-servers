@@ -1,0 +1,7 @@
+{
+  "title": "pydantic_ai.models.fallback",
+  "crawledAt": "2025-10-31T04:58:33.731Z",
+  "cleanedAt": "2025-10-31T04:58:33.912Z",
+  "url": "https://ai.pydantic.dev/api/models/fallback/",
+  "description": "Bases: `Model[](../base/#pydantic_ai.models.Model \"pydantic_ai.models.Model\")`"
+}

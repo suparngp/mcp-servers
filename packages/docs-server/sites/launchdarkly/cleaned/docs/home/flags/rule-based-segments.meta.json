@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:13:35.090Z",
+  "cleanedAt": "2025-11-21T18:13:35.365Z",
+  "url": "https://launchdarkly.com/docs/home/flags/rule-based-segments",
+  "description": "This topic explains how to target contexts in rule-based and smaller list-based segments. Smaller list-based segments are segments where the number of individual contexts targeted is 15,000 or fewer."
+}

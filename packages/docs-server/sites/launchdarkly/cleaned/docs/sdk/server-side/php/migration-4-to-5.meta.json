@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:32:27.913Z",
+  "cleanedAt": "2025-11-21T18:32:28.298Z",
+  "url": "https://launchdarkly.com/docs/sdk/server-side/php/migration-4-to-5",
+  "description": "This topic explains the changes in the PHP SDK 5.0 release and how to adapt code that uses a 4.x version of the [PHP SDK](/docs/sdk/server-side/php) to use version 5.0 or later."
+}

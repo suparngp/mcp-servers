@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:37.120Z",
+  "cleanedAt": "2025-11-21T18:33:37.600Z",
+  "url": "https://launchdarkly.com/docs/integrations/convex",
+  "description": "Convex is a sync platform and framework that replaces your backend and client state management. Using the LaunchDarkly integration, you can sync your LaunchDarkly environment to an application you’ve developed on Convex, allowing you to instantly install feature flagging in your TypeScript or JavaScript applications."
+}

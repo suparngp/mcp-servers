@@ -1,0 +1,61 @@
+`/`
+[Product docs](/docs/home)[Guides](/docs/guides)[SDKs](/docs/sdk)[Integrations](/docs/integrations)[API docs](/docs/api)[Tutorials](/docs/tutorials)[Flagship Blog](/docs/blog)
+ * [SDKs](/docs/sdk)
+ * [SDK concepts](/docs/sdk/concepts)
+ * [SDK features](/docs/sdk/features)
+ * [Client-side SDKs](/docs/sdk/client-side)
+ * [Server-side SDKs](/docs/sdk/server-side)
+ * [AI SDKs](/docs/sdk/ai)
+ * [Edge SDKs](/docs/sdk/edge)
+ * [OpenFeature providers](/docs/sdk/openfeature)
+ * [Observability SDKs](/docs/sdk/observability)
+ * [Relay Proxy](/docs/sdk/relay-proxy)
+[Sign in](/)[Sign up](https://app.launchdarkly.com/signup)
+On this page
+ * [Overview](#overview)
+ * [Identifying PHP versions for the 4.0 SDK](#identifying-php-versions-for-the-40-sdk)
+ * [Understanding type annotations](#understanding-type-annotations)
+ * [Understanding changes to database integrations](#understanding-changes-to-database-integrations)
+ * [Understanding what was deprecated](#understanding-what-was-deprecated)
+## Overview
+This topic explains how to adapt code that currently uses a 3.x version of the [PHP server-side SDK](/docs/sdk/server-side/php) to use version 4.0 or later.
+Before you migrate to 4.0, update to the latest 3.x version. To learn more about updating to the latest 3.x version, visit the [SDK’s GitHub repository](https://github.com/launchdarkly/php-server-sdk/releases).
+## Identifying PHP versions for the 4.0 SDK
+The 4.x version of the SDK is compatible with PHP versions 7.3 and higher. LaunchDarkly no longer supports older PHP versions, as is documented in the [End of Life policy](https://launchdarkly.com/policies/end-of-life-policy/).
+## Understanding type annotations
+Modern versions of PHP support [type declarations](https://www.php.net/manual/en/language.types.declarations.php). The 4.x SDK includes argument type declarations and return type declarations for all public methods.
+This means that you will get a `TypeError` at runtime if your code does any of these things:
+ * Passing an incorrect type of data to an SDK method.
+ * Passing a `null` value where a `null` was not allowed.
+ * Trying to use the return value of an SDK method as an incorrect type.
+These mistakes may have caused errors in the 3.x SDK, but in most cases, they would have happened later in the SDK code and would have been harder to diagnose. With a `TypeError`, it is easier to identify the problem.
+To detect type errors before runtime, you can use a static analysis tool such as [Psalm](https://psalm.dev/). The SDK’s build process now uses Psalm to avoid incorrect type usage in its code.
+The SDK does not use the `mixed` type in its type declarations, because `mixed` is only supported in PHP 8.x. It does use `mixed` in documentation comment tags for use by Psalm.
+## Understanding changes to database integrations
+Previously, the `launchdarkly/server-sdk` package included optional database integrations for Redis, DynamoDB, and Consul.
+These have been moved to separate packages:
+ * [`launchdarkly/server-sdk-redis-predis`](https://packagist.org/packages/launchdarkly/server-sdk-redis-predis): this contains `LaunchDarkly\Integrations\Redis`, the Redis integration that uses [`predis`](https://github.com/predis/predis).
+ * [`launchdarkly/server-sdk-redis-phpredis`](https://packagist.org/packages/launchdarkly/server-sdk-redis-phpredis): this contains `LaunchDarkly\Integrations\PHPRedis`, the Redis integration that uses [`phpredis`](https://github.com/phpredis/phpredis).
+ * [`launchdarkly/server-sdk-dynamodb`](https://packagist.org/packages/launchdarkly/server-sdk-dynamodb): this contains `LaunchDarkly\Integrations\DynamoDB`.
+ * [`launchdarkly/server-sdk-consul`](https://packagist.org/packages/launchdarkly/server-sdk-consul): this contains `LaunchDarkly\Integrations\Consul`.
+Each of these packages declares the dependencies it needs, such as the `predis` package for `launchdarkly/server-sdk-redis-predis`.
+Therefore, if you were previously using one of these integrations, you should change your `composer.json` file as follows:
+ * For `LaunchDarkly\Integrations\Redis`: add a dependency on `launchdarkly/server-sdk-redis-predis` version `1.*`, and remove your dependency on `predis/predis` unless you are using it for other purposes.
+ * For `LaunchDarkly\Integrations\PHPRedis`: add a dependency on `launchdarkly/server-sdk-redis-phpredis` version `1.*`.
+ * For `LaunchDarkly\Integrations\DynamoDB`: add a dependency on `launchdarkly/server-sdk-dynamodb` version `1.*`, and remove your dependency on `aws/aws-sdk-php` unless you are using it for other purposes.
+ * For `LaunchDarkly\Integrations\Consul`: add a dependency on `launchdarkly/server-sdk-consul` version `1.*`, and remove your dependency on `sensiolabs/consul-php-sdk` unless you are using it for other purposes.
+## Understanding what was deprecated
+All types and methods that were marked as deprecated in the last 3.x release have been removed from the 4.0 release. If you were using these with a recent version previously, you should already have received deprecation warnings at build time or runtime, with suggestions about their recommended replacements.
+Many types that were not intended for use by applications have been moved out of the main namespace into the `Impl` namespace. These classes were never documented and had already been marked with an `@internal` tag to indicate that they were for the SDK’s internal use. Anything within `Impl` is subject to change at any time and should not be referenced in your code.
+Other types are no longer in the main namespace because there is a replacement for them in the `Integrations` namespace. Those replacements already existed in the 3.x SDK, but now they are the only way to use these features. Here are the old types, and their replacements:
+ * `ApcLDDFeatureRequester`: use [`\LaunchDarkly\Integrations\Redis::featureRequester()`](https://launchdarkly.github.io/php-server-sdk-redis-predis/classes/LaunchDarkly-Integrations-Redis.html#method_featureRequester) from `launchdarkly/server-sdk-redis-predis`, and set the `apc_expiration` option to enable caching.
+ * `ApcuLDDFeatureRequester`: same as for `ApcLDDFeatureRequester`.
+ * `CurlEventPublisher`: use [`\LaunchDarkly\Integrations\Curl::eventPublisher()`](https://launchdarkly.github.io/php-server-sdk/classes/LaunchDarkly-Integrations-Curl.html#method_eventPublisher).
+ * `GuzzleEventPublisher`: use [`\LaunchDarkly\Integrations\Guzzle::eventPublisher()`](https://launchdarkly.github.io/php-server-sdk/classes/LaunchDarkly-Integrations-Guzzle.html#method_eventPublisher).
+ * `GuzzleFeatureRequester`: use [`\LaunchDarkly\Integrations\Guzzle::featureRequester()`](https://launchdarkly.github.io/php-server-sdk/classes/LaunchDarkly-Integrations-Guzzle.html#method_featureRequester).
+ * `LDDFeatureRequester`: use [`\LaunchDarkly\Integrations\Redis::featureRequester()`](https://launchdarkly.github.io/php-server-sdk-redis-predis/classes/LaunchDarkly-Integrations-Redis.html#method_featureRequester) from `launchdarkly/server-sdk-redis-predis`.
+[![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)![Logo](https://files.buildwithfern.com/https://launchdarkly.docs.buildwithfern.com/docs/a8964c2c365fb94c416a0e31ff873d21ce0c3cbf40142e7e66cce5ae08a093af/assets/logo-dark.svg)](/docs/home)
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs
+LaunchDarkly docs

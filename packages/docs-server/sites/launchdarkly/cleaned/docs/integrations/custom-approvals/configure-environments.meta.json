@@ -1,0 +1,7 @@
+{
+  "title": "Overview",
+  "crawledAt": "2025-11-21T18:33:28.414Z",
+  "cleanedAt": "2025-11-21T18:33:28.763Z",
+  "url": "https://launchdarkly.com/docs/integrations/custom-approvals/configure-environments",
+  "description": "This topic describes how to configure LaunchDarkly environments to use a custom approvals integration configuration for flag changes. This is the final step required in configuring a [custom approvals integration](/docs/integrations/custom-approvals)."
+}
